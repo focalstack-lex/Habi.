@@ -40,11 +40,11 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
   setSelectedCategory,
 }) => {
   return (
-    <div className="space-y-4 mb-8">
-      {/* Category & 1-of-1 Toggle Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-zinc-200 font-mono">
-        <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
-          <span className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold shrink-0 mr-1">
+    <div className="space-y-4 mb-8 font-mono">
+      {/* Category Row with Clean Text Tabs (NO Pills) */}
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-zinc-200">
+        <div className="flex items-center gap-4 overflow-x-auto py-1 scrollbar-none">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold shrink-0">
             Category:
           </span>
           {CATEGORY_OPTIONS.map((cat) => {
@@ -53,10 +53,10 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 rounded-full text-xs transition-colors shrink-0 ${
+                className={`py-1 text-xs uppercase tracking-wider transition-all border-b-2 shrink-0 ${
                   isActive
-                    ? 'bg-zinc-900 text-white font-medium'
-                    : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
+                    ? 'border-zinc-950 text-zinc-950 font-bold'
+                    : 'border-transparent text-zinc-500 hover:text-zinc-950'
                 }`}
               >
                 {cat}
@@ -65,23 +65,23 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
           })}
         </div>
 
-        {/* 1-of-1 Thrift Filter Toggle */}
+        {/* 1-of-1 Thrift Rectangular Ribbon Toggle */}
         <button
           onClick={() => setIsOneOfOneOnly(!isOneOfOneOnly)}
-          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono tracking-tight transition-all border ${
+          className={`flex items-center gap-2 px-4 py-2 text-xs font-mono tracking-wider uppercase font-bold transition-all border ${
             isOneOfOneOnly
-              ? 'bg-zinc-900 border-zinc-900 text-white font-medium shadow-sm'
-              : 'bg-white border-zinc-300 text-zinc-700 hover:border-zinc-900'
+              ? 'bg-zinc-950 border-zinc-950 text-white shadow-sm'
+              : 'bg-white border-zinc-300 text-zinc-800 hover:border-zinc-950'
           }`}
         >
           <Tag className="w-3.5 h-3.5" />
-          <span>1-of-1 Thrift Only</span>
+          <span>1-of-1 Thrift Archive Only</span>
         </button>
       </div>
 
-      {/* Aesthetic Style Chips */}
-      <div className="flex items-center gap-2 overflow-x-auto py-1 font-mono scrollbar-none">
-        <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-bold uppercase tracking-widest shrink-0 mr-2">
+      {/* Aesthetic Style Chips (Clean Rectangular Buttons, NO Pills) */}
+      <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
+        <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-bold uppercase tracking-[0.2em] shrink-0 mr-2">
           <Filter className="w-3.5 h-3.5" />
           <span>Style:</span>
         </div>
@@ -92,10 +92,10 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
             <button
               key={style}
               onClick={() => setSelectedAesthetic(style)}
-              className={`px-4 py-1.5 rounded-full text-xs tracking-tight transition-all shrink-0 ${
+              className={`px-4 py-2 text-xs uppercase font-bold tracking-wider transition-all shrink-0 border ${
                 isActive
-                  ? 'bg-zinc-900 text-white font-medium shadow-sm'
-                  : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200 hover:text-zinc-900'
+                  ? 'bg-zinc-950 border-zinc-950 text-white shadow-sm'
+                  : 'bg-zinc-50 border-zinc-200 text-zinc-700 hover:border-zinc-950 hover:text-zinc-950'
               }`}
             >
               {style}

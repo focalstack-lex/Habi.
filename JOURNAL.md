@@ -27,6 +27,9 @@
 
 ### Standards & Compliance
 * Severus Lead Engineering Protocol active.
+* High-Fashion Visual Redesign: Integrated Google Fonts (**Syne** for display headlines, **Plus Jakarta Sans** for body copy, **Space Mono** for technical piece metadata).
+* De-Sloped Navigation Architecture: Asymmetrical split header with plain text links and hairline active underlines (zero rounded pill bubbles around tabs).
+* Sharp Editorial Geometry: Product cards converted from soft rounded-2xl corners to structured 0px/4px radii with corner-pinned rectangular tag ribbons (`1-OF-1 THRIFT`).
 * Zero Emoji Directive strictly enforced across UI/UX, copy, and codebase (using Lucide SVG vector icons).
 * Zero Em-Dash Directive strictly enforced across all copy and documentation.
 * Strict Anti-Eyebrow-Pill Directive enforced.
