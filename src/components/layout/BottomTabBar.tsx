@@ -1,14 +1,16 @@
 import React from 'react';
-import { LayoutGrid, Timer, MapPin, Bookmark } from 'lucide-react';
+import { Compass, Sparkles, MapPin, Heart, User, Flame } from 'lucide-react';
 import { NAV_TABS } from './NavigationHeader';
 
-const BOTTOM_TAB_IDS: string[] = ['feed', 'drops', 'map', 'saved'];
+const BOTTOM_TAB_IDS: string[] = ['feed', 'discover', 'drops', 'map', 'saved', 'dashboard'];
 
 const TAB_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  feed: LayoutGrid,
-  drops: Timer,
+  feed: Compass,
+  discover: Sparkles,
+  drops: Flame,
   map: MapPin,
-  saved: Bookmark,
+  saved: Heart,
+  dashboard: User,
 };
 
 interface BottomTabBarProps {
@@ -29,13 +31,13 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
   const tabs = NAV_TABS.filter((tab) => BOTTOM_TAB_IDS.includes(tab.id));
 
   return (
-    <nav
-      aria-label="Primary"
-      className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-zinc-200 tabbar-safe"
-    >
-      <div className="grid grid-cols-4">
+    <div className="lg:hidden fixed bottom-4 left-4 right-4 z-40 flex justify-center pointer-events-none">
+      <nav
+        aria-label="Primary Mobile Navigation"
+        className="pointer-events-auto bg-white/95 backdrop-blur-xl border border-zinc-200/80 shadow-2xl rounded-full px-3 py-1.5 flex items-center justify-between gap-1 max-w-md w-full"
+      >
         {tabs.map((tab) => {
-          const Icon = TAB_ICONS[tab.id];
+          const Icon = TAB_ICONS[tab.id] || Compass;
           const isActive = activeTab === tab.id;
           return (
             <button
@@ -43,29 +45,25 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
               type="button"
               onClick={() => setActiveTab(tab.id)}
               aria-current={isActive ? 'page' : undefined}
-              className={`relative flex flex-col items-center justify-center gap-1 min-h-[56px] py-2 font-mono text-[10px] uppercase tracking-[0.1em] transition-colors duration-150 ${
+              className={`relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-full transition-all duration-200 ${
                 isActive
-                  ? 'text-zinc-950 font-bold'
-                  : 'text-zinc-400 hover:text-zinc-950 font-medium'
+                  ? 'bg-zinc-950 text-white shadow-md'
+                  : 'text-zinc-500 hover:text-zinc-950 hover:bg-zinc-100'
               }`}
             >
-              {isActive && (
-                <span
-                  className="absolute top-0 left-0 right-0 h-0.5 bg-zinc-950"
-                  aria-hidden="true"
-                />
-              )}
-              <Icon className="w-5 h-5" />
-              <span>{tab.label}</span>
+              <Icon className="w-4 h-4" />
+              <span className="text-[9px] font-semibold mt-0.5">{tab.label}</span>
               {tab.id === 'saved' && savedCount > 0 && (
-                <span className="absolute top-1.5 right-1/4 min-w-[16px] bg-zinc-950 text-white font-mono text-[9px] font-bold text-center">
+                <span className={`absolute -top-1 -right-1 min-w-[15px] h-[15px] rounded-full text-[8px] flex items-center justify-center font-bold ${
+                  isActive ? 'bg-white text-zinc-950' : 'bg-zinc-950 text-white'
+                }`}>
                   {savedCount}
                 </span>
               )}
             </button>
           );
         })}
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };

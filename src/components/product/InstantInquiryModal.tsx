@@ -50,33 +50,33 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-lg bg-white rounded-none border border-zinc-900 shadow-2xl p-6 sm:p-8 z-10 space-y-6 font-sans">
+      <div className="relative w-full max-w-lg bg-white rounded-3xl border border-zinc-200/80 shadow-2xl p-6 sm:p-8 z-10 space-y-5 font-sans">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-zinc-200">
+        <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
           <div className="flex items-center gap-2">
-            <MessageSquare className="w-5 h-5 text-zinc-900" />
-            <h2 className="font-syne text-base font-bold uppercase tracking-tight text-zinc-900">
+            <MessageSquare className="w-5 h-5 text-zinc-950" />
+            <h2 className="font-outfit text-lg font-bold text-zinc-950">
               Direct Seller Inquiry
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-zinc-400 hover:text-zinc-900 rounded-none hover:bg-zinc-100 transition-colors"
+            className="p-2 text-zinc-400 hover:text-zinc-950 rounded-full hover:bg-zinc-100 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Item Summary Mini Card */}
-        <div className="flex items-center gap-4 bg-zinc-50 border border-zinc-200 p-3.5 rounded-none">
+        <div className="flex items-center gap-3.5 bg-zinc-50/80 border border-zinc-200/70 p-3 rounded-2xl">
           <img
             src={product.images[0]}
             alt={product.name}
-            className="w-16 h-16 object-cover rounded-none border border-zinc-200 shrink-0"
+            className="w-14 h-14 object-cover rounded-xl border border-zinc-200 shrink-0"
           />
-          <div className="min-w-0 flex-1 font-mono">
-            <div className="text-xs text-zinc-500 font-medium">{seller.name}</div>
-            <h3 className="font-syne text-sm font-bold text-zinc-900 truncate">{product.name}</h3>
+          <div className="min-w-0 flex-1">
+            <div className="text-xs text-zinc-500 font-medium truncate">{seller.name}</div>
+            <h3 className="font-outfit text-sm font-bold text-zinc-950 truncate">{product.name}</h3>
             <div className="text-xs font-bold text-zinc-950 mt-0.5">
               ₱{product.price.toLocaleString()} • Size {product.size}
             </div>
@@ -84,8 +84,8 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
         </div>
 
         {/* Messaging Channel Options */}
-        <div className="space-y-2 font-mono">
-          <label className="block text-[11px] uppercase tracking-widest text-zinc-500 font-bold">
+        <div className="space-y-2">
+          <label className="block text-xs text-zinc-500 font-semibold">
             Select Preferred Channel:
           </label>
           <div className="grid grid-cols-3 gap-2">
@@ -97,10 +97,10 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
               <button
                 key={channel.id}
                 onClick={() => setSelectedChannel(channel.id as any)}
-                className={`py-2 px-3 rounded-none text-xs font-mono font-bold uppercase tracking-wider border text-center transition-all ${
+                className={`py-2 px-3 rounded-full text-xs font-semibold border text-center transition-all ${
                   selectedChannel === channel.id
-                    ? 'bg-zinc-900 border-zinc-900 text-white'
-                    : 'bg-white border-zinc-200 text-zinc-700 hover:border-zinc-400'
+                    ? 'bg-zinc-950 border-zinc-950 text-white shadow-sm'
+                    : 'bg-zinc-50 border-zinc-200 text-zinc-700 hover:bg-zinc-100'
                 }`}
               >
                 {channel.label}
@@ -110,45 +110,45 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
         </div>
 
         {/* Pre-formatted Message Generator Box */}
-        <div className="space-y-2 font-mono">
-          <div className="flex items-center justify-between text-[11px] uppercase tracking-widest text-zinc-500 font-bold">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-xs text-zinc-500 font-semibold">
             <span>Formatted Inquiry Text:</span>
             <button
               onClick={handleCopy}
-              className="text-zinc-900 hover:underline inline-flex items-center gap-1 font-bold lowercase"
+              className="text-zinc-950 hover:underline inline-flex items-center gap-1 font-bold text-xs"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-zinc-900" />
-                  <span>copied!</span>
+                  <Check className="w-3.5 h-3.5 text-zinc-950" />
+                  <span>Copied</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5" />
-                  <span>copy text</span>
+                  <span>Copy Text</span>
                 </>
               )}
             </button>
           </div>
 
-          <div className="p-3.5 bg-zinc-50 border border-zinc-200 rounded-none text-xs text-zinc-800 font-mono leading-relaxed select-all">
+          <div className="p-3.5 bg-zinc-50 border border-zinc-200/80 rounded-2xl text-xs text-zinc-800 leading-relaxed select-all">
             {defaultMessage}
           </div>
         </div>
 
         {/* Seller Direct Guarantee Notice */}
-        <div className="flex items-start gap-2.5 text-xs text-zinc-500 bg-zinc-100 p-3 rounded-none border border-zinc-200 font-mono">
-          <ShieldCheck className="w-4 h-4 text-zinc-900 shrink-0 mt-0.5" />
+        <div className="flex items-start gap-2.5 text-xs text-zinc-600 bg-zinc-100/80 p-3 rounded-2xl border border-zinc-200/60">
+          <ShieldCheck className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
           <p className="text-[11px] leading-tight">
             Contacting seller directly via Instagram/Facebook. You can arrange local Davao cash on pickup or GCash payment with the seller.
           </p>
         </div>
 
         {/* Action CTAs */}
-        <div className="flex flex-col sm:flex-row gap-3 pt-2 font-mono">
+        <div className="flex flex-col sm:flex-row gap-3 pt-1">
           <button
             onClick={handleCopy}
-            className="flex-1 py-3 px-4 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 rounded-none text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 border border-zinc-200"
+            className="flex-1 py-3 px-4 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 rounded-full text-xs font-semibold transition-colors flex items-center justify-center gap-2"
           >
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Text Copied' : 'Copy Message'}</span>
@@ -158,7 +158,7 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
             href={getChannelLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-3 px-4 bg-zinc-950 hover:bg-zinc-800 text-white rounded-none text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
+            className="flex-1 py-3 px-4 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-xs font-semibold transition-colors flex items-center justify-center gap-2 shadow-md"
           >
             <span>Open {selectedChannel.toUpperCase()}</span>
             <ExternalLink className="w-4 h-4" />

@@ -112,3 +112,38 @@
 * Keyboard: all four bottom-bar tabs are reachable by Tab and the active tab reports `aria-current="page"`; inside the sheet the order is Back, Share, Save, thumbnails, size chips, quantity, inquiry action; the disabled `RESERVED` action is skipped by the tab order across a full cycle.
 * Pre-existing defects found and measured against base commit `380dd29`, unchanged by this work and left alone: horizontal overflow of 89px at 768px, 368px at 1024px, and 30px at 1440px, all from the header right-action cluster in `NavigationHeader.tsx`, plus 23px at 375px from the Saved view tab rail in `src/views/SavedView.tsx`; the detail sheet also has no focus trap and does not move focus into itself on open, so background content stays tabbable while it is open, and its thumbnail buttons carry no accessible name.
 
+---
+
+## [2026-09-23] Session Log: Smooth Curves, Capsule Geometry, and Soft Luxury Typography System-Wide Redesign
+
+### Design Transformation Overview
+* Converted the entire Habi platform from hard brutalist cuts (`rounded-none`, rigid monospaced headers, and Syne fonts) into a **smooth, modern luxury mobile-first design** inspired by the user's reference lookbooks (Pashaya Outfit, Nike Dri-FIT lookbook, Runova, and Vadich).
+* **Typography Refinement**: Integrated Google Fonts **Outfit** (300-800) alongside **Plus Jakarta Sans** (300-800), establishing a friendly, silky, soft yet high-fashion look across all headings, titles, category chips, and micro-copy.
+* **Organic Radii System**: Replaced hard 0px cuts with smooth organic curves across all system modules:
+  - Container and Card Radii: `rounded-3xl` for hero banners, modals, and major feature cards; `rounded-2xl` for product images, seller profiles, and catalog thumbnails.
+  - Interactive Action Controls: `rounded-full` capsule pills for navigation tabs, city selector chips, aesthetic style pills, quantity steppers, and primary inquiry CTAs.
+  - Circular Micro-Actions: `w-8 h-8 rounded-full` floating wishlist bookmarks, circular size chips (`XS`, `S`, `M`, `L`, `XL`), and pulsating fit check tag pins.
+* **Floating Capsule Controls**:
+  - Replaced corner-pinned rectangular ribbons with floating backdrop-blur capsule pills (e.g., `1 of 1` category tags, floating obsidian price pills `₱1,250`).
+  - Mobile bottom navigation updated to a floating pill dock (`rounded-full bg-white/95 backdrop-blur-xl border border-zinc-200/80 shadow-2xl`) matching the reference mockups.
+
+### Modules Updated & Verified
+1. `index.html` & `src/index.css`: Loaded Outfit and Plus Jakarta Sans Google Fonts, updated typography utility classes (`font-outfit`, `text-display`, `text-headline`, `text-title`, `text-body`).
+2. `NavigationHeader.tsx` & `BottomTabBar.tsx`: Smooth glassmorphism top header and floating capsule mobile bottom navigation dock.
+3. `EditorialHero.tsx` & `AestheticFilterBar.tsx`: `rounded-3xl` gradient hero banner with Outfit typography and `rounded-full` category filter capsules.
+4. `ProductCard.tsx` & `ProductGrid.tsx`: `rounded-3xl` product cards, `rounded-2xl` image containers, floating bookmark circles, and floating price tag capsules.
+5. `ProductDetailModal.tsx` & `InstantInquiryModal.tsx`: `rounded-3xl` modal shells, `rounded-full` header actions, circular size chips, and `rounded-full` pinned inquiry button.
+6. `DropsView.tsx` & `DropCard.tsx`: `rounded-3xl` collection drop banners and cards with Outfit typography and rounded preview actions.
+7. `FitCheckView.tsx` & `FitCheckCard.tsx`: `rounded-3xl` outfit cards, `rounded-2xl` outfit photography, circular pulsating tag pins, and `rounded-2xl` tag tooltip cards.
+8. `DavaoFashionMap.tsx`: `rounded-3xl` map container, custom `rounded-full` Leaflet map pin capsules, and `rounded-3xl` selected seller drawer.
+9. `SavedView.tsx`: `rounded-3xl` saved closet banner, `rounded-full` capsule sub-navigation tabs, and `rounded-3xl` followed seller cards.
+10. `SellerHeader.tsx`, `SellerStorefront.tsx`, `SellerDashboard.tsx`: `rounded-3xl` storefront and dashboard containers, `rounded-full` verification badges, metric cards, and inventory management controls.
+11. `NavigationDrawer.tsx` & `FooterSection.tsx`: `rounded-l-3xl` mobile drawer and footer with Outfit typography and `rounded-full` buttons.
+12. `App.tsx`: Refactored Discover and Brand Directory views to use `rounded-3xl` containers, soft Outfit titles, and `rounded-2xl` cover media.
+
+### Verification Results
+* `npm run build`: Compiled with 0 errors in 399ms (`dist/assets/index-CXSELAFQ.css` 53.45 kB, `dist/assets/index-BLAY2fU-.js` 483.84 kB).
+* Browser Visual Audit: Tested and verified all 8 views and modals in live browser subagent; verified smooth curvature, soft typography, and zero layout shift.
+* Strict Constraints Maintained: Zero Emojis (Lucide vector icons only), Zero Em-Dashes, Anti-Eyebrow-Pill discipline, Omnichannel responsiveness.
+
+

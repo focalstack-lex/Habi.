@@ -162,11 +162,11 @@ export const App: React.FC = () => {
         {/* VIEW 2: Discover Aesthetic Catalog */}
         {activeTab === 'discover' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-            <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-none border border-zinc-800 space-y-3 font-mono">
-              <h1 className="font-syne text-3xl sm:text-4xl font-bold uppercase tracking-tight">
+            <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl space-y-3">
+              <h1 className="font-outfit text-3xl sm:text-4xl font-bold tracking-tight">
                 Discover Fashion Aesthetics
               </h1>
-              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl font-sans leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-300 max-w-xl font-sans leading-relaxed">
                 Browse local Davao clothing items categorized strictly by style subculture: Streetwear, Vintage Denim, Y2K Archives, Techwear, and Gorpcore Outerwear.
               </p>
             </div>
@@ -214,50 +214,50 @@ export const App: React.FC = () => {
         {/* VIEW 5: Davao Local Brand Directory */}
         {activeTab === 'brands' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-            <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-none border border-zinc-800 space-y-3 font-mono">
-              <h1 className="font-syne text-3xl sm:text-4xl font-bold uppercase tracking-tight">
+            <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl space-y-3">
+              <h1 className="font-outfit text-3xl sm:text-4xl font-bold tracking-tight">
                 Davao Seller Directory
               </h1>
-              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl font-sans leading-relaxed">
+              <p className="text-sm sm:text-base text-zinc-300 max-w-xl font-sans leading-relaxed">
                 Independent streetwear brands, curated thrift vaults, vintage archives, and local clothing creators across the Davao Region.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sellers.map((seller) => (
                 <div
                   key={seller.id}
                   onClick={() => handleSelectSeller(seller.id)}
-                  className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 cursor-pointer hover:border-zinc-950 transition-all shadow-sm group"
+                  className="bg-white border border-zinc-200/80 rounded-3xl p-6 space-y-4 cursor-pointer hover:border-zinc-400 hover:shadow-md transition-all shadow-sm group"
                 >
-                  <div className="aspect-[16/9] bg-zinc-900 rounded-none overflow-hidden relative">
+                  <div className="aspect-[16/9] bg-zinc-900 rounded-2xl overflow-hidden relative shadow-inner">
                     <img
                       src={seller.coverUrl}
                       alt={seller.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                     />
-                    <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                    <div className="absolute bottom-3 left-3 flex items-center gap-2.5 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
                       <img
                         src={seller.logoUrl}
                         alt={seller.name}
-                        className="w-8 h-8 rounded-none object-cover border-2 border-white shadow-md"
+                        className="w-6 h-6 rounded-full object-cover border border-white shrink-0"
                       />
-                      <span className="font-syne text-xs font-bold text-white shadow-sm">{seller.name}</span>
+                      <span className="font-outfit text-xs font-bold text-white truncate max-w-[120px]">{seller.name}</span>
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-xs text-zinc-500 font-mono">
+                    <div className="text-xs text-zinc-500 font-sans">
                       @{seller.handle} • {seller.location.district}, {seller.location.city}
                     </div>
-                    <p className="text-xs font-sans text-zinc-700 mt-1 line-clamp-2">
+                    <p className="text-sm font-sans text-zinc-600 mt-1 line-clamp-2 leading-relaxed">
                       {seller.description}
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500 font-mono">
+                  <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500">
                     <span>{seller.followerCount.toLocaleString()} followers</span>
-                    <span className="font-bold text-zinc-950 group-hover:underline">Visit Storefront &rarr;</span>
+                    <span className="font-semibold text-zinc-950 group-hover:underline">Visit Storefront &rarr;</span>
                   </div>
                 </div>
               ))}

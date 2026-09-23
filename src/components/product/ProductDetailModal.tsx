@@ -83,13 +83,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           onClick={onClose}
         />
 
-        <div className="relative w-full max-w-4xl bg-white rounded-none md:border md:border-zinc-900 md:shadow-2xl overflow-hidden z-10 flex flex-col h-full md:h-auto md:my-auto md:max-h-[90vh]">
+        <div className="relative w-full max-w-4xl bg-white rounded-3xl md:border md:border-zinc-200 md:shadow-2xl overflow-hidden z-10 flex flex-col h-full md:h-auto md:my-auto md:max-h-[90vh]">
           {/* Header Action Row: Back, Share, Save */}
           <div className="absolute top-0 left-0 right-0 z-20 flex items-start justify-between p-3 sm:p-4 pointer-events-none">
             <button
               type="button"
               onClick={onClose}
-              className="pointer-events-auto p-3 bg-white/95 text-zinc-950 border border-zinc-300 hover:border-zinc-950 transition-colors duration-150"
+              className="pointer-events-auto w-10 h-10 rounded-full bg-white/95 backdrop-blur-md text-zinc-950 border border-zinc-200/80 shadow-md flex items-center justify-center hover:scale-105 transition-all"
               aria-label="Back"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -99,22 +99,22 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               <button
                 type="button"
                 onClick={handleShare}
-                className="pointer-events-auto p-3 bg-white/95 text-zinc-950 border border-zinc-300 hover:border-zinc-950 transition-colors duration-150"
+                className="pointer-events-auto w-10 h-10 rounded-full bg-white/95 backdrop-blur-md text-zinc-950 border border-zinc-200/80 shadow-md flex items-center justify-center hover:scale-105 transition-all"
                 aria-label="Share this piece"
               >
-                <Share2 className="w-5 h-5" />
+                <Share2 className="w-4 h-4" />
               </button>
               <button
                 type="button"
                 onClick={handleToggleSave}
-                className={`pointer-events-auto p-3 border transition-colors duration-150 ${
+                className={`pointer-events-auto w-10 h-10 rounded-full flex items-center justify-center border shadow-md transition-all hover:scale-105 ${
                   isSaved
                     ? 'bg-zinc-950 text-white border-zinc-950'
-                    : 'bg-white/95 text-zinc-950 border-zinc-300 hover:border-zinc-950'
+                    : 'bg-white/95 text-zinc-950 border-zinc-200/80'
                 }`}
                 aria-label={isSaved ? 'Remove from saved' : 'Save this piece'}
               >
-                <Bookmark className="w-5 h-5 fill-current" />
+                <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
               </button>
             </div>
           </div>
@@ -122,7 +122,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           {shareNote && (
             <div
               role="status"
-              className="absolute top-20 left-1/2 -translate-x-1/2 z-30 bg-zinc-950 text-white font-mono text-[10px] uppercase tracking-[0.15em] px-3 py-2"
+              className="absolute top-16 left-1/2 -translate-x-1/2 z-30 bg-zinc-950 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg"
             >
               {shareNote}
             </div>
@@ -131,7 +131,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-12 overflow-y-auto flex-1">
             {/* Left Column: Image Carousel */}
             <div className="md:col-span-6 bg-zinc-950 p-6 flex flex-col justify-between space-y-4 border-r border-zinc-900">
-              <div className="relative aspect-[3/4] bg-zinc-900 overflow-hidden border border-zinc-800">
+              <div className="relative aspect-[3/4] bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-800">
                 <img
                   src={product.images[selectedImageIndex] || product.images[0]}
                   alt={product.name}
@@ -139,9 +139,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 />
 
                 {product.isOneOfOne && (
-                  <div className="absolute top-0 left-0 bg-white text-zinc-950 font-mono text-[9px] uppercase font-bold tracking-[0.15em] px-3 py-1.5 border-b border-r border-zinc-300 flex items-center gap-1.5">
-                    <Tag className="w-3.5 h-3.5 text-zinc-950" />
-                    <span>1-OF-1 THRIFT ARCHIVE</span>
+                  <div className="absolute top-3 left-3 bg-zinc-950/90 backdrop-blur-md text-white text-[10px] font-semibold px-3 py-1 rounded-full shadow-sm flex items-center gap-1.5 border border-white/20">
+                    <Tag className="w-3 h-3 text-white" />
+                    <span>1 of 1 Thrift Archive</span>
                   </div>
                 )}
               </div>
@@ -153,8 +153,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     <button
                       key={idx}
                       onClick={() => setSelectedImageIndex(idx)}
-                      className={`w-16 h-16 rounded-none overflow-hidden border-2 transition-all shrink-0 ${
-                        selectedImageIndex === idx ? 'border-white scale-95' : 'border-transparent opacity-60 hover:opacity-100'
+                      className={`w-14 h-14 rounded-xl overflow-hidden border-2 transition-all shrink-0 ${
+                        selectedImageIndex === idx ? 'border-white scale-95 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'
                       }`}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
@@ -168,33 +168,33 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             <div className="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6 font-sans">
               <div className="space-y-5">
                 {/* Category & Condition Metadata Badges */}
-                <div className="flex items-center gap-2 font-mono text-xs">
-                  <span className="px-3 py-1 bg-zinc-100 text-zinc-950 font-bold rounded-none uppercase tracking-wider text-[10px] border border-zinc-300">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 bg-zinc-100 text-zinc-900 font-semibold rounded-full text-xs">
                     {product.category}
                   </span>
-                  <span className="px-3 py-1 bg-zinc-100 text-zinc-800 font-bold rounded-none uppercase tracking-wider text-[10px] border border-zinc-300">
-                    CONDITION: {product.condition}
+                  <span className="px-3 py-1 bg-zinc-100 text-zinc-700 font-semibold rounded-full text-xs">
+                    {product.condition}
                   </span>
                 </div>
 
                 <div>
-                  <h1 className="font-syne text-2xl sm:text-3xl font-extrabold text-zinc-950 tracking-tight leading-tight uppercase">
+                  <h1 className="font-outfit text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight leading-snug">
                     {product.name}
                   </h1>
-                  <div className="text-2xl font-black text-zinc-950 font-mono mt-2">
+                  <div className="text-2xl font-bold text-zinc-950 mt-1">
                     ₱{product.price.toLocaleString()}
                   </div>
                 </div>
 
                 {/* Size & Location Specification Grid */}
-                <div className="grid grid-cols-2 gap-4 py-4 border-y border-zinc-200 font-mono text-xs">
+                <div className="grid grid-cols-2 gap-4 py-3.5 border-y border-zinc-100 text-xs">
                   <div>
-                    <span className="text-zinc-400 block text-[10px] uppercase font-bold tracking-widest">SIZE</span>
-                    <span className="font-bold text-zinc-950 text-sm mt-0.5 block">{product.size}</span>
+                    <span className="text-zinc-400 block text-[11px] font-medium">Standard Size</span>
+                    <span className="font-bold text-zinc-900 text-sm mt-0.5 block">{product.size}</span>
                   </div>
                   <div>
-                    <span className="text-zinc-400 block text-[10px] uppercase font-bold tracking-widest">LOCATION</span>
-                    <span className="font-bold text-zinc-950 flex items-center gap-1 mt-0.5">
+                    <span className="text-zinc-400 block text-[11px] font-medium">Location</span>
+                    <span className="font-semibold text-zinc-900 flex items-center gap-1 mt-0.5">
                       <MapPin className="w-3.5 h-3.5 text-zinc-500" />
                       <span>{product.location}</span>
                     </span>
@@ -203,20 +203,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
                 {/* Conditional Variant Block */}
                 {isSingle ? (
-                  <div className="flex items-center gap-3 py-4 border-b border-zinc-200 font-mono">
-                    <span className="px-3 py-1.5 bg-zinc-950 text-white text-[10px] font-bold uppercase tracking-[0.15em]">
-                      1 OF 1
+                  <div className="flex items-center gap-2.5 py-2">
+                    <span className="px-3 py-1 bg-zinc-950 text-white text-xs font-semibold rounded-full">
+                      1 of 1
                     </span>
-                    <span className="text-[11px] text-zinc-500 uppercase tracking-[0.08em]">
+                    <span className="text-xs text-zinc-500">
                       Single piece archive
                     </span>
                   </div>
                 ) : (
-                  <div className="space-y-5 py-4 border-b border-zinc-200 font-mono">
+                  <div className="space-y-4 py-2 border-b border-zinc-100 font-sans">
                     {canSelectSize && (
                       <div className="space-y-2">
-                        <span className="text-[10px] text-zinc-400 uppercase font-bold tracking-[0.15em] block">
-                          Select Size
+                        <span className="text-xs text-zinc-500 font-medium block">
+                          Select Size:
                         </span>
                         <div className="flex flex-wrap gap-2">
                           {sizes.map((sizeOption) => {
@@ -226,10 +226,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                                 key={sizeOption}
                                 type="button"
                                 onClick={() => setSelectedSize(sizeOption)}
-                                className={`min-h-[44px] min-w-[44px] px-3 text-[11px] uppercase border transition-colors duration-150 ${
+                                className={`w-10 h-10 rounded-full text-xs font-semibold border flex items-center justify-center transition-all ${
                                   isSelected
-                                    ? 'bg-zinc-950 text-white border-zinc-950 font-bold'
-                                    : 'bg-white text-zinc-950 border-zinc-300 hover:border-zinc-950'
+                                    ? 'bg-zinc-950 text-white border-zinc-950 shadow-sm'
+                                    : 'bg-zinc-50 text-zinc-800 border-zinc-200 hover:border-zinc-400'
                                 }`}
                               >
                                 {sizeOption}
@@ -242,15 +242,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
                     {colourways.length > 1 && (
                       <div className="space-y-2">
-                        <span className="text-[10px] text-zinc-400 uppercase font-bold tracking-[0.15em] block">
-                          Colourway
+                        <span className="text-xs text-zinc-500 font-medium block">
+                          Colourways:
                         </span>
                         <div className="flex flex-wrap gap-2">
                           {colourways.map((colourway) => (
                             <span
                               key={colourway.name}
                               title={colourway.name}
-                              className="w-8 h-8 border border-zinc-300"
+                              className="w-7 h-7 rounded-full border-2 border-white shadow-sm"
                               style={{ backgroundColor: colourway.hex ?? '#f4f4f5' }}
                             />
                           ))}
@@ -260,20 +260,20 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
                     {canSetQuantity && (
                       <div className="space-y-2">
-                        <span className="text-[10px] text-zinc-400 uppercase font-bold tracking-[0.15em] block">
-                          Quantity
+                        <span className="text-xs text-zinc-500 font-medium block">
+                          Quantity:
                         </span>
-                        <div className="inline-flex items-center border border-zinc-300">
+                        <div className="inline-flex items-center bg-zinc-100 rounded-full px-2 py-1">
                           <button
                             type="button"
                             onClick={() => setSelectedQuantity((q) => Math.max(1, q - 1))}
                             disabled={selectedQuantity <= 1}
                             aria-label="Decrease quantity"
-                            className="min-h-[44px] min-w-[44px] text-zinc-950 hover:bg-zinc-100 disabled:text-zinc-300 disabled:hover:bg-white transition-colors duration-150"
+                            className="w-7 h-7 rounded-full bg-white flex items-center justify-center font-bold text-zinc-950 disabled:text-zinc-300 shadow-xs"
                           >
                             -
                           </button>
-                          <span className="min-w-[48px] text-center text-[11px] font-bold text-zinc-950">
+                          <span className="w-8 text-center text-xs font-bold text-zinc-950">
                             {selectedQuantity}
                           </span>
                           <button
@@ -283,13 +283,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                             }
                             disabled={selectedQuantity >= product.availableQuantity}
                             aria-label="Increase quantity"
-                            className="min-h-[44px] min-w-[44px] text-zinc-950 hover:bg-zinc-100 disabled:text-zinc-300 disabled:hover:bg-white transition-colors duration-150"
+                            className="w-7 h-7 rounded-full bg-white flex items-center justify-center font-bold text-zinc-950 disabled:text-zinc-300 shadow-xs"
                           >
                             +
                           </button>
                         </div>
-                        <span className="text-[10px] text-zinc-500 block">
-                          {product.availableQuantity} available
+                        <span className="text-xs text-zinc-400 ml-2 inline-block">
+                          ({product.availableQuantity} available)
                         </span>
                       </div>
                     )}
@@ -298,10 +298,10 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
                 {/* Description */}
                 <div>
-                  <h3 className="font-mono text-xs font-bold uppercase tracking-widest text-zinc-400 mb-1.5">
-                    PIECE DESCRIPTION
+                  <h3 className="text-xs font-semibold text-zinc-400 uppercase tracking-wide mb-1">
+                    Description
                   </h3>
-                  <p className="text-xs text-zinc-700 leading-relaxed font-sans">
+                  <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed font-sans">
                     {product.description}
                   </p>
                 </div>
@@ -313,17 +313,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       if (onSelectSeller) onSelectSeller(seller.id);
                       onClose();
                     }}
-                    className="p-4 bg-zinc-50 rounded-none border border-zinc-200 flex items-center justify-between cursor-pointer hover:border-zinc-950 transition-all font-mono group"
+                    className="p-3.5 bg-zinc-50/80 rounded-2xl border border-zinc-200/80 flex items-center justify-between cursor-pointer hover:bg-zinc-100/80 transition-all group"
                   >
                     <div className="flex items-center gap-3">
                       <img
                         src={seller.logoUrl}
                         alt={seller.name}
-                        className="w-10 h-10 rounded-none object-cover border border-zinc-300"
+                        className="w-10 h-10 rounded-full object-cover border border-zinc-200"
                       />
                       <div>
                         <div className="flex items-center gap-1.5">
-                          <span className="font-syne font-bold text-xs text-zinc-950 group-hover:underline uppercase">
+                          <span className="font-outfit font-bold text-xs text-zinc-950 group-hover:underline">
                             {seller.name}
                           </span>
                           <ShieldCheck className="w-3.5 h-3.5 text-zinc-950" />
@@ -341,12 +341,12 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           </div>
 
           {/* Pinned Primary Action */}
-          <div className="border-t border-zinc-200 bg-white p-4 sheet-safe font-mono shrink-0">
+          <div className="border-t border-zinc-100 bg-white p-4 sheet-safe shrink-0 font-sans">
             <button
               type="button"
               onClick={() => setIsInquiryOpen(true)}
               disabled={product.status !== 'Available'}
-              className={`w-full min-h-[48px] px-6 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-150 flex items-center justify-center gap-2 ${
+              className={`w-full py-3.5 px-6 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-lg flex items-center justify-center gap-2 hover:scale-[1.01] ${
                 product.status === 'Available'
                   ? 'bg-zinc-950 hover:bg-zinc-800 text-white'
                   : 'bg-zinc-300 text-zinc-600 cursor-not-allowed'
@@ -355,8 +355,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               <MessageSquare className="w-4 h-4" />
               <span>
                 {product.status === 'Available'
-                  ? 'INQUIRE / RESERVE VIA MESSAGE'
-                  : product.status.toUpperCase()}
+                  ? 'Inquire & Reserve via Message'
+                  : product.status}
               </span>
             </button>
           </div>

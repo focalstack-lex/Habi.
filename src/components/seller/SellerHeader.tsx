@@ -16,13 +16,13 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
   const handleFollowToggle = () => {
     const updated = storageService.toggleFollowSeller(seller.id);
     setIsFollowed(updated);
-    setFollowerCount((prev) => (updated ? prev + 1 : prev - 1));
+    setFollowerCount((prev) => (updated ? prev - 1 : prev + 1));
   };
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-none overflow-hidden mb-8 font-sans">
+    <div className="bg-white border border-zinc-200/80 rounded-3xl overflow-hidden mb-8 font-sans shadow-sm">
       {/* Cover Banner */}
-      <div className="h-56 sm:h-72 relative bg-zinc-950 overflow-hidden border-b border-zinc-200">
+      <div className="h-56 sm:h-72 relative bg-zinc-950 overflow-hidden">
         <img
           src={seller.coverUrl}
           alt={seller.name}
@@ -32,11 +32,11 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
       </div>
 
       {/* Profile Details Header Container */}
-      <div className="px-6 sm:px-10 pb-10 relative -mt-20">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-8 border-b border-zinc-200">
+      <div className="px-6 sm:px-10 pb-8 relative -mt-16 sm:-mt-20">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-8 border-b border-zinc-100">
           {/* Avatar & Title */}
-          <div className="flex flex-col sm:flex-row sm:items-end gap-6">
-            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-none border-4 border-white overflow-hidden bg-zinc-950 shadow-xl shrink-0">
+          <div className="flex flex-col sm:flex-row sm:items-end gap-5">
+            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white overflow-hidden bg-zinc-950 shadow-xl shrink-0">
               <img
                 src={seller.logoUrl}
                 alt={seller.name}
@@ -44,18 +44,18 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
               />
             </div>
 
-            <div className="space-y-1.5 font-mono">
-              <div className="flex flex-wrap items-center gap-3">
-                <h1 className="font-syne text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight uppercase">
+            <div className="space-y-1">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <h1 className="font-outfit text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-950 tracking-tight">
                   {seller.name}
                 </h1>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-950 text-white font-mono text-[10px] uppercase font-bold tracking-[0.15em] border border-zinc-800">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-950 text-white rounded-full text-xs font-semibold shadow-sm">
                   <ShieldCheck className="w-3.5 h-3.5 text-white" />
                   <span>{seller.verificationStatus}</span>
                 </span>
               </div>
 
-              <div className="text-xs text-zinc-500 font-bold uppercase tracking-wider">
+              <div className="text-xs sm:text-sm text-zinc-500 font-sans">
                 @{seller.handle} • {seller.location.district}, {seller.location.city}
               </div>
             </div>
@@ -64,53 +64,53 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
           {/* Follow Button */}
           <button
             onClick={handleFollowToggle}
-            className={`px-8 py-3.5 rounded-none text-xs font-mono font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 ${
+            className={`px-7 py-3 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-sm ${
               isFollowed
-                ? 'bg-zinc-100 text-zinc-950 border border-zinc-300 hover:bg-zinc-200'
+                ? 'bg-zinc-100 text-zinc-950 border border-zinc-200 hover:bg-zinc-200'
                 : 'bg-zinc-950 text-white hover:bg-zinc-800'
             }`}
           >
             {isFollowed ? (
               <>
                 <UserCheck className="w-4 h-4" />
-                <span>FOLLOWING BRAND</span>
+                <span>Following Brand</span>
               </>
             ) : (
               <>
                 <UserPlus className="w-4 h-4" />
-                <span>FOLLOW SELLER</span>
+                <span>Follow Seller</span>
               </>
             )}
           </button>
         </div>
 
         {/* Bio & Details Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-8 font-mono text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-6 text-sm">
           <div className="md:col-span-8 space-y-4">
-            <p className="text-zinc-700 font-sans text-xs sm:text-sm leading-relaxed">
+            <p className="text-zinc-600 font-sans text-sm sm:text-base leading-relaxed">
               {seller.description}
             </p>
 
-            <div className="flex flex-wrap items-center gap-6 text-zinc-500 pt-2 border-t border-zinc-100">
-              <span className="font-bold text-zinc-950 text-sm">
+            <div className="flex flex-wrap items-center gap-6 text-zinc-500 pt-2">
+              <span className="font-bold text-zinc-950 text-base">
                 {followerCount.toLocaleString()}{' '}
-                <span className="font-normal text-zinc-500 text-xs">Followers</span>
+                <span className="font-normal text-zinc-500 text-sm">Followers</span>
               </span>
               <span>•</span>
-              <span className="font-bold text-zinc-950 text-sm">
+              <span className="font-bold text-zinc-950 text-base">
                 {seller.viewCount.toLocaleString()}{' '}
-                <span className="font-normal text-zinc-500 text-xs">Store Views</span>
+                <span className="font-normal text-zinc-500 text-sm">Store Views</span>
               </span>
             </div>
           </div>
 
           {/* Store Info Container */}
-          <div className="md:col-span-4 bg-zinc-50 border border-zinc-200 p-5 rounded-none space-y-3">
-            <div className="text-[10px] uppercase font-bold text-zinc-400 tracking-[0.2em]">
-              STORE INFORMATION
+          <div className="md:col-span-4 bg-zinc-50 border border-zinc-200/80 p-5 rounded-2xl space-y-3">
+            <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+              Store Information
             </div>
 
-            <div className="flex items-center gap-2 text-zinc-900 font-bold">
+            <div className="flex items-center gap-2 text-zinc-900 font-medium text-sm">
               <MapPin className="w-4 h-4 text-zinc-950 shrink-0" />
               <span>{seller.location.city} ({seller.location.district})</span>
             </div>
@@ -122,13 +122,13 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
               </div>
             )}
 
-            <div className="flex items-center gap-2 pt-3 border-t border-zinc-200">
+            <div className="flex items-center gap-2 pt-3 border-t border-zinc-200/80">
               {seller.socialLinks.instagram && (
                 <a
                   href={seller.socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 bg-white border border-zinc-300 text-zinc-900 hover:bg-zinc-950 hover:text-white transition-colors"
+                  className="p-2.5 bg-white border border-zinc-200 rounded-full text-zinc-900 hover:bg-zinc-950 hover:text-white transition-colors shadow-sm"
                   aria-label="Instagram"
                 >
                   <Globe className="w-4 h-4" />
@@ -139,7 +139,7 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
                   href={seller.socialLinks.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 bg-white border border-zinc-300 text-zinc-900 hover:bg-zinc-950 hover:text-white transition-colors"
+                  className="p-2.5 bg-white border border-zinc-200 rounded-full text-zinc-900 hover:bg-zinc-950 hover:text-white transition-colors shadow-sm"
                   aria-label="Facebook"
                 >
                   <MessageCircle className="w-4 h-4" />

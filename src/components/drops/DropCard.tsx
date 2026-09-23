@@ -32,7 +32,7 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
   });
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-none overflow-hidden hover:border-zinc-950 transition-all font-sans">
+    <div className="bg-white border border-zinc-200/80 rounded-3xl overflow-hidden hover:border-zinc-300 hover:shadow-xl transition-all font-sans">
       <div className="grid grid-cols-1 md:grid-cols-12 items-center">
         {/* Cover Photo */}
         <div className="md:col-span-5 aspect-[16/10] md:aspect-auto md:h-full bg-zinc-950 relative overflow-hidden group">
@@ -43,34 +43,34 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-          <div className="absolute top-3 left-3 bg-zinc-950 text-white font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-none border border-zinc-700">
+          <div className="absolute top-3.5 left-3.5 bg-zinc-950/90 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20 shadow-sm">
             {drop.itemCount} Collection Pieces
           </div>
         </div>
 
         {/* Details & Countdown */}
-        <div className="md:col-span-7 p-6 sm:p-8 space-y-5 font-mono">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-zinc-200">
+        <div className="md:col-span-7 p-6 sm:p-8 space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-zinc-100">
             <div className="flex items-center gap-2">
               <img
                 src={drop.sellerLogo}
                 alt={drop.sellerName}
-                className="w-6 h-6 rounded-none object-cover border border-zinc-300"
+                className="w-6 h-6 rounded-full object-cover border border-zinc-200"
               />
-              <span className="text-xs font-bold text-zinc-900 font-mono">{drop.sellerName}</span>
+              <span className="text-xs font-semibold text-zinc-900">{drop.sellerName}</span>
             </div>
 
-            <div className="flex items-center gap-1.5 text-xs text-zinc-600 bg-zinc-100 px-3 py-1 rounded-none border border-zinc-200 font-mono">
+            <div className="flex items-center gap-1.5 text-xs text-zinc-600 bg-zinc-100 px-3 py-1 rounded-full">
               <Clock className="w-3.5 h-3.5" />
               <span>{formattedDate}</span>
             </div>
           </div>
 
           <div>
-            <h3 className="font-syne text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight uppercase">
+            <h3 className="font-outfit text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
               {drop.title}
             </h3>
-            <p className="font-sans text-xs text-zinc-600 mt-1.5 leading-relaxed">
+            <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
               {drop.description}
             </p>
           </div>
@@ -78,7 +78,7 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
           {/* Live Countdown & Remind Action */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
             <div>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-zinc-400 block mb-1.5">
+              <span className="text-[11px] font-medium text-zinc-400 block mb-1.5">
                 Drop Launch Timer:
               </span>
               <DropCountdownTimer targetDate={drop.releaseTime} />
@@ -87,7 +87,7 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsPreviewOpen(!isPreviewOpen)}
-                className="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 rounded-none text-xs font-mono font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 border border-zinc-300"
+                className="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5"
               >
                 <Eye className="w-3.5 h-3.5" />
                 <span>{isPreviewOpen ? 'Hide Catalog' : 'Preview Catalog'}</span>
@@ -95,15 +95,15 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
 
               <button
                 onClick={handleReminderToggle}
-                className={`px-4 py-2 rounded-none text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 border ${
+                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 shadow-sm ${
                   hasReminder
-                    ? 'bg-zinc-950 text-white border-zinc-950'
-                    : 'bg-white text-zinc-900 border-zinc-300 hover:border-zinc-950'
+                    ? 'bg-zinc-950 text-white'
+                    : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200'
                 }`}
               >
                 {hasReminder ? <BellCheck className="w-3.5 h-3.5" /> : <Bell className="w-3.5 h-3.5" />}
                 <span>{hasReminder ? 'Reminder Set' : 'Remind Me'}</span>
-                <span className="text-[10px] opacity-70">({remindCount})</span>
+                <span className="text-[11px] opacity-70">({remindCount})</span>
               </button>
             </div>
           </div>
@@ -112,22 +112,22 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
 
       {/* Catalog Preview Drawer */}
       {isPreviewOpen && drop.items && drop.items.length > 0 && (
-        <div className="bg-zinc-50 p-6 border-t border-zinc-200 font-mono">
-          <div className="text-xs uppercase font-bold text-zinc-500 tracking-wider mb-4">
+        <div className="bg-zinc-50/80 p-6 border-t border-zinc-100">
+          <div className="text-xs font-semibold text-zinc-400 mb-3">
             Catalog Items Preview ({drop.items.length} previewed)
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
             {drop.items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white border border-zinc-200 rounded-none p-3 space-y-2"
+                className="bg-white border border-zinc-200/70 rounded-2xl p-3 space-y-2 shadow-xs hover:shadow-md transition-shadow"
               >
-                <div className="aspect-square bg-zinc-100 rounded-none overflow-hidden border border-zinc-200">
+                <div className="aspect-square bg-zinc-100 rounded-xl overflow-hidden">
                   <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover" />
                 </div>
-                <div className="font-syne text-xs font-bold truncate text-zinc-950">{item.name}</div>
-                <div className="flex items-center justify-between text-[11px] text-zinc-600 font-mono">
-                  <span>₱{item.price.toLocaleString()}</span>
+                <div className="font-outfit text-xs font-semibold truncate text-zinc-950">{item.name}</div>
+                <div className="flex items-center justify-between text-[11px] text-zinc-500">
+                  <span className="font-bold text-zinc-900">₱{item.price.toLocaleString()}</span>
                   <span>Size {item.size}</span>
                 </div>
               </div>

@@ -30,83 +30,82 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div
       onClick={() => onSelectProduct(product)}
-      className="group bg-white rounded-none border border-zinc-200 overflow-hidden cursor-pointer hover:border-zinc-950 transition-all duration-300 flex flex-col justify-between"
+      className="group bg-white rounded-3xl border border-zinc-200/80 p-3 cursor-pointer hover:border-zinc-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between font-sans"
     >
-      {/* Top Image Container (Sharp 3:4 High-Fashion Aspect Ratio) */}
-      <div className="relative aspect-[3/4] bg-zinc-100 overflow-hidden border-b border-zinc-200">
+      {/* Top Image Container with Smooth 2xl Curves */}
+      <div className="relative aspect-[3/4] bg-zinc-100 rounded-2xl overflow-hidden">
         <img
           src={product.images[0]}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
 
-        {/* Rectangular Tag Ribbons Pinned to Corner (NO Pills) */}
-        <div className="absolute top-0 left-0 flex flex-col items-start gap-1">
+        {/* Floating Capsule Tags */}
+        <div className="absolute top-2.5 left-2.5 flex flex-col items-start gap-1.5 z-10">
           {product.isOneOfOne && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-950 text-white font-mono text-[9px] uppercase font-bold tracking-[0.15em] border-b border-r border-zinc-800">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-zinc-950/90 backdrop-blur-md text-white text-[10px] font-semibold rounded-full shadow-sm">
               <Tag className="w-3 h-3 text-white" />
-              <span>1-OF-1 THRIFT</span>
+              <span>1 of 1</span>
             </span>
           )}
-          <span className="px-3 py-1 bg-white text-zinc-950 font-mono text-[9px] uppercase font-bold tracking-widest border-b border-r border-zinc-200">
+          <span className="px-2.5 py-0.5 bg-white/90 backdrop-blur-md text-zinc-900 text-[10px] font-semibold rounded-full shadow-sm border border-zinc-200/50">
             {product.condition}
           </span>
         </div>
 
-        {/* Save Wishlist Button */}
+        {/* Floating Wishlist Pill Button */}
         <button
           onClick={handleSaveClick}
-          className={`absolute top-2 right-2 p-2.5 transition-all border ${
+          className={`absolute top-2.5 right-2.5 w-8 h-8 rounded-full flex items-center justify-center transition-all shadow-md z-10 ${
             isSaved
-              ? 'bg-zinc-950 text-white border-zinc-950'
-              : 'bg-white/90 text-zinc-800 border-zinc-300 hover:bg-zinc-950 hover:text-white hover:border-zinc-950'
+              ? 'bg-zinc-950 text-white'
+              : 'bg-white/90 backdrop-blur-md text-zinc-700 hover:bg-white hover:text-zinc-950 hover:scale-105'
           }`}
           aria-label="Save item"
         >
-          <Bookmark className="w-4 h-4 fill-current" />
+          <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-current' : ''}`} />
         </button>
 
-        {/* Bottom Size Ribbon (omitted on 1-of-1 pieces, where the corner ribbon already states uniqueness) */}
-        {!product.isOneOfOne && (
-          <div className="absolute bottom-0 right-0 bg-zinc-950 text-white px-3 py-1 font-mono text-[10px] uppercase font-bold tracking-widest border-t border-l border-zinc-800">
-            SIZE: {product.size}
-          </div>
-        )}
+        {/* Floating Price Tag Capsule */}
+        <div className="absolute bottom-2.5 right-2.5 bg-zinc-950/90 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+          ₱{product.price.toLocaleString()}
+        </div>
       </div>
 
       {/* Card Details Body */}
-      <div className="p-4 space-y-3 font-sans bg-white">
+      <div className="p-2 pt-3 space-y-2.5">
         <div>
-          <h3 className="font-syne text-sm font-bold text-zinc-950 tracking-tight leading-snug line-clamp-2 group-hover:text-zinc-700 transition-colors uppercase">
+          <h3 className="font-outfit text-sm font-semibold text-zinc-950 tracking-tight leading-snug line-clamp-1 group-hover:text-zinc-700 transition-colors">
             {product.name}
           </h3>
-          <p className="font-mono text-base font-black text-zinc-950 mt-1">
-            ₱{product.price.toLocaleString()}
-          </p>
+          <div className="flex items-center justify-between text-xs text-zinc-500 mt-1">
+            <span>Size {product.size}</span>
+            <span className="capitalize">{product.category}</span>
+          </div>
         </div>
 
-        {/* Seller Info Row */}
-        <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500 font-mono">
+        {/* Seller Info Pill Row */}
+        <div className="pt-2 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500">
           <button
             onClick={(e) => {
               e.stopPropagation();
               if (onSelectSeller) onSelectSeller(product.sellerId);
             }}
-            className="flex items-center gap-2 hover:text-zinc-950 transition-colors truncate"
+            className="flex items-center gap-1.5 hover:text-zinc-950 transition-colors truncate max-w-[65%]"
           >
             <img
               src={product.sellerLogo}
               alt={product.sellerName}
-              className="w-5 h-5 rounded-none object-cover shrink-0 border border-zinc-200"
+              className="w-5 h-5 rounded-full object-cover shrink-0 border border-zinc-200"
             />
-            <span className="font-bold text-zinc-900 truncate uppercase text-[11px]">
+            <span className="font-medium text-zinc-800 truncate text-[11px]">
               {product.sellerName}
             </span>
           </button>
 
-          <div className="flex items-center gap-1 shrink-0 text-zinc-400 text-[10px] uppercase">
-            <MapPin className="w-3 h-3 text-zinc-500" />
-            <span className="truncate max-w-[90px]">{product.location}</span>
+          <div className="flex items-center gap-1 shrink-0 text-zinc-400 text-[10px]">
+            <MapPin className="w-3 h-3 text-zinc-400" />
+            <span className="truncate max-w-[80px]">{product.location}</span>
           </div>
         </div>
       </div>

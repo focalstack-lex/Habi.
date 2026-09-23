@@ -19,8 +19,12 @@
 }
 
 /* Custom Fashion Font Utilities */
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+
 .font-syne {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
 }
 
 .font-sans {
@@ -35,61 +39,56 @@
 :root {
   --habi-ink: #09090b;
   --habi-canvas: #ffffff;
-  --habi-canvas-soft: #fafafa;
-  --habi-surface: #f4f4f5;
-  --habi-hairline: #e4e4e7;
-  --habi-muted: #71717a;
-  --habi-faint: #a1a1aa;
+  --habi-canvas-soft: #f8f9fa;
+  --habi-surface: #f3f4f6;
+  --habi-hairline: #e5e7eb;
+  --habi-muted: #6b7280;
+  --habi-faint: #9ca3af;
 }
 
 .text-display {
-  font-family: 'Syne', sans-serif;
-  font-size: 40px;
-  line-height: 1.05;
+  font-family: 'Outfit', sans-serif;
+  font-size: 38px;
+  line-height: 1.1;
   letter-spacing: -0.02em;
-  font-weight: 800;
-  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .text-headline {
-  font-family: 'Syne', sans-serif;
-  font-size: 28px;
-  line-height: 1.15;
+  font-family: 'Outfit', sans-serif;
+  font-size: 26px;
+  line-height: 1.2;
   letter-spacing: -0.015em;
   font-weight: 700;
-  text-transform: uppercase;
 }
 
 .text-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 20px;
-  line-height: 1.25;
+  font-family: 'Outfit', sans-serif;
+  font-size: 19px;
+  line-height: 1.3;
   letter-spacing: -0.01em;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .text-body {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.6;
   letter-spacing: 0;
 }
 
 .text-meta {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 11px;
   line-height: 1.4;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .text-micro {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 10px;
   line-height: 1.3;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 /* Safe-area padding for fixed surfaces. Uses max() so the value never collapses to zero

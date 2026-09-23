@@ -22,30 +22,30 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
   };
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-none overflow-hidden font-sans space-y-4 p-5">
+    <div className="bg-white border border-zinc-200/80 rounded-3xl overflow-hidden font-sans space-y-4 p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
       {/* Post Author Header */}
-      <div className="flex items-center justify-between font-mono">
+      <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img
             src={post.authorAvatar}
             alt={post.authorName}
-            className="w-10 h-10 rounded-none object-cover border border-zinc-300"
+            className="w-10 h-10 rounded-full object-cover border border-zinc-200"
           />
           <div>
-            <div className="font-syne font-bold text-xs text-zinc-950">{post.authorName}</div>
-            <div className="text-[11px] text-zinc-500 font-mono">@{post.authorHandle} • {post.location}</div>
+            <div className="font-outfit font-bold text-sm text-zinc-950">{post.authorName}</div>
+            <div className="text-xs text-zinc-500 font-sans">@{post.authorHandle} • {post.location}</div>
           </div>
         </div>
 
-        <div className="flex items-center gap-1 text-xs text-zinc-400 font-mono">
+        <div className="flex items-center gap-1 text-xs text-zinc-400 font-sans bg-zinc-100 px-3 py-1 rounded-full">
           <MapPin className="w-3.5 h-3.5" />
-          <span className="text-[11px]">{post.location}</span>
+          <span className="text-xs font-medium">{post.location}</span>
         </div>
       </div>
 
       {/* Outfit Image with Interactive Tag Pins */}
-      <div className="relative aspect-[3/4] bg-zinc-100 rounded-none overflow-hidden border border-zinc-200 group">
-        <img src={post.imageUrl} alt={post.caption} className="w-full h-full object-cover" />
+      <div className="relative aspect-[3/4] bg-zinc-100 rounded-2xl overflow-hidden border border-zinc-200/80 group shadow-inner">
+        <img src={post.imageUrl} alt={post.caption} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
 
         {/* Tag Pins Overlay */}
         {post.taggedItems.map((tag) => (
@@ -56,7 +56,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
           >
             <button
               onClick={() => setActiveTag(activeTag?.id === tag.id ? null : tag)}
-              className="w-7 h-7 bg-zinc-950 text-white rounded-none flex items-center justify-center border border-white hover:scale-105 transition-transform"
+              className="w-8 h-8 bg-zinc-950/90 text-white rounded-full flex items-center justify-center border-2 border-white shadow-xl hover:scale-110 active:scale-95 transition-transform backdrop-blur-md"
               aria-label="View tagged item"
             >
               <Tag className="w-3.5 h-3.5" />
@@ -64,20 +64,20 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
 
             {/* Tag Popup Tooltip Card */}
             {activeTag?.id === tag.id && (
-              <div className="absolute left-1/2 bottom-full mb-2 -translate-x-1/2 w-56 bg-zinc-950 text-white p-3 rounded-none shadow-2xl z-20 font-mono space-y-1.5 border border-zinc-700">
-                <div className="text-[10px] text-zinc-400 uppercase font-bold tracking-wider">
-                  Tagged Item from @{tag.sellerName}
+              <div className="absolute left-1/2 bottom-full mb-3 -translate-x-1/2 w-60 bg-zinc-950/95 text-white p-4 rounded-2xl shadow-2xl z-20 space-y-2 border border-zinc-800 backdrop-blur-xl animate-in fade-in zoom-in-95">
+                <div className="text-[11px] text-zinc-400 font-medium">
+                  Tagged piece from @{tag.sellerName}
                 </div>
-                <div className="font-syne text-xs font-bold truncate text-white">{tag.itemTitle}</div>
-                <div className="text-xs font-bold text-white font-mono">₱{tag.price.toLocaleString()}</div>
+                <div className="font-outfit text-sm font-bold truncate text-white">{tag.itemTitle}</div>
+                <div className="text-sm font-bold text-white">₱{tag.price.toLocaleString()}</div>
                 <button
                   onClick={() => {
                     if (onSelectSeller) onSelectSeller(tag.sellerId);
                   }}
-                  className="w-full mt-1 py-1.5 bg-white text-zinc-950 rounded-none text-[10px] font-mono font-bold uppercase tracking-wider flex items-center justify-center gap-1 hover:bg-zinc-200 transition-colors"
+                  className="w-full mt-2 py-2 bg-white text-zinc-950 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 hover:bg-zinc-100 transition-colors shadow-sm"
                 >
                   <span>Visit Storefront</span>
-                  <ArrowRight className="w-3 h-3" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             )}
@@ -86,14 +86,14 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
       </div>
 
       {/* Caption & Actions */}
-      <div className="space-y-2 font-mono">
-        <p className="text-xs text-zinc-800 font-sans leading-relaxed">
+      <div className="space-y-3">
+        <p className="text-sm text-zinc-700 font-sans leading-relaxed">
           {post.caption}
         </p>
 
         {/* Tagged Brands Chips */}
-        <div className="flex flex-wrap items-center gap-1.5 pt-1 font-mono">
-          <span className="text-[10px] uppercase font-bold text-zinc-400 tracking-wider">
+        <div className="flex flex-wrap items-center gap-1.5 pt-1">
+          <span className="text-xs font-semibold text-zinc-400">
             Pieces from:
           </span>
           {post.taggedItems.map((tag) => (
@@ -102,7 +102,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
               onClick={() => {
                 if (onSelectSeller) onSelectSeller(tag.sellerId);
               }}
-              className="px-2.5 py-0.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-[10px] font-mono font-bold uppercase rounded-none border border-zinc-200 transition-colors"
+              className="px-3 py-1 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-medium rounded-full border border-zinc-200/80 transition-colors"
             >
               @{tag.sellerName}
             </button>
@@ -110,11 +110,13 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
         </div>
 
         {/* Like Action Row */}
-        <div className="flex items-center justify-between pt-2 border-t border-zinc-100 text-xs font-mono">
+        <div className="flex items-center justify-between pt-3 border-t border-zinc-100 text-sm">
           <button
             onClick={handleLike}
-            className={`flex items-center gap-1.5 transition-colors ${
-              hasLiked ? 'text-zinc-950 font-bold' : 'text-zinc-500 hover:text-zinc-900'
+            className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all ${
+              hasLiked
+                ? 'bg-zinc-950 text-white border-zinc-950 font-semibold'
+                : 'bg-zinc-50 text-zinc-600 border-zinc-200/80 hover:bg-zinc-100'
             }`}
           >
             <Heart className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />

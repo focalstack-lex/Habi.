@@ -23,50 +23,50 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
   const [activeTab, setActiveTab] = useState<'products' | 'drops' | 'info'>('products');
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Seller Header Component */}
       <SellerHeader seller={seller} />
 
-      {/* Storefront Navigation Tabs (Clean Text with Hairline Active Underline, NO Pills) */}
-      <div className="flex items-center gap-6 border-b border-zinc-200 mb-8 font-mono">
+      {/* Storefront Navigation Capsule Tabs */}
+      <div className="flex flex-wrap items-center gap-2 p-1.5 bg-zinc-100 rounded-full w-fit">
         <button
           onClick={() => setActiveTab('products')}
-          className={`py-3 text-xs uppercase font-bold tracking-[0.2em] transition-all border-b-2 -mb-px ${
+          className={`px-5 py-2.5 text-xs font-semibold rounded-full transition-all ${
             activeTab === 'products'
-              ? 'border-zinc-950 text-zinc-950'
-              : 'border-transparent text-zinc-500 hover:text-zinc-950'
+              ? 'bg-zinc-950 text-white shadow-sm'
+              : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
           }`}
         >
-          CATALOG PIECES ({products.length})
+          Catalog Pieces ({products.length})
         </button>
 
         <button
           onClick={() => setActiveTab('drops')}
-          className={`py-3 text-xs uppercase font-bold tracking-[0.2em] transition-all border-b-2 -mb-px ${
+          className={`px-5 py-2.5 text-xs font-semibold rounded-full transition-all ${
             activeTab === 'drops'
-              ? 'border-zinc-950 text-zinc-950'
-              : 'border-transparent text-zinc-500 hover:text-zinc-950'
+              ? 'bg-zinc-950 text-white shadow-sm'
+              : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
           }`}
         >
-          SCHEDULED DROPS ({drops.length})
+          Scheduled Drops ({drops.length})
         </button>
 
         <button
           onClick={() => setActiveTab('info')}
-          className={`py-3 text-xs uppercase font-bold tracking-[0.2em] transition-all border-b-2 -mb-px ${
+          className={`px-5 py-2.5 text-xs font-semibold rounded-full transition-all ${
             activeTab === 'info'
-              ? 'border-zinc-950 text-zinc-950'
-              : 'border-transparent text-zinc-500 hover:text-zinc-950'
+              ? 'bg-zinc-950 text-white shadow-sm'
+              : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
           }`}
         >
-          STORE LOCATION
+          Store Location
         </button>
       </div>
 
       {/* Tab 1: Products */}
       {activeTab === 'products' && (
-        <div className="space-y-4">
-          <h2 className="font-syne text-xl font-bold uppercase tracking-tight text-zinc-950">
+        <div className="space-y-6">
+          <h2 className="font-outfit text-2xl font-bold text-zinc-950 tracking-tight">
             Available Pieces from {seller.name}
           </h2>
           <ProductGrid
@@ -79,7 +79,7 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
       {/* Tab 2: Drops */}
       {activeTab === 'drops' && (
         <div className="space-y-6 max-w-4xl">
-          <h2 className="font-syne text-xl font-bold uppercase tracking-tight text-zinc-950">
+          <h2 className="font-outfit text-2xl font-bold text-zinc-950 tracking-tight">
             Upcoming Collection Releases
           </h2>
           {drops.length > 0 ? (
@@ -91,7 +91,7 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
               />
             ))
           ) : (
-            <div className="p-12 bg-zinc-50 border border-zinc-200 text-center font-mono text-xs text-zinc-500 uppercase tracking-widest">
+            <div className="p-12 bg-white border border-zinc-200/80 rounded-3xl text-center text-sm text-zinc-500 font-sans shadow-sm">
               No upcoming drops scheduled for this brand at the moment.
             </div>
           )}
@@ -100,25 +100,25 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
 
       {/* Tab 3: Store Info */}
       {activeTab === 'info' && (
-        <div className="bg-white border border-zinc-200 rounded-none p-8 max-w-3xl space-y-6 font-mono">
+        <div className="bg-white border border-zinc-200/80 rounded-3xl p-8 max-w-3xl space-y-6 shadow-sm font-sans">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-zinc-400">
-              VERIFICATION STATUS
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+              Verification Status
             </span>
-            <div className="flex items-center gap-2 text-sm font-bold text-zinc-950">
+            <div className="flex items-center gap-2 text-base font-semibold text-zinc-950">
               <ShieldCheck className="w-5 h-5 text-zinc-950" />
               <span>{seller.verificationStatus}</span>
             </div>
           </div>
 
-          <div className="space-y-2 pt-4 border-t border-zinc-200">
-            <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-zinc-400">
-              PHYSICAL LOCATION & DIRECTIONS
+          <div className="space-y-2 pt-6 border-t border-zinc-100">
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+              Physical Location & Directions
             </span>
-            <div className="flex items-start gap-2 text-xs text-zinc-900">
-              <MapPin className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-2.5 text-sm text-zinc-900">
+              <MapPin className="w-5 h-5 text-zinc-950 shrink-0 mt-0.5" />
               <div>
-                <p className="font-bold">{seller.location.city} ({seller.location.district})</p>
+                <p className="font-bold text-base">{seller.location.city} ({seller.location.district})</p>
                 {seller.location.address ? (
                   <p className="text-zinc-600 font-sans mt-1">{seller.location.address}</p>
                 ) : (
@@ -129,12 +129,12 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
           </div>
 
           {seller.location.openingHours && (
-            <div className="space-y-2 pt-4 border-t border-zinc-200">
-              <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-zinc-400">
-                OPERATING HOURS
+            <div className="space-y-2 pt-6 border-t border-zinc-100">
+              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+                Operating Hours
               </span>
-              <div className="flex items-center gap-2 text-xs text-zinc-900 font-bold">
-                <Clock className="w-4 h-4 text-zinc-700 shrink-0" />
+              <div className="flex items-center gap-2.5 text-sm text-zinc-900 font-medium">
+                <Clock className="w-5 h-5 text-zinc-600 shrink-0" />
                 <span>{seller.location.openingHours}</span>
               </div>
             </div>
