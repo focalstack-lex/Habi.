@@ -73,7 +73,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           onClick={onClose}
         />
 
-        <div className="relative w-full max-w-4xl bg-white rounded-none border border-zinc-900 shadow-2xl overflow-hidden z-10 my-auto">
+        <div className="relative w-full max-w-4xl bg-white rounded-none border border-zinc-900 shadow-2xl overflow-hidden z-10 my-auto flex flex-col max-h-[90vh]">
           {/* Header Action Row: Back, Share, Save */}
           <div className="absolute top-0 left-0 right-0 z-20 flex items-start justify-between p-3 sm:p-4 pointer-events-none">
             <button
@@ -118,7 +118,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-12 max-h-[90vh] overflow-y-auto">
+          <div className="grid grid-cols-1 md:grid-cols-12 overflow-y-auto flex-1">
             {/* Left Column: Image Carousel */}
             <div className="md:col-span-6 bg-zinc-950 p-6 flex flex-col justify-between space-y-4 border-r border-zinc-900">
               <div className="relative aspect-[3/4] bg-zinc-900 overflow-hidden border border-zinc-800">
@@ -232,18 +232,28 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   </div>
                 )}
               </div>
-
-              {/* Bottom CTAs */}
-              <div className="space-y-3 pt-4 border-t border-zinc-200 font-mono">
-                <button
-                  onClick={() => setIsInquiryOpen(true)}
-                  className="w-full py-4 px-6 bg-zinc-950 hover:bg-zinc-800 text-white rounded-none text-xs font-bold uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>INQUIRE / RESERVE VIA MESSAGE</span>
-                </button>
-              </div>
             </div>
+          </div>
+
+          {/* Pinned Primary Action */}
+          <div className="border-t border-zinc-200 bg-white p-4 sheet-safe font-mono shrink-0">
+            <button
+              type="button"
+              onClick={() => setIsInquiryOpen(true)}
+              disabled={product.status !== 'Available'}
+              className={`w-full min-h-[48px] px-6 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-150 flex items-center justify-center gap-2 ${
+                product.status === 'Available'
+                  ? 'bg-zinc-950 hover:bg-zinc-800 text-white'
+                  : 'bg-zinc-300 text-zinc-600 cursor-not-allowed'
+              }`}
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>
+                {product.status === 'Available'
+                  ? 'INQUIRE / RESERVE VIA MESSAGE'
+                  : product.status.toUpperCase()}
+              </span>
+            </button>
           </div>
         </div>
       </div>
