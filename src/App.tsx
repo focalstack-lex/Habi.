@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { NavigationHeader } from './components/layout/NavigationHeader';
 import { NavigationDrawer } from './components/layout/NavigationDrawer';
 import { FooterSection } from './components/layout/FooterSection';
+import { BottomTabBar } from './components/layout/BottomTabBar';
 
 import { EditorialHero } from './components/feed/EditorialHero';
 import { AestheticFilterBar } from './components/feed/AestheticFilterBar';
@@ -331,6 +332,20 @@ export const App: React.FC = () => {
           if (tab !== 'seller-profile') setSelectedSellerId(null);
         }}
         setSelectedCity={setSelectedCity}
+      />
+
+      {/* Reserves space so the fixed bar never covers the footer */}
+      <div className="h-16 lg:hidden" aria-hidden="true" />
+
+      {/* Persistent Mobile Bottom Navigation */}
+      <BottomTabBar
+        activeTab={activeTab}
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          if (tab !== 'seller-profile') setSelectedSellerId(null);
+        }}
+        savedCount={savedCount}
+        isHidden={Boolean(selectedProduct)}
       />
     </div>
   );
