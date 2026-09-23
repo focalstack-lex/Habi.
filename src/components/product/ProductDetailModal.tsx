@@ -77,13 +77,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-black/80 backdrop-blur-md font-sans overflow-y-auto">
+      <div className="fixed inset-0 z-50 flex items-stretch md:items-center justify-center p-0 md:p-6 lg:p-10 bg-black/80 backdrop-blur-md font-sans md:overflow-y-auto">
         <div
           className="fixed inset-0"
           onClick={onClose}
         />
 
-        <div className="relative w-full max-w-4xl bg-white rounded-none border border-zinc-900 shadow-2xl overflow-hidden z-10 my-auto flex flex-col max-h-[90vh]">
+        <div className="relative w-full max-w-4xl bg-white rounded-none md:border md:border-zinc-900 md:shadow-2xl overflow-hidden z-10 flex flex-col h-full md:h-auto md:my-auto md:max-h-[90vh]">
           {/* Header Action Row: Back, Share, Save */}
           <div className="absolute top-0 left-0 right-0 z-20 flex items-start justify-between p-3 sm:p-4 pointer-events-none">
             <button
