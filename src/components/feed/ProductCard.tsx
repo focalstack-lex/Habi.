@@ -66,10 +66,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <Bookmark className="w-4 h-4 fill-current" />
         </button>
 
-        {/* Bottom Size Ribbon */}
-        <div className="absolute bottom-0 right-0 bg-zinc-950 text-white px-3 py-1 font-mono text-[10px] uppercase font-bold tracking-widest border-t border-l border-zinc-800">
-          SIZE: {product.size}
-        </div>
+        {/* Bottom Size Ribbon (omitted on 1-of-1 pieces, where the corner ribbon already states uniqueness) */}
+        {!product.isOneOfOne && (
+          <div className="absolute bottom-0 right-0 bg-zinc-950 text-white px-3 py-1 font-mono text-[10px] uppercase font-bold tracking-widest border-t border-l border-zinc-800">
+            SIZE: {product.size}
+          </div>
+        )}
       </div>
 
       {/* Card Details Body */}
