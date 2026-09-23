@@ -1,122 +1,339 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React, { useState, useMemo } from 'react';
+import { NavigationHeader } from './components/layout/NavigationHeader';
+import { NavigationDrawer } from './components/layout/NavigationDrawer';
+import { FooterSection } from './components/layout/FooterSection';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { EditorialHero } from './components/feed/EditorialHero';
+import { AestheticFilterBar } from './components/feed/AestheticFilterBar';
+import { ProductGrid } from './components/feed/ProductGrid';
+import { ProductDetailModal } from './components/product/ProductDetailModal';
+
+import { SellerStorefront } from './components/seller/SellerStorefront';
+import { SellerDashboard } from './components/seller/SellerDashboard';
+
+import { DropsView } from './views/DropsView';
+import { FitCheckView } from './views/FitCheckView';
+import { SavedView } from './views/SavedView';
+import { DavaoFashionMap } from './components/map/DavaoFashionMap';
+
+import { fashionService } from './services/fashionService';
+import { storageService } from './services/storageService';
+import type { Product } from './types/fashion';
+
+export const App: React.FC = () => {
+  // Navigation & View Routing State
+  const [activeTab, setActiveTab] = useState<string>('feed');
+  const [selectedCity, setSelectedCity] = useState<string>('All Davao Region');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  // Filter States
+  const [selectedAesthetic, setSelectedAesthetic] = useState<string>('All');
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [isOneOfOneOnly, setIsOneOfOneOnly] = useState<boolean>(false);
+
+  // Selected Item Modal State
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
+  // Selected Seller Storefront State
+  const [selectedSellerId, setSelectedSellerId] = useState<string | null>(null);
+
+  // User Saved Items Count Tracker
+  const savedCount = storageService.getSavedProducts().length;
+
+  // Query Filtered Products
+  const products = useMemo(() => {
+    return fashionService.getProducts({
+      city: selectedCity,
+      category: selectedCategory,
+      aesthetic: selectedAesthetic,
+      isOneOfOne: isOneOfOneOnly,
+      searchQuery: searchQuery,
+    });
+  }, [selectedCity, selectedCategory, selectedAesthetic, isOneOfOneOnly, searchQuery]);
+
+  // Query All Sellers & Drops
+  const sellers = useMemo(() => fashionService.getSellers(searchQuery), [searchQuery]);
+  const drops = useMemo(() => fashionService.getDrops(), []);
+  const outfitPosts = useMemo(() => fashionService.getOutfitPosts(), []);
+
+  // Selected Seller Data
+  const currentSeller = useMemo(() => {
+    if (!selectedSellerId) return null;
+    return fashionService.getSellerById(selectedSellerId) || null;
+  }, [selectedSellerId]);
+
+  const currentSellerProducts = useMemo(() => {
+    if (!selectedSellerId) return [];
+    return fashionService.getProductsBySeller(selectedSellerId);
+  }, [selectedSellerId]);
+
+  // Handle Opening Seller Profile View
+  const handleSelectSeller = (sellerId: string) => {
+    setSelectedSellerId(sellerId);
+    setActiveTab('seller-profile');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleResetFilters = () => {
+    setSelectedCity('All Davao Region');
+    setSelectedAesthetic('All');
+    setSelectedCategory('All');
+    setIsOneOfOneOnly(false);
+    setSearchQuery('');
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="min-h-screen flex flex-col bg-white text-zinc-950 font-sans selection:bg-zinc-950 selection:text-white">
+      {/* Top Header Navigation */}
+      <NavigationHeader
+        activeTab={activeTab}
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          if (tab !== 'seller-profile') setSelectedSellerId(null);
+        }}
+        selectedCity={selectedCity}
+        setSelectedCity={setSelectedCity}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        savedCount={savedCount}
+        isMobileMenuOpen={isMobileMenuOpen}
+        setIsMobileMenuOpen={setIsMobileMenuOpen}
+      />
 
-      <div className="ticks"></div>
+      {/* Mobile Menu Drawer */}
+      <NavigationDrawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        activeTab={activeTab}
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          if (tab !== 'seller-profile') setSelectedSellerId(null);
+        }}
+        selectedCity={selectedCity}
+        setSelectedCity={setSelectedCity}
+        savedCount={savedCount}
+      />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {/* Main Content Router Body */}
+      <main className="flex-1">
+        {/* VIEW 1: Home Fashion Discovery Feed */}
+        {activeTab === 'feed' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <EditorialHero
+              featuredDrop={drops[0]}
+              onExploreDrop={() => setActiveTab('drops')}
+              onSelectBrand={handleSelectSeller}
+            />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
-}
+            <AestheticFilterBar
+              selectedAesthetic={selectedAesthetic}
+              setSelectedAesthetic={setSelectedAesthetic}
+              isOneOfOneOnly={isOneOfOneOnly}
+              setIsOneOfOneOnly={setIsOneOfOneOnly}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
 
-export default App
+            <div className="flex items-center justify-between font-mono text-xs text-zinc-400 pb-2">
+              <span className="uppercase font-bold tracking-wider">
+                Showing {products.length} Local Davao Pieces
+              </span>
+              {(selectedAesthetic !== 'All' || selectedCategory !== 'All' || isOneOfOneOnly || searchQuery) && (
+                <button
+                  onClick={handleResetFilters}
+                  className="text-zinc-900 underline hover:text-zinc-600 font-bold"
+                >
+                  Clear Active Filters
+                </button>
+              )}
+            </div>
+
+            <ProductGrid
+              products={products}
+              onSelectProduct={(p) => setSelectedProduct(p)}
+              onSelectSeller={handleSelectSeller}
+              onResetFilters={handleResetFilters}
+            />
+          </div>
+        )}
+
+        {/* VIEW 2: Discover Aesthetic Catalog */}
+        {activeTab === 'discover' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+            <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800 space-y-3 font-mono">
+              <h1 className="text-3xl sm:text-4xl font-black uppercase tracking-tight">
+                Discover Fashion Aesthetics
+              </h1>
+              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl font-sans">
+                Browse local Davao clothing items categorized strictly by style subculture: Streetwear, Vintage Denim, Y2K Archives, Techwear, and Gorpcore Outerwear.
+              </p>
+            </div>
+
+            <AestheticFilterBar
+              selectedAesthetic={selectedAesthetic}
+              setSelectedAesthetic={setSelectedAesthetic}
+              isOneOfOneOnly={isOneOfOneOnly}
+              setIsOneOfOneOnly={setIsOneOfOneOnly}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
+
+            <ProductGrid
+              products={products}
+              onSelectProduct={(p) => setSelectedProduct(p)}
+              onSelectSeller={handleSelectSeller}
+              onResetFilters={handleResetFilters}
+            />
+          </div>
+        )}
+
+        {/* VIEW 3: Scheduled Collection Drops */}
+        {activeTab === 'drops' && (
+          <DropsView
+            drops={drops}
+            onExploreDrop={(dropId) => {
+              const targetDrop = drops.find((d) => d.id === dropId);
+              if (targetDrop && targetDrop.items.length > 0) {
+                setSelectedProduct(targetDrop.items[0]);
+              }
+            }}
+          />
+        )}
+
+        {/* VIEW 4: Interactive Davao Region Fashion Map */}
+        {activeTab === 'map' && (
+          <DavaoFashionMap
+            sellers={sellers}
+            selectedCity={selectedCity}
+            onSelectSeller={handleSelectSeller}
+          />
+        )}
+
+        {/* VIEW 5: Davao Local Brand Directory */}
+        {activeTab === 'brands' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+            <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800 space-y-3 font-mono">
+              <h1 className="text-3xl sm:text-4xl font-black uppercase tracking-tight">
+                Davao Seller Directory
+              </h1>
+              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl font-sans">
+                Independent streetwear brands, curated thrift vaults, vintage archives, and local clothing creators across the Davao Region.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
+              {sellers.map((seller) => (
+                <div
+                  key={seller.id}
+                  onClick={() => handleSelectSeller(seller.id)}
+                  className="bg-white border border-zinc-200 rounded-3xl p-6 space-y-4 cursor-pointer hover:border-zinc-900 transition-all shadow-sm group"
+                >
+                  <div className="aspect-[16/9] bg-zinc-900 rounded-2xl overflow-hidden relative">
+                    <img
+                      src={seller.coverUrl}
+                      alt={seller.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                    />
+                    <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                      <img
+                        src={seller.logoUrl}
+                        alt={seller.name}
+                        className="w-8 h-8 rounded-full object-cover border-2 border-white shadow-md"
+                      />
+                      <span className="text-xs font-bold text-white shadow-sm">{seller.name}</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="text-xs text-zinc-500">
+                      @{seller.handle} • {seller.location.district}, {seller.location.city}
+                    </div>
+                    <p className="text-xs font-sans text-zinc-700 mt-1 line-clamp-2">
+                      {seller.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-2 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500">
+                    <span>{seller.followerCount.toLocaleString()} followers</span>
+                    <span className="font-bold text-zinc-950 group-hover:underline">Visit Storefront →</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* VIEW 6: Davao Fit Check Community */}
+        {activeTab === 'community' && (
+          <FitCheckView
+            posts={outfitPosts}
+            onSelectSeller={handleSelectSeller}
+            onSelectProduct={(id) => {
+              const p = fashionService.getProductById(id);
+              if (p) setSelectedProduct(p);
+            }}
+          />
+        )}
+
+        {/* VIEW 7: Personal Saved Closet */}
+        {activeTab === 'saved' && (
+          <SavedView
+            onSelectProduct={(p) => setSelectedProduct(p)}
+            onSelectSeller={handleSelectSeller}
+            onExploreDrop={(dropId) => {
+              const targetDrop = drops.find((d) => d.id === dropId);
+              if (targetDrop && targetDrop.items.length > 0) {
+                setSelectedProduct(targetDrop.items[0]);
+              }
+            }}
+          />
+        )}
+
+        {/* VIEW 8: Seller Dashboard Portal */}
+        {activeTab === 'dashboard' && (
+          <SellerDashboard
+            seller={sellers[0]}
+            products={currentSellerProducts.length > 0 ? currentSellerProducts : products.slice(0, 4)}
+          />
+        )}
+
+        {/* VIEW 9: Seller Storefront Profile View */}
+        {activeTab === 'seller-profile' && currentSeller && (
+          <SellerStorefront
+            seller={currentSeller}
+            products={currentSellerProducts}
+            drops={drops.filter((d) => d.sellerId === currentSeller.id)}
+            onSelectProduct={(p) => setSelectedProduct(p)}
+            onExploreDrop={(dropId) => {
+              const targetDrop = drops.find((d) => d.id === dropId);
+              if (targetDrop && targetDrop.items.length > 0) {
+                setSelectedProduct(targetDrop.items[0]);
+              }
+            }}
+          />
+        )}
+      </main>
+
+      {/* Detail Modal Overlay */}
+      <ProductDetailModal
+        product={selectedProduct}
+        seller={selectedProduct ? fashionService.getSellerById(selectedProduct.sellerId) || null : null}
+        isOpen={Boolean(selectedProduct)}
+        onClose={() => setSelectedProduct(null)}
+        onSelectSeller={handleSelectSeller}
+      />
+
+      {/* Global Footer Section */}
+      <FooterSection
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          if (tab !== 'seller-profile') setSelectedSellerId(null);
+        }}
+        setSelectedCity={setSelectedCity}
+      />
+    </div>
+  );
+};
+
+export default App;
