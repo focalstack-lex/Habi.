@@ -21,6 +21,10 @@
 - **Tab identifiers are fixed**: `feed`, `drops`, `map`, `saved`. These must match the `activeTab` string values already used in `src/App.tsx:121-294`.
 - **Omnichannel Responsiveness**: Verified at 320px, 375px, 768px, 1024px, and 1440px, with no horizontal overflow and all touch targets at or above 44px.
 
+## Anchor Basis
+
+Every `file:line` citation in this plan was verified against commit `fe01dc3`. This repository has more than one active session, so line numbers can drift between the writing of this plan and its execution. The quoted code block in each step is the authoritative locator and the line number is only a hint. Before applying any edit, if your working state has moved past `fe01dc3`, re-verify the anchor with `grep -n` on the quoted text.
+
 ## Testing Approach (read before starting)
 
 This project has **no test runner**. `package.json` defines only `dev`, `build`, `lint`, and `preview`, and there is no Vitest, Jest, or Playwright dependency. Do not add one: introducing a test framework is out of scope and would violate the no-new-dependency constraint.
@@ -44,42 +48,32 @@ Where a task's behavior is visual (the bottom bar, the pinned action), the check
 
 ---
 
-### Task 0: Commit the in-flight sharp geometry pass
+### Task 0: Confirm the prerequisite geometry pass is committed
 
-**Why:** Fourteen files carry uncommitted sharp-geometry edits (`git status` shows `M` on 14 files, 286 insertions and 284 deletions). If this plan's work lands on top of them, the resulting diff will mix two unrelated changes and the task-level reviews become unreliable.
+**Why:** This plan assumes a working tree with no unrelated in-flight changes, so that each task's diff contains only that task's work. That prerequisite is **already satisfied**: the sharp geometry pass was committed as `fe01dc3` (14 files, 288 insertions, 286 deletions) and the working tree is clean as of the time of writing. This task verifies the precondition and changes nothing.
 
 **Files:**
-- Modify: none. This task only stages and commits existing working-tree changes.
+- Modify: none. If the precondition already holds, this task produces no file change and no commit.
 
 **Interfaces:**
 - Consumes: nothing.
-- Produces: a clean working tree, which every later task assumes.
+- Produces: confirmation that the base is clean, which every later task assumes.
 
-- [ ] **Step 1: Confirm the in-flight change is only the geometry pass**
+- [ ] **Step 1: Confirm the geometry pass is in history**
 
 Run:
 ```bash
-git diff --ignore-all-space --stat
+git log --oneline -3
+git show --stat fe01dc3 | tail -3
 ```
-Expected: the same 14 files, showing that the change is substantive (not whitespace). Spot-check one hunk:
-```bash
-git diff --ignore-all-space -- src/App.tsx | head -40
-```
-Expected: `rounded-3xl`/`rounded-2xl`/`rounded-full` becoming `rounded-none`, and `font-syne` being applied to headings.
+Expected: `fe01dc3` is present and reports 14 files changed. If it is absent, the geometry pass has not landed and must be committed first, because Task 9's curvature audit assumes that pass is already in place.
 
-- [ ] **Step 2: Stage and commit only the geometry pass**
-
-```bash
-git add src/App.tsx src/components/community/FitCheckCard.tsx src/components/drops/DropCard.tsx src/components/layout/FooterSection.tsx src/components/layout/NavigationDrawer.tsx src/components/map/DavaoFashionMap.tsx src/components/product/InstantInquiryModal.tsx src/components/product/ProductDetailModal.tsx src/components/seller/SellerDashboard.tsx src/components/seller/SellerHeader.tsx src/components/seller/SellerStorefront.tsx src/views/DropsView.tsx src/views/FitCheckView.tsx src/views/SavedView.tsx
-git commit -m "style: complete sharp editorial geometry pass across remaining views"
-```
-
-- [ ] **Step 3: Verify the tree is clean**
+- [ ] **Step 2: Confirm the working tree is clean**
 
 ```bash
 git status --short
 ```
-Expected: no output. If any file remains modified, do not proceed until it is committed or intentionally stashed.
+Expected: no output. If a file other than those this plan creates or modifies is listed, resolve it before starting. Do not begin Task 1 with unrelated modifications in flight.
 
 ---
 
