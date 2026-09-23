@@ -25,14 +25,24 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
     product ? storageService.isProductSaved(product.id) : false
   );
   const [shareNote, setShareNote] = useState<string>('');
+  const [selectedSize, setSelectedSize] = useState<string>(product?.sizes?.[0] ?? product?.size ?? '');
+  const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
 
   useEffect(() => {
     setSelectedImageIndex(0);
+    setSelectedSize(product?.sizes?.[0] ?? product?.size ?? '');
+    setSelectedQuantity(1);
     setShareNote('');
     setIsSaved(product ? storageService.isProductSaved(product.id) : false);
   }, [product?.id]);
 
   if (!isOpen || !product) return null;
+
+  const isSingle = product.isOneOfOne;
+  const sizes = product.sizes ?? [product.size];
+  const canSelectSize = !isSingle && sizes.length > 1;
+  const canSetQuantity = !isSingle && product.availableQuantity > 1;
+  const colourways = product.colourways ?? [];
 
   const handleToggleSave = () => {
     const updated = storageService.toggleSaveProduct(product.id);
@@ -190,6 +200,101 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     </span>
                   </div>
                 </div>
+
+                {/* Conditional Variant Block */}
+                {isSingle ? (
+                  <div className="flex items-center gap-3 py-4 border-b border-zinc-200 font-mono">
+                    <span className="px-3 py-1.5 bg-zinc-950 text-white text-[10px] font-bold uppercase tracking-[0.15em]">
+                      1 OF 1
+                    </span>
+                    <span className="text-[11px] text-zinc-500 uppercase tracking-[0.08em]">
+                      Single piece archive
+                    </span>
+                  </div>
+                ) : (
+                  <div className="space-y-5 py-4 border-b border-zinc-200 font-mono">
+                    {canSelectSize && (
+                      <div className="space-y-2">
+                        <span className="text-[10px] text-zinc-400 uppercase font-bold tracking-[0.15em] block">
+                          Select Size
+                        </span>
+                        <div className="flex flex-wrap gap-2">
+                          {sizes.map((sizeOption) => {
+                            const isSelected = selectedSize === sizeOption;
+                            return (
+                              <button
+                                key={sizeOption}
+                                type="button"
+                                onClick={() => setSelectedSize(sizeOption)}
+                                className={`min-h-[44px] min-w-[44px] px-3 text-[11px] uppercase border transition-colors duration-150 ${
+                                  isSelected
+                                    ? 'bg-zinc-950 text-white border-zinc-950 font-bold'
+                                    : 'bg-white text-zinc-950 border-zinc-300 hover:border-zinc-950'
+                                }`}
+                              >
+                                {sizeOption}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {colourways.length > 1 && (
+                      <div className="space-y-2">
+                        <span className="text-[10px] text-zinc-400 uppercase font-bold tracking-[0.15em] block">
+                          Colourway
+                        </span>
+                        <div className="flex flex-wrap gap-2">
+                          {colourways.map((colourway) => (
+                            <span
+                              key={colourway.name}
+                              title={colourway.name}
+                              className="w-8 h-8 border border-zinc-300"
+                              style={{ backgroundColor: colourway.hex ?? '#f4f4f5' }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {canSetQuantity && (
+                      <div className="space-y-2">
+                        <span className="text-[10px] text-zinc-400 uppercase font-bold tracking-[0.15em] block">
+                          Quantity
+                        </span>
+                        <div className="inline-flex items-center border border-zinc-300">
+                          <button
+                            type="button"
+                            onClick={() => setSelectedQuantity((q) => Math.max(1, q - 1))}
+                            disabled={selectedQuantity <= 1}
+                            aria-label="Decrease quantity"
+                            className="min-h-[44px] min-w-[44px] text-zinc-950 hover:bg-zinc-100 disabled:text-zinc-300 disabled:hover:bg-white transition-colors duration-150"
+                          >
+                            -
+                          </button>
+                          <span className="min-w-[48px] text-center text-[11px] font-bold text-zinc-950">
+                            {selectedQuantity}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setSelectedQuantity((q) => Math.min(product.availableQuantity, q + 1))
+                            }
+                            disabled={selectedQuantity >= product.availableQuantity}
+                            aria-label="Increase quantity"
+                            className="min-h-[44px] min-w-[44px] text-zinc-950 hover:bg-zinc-100 disabled:text-zinc-300 disabled:hover:bg-white transition-colors duration-150"
+                          >
+                            +
+                          </button>
+                        </div>
+                        <span className="text-[10px] text-zinc-500 block">
+                          {product.availableQuantity} available
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* Description */}
                 <div>
