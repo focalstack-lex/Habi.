@@ -82,7 +82,7 @@ Habi adheres to a high-contrast, minimalist monochrome design system inspired by
   - Filter Logic: `fashionService.getProducts()` in [`src/services/fashionService.ts`](file:///c:/Users/User/Pictures/Habi/src/services/fashionService.ts)
 
 ### 3.4 1-of-1 Thrift Inventory & Instant Inquiry
-* **What It Does**: Displays detailed piece specs (Size, Condition, 1-of-1 Thrift Archive badge, PHP Price) and generates pre-formatted inquiry text for Instagram DM, Facebook Messenger, or WhatsApp.
+* **What It Does**: Displays detailed piece specs (Size, Condition, 1-of-1 Thrift Archive badge, PHP Price) and generates pre-formatted inquiry text for Instagram DM, Facebook Messenger, or WhatsApp. The inquiry action is pinned to the bottom of the surface so it stays reachable without scrolling, and a conditional variant block renders size chips, colourway swatches, and a stock-clamped quantity stepper only for multi-stock items. 1-of-1 pieces state `1 OF 1` instead and never offer a quantity control.
 * **Where to Find It**:
   - Item Modal: [`src/components/product/ProductDetailModal.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/product/ProductDetailModal.tsx)
   - Inquiry Generator: [`src/components/product/InstantInquiryModal.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/product/InstantInquiryModal.tsx)
@@ -147,6 +147,7 @@ c:\Users\User\Pictures\Habi\
 │   │   │   ├── ProductCard.tsx               # 1-of-1 thrift product card
 │   │   │   └── ProductGrid.tsx               # Responsive product grid container
 │   │   ├── layout/
+│   │   │   ├── BottomTabBar.tsx              # Persistent mobile bottom tab navigation
 │   │   │   ├── FooterSection.tsx             # Directory footer
 │   │   │   ├── NavigationDrawer.tsx          # Mobile menu drawer
 │   │   │   └── NavigationHeader.tsx          # Responsive navigation header

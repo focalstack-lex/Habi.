@@ -43,8 +43,9 @@ Inspired by minimalist high-fashion editorial lookbooks and reference designs:
 * **Primary Contrast**: Deep Obsidian Black (`#09090B`) used for high-impact typography, primary CTA buttons, active state chips, and crisp hairline borders.
 * **Neutral Surface**: Soft Gray (`#F4F4F5` / `#E4E4E7`) for subtle image containers, card backgrounds, and inactive control badges.
 * **Secondary Micro-Copy**: Muted Slate (`#71717A` / `#A1A1AA`) for category labels, size metadata, and secondary timestamps.
-* **Typography Hierarchy**: Bold tracked uppercase headings (e.g., `HABI`, `ESSENTIAL OVERSIZED HOODIE`, `DAVAO FIT CHECK`) paired with clean sans-serif body copy (Inter / System Sans).
-* **Card & Container Radius**: Clean 12px to 16px rounded corners with subtle hairline borders (`border border-zinc-200`) and high-fashion image aspect ratios (3:4, 1:1, 16:9).
+* **Typography Hierarchy**: Syne for display and headlines, Plus Jakarta Sans for body copy, and Space Mono for technical metadata such as prices, sizes, and labels. Negative tracking is applied to display sizes and positive tracking to uppercase micro-text.
+* **Card & Container Geometry**: Sharp 0px corners on all structural and interactive surfaces, with 1px hairline borders (`border border-zinc-200`) and high-fashion image aspect ratios (3:4, 1:1, 16:9). No curvature is used anywhere.
+* **Theme Scope**: Light monochrome only. There is no dark mode and no dark or light theme variable pair; `src/index.css` defines a single white-canvas token set. Earlier references to Dark/Light theme variables in this specification were inaccurate.
 
 ---
 
@@ -57,6 +58,7 @@ src/
 │   ├── layout/
 │   │   ├── NavigationHeader.tsx    # Responsive header, search bar, location picker
 │   │   ├── NavigationDrawer.tsx    # Mobile slide-out drawer
+│   │   ├── BottomTabBar.tsx        # Persistent mobile bottom tab navigation
 │   │   └── FooterSection.tsx       # Platform footer & local directory links
 │   ├── feed/
 │   │   ├── EditorialHero.tsx       # Magazine-style featured Davao brand/drop banner
