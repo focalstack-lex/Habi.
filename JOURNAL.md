@@ -54,3 +54,32 @@
 * `npm run build`: Compiled cleanly in 425ms with 0 errors (`dist/assets/index-Gn22tBQ6.css` 38.61 kB, `dist/assets/index-CVBEDy5Q.js` 475.24 kB).
 * Git commit `fe01dc3`: "feat: apply sharp high-fashion editorial redesign across all system modules" (14 files updated).
 
+
+## [2026-09-23] Session Log: Reference Design Integration Specification and Implementation Plan
+
+### Design Analysis
+* Analyzed a supplied two-screen mobile commerce reference (home feed with hero carousel and product grid; product detail with size swatches, quantity stepper, and pinned Add to Bag).
+* Identified a governing conflict: the reference is transactional commerce with a cart and countable inventory, while Habi's README and spec explicitly reject search-to-buy grid commerce and use a direct-message inquiry as the purchase step. A literal port would break the 1-of-1 thrift model, where quantity is always one.
+* Gap analysis found Habi already ahead of the reference on three of its own patterns: the product card, the detail image gallery with thumbnail rail, and a seller card on the detail screen that the reference omits entirely. Habi is behind on three others: no persistent mobile navigation across eight top-level views, a primary detail action that scrolls out of view inside a max-h-[90vh] container, and no header action row on the detail screen.
+
+### Decisions Recorded
+* Inquiry model retained. No cart, no checkout, no payment surface.
+* Bottom tab bar carries four destinations: Feed, Drops, Map, Saved. Discover, Brands, Community, and the Seller Dashboard remain in the header, with the existing drawer as mobile overflow.
+* Bottom bar renders below the lg breakpoint only, and is hidden while the detail sheet is open.
+* The reference's pill chips, rounded 12 to 16px corners, single-sans typography, discount badges, and autoplay carousel are explicitly refused, because each reverses a decision already committed in this project.
+* An inquiry basket that batches saved items per seller is recorded as a Phase 2 candidate, not built.
+
+### Artifacts Created
+* `docs/specs/2026-09-23-habi-reference-integration-design.md` (design specification with explicit rejections and 12 acceptance criteria).
+* `docs/plans/2026-09-23-habi-reference-integration-plan.md` (12 tasks with real verification steps and 6 documented edge cases).
+
+### Defects Found During Analysis
+* `src/components/feed/ProductGrid.tsx` escaped the committed sharp-geometry pass: `rounded-3xl` at line 21, and `rounded-full` at lines 22 and 34.
+* `src/components/drops/DropCountdownTimer.tsx` carries four `rounded-lg` digit boxes at lines 38, 45, 52, and 59.
+* The committed design spec section 3.1 is stale in three ways: it claims Inter is the body face, that cards use 12 to 16px radii, and that dark and light theme variables exist. None is true of the shipped code.
+* Self-review of the new documents corrected several inaccurate line citations before commit, and removed a planned ProductGrid section-header prop after finding that pattern already exists at `src/App.tsx:138-149`.
+
+### Verification
+* Documents self-reviewed against the brainstorming and writing-plans checklists: no placeholders, sequential step numbering within all 12 tasks, and every specification section mapped to at least one task.
+* Dash scan confirms the only occurrences of em-dash or en-dash characters are the two intentional ones that name the banned characters, in the directive and in the verification grep pattern.
+* No application code was changed in this session. Implementation is pending plan execution.
