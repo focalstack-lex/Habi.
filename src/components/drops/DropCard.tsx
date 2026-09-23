@@ -32,7 +32,7 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
   });
 
   return (
-    <div className="bg-white border border-zinc-200 rounded-3xl overflow-hidden shadow-sm hover:border-zinc-900 transition-all font-sans">
+    <div className="bg-white border border-zinc-200 rounded-none overflow-hidden hover:border-zinc-950 transition-all font-sans">
       <div className="grid grid-cols-1 md:grid-cols-12 items-center">
         {/* Cover Photo */}
         <div className="md:col-span-5 aspect-[16/10] md:aspect-auto md:h-full bg-zinc-950 relative overflow-hidden group">
@@ -43,7 +43,7 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
-          <div className="absolute top-3 left-3 bg-zinc-950 text-white font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-zinc-800">
+          <div className="absolute top-3 left-3 bg-zinc-950 text-white font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-none border border-zinc-700">
             {drop.itemCount} Collection Pieces
           </div>
         </div>
@@ -55,19 +55,19 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
               <img
                 src={drop.sellerLogo}
                 alt={drop.sellerName}
-                className="w-6 h-6 rounded-full object-cover border border-zinc-200"
+                className="w-6 h-6 rounded-none object-cover border border-zinc-300"
               />
-              <span className="text-xs font-bold text-zinc-900">{drop.sellerName}</span>
+              <span className="text-xs font-bold text-zinc-900 font-mono">{drop.sellerName}</span>
             </div>
 
-            <div className="flex items-center gap-1.5 text-xs text-zinc-600 bg-zinc-100 px-3 py-1 rounded-full border border-zinc-200">
+            <div className="flex items-center gap-1.5 text-xs text-zinc-600 bg-zinc-100 px-3 py-1 rounded-none border border-zinc-200 font-mono">
               <Clock className="w-3.5 h-3.5" />
               <span>{formattedDate}</span>
             </div>
           </div>
 
           <div>
-            <h3 className="text-xl font-black text-zinc-950 tracking-tight uppercase">
+            <h3 className="font-syne text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight uppercase">
               {drop.title}
             </h3>
             <p className="font-sans text-xs text-zinc-600 mt-1.5 leading-relaxed">
@@ -87,7 +87,7 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsPreviewOpen(!isPreviewOpen)}
-                className="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 rounded-full text-xs font-bold transition-colors flex items-center gap-1.5"
+                className="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 rounded-none text-xs font-mono font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 border border-zinc-300"
               >
                 <Eye className="w-3.5 h-3.5" />
                 <span>{isPreviewOpen ? 'Hide Catalog' : 'Preview Catalog'}</span>
@@ -95,10 +95,10 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
 
               <button
                 onClick={handleReminderToggle}
-                className={`px-4 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 border ${
+                className={`px-4 py-2 rounded-none text-xs font-mono font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 border ${
                   hasReminder
                     ? 'bg-zinc-950 text-white border-zinc-950'
-                    : 'bg-white text-zinc-900 border-zinc-300 hover:border-zinc-900'
+                    : 'bg-white text-zinc-900 border-zinc-300 hover:border-zinc-950'
                 }`}
               >
                 {hasReminder ? <BellCheck className="w-3.5 h-3.5" /> : <Bell className="w-3.5 h-3.5" />}
@@ -113,20 +113,20 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
       {/* Catalog Preview Drawer */}
       {isPreviewOpen && drop.items && drop.items.length > 0 && (
         <div className="bg-zinc-50 p-6 border-t border-zinc-200 font-mono">
-          <div className="text-xs uppercase font-bold text-zinc-400 tracking-wider mb-4">
+          <div className="text-xs uppercase font-bold text-zinc-500 tracking-wider mb-4">
             Catalog Items Preview ({drop.items.length} previewed)
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {drop.items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white border border-zinc-200 rounded-2xl p-3 space-y-2"
+                className="bg-white border border-zinc-200 rounded-none p-3 space-y-2"
               >
-                <div className="aspect-square bg-zinc-100 rounded-xl overflow-hidden">
+                <div className="aspect-square bg-zinc-100 rounded-none overflow-hidden border border-zinc-200">
                   <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover" />
                 </div>
-                <div className="text-xs font-bold truncate">{item.name}</div>
-                <div className="flex items-center justify-between text-[11px] text-zinc-600">
+                <div className="font-syne text-xs font-bold truncate text-zinc-950">{item.name}</div>
+                <div className="flex items-center justify-between text-[11px] text-zinc-600 font-mono">
                   <span>₱{item.price.toLocaleString()}</span>
                   <span>Size {item.size}</span>
                 </div>

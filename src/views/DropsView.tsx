@@ -12,13 +12,13 @@ export const DropsView: React.FC<DropsViewProps> = ({ drops, onExploreDrop }) =>
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Header Banner */}
-      <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800 space-y-4 font-mono">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs text-zinc-300">
+      <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-none border border-zinc-800 space-y-4 font-mono">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-none text-xs text-zinc-300">
           <Calendar className="w-3.5 h-3.5 text-white" />
           <span className="uppercase tracking-widest text-[10px] font-bold">Scheduled Releases</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tighter uppercase">
+        <h1 className="font-syne text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tighter uppercase">
           Davao Collection Drops
         </h1>
 
@@ -29,7 +29,7 @@ export const DropsView: React.FC<DropsViewProps> = ({ drops, onExploreDrop }) =>
 
       {/* Drops List */}
       <div className="space-y-6">
-        <h2 className="font-mono text-sm font-bold uppercase tracking-wider text-zinc-400">
+        <h2 className="font-mono text-xs font-bold uppercase tracking-wider text-zinc-500">
           Upcoming Scheduled Drops ({drops.length})
         </h2>
 
@@ -38,9 +38,9 @@ export const DropsView: React.FC<DropsViewProps> = ({ drops, onExploreDrop }) =>
             <DropCard key={drop.id} drop={drop} onExploreDrop={onExploreDrop} />
           ))
         ) : (
-          <div className="p-12 bg-zinc-50 border border-zinc-200 rounded-3xl text-center space-y-3 font-mono">
+          <div className="p-12 bg-zinc-50 border border-zinc-200 rounded-none text-center space-y-3 font-mono">
             <Sparkles className="w-8 h-8 text-zinc-400 mx-auto" />
-            <div className="text-base font-bold text-zinc-900">No Drops Scheduled</div>
+            <div className="font-syne text-base font-bold text-zinc-900">No Drops Scheduled</div>
             <p className="text-xs text-zinc-500 font-sans max-w-sm mx-auto">
               Check back soon for new Davao thrift vault collection releases.
             </p>

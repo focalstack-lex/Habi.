@@ -39,13 +39,13 @@ export const SavedView: React.FC<SavedViewProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Header Banner */}
-      <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800 space-y-4 font-mono">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs text-zinc-300">
+      <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-none border border-zinc-800 space-y-4 font-mono">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-none text-xs text-zinc-300">
           <Bookmark className="w-3.5 h-3.5 text-white" />
           <span className="uppercase tracking-widest text-[10px] font-bold">Personal Closet</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tighter uppercase">
+        <h1 className="font-syne text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tighter uppercase">
           Saved Fashion
         </h1>
 
@@ -103,9 +103,9 @@ export const SavedView: React.FC<SavedViewProps> = ({
               onSelectSeller={onSelectSeller}
             />
           ) : (
-            <div className="p-12 bg-zinc-50 border border-zinc-200 rounded-3xl text-center space-y-3 font-mono">
+            <div className="p-12 bg-zinc-50 border border-zinc-200 rounded-none text-center space-y-3 font-mono">
               <Bookmark className="w-8 h-8 text-zinc-400 mx-auto" />
-              <div className="text-base font-bold text-zinc-900">No Saved Items Yet</div>
+              <div className="font-syne text-base font-bold text-zinc-900">No Saved Items Yet</div>
               <p className="text-xs text-zinc-500 font-sans max-w-sm mx-auto">
                 Explore the feed and tap the bookmark icon on any item to save it here.
               </p>
@@ -122,26 +122,26 @@ export const SavedView: React.FC<SavedViewProps> = ({
               <div
                 key={seller.id}
                 onClick={() => onSelectSeller(seller.id)}
-                className="bg-white border border-zinc-200 rounded-3xl p-6 space-y-4 cursor-pointer hover:border-zinc-900 transition-all shadow-sm"
+                className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 cursor-pointer hover:border-zinc-950 transition-all shadow-sm"
               >
                 <div className="flex items-center gap-3">
                   <img
                     src={seller.logoUrl}
                     alt={seller.name}
-                    className="w-12 h-12 rounded-full object-cover border border-zinc-200 shrink-0"
+                    className="w-12 h-12 rounded-none object-cover border border-zinc-300 shrink-0"
                   />
                   <div>
-                    <h3 className="font-bold text-sm text-zinc-950">{seller.name}</h3>
-                    <div className="text-xs text-zinc-500">@{seller.handle} • {seller.location.district}</div>
+                    <h3 className="font-syne font-bold text-sm text-zinc-950">{seller.name}</h3>
+                    <div className="text-xs text-zinc-500 font-mono">@{seller.handle} • {seller.location.district}</div>
                   </div>
                 </div>
                 <p className="text-xs font-sans text-zinc-600 line-clamp-2">{seller.description}</p>
               </div>
             ))
           ) : (
-            <div className="col-span-full p-12 bg-zinc-50 border border-zinc-200 rounded-3xl text-center space-y-3 font-mono">
+            <div className="col-span-full p-12 bg-zinc-50 border border-zinc-200 rounded-none text-center space-y-3 font-mono">
               <Users className="w-8 h-8 text-zinc-400 mx-auto" />
-              <div className="text-base font-bold text-zinc-900">No Followed Brands</div>
+              <div className="font-syne text-base font-bold text-zinc-900">No Followed Brands</div>
               <p className="text-xs text-zinc-500 font-sans max-w-sm mx-auto">
                 Follow local Davao streetwear creators and thrift accounts to prioritize their drops in your feed.
               </p>
@@ -158,9 +158,9 @@ export const SavedView: React.FC<SavedViewProps> = ({
               <DropCard key={drop.id} drop={drop} onExploreDrop={onExploreDrop} />
             ))
           ) : (
-            <div className="p-12 bg-zinc-50 border border-zinc-200 rounded-3xl text-center space-y-3 font-mono">
+            <div className="p-12 bg-zinc-50 border border-zinc-200 rounded-none text-center space-y-3 font-mono">
               <Bell className="w-8 h-8 text-zinc-400 mx-auto" />
-              <div className="text-base font-bold text-zinc-900">No Active Drop Reminders</div>
+              <div className="font-syne text-base font-bold text-zinc-900">No Active Drop Reminders</div>
               <p className="text-xs text-zinc-500 font-sans max-w-sm mx-auto">
                 Tap 'Remind Me' on upcoming Davao collection drops to get notified before launch.
               </p>

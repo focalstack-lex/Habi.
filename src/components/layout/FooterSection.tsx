@@ -16,10 +16,10 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand Col */}
           <div className="md:col-span-1 space-y-4">
-            <span className="font-mono text-3xl font-black tracking-tighter text-white block">
-              HABI
+            <span className="font-syne text-3xl font-bold tracking-widest text-white block">
+              H A B I
             </span>
-            <p className="text-zinc-400 text-xs leading-relaxed">
+            <p className="text-zinc-400 text-xs leading-relaxed font-sans">
               Davao Region's digital fashion community, visual discovery platform, and local marketplace for independent clothing brands, thrift shops, and vintage sellers.
             </p>
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 pt-2">
@@ -30,7 +30,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
 
           {/* Davao Cities Directory */}
           <div className="space-y-3 font-mono text-xs">
-            <div className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">
+            <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
               Explore Cities
             </div>
             <ul className="space-y-2 text-zinc-300">
@@ -54,7 +54,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
 
           {/* Aesthetic Styles */}
           <div className="space-y-3 font-mono text-xs">
-            <div className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">
+            <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
               Style Aesthetics
             </div>
             <ul className="space-y-2 text-zinc-300">
@@ -76,10 +76,10 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
 
           {/* Local Creator & Seller Links */}
           <div className="space-y-3 font-mono text-xs">
-            <div className="text-[10px] uppercase tracking-widest text-zinc-400 font-bold">
+            <div className="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">
               Local Creators
             </div>
-            <p className="text-zinc-400 text-xs leading-relaxed">
+            <p className="text-zinc-400 text-xs leading-relaxed font-sans">
               Are you a Davao thrift seller or local fashion brand? Create your storefront and schedule collection drops.
             </p>
             <button
@@ -87,7 +87,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
                 setActiveTab('dashboard');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-zinc-950 font-bold text-xs rounded-full hover:bg-zinc-200 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-zinc-950 font-mono font-bold uppercase text-xs tracking-wider rounded-none hover:bg-zinc-200 transition-colors"
             >
               <span>Join as Davao Seller</span>
               <ArrowUpRight className="w-3.5 h-3.5" />

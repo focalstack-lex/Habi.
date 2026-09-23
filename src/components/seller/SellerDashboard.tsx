@@ -73,15 +73,15 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Dashboard Top Header */}
-      <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-6 font-mono">
+      <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-none border border-zinc-900 flex flex-col md:flex-row md:items-center justify-between gap-6 font-mono">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs text-zinc-300">
-            <ShieldCheck className="w-3.5 h-3.5 text-white" />
-            <span className="uppercase tracking-widest text-[10px] font-bold">Seller Portal</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white text-zinc-950 text-[10px] uppercase font-bold tracking-[0.2em]">
+            <ShieldCheck className="w-3.5 h-3.5 text-zinc-950" />
+            <span>SELLER PORTAL</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tighter uppercase">
-            {seller.name} Dashboard
+          <h1 className="font-syne text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight uppercase">
+            {seller.name} DASHBOARD
           </h1>
 
           <p className="text-zinc-400 text-xs sm:text-sm font-sans max-w-xl">
@@ -89,8 +89,8 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
           </p>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 p-4 rounded-2xl text-xs space-y-1">
-          <div className="text-[10px] uppercase text-zinc-400 font-bold">Verification Badge</div>
+        <div className="bg-zinc-900 border border-zinc-800 p-4 rounded-none text-xs space-y-1">
+          <div className="text-[10px] uppercase text-zinc-400 font-bold tracking-widest">VERIFICATION STATUS</div>
           <div className="font-bold text-white flex items-center gap-1.5 text-sm">
             <ShieldCheck className="w-4 h-4 text-white" />
             <span>{seller.verificationStatus}</span>
@@ -98,83 +98,83 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
         </div>
       </div>
 
-      {/* Analytics Metric Cards Grid */}
+      {/* Analytics Metric Cards Grid (Sharp Rectangular Cards) */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 font-mono">
-        <div className="bg-white border border-zinc-200 rounded-2xl p-5 space-y-2 shadow-sm">
+        <div className="bg-white border border-zinc-200 rounded-none p-5 space-y-2">
           <div className="flex items-center justify-between text-zinc-400">
-            <span className="text-[10px] uppercase font-bold tracking-wider">Profile Views</span>
-            <Eye className="w-4 h-4 text-zinc-900" />
+            <span className="text-[10px] uppercase font-bold tracking-[0.2em]">Profile Views</span>
+            <Eye className="w-4 h-4 text-zinc-950" />
           </div>
-          <div className="text-3xl font-black text-zinc-950">2,431</div>
+          <div className="font-syne text-3xl font-extrabold text-zinc-950">2,431</div>
           <div className="text-[11px] text-zinc-500 font-sans">+18% this week</div>
         </div>
 
-        <div className="bg-white border border-zinc-200 rounded-2xl p-5 space-y-2 shadow-sm">
+        <div className="bg-white border border-zinc-200 rounded-none p-5 space-y-2">
           <div className="flex items-center justify-between text-zinc-400">
-            <span className="text-[10px] uppercase font-bold tracking-wider">Product Saves</span>
-            <Bookmark className="w-4 h-4 text-zinc-900" />
+            <span className="text-[10px] uppercase font-bold tracking-[0.2em]">Product Saves</span>
+            <Bookmark className="w-4 h-4 text-zinc-950" />
           </div>
-          <div className="text-3xl font-black text-zinc-950">482</div>
+          <div className="font-syne text-3xl font-extrabold text-zinc-950">482</div>
           <div className="text-[11px] text-zinc-500 font-sans">Across 8 pieces</div>
         </div>
 
-        <div className="bg-white border border-zinc-200 rounded-2xl p-5 space-y-2 shadow-sm">
+        <div className="bg-white border border-zinc-200 rounded-none p-5 space-y-2">
           <div className="flex items-center justify-between text-zinc-400">
-            <span className="text-[10px] uppercase font-bold tracking-wider">Brand Followers</span>
-            <Users className="w-4 h-4 text-zinc-900" />
+            <span className="text-[10px] uppercase font-bold tracking-[0.2em]">Followers</span>
+            <Users className="w-4 h-4 text-zinc-950" />
           </div>
-          <div className="text-3xl font-black text-zinc-950">{seller.followerCount}</div>
+          <div className="font-syne text-3xl font-extrabold text-zinc-950">{seller.followerCount}</div>
           <div className="text-[11px] text-zinc-500 font-sans">Active Davao buyers</div>
         </div>
 
-        <div className="bg-white border border-zinc-200 rounded-2xl p-5 space-y-2 shadow-sm">
+        <div className="bg-white border border-zinc-200 rounded-none p-5 space-y-2">
           <div className="flex items-center justify-between text-zinc-400">
-            <span className="text-[10px] uppercase font-bold tracking-wider">Active Inventory</span>
-            <Tag className="w-4 h-4 text-zinc-900" />
+            <span className="text-[10px] uppercase font-bold tracking-[0.2em]">Active Pieces</span>
+            <Tag className="w-4 h-4 text-zinc-950" />
           </div>
-          <div className="text-3xl font-black text-zinc-950">{inventoryList.length}</div>
-          <div className="text-[11px] text-zinc-500 font-sans">Available items</div>
+          <div className="font-syne text-3xl font-extrabold text-zinc-950">{inventoryList.length}</div>
+          <div className="text-[11px] text-zinc-500 font-sans">Available in catalog</div>
         </div>
       </div>
 
-      {/* Tabs Bar */}
-      <div className="flex items-center gap-2 border-b border-zinc-200 font-mono">
+      {/* Tabs Bar (Clean Text Links with Active Hairline Underline) */}
+      <div className="flex items-center gap-6 border-b border-zinc-200 font-mono">
         <button
           onClick={() => setActiveTab('overview')}
-          className={`px-5 py-3 text-xs uppercase font-bold tracking-wider transition-all border-b-2 -mb-px ${
+          className={`py-3 text-xs uppercase font-bold tracking-[0.2em] transition-all border-b-2 -mb-px ${
             activeTab === 'overview'
               ? 'border-zinc-950 text-zinc-950'
-              : 'border-transparent text-zinc-500 hover:text-zinc-900'
+              : 'border-transparent text-zinc-500 hover:text-zinc-950'
           }`}
         >
-          Inventory Manager
+          INVENTORY MANAGER
         </button>
 
         <button
           onClick={() => setActiveTab('inventory')}
-          className={`px-5 py-3 text-xs uppercase font-bold tracking-wider transition-all border-b-2 -mb-px ${
+          className={`py-3 text-xs uppercase font-bold tracking-[0.2em] transition-all border-b-2 -mb-px ${
             activeTab === 'inventory'
               ? 'border-zinc-950 text-zinc-950'
-              : 'border-transparent text-zinc-500 hover:text-zinc-900'
+              : 'border-transparent text-zinc-500 hover:text-zinc-950'
           }`}
         >
-          Add New Piece
+          ADD NEW PIECE
         </button>
       </div>
 
-      {/* Success Toast Notification */}
+      {/* Success Toast */}
       {isSuccessToast && (
-        <div className="bg-zinc-950 text-white p-4 rounded-2xl font-mono text-xs flex items-center gap-2 shadow-lg">
+        <div className="bg-zinc-950 text-white p-4 rounded-none font-mono text-xs flex items-center gap-2 shadow-lg border border-zinc-800">
           <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
           <span>New product successfully added to your Davao storefront catalog!</span>
         </div>
       )}
 
-      {/* Tab Content 1: Inventory Manager */}
+      {/* Inventory Manager */}
       {activeTab === 'overview' && (
-        <div className="bg-white border border-zinc-200 rounded-3xl p-6 space-y-4 font-mono shadow-sm">
-          <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+        <div className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 font-mono">
+          <div className="flex items-center justify-between pb-3 border-b border-zinc-200">
+            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">
               Manage Catalog Items ({inventoryList.length})
             </h3>
             <span className="text-[11px] text-zinc-500 font-sans">
@@ -186,16 +186,16 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
             {inventoryList.map((item) => (
               <div
                 key={item.id}
-                className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                className="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
               >
                 <div className="flex items-center gap-3">
                   <img
                     src={item.images[0]}
                     alt={item.name}
-                    className="w-12 h-12 rounded-xl object-cover border border-zinc-200 shrink-0"
+                    className="w-12 h-12 rounded-none object-cover border border-zinc-200 shrink-0"
                   />
                   <div>
-                    <h4 className="font-bold text-xs text-zinc-950">{item.name}</h4>
+                    <h4 className="font-syne font-bold text-xs text-zinc-950 uppercase">{item.name}</h4>
                     <div className="text-[11px] text-zinc-500">
                       ₱{item.price.toLocaleString()} • Size {item.size} • {item.isOneOfOne ? '1-of-1' : 'Standard Stock'}
                     </div>
@@ -208,11 +208,11 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
                   </span>
                   <button
                     onClick={() => handleToggleStatus(item.id)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${
+                    className={`px-4 py-1.5 rounded-none text-xs font-bold uppercase tracking-wider transition-all border ${
                       item.status === 'Available'
                         ? 'bg-zinc-950 text-white border-zinc-950'
                         : item.status === 'Reserved'
-                        ? 'bg-zinc-200 text-zinc-900 border-zinc-300'
+                        ? 'bg-zinc-200 text-zinc-950 border-zinc-300'
                         : 'bg-zinc-100 text-zinc-400 border-zinc-200 line-through'
                     }`}
                   >
@@ -225,18 +225,18 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
         </div>
       )}
 
-      {/* Tab Content 2: Add New Piece Form */}
+      {/* Add New Piece Form */}
       {activeTab === 'inventory' && (
         <form
           onSubmit={handleCreateProduct}
-          className="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 max-w-2xl space-y-5 font-mono shadow-sm"
+          className="bg-white border border-zinc-200 rounded-none p-6 sm:p-8 max-w-2xl space-y-6 font-mono"
         >
-          <h3 className="text-sm font-bold uppercase tracking-wider text-zinc-950 border-b border-zinc-100 pb-3">
+          <h3 className="font-syne text-base font-bold uppercase tracking-tight text-zinc-950 border-b border-zinc-200 pb-3">
             Add New Fashion Piece to Storefront
           </h3>
 
-          <div className="space-y-1">
-            <label className="block text-[11px] uppercase font-bold text-zinc-500">
+          <div className="space-y-1.5">
+            <label className="block text-[11px] uppercase font-bold text-zinc-500 tracking-wider">
               Item Title / Name *
             </label>
             <input
@@ -245,13 +245,13 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
               placeholder="e.g. Vintage 1994 Carhartt Detroit Jacket"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-2.5 text-xs text-zinc-900 focus:outline-none focus:border-zinc-900 font-sans"
+              className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-4 py-3 text-xs text-zinc-950 focus:outline-none focus:border-zinc-950 font-sans"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <label className="block text-[11px] uppercase font-bold text-zinc-500">
+            <div className="space-y-1.5">
+              <label className="block text-[11px] uppercase font-bold text-zinc-500 tracking-wider">
                 Price (PHP ₱) *
               </label>
               <input
@@ -260,18 +260,18 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
                 placeholder="e.g. 1250"
                 value={newPrice}
                 onChange={(e) => setNewPrice(e.target.value)}
-                className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-2.5 text-xs text-zinc-900 focus:outline-none focus:border-zinc-900"
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-4 py-3 text-xs text-zinc-950 focus:outline-none focus:border-zinc-950"
               />
             </div>
 
-            <div className="space-y-1">
-              <label className="block text-[11px] uppercase font-bold text-zinc-500">
+            <div className="space-y-1.5">
+              <label className="block text-[11px] uppercase font-bold text-zinc-500 tracking-wider">
                 Size
               </label>
               <select
                 value={newSize}
                 onChange={(e) => setNewSize(e.target.value)}
-                className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-2.5 text-xs text-zinc-900 focus:outline-none focus:border-zinc-900"
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-4 py-3 text-xs text-zinc-950 focus:outline-none focus:border-zinc-950"
               >
                 <option value="Small">Small</option>
                 <option value="Medium">Medium</option>
@@ -283,14 +283,14 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <label className="block text-[11px] uppercase font-bold text-zinc-500">
+            <div className="space-y-1.5">
+              <label className="block text-[11px] uppercase font-bold text-zinc-500 tracking-wider">
                 Category
               </label>
               <select
                 value={newCategory}
                 onChange={(e) => setNewCategory(e.target.value)}
-                className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-2.5 text-xs text-zinc-900 focus:outline-none focus:border-zinc-900"
+                className="w-full bg-zinc-50 border border-zinc-200 rounded-none px-4 py-3 text-xs text-zinc-950 focus:outline-none focus:border-zinc-950"
               >
                 <option value="Outerwear">Outerwear</option>
                 <option value="Streetwear">Streetwear</option>
@@ -301,17 +301,17 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
               </select>
             </div>
 
-            <div className="space-y-1">
-              <label className="block text-[11px] uppercase font-bold text-zinc-500">
+            <div className="space-y-1.5">
+              <label className="block text-[11px] uppercase font-bold text-zinc-500 tracking-wider">
                 Inventory Type
               </label>
               <button
                 type="button"
                 onClick={() => setIsOneOfOne(!isOneOfOne)}
-                className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold transition-all border ${
+                className={`w-full py-3 px-4 rounded-none text-xs font-bold uppercase tracking-wider transition-all border ${
                   isOneOfOne
                     ? 'bg-zinc-950 text-white border-zinc-950'
-                    : 'bg-zinc-100 text-zinc-800 border-zinc-200'
+                    : 'bg-zinc-100 text-zinc-950 border-zinc-200'
                 }`}
               >
                 {isOneOfOne ? '1-of-1 Thrift Piece' : 'Standard Stock'}
@@ -321,7 +321,7 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
 
           <button
             type="submit"
-            className="w-full py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-md pt-3"
+            className="w-full py-4 bg-zinc-950 hover:bg-zinc-800 text-white rounded-none text-xs font-bold uppercase tracking-[0.2em] transition-colors flex items-center justify-center gap-2"
           >
             <Plus className="w-4 h-4" />
             <span>Publish Piece to Davao Storefront</span>

@@ -62,7 +62,7 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
               background-color: ${isPhysical ? '#09090b' : '#ffffff'};
               color: ${isPhysical ? '#ffffff' : '#09090b'};
               border: 2px solid #09090b;
-              border-radius: 9999px;
+              border-radius: 0px;
               padding: 4px 10px;
               font-family: monospace;
               font-size: 11px;
@@ -74,7 +74,7 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
               white-space: nowrap;
               cursor: pointer;
             ">
-              <span style="width: 6px; height: 6px; border-radius: 9999px; background-color: ${isPhysical ? '#ffffff' : '#09090b'}; display: inline-block;"></span>
+              <span style="width: 6px; height: 6px; border-radius: 0px; background-color: ${isPhysical ? '#ffffff' : '#09090b'}; display: inline-block;"></span>
               <span>${seller.name}</span>
             </div>
           `,
@@ -102,13 +102,13 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-6">
       {/* Header Info Banner */}
-      <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800 space-y-4 font-mono">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-full text-xs text-zinc-300">
+      <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-none border border-zinc-800 space-y-4 font-mono">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-700 rounded-none text-xs text-zinc-300">
           <Navigation className="w-3.5 h-3.5 text-white" />
           <span className="uppercase tracking-widest text-[10px] font-bold">Interactive Davao Map</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tighter uppercase">
+        <h1 className="font-syne text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tighter uppercase">
           Fashion Near You
         </h1>
 
@@ -119,30 +119,30 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
         {/* Legend */}
         <div className="flex flex-wrap items-center gap-4 text-xs font-mono pt-2">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-zinc-950 border border-white" />
+            <span className="w-3 h-3 bg-zinc-950 border border-white" />
             <span>Physical Storefront / Pop-up Market</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-white border border-zinc-950" />
+            <span className="w-3 h-3 bg-white border border-zinc-950" />
             <span>Online Creator Area</span>
           </div>
         </div>
       </div>
 
       {/* Map Container */}
-      <div className="relative rounded-3xl border border-zinc-200 overflow-hidden shadow-sm h-[500px] bg-zinc-100 z-0">
+      <div className="relative rounded-none border border-zinc-200 overflow-hidden shadow-sm h-[500px] bg-zinc-100 z-0">
         <div ref={mapContainerRef} className="w-full h-full z-0" />
 
         {/* Selected Seller Drawer Overlay */}
         {selectedSeller && (
-          <div className="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-96 bg-white border border-zinc-200 rounded-2xl p-5 shadow-2xl z-[1000] space-y-3 font-mono">
-            <div className="flex items-center justify-between border-b border-zinc-100 pb-2">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-zinc-400">
+          <div className="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-96 bg-white border border-zinc-950 rounded-none p-5 shadow-2xl z-[1000] space-y-3 font-mono">
+            <div className="flex items-center justify-between border-b border-zinc-200 pb-2">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-zinc-500">
                 Selected Seller
               </span>
               <button
                 onClick={() => setSelectedSeller(null)}
-                className="text-xs text-zinc-400 hover:text-zinc-900"
+                className="text-xs text-zinc-500 hover:text-zinc-950 font-bold uppercase"
               >
                 Close
               </button>
@@ -152,14 +152,14 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
               <img
                 src={selectedSeller.logoUrl}
                 alt={selectedSeller.name}
-                className="w-12 h-12 rounded-full object-cover border border-zinc-200 shrink-0"
+                className="w-12 h-12 rounded-none object-cover border border-zinc-300 shrink-0"
               />
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-bold text-sm text-zinc-950 truncate">{selectedSeller.name}</h3>
+                  <h3 className="font-syne font-bold text-sm text-zinc-950 truncate">{selectedSeller.name}</h3>
                   <ShieldCheck className="w-3.5 h-3.5 text-zinc-900 shrink-0" />
                 </div>
-                <div className="text-xs text-zinc-500 truncate">
+                <div className="text-xs text-zinc-500 truncate font-mono">
                   @{selectedSeller.handle} • {selectedSeller.location.district}
                 </div>
               </div>
@@ -182,7 +182,7 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
 
             <button
               onClick={() => onSelectSeller(selectedSeller.id)}
-              className="w-full py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
+              className="w-full py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-none text-xs font-mono font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
             >
               <Store className="w-4 h-4" />
               <span>Visit Seller Storefront</span>

@@ -161,11 +161,11 @@ export const App: React.FC = () => {
         {/* VIEW 2: Discover Aesthetic Catalog */}
         {activeTab === 'discover' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-            <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800 space-y-3 font-mono">
-              <h1 className="text-3xl sm:text-4xl font-black uppercase tracking-tight">
+            <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-none border border-zinc-800 space-y-3 font-mono">
+              <h1 className="font-syne text-3xl sm:text-4xl font-bold uppercase tracking-tight">
                 Discover Fashion Aesthetics
               </h1>
-              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl font-sans">
+              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl font-sans leading-relaxed">
                 Browse local Davao clothing items categorized strictly by style subculture: Streetwear, Vintage Denim, Y2K Archives, Techwear, and Gorpcore Outerwear.
               </p>
             </div>
@@ -213,11 +213,11 @@ export const App: React.FC = () => {
         {/* VIEW 5: Davao Local Brand Directory */}
         {activeTab === 'brands' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-            <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800 space-y-3 font-mono">
-              <h1 className="text-3xl sm:text-4xl font-black uppercase tracking-tight">
+            <div className="bg-zinc-950 text-white p-8 sm:p-12 rounded-none border border-zinc-800 space-y-3 font-mono">
+              <h1 className="font-syne text-3xl sm:text-4xl font-bold uppercase tracking-tight">
                 Davao Seller Directory
               </h1>
-              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl font-sans">
+              <p className="text-xs sm:text-sm text-zinc-400 max-w-xl font-sans leading-relaxed">
                 Independent streetwear brands, curated thrift vaults, vintage archives, and local clothing creators across the Davao Region.
               </p>
             </div>
@@ -227,9 +227,9 @@ export const App: React.FC = () => {
                 <div
                   key={seller.id}
                   onClick={() => handleSelectSeller(seller.id)}
-                  className="bg-white border border-zinc-200 rounded-3xl p-6 space-y-4 cursor-pointer hover:border-zinc-900 transition-all shadow-sm group"
+                  className="bg-white border border-zinc-200 rounded-none p-6 space-y-4 cursor-pointer hover:border-zinc-950 transition-all shadow-sm group"
                 >
-                  <div className="aspect-[16/9] bg-zinc-900 rounded-2xl overflow-hidden relative">
+                  <div className="aspect-[16/9] bg-zinc-900 rounded-none overflow-hidden relative">
                     <img
                       src={seller.coverUrl}
                       alt={seller.name}
@@ -239,14 +239,14 @@ export const App: React.FC = () => {
                       <img
                         src={seller.logoUrl}
                         alt={seller.name}
-                        className="w-8 h-8 rounded-full object-cover border-2 border-white shadow-md"
+                        className="w-8 h-8 rounded-none object-cover border-2 border-white shadow-md"
                       />
-                      <span className="text-xs font-bold text-white shadow-sm">{seller.name}</span>
+                      <span className="font-syne text-xs font-bold text-white shadow-sm">{seller.name}</span>
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-xs text-zinc-500">
+                    <div className="text-xs text-zinc-500 font-mono">
                       @{seller.handle} • {seller.location.district}, {seller.location.city}
                     </div>
                     <p className="text-xs font-sans text-zinc-700 mt-1 line-clamp-2">
@@ -254,9 +254,9 @@ export const App: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="pt-2 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500">
+                  <div className="pt-2 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500 font-mono">
                     <span>{seller.followerCount.toLocaleString()} followers</span>
-                    <span className="font-bold text-zinc-950 group-hover:underline">Visit Storefront →</span>
+                    <span className="font-bold text-zinc-950 group-hover:underline">Visit Storefront &rarr;</span>
                   </div>
                 </div>
               ))}
