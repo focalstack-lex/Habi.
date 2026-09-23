@@ -37,6 +37,15 @@ Rather than traditional search-to-buy e-commerce grid layouts, Habi combines dig
   - Anti-Eyebrow-Pill Directive (no formulaic badges above headlines)
   - Omnichannel Responsiveness (Mobile, Tablet, Desktop, Widescreen)
 
+### 3.1 Monochrome Aesthetic & Color System (Dominant White)
+Inspired by minimalist high-fashion editorial lookbooks and reference designs:
+* **Dominant Background**: Pure Crisp White (`#FFFFFF`) and Soft Off-White (`#FAFAFA`) establishing an ultra-clean, spacious canvas.
+* **Primary Contrast**: Deep Obsidian Black (`#09090B`) used for high-impact typography, primary CTA buttons, active state chips, and crisp hairline borders.
+* **Neutral Surface**: Soft Gray (`#F4F4F5` / `#E4E4E7`) for subtle image containers, card backgrounds, and inactive control badges.
+* **Secondary Micro-Copy**: Muted Slate (`#71717A` / `#A1A1AA`) for category labels, size metadata, and secondary timestamps.
+* **Typography Hierarchy**: Bold tracked uppercase headings (e.g., `HABI`, `ESSENTIAL OVERSIZED HOODIE`, `DAVAO FIT CHECK`) paired with clean sans-serif body copy (Inter / System Sans).
+* **Card & Container Radius**: Clean 12px to 16px rounded corners with subtle hairline borders (`border border-zinc-200`) and high-fashion image aspect ratios (3:4, 1:1, 16:9).
+
 ---
 
 ## 4. Architecture & Component Structure
