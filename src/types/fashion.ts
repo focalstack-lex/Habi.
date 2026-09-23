@@ -31,6 +31,12 @@ export interface Seller {
   };
 }
 
+export interface Colourway {
+  name: string;
+  hex?: string;
+  images: string[];
+}
+
 export interface Product {
   id: string;
   sellerId: string;
@@ -46,6 +52,8 @@ export interface Product {
   size: string;
   availableQuantity: number;
   isOneOfOne: boolean;
+  sizes?: string[];           // multi-stock brand items only; omit on 1-of-1 pieces
+  colourways?: Colourway[];   // omit when the piece exists in a single colourway
   status: 'Available' | 'Reserved' | 'Sold Out';
   location: string;
   tags: string[];
