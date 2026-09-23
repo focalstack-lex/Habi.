@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, Bookmark, MapPin, Tag, MessageSquare, ArrowRight, ShieldCheck } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, Share2, Bookmark, MapPin, Tag, MessageSquare, ArrowRight, ShieldCheck } from 'lucide-react';
 import type { Product, Seller } from '../../types/fashion';
 import { storageService } from '../../services/storageService';
 import { InstantInquiryModal } from './InstantInquiryModal';
@@ -24,12 +24,45 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const [isSaved, setIsSaved] = useState<boolean>(() =>
     product ? storageService.isProductSaved(product.id) : false
   );
+  const [shareNote, setShareNote] = useState<string>('');
+
+  useEffect(() => {
+    setSelectedImageIndex(0);
+    setShareNote('');
+    setIsSaved(product ? storageService.isProductSaved(product.id) : false);
+  }, [product?.id]);
 
   if (!isOpen || !product) return null;
 
   const handleToggleSave = () => {
     const updated = storageService.toggleSaveProduct(product.id);
     setIsSaved(updated);
+  };
+
+  const handleShare = async () => {
+    const shareData = {
+      title: product.name,
+      text: `Found on Habi: ${product.name}`,
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch {
+        // The user dismissed the native share sheet. Not an error, so nothing is reported.
+      }
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setShareNote('Link copied');
+      window.setTimeout(() => setShareNote(''), 2000);
+    } catch {
+      setShareNote('Copy failed');
+      window.setTimeout(() => setShareNote(''), 2000);
+    }
   };
 
   return (
@@ -41,14 +74,49 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         />
 
         <div className="relative w-full max-w-4xl bg-white rounded-none border border-zinc-900 shadow-2xl overflow-hidden z-10 my-auto">
-          {/* Close Floating Button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 z-20 p-2.5 bg-zinc-950 text-white rounded-none hover:bg-zinc-800 border border-zinc-800 transition-all"
-            aria-label="Close detail modal"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          {/* Header Action Row: Back, Share, Save */}
+          <div className="absolute top-0 left-0 right-0 z-20 flex items-start justify-between p-3 sm:p-4 pointer-events-none">
+            <button
+              type="button"
+              onClick={onClose}
+              className="pointer-events-auto p-3 bg-white/95 text-zinc-950 border border-zinc-300 hover:border-zinc-950 transition-colors duration-150"
+              aria-label="Back"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleShare}
+                className="pointer-events-auto p-3 bg-white/95 text-zinc-950 border border-zinc-300 hover:border-zinc-950 transition-colors duration-150"
+                aria-label="Share this piece"
+              >
+                <Share2 className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={handleToggleSave}
+                className={`pointer-events-auto p-3 border transition-colors duration-150 ${
+                  isSaved
+                    ? 'bg-zinc-950 text-white border-zinc-950'
+                    : 'bg-white/95 text-zinc-950 border-zinc-300 hover:border-zinc-950'
+                }`}
+                aria-label={isSaved ? 'Remove from saved' : 'Save this piece'}
+              >
+                <Bookmark className="w-5 h-5 fill-current" />
+              </button>
+            </div>
+          </div>
+
+          {shareNote && (
+            <div
+              role="status"
+              className="absolute top-20 left-1/2 -translate-x-1/2 z-30 bg-zinc-950 text-white font-mono text-[10px] uppercase tracking-[0.15em] px-3 py-2"
+            >
+              {shareNote}
+            </div>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-12 max-h-[90vh] overflow-y-auto">
             {/* Left Column: Image Carousel */}
@@ -173,18 +241,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>INQUIRE / RESERVE VIA MESSAGE</span>
-                </button>
-
-                <button
-                  onClick={handleToggleSave}
-                  className={`w-full py-3 px-6 rounded-none text-xs font-bold uppercase tracking-wider transition-all border flex items-center justify-center gap-2 ${
-                    isSaved
-                      ? 'bg-zinc-950 text-white border-zinc-950'
-                      : 'bg-white text-zinc-950 border-zinc-300 hover:border-zinc-950'
-                  }`}
-                >
-                  <Bookmark className="w-4 h-4 fill-current" />
-                  <span>{isSaved ? 'SAVED TO WISHLIST' : 'SAVE TO WISHLIST'}</span>
                 </button>
               </div>
             </div>
