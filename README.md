@@ -18,6 +18,11 @@ Habi prioritizes visual discovery, local brand visibility, aesthetic curation, a
 * Seller Follow and Item Save/Wishlist system
 * Basic Seller Analytics Dashboard
 
+## System Architecture & Codebase Guide
+
+For detailed feature navigation, file mapping, design system tokens, and data models, see:
+* [`docs/SYSTEM_ARCHITECTURE.md`](file:///c:/Users/User/Pictures/Habi/docs/SYSTEM_ARCHITECTURE.md)
+
 ## Technology Stack
 
 * Core: React 19 + TypeScript + Vite
