@@ -106,26 +106,26 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
           </div>
 
           {/* Bottom Bar with Mandatory Legal & Privacy Disclosures */}
-          <div className="mt-16 pt-8 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-400 gap-4">
+          <div className="mt-16 pt-8 border-t border-[#3A401D] flex flex-col sm:flex-row items-center justify-between text-xs text-[#B5BC91] gap-4">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <ShieldCheck className="w-4 h-4 text-[#FFFFCC]" />
               <span>Habi Davao Fashion Discovery. Registered Davao Reseller Network.</span>
             </div>
 
             <div className="flex items-center gap-6">
               <button
                 onClick={() => openLegalModal('privacy')}
-                className="hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="hover:text-[#FFFFCC] transition-colors flex items-center gap-1.5 cursor-pointer"
               >
                 <Lock className="w-3.5 h-3.5" />
                 <span>Privacy Policy</span>
               </button>
 
-              <span className="text-zinc-700">•</span>
+              <span className="text-[#3A401D]">•</span>
 
               <button
                 onClick={() => openLegalModal('terms')}
-                className="hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="hover:text-[#FFFFCC] transition-colors flex items-center gap-1.5 cursor-pointer"
               >
                 <Scale className="w-3.5 h-3.5" />
                 <span>Terms of Service</span>

@@ -85,7 +85,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-zinc-950 font-sans selection:bg-zinc-950 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#F8F9EA] text-[#1A1A00] font-sans selection:bg-[#1A1A00] selection:text-[#FFFFCC]">
       {/* Top Header Navigation */}
       <NavigationHeader
         activeTab={activeTab}
@@ -136,14 +136,14 @@ export const App: React.FC = () => {
               setSelectedCategory={setSelectedCategory}
             />
 
-            <div className="flex items-center justify-between font-mono text-xs text-zinc-400 pb-2">
+            <div className="flex items-center justify-between font-mono text-xs text-[#565C38] pb-2">
               <span className="uppercase font-bold tracking-wider">
                 Showing {products.length} Local Davao Pieces
               </span>
               {(selectedAesthetic !== 'All' || selectedCategory !== 'All' || isOneOfOneOnly || searchQuery) && (
                 <button
                   onClick={handleResetFilters}
-                  className="text-zinc-900 underline hover:text-zinc-600 font-bold"
+                  className="text-[#1A1A00] underline hover:opacity-80 font-bold"
                 >
                   Clear Active Filters
                 </button>
@@ -162,11 +162,11 @@ export const App: React.FC = () => {
         {/* VIEW 2: Discover Aesthetic Catalog */}
         {activeTab === 'discover' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-            <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl space-y-3">
+            <div className="relative overflow-hidden bg-[#1A1A00] text-[#FFFFCC] p-8 sm:p-12 rounded-3xl border border-[#1A1A00]/20 shadow-xl space-y-3">
               <h1 className="font-outfit text-3xl sm:text-4xl font-bold tracking-tight">
                 Discover Fashion Aesthetics
               </h1>
-              <p className="text-sm sm:text-base text-zinc-300 max-w-xl font-sans leading-relaxed">
+              <p className="text-sm sm:text-base text-[#DCE2B8] max-w-xl font-sans leading-relaxed">
                 Browse local Davao clothing items categorized strictly by style subculture: Streetwear, Vintage Denim, Y2K Archives, Techwear, and Gorpcore Outerwear.
               </p>
             </div>
@@ -214,11 +214,11 @@ export const App: React.FC = () => {
         {/* VIEW 5: Davao Local Brand Directory */}
         {activeTab === 'brands' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-            <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl space-y-3">
+            <div className="relative overflow-hidden bg-[#1A1A00] text-[#FFFFCC] p-8 sm:p-12 rounded-3xl border border-[#1A1A00]/20 shadow-xl space-y-3">
               <h1 className="font-outfit text-3xl sm:text-4xl font-bold tracking-tight">
                 Davao Seller Directory
               </h1>
-              <p className="text-sm sm:text-base text-zinc-300 max-w-xl font-sans leading-relaxed">
+              <p className="text-sm sm:text-base text-[#DCE2B8] max-w-xl font-sans leading-relaxed">
                 Independent streetwear brands, curated thrift vaults, vintage archives, and local clothing creators across the Davao Region.
               </p>
             </div>
@@ -228,36 +228,36 @@ export const App: React.FC = () => {
                 <div
                   key={seller.id}
                   onClick={() => handleSelectSeller(seller.id)}
-                  className="bg-white border border-zinc-200/80 rounded-2xl sm:rounded-3xl p-3 sm:p-6 space-y-3 sm:space-y-4 cursor-pointer hover:border-zinc-400 hover:shadow-md transition-all shadow-sm group"
+                  className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-2xl sm:rounded-3xl p-3 sm:p-6 space-y-3 sm:space-y-4 cursor-pointer hover:border-[#1A1A00]/40 hover:shadow-md transition-all shadow-sm group"
                 >
-                  <div className="aspect-[16/9] bg-zinc-900 rounded-2xl overflow-hidden relative shadow-inner">
+                  <div className="aspect-[16/9] bg-[#1A1A00] rounded-2xl overflow-hidden relative shadow-inner">
                     <img
                       src={seller.coverUrl}
                       alt={seller.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
                     />
-                    <div className="absolute bottom-3 left-3 flex items-center gap-2.5 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+                    <div className="absolute bottom-3 left-3 flex items-center gap-2.5 bg-[#1A1A00]/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-[#FFFFCC]/20">
                       <img
                         src={seller.logoUrl}
                         alt={seller.name}
-                        className="w-6 h-6 rounded-full object-cover border border-white shrink-0"
+                        className="w-6 h-6 rounded-full object-cover border border-[#FFFFCC] shrink-0"
                       />
-                      <span className="font-outfit text-xs font-bold text-white truncate max-w-[120px]">{seller.name}</span>
+                      <span className="font-outfit text-xs font-bold text-[#FFFFCC] truncate max-w-[120px]">{seller.name}</span>
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-xs text-zinc-500 font-sans">
+                    <div className="text-xs text-[#565C38] font-sans">
                       @{seller.handle} • {seller.location.district}, {seller.location.city}
                     </div>
-                    <p className="text-sm font-sans text-zinc-600 mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-sm font-sans text-[#1A1A00]/80 mt-1 line-clamp-2 leading-relaxed">
                       {seller.description}
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500">
+                  <div className="pt-3 border-t border-[#E1E6B6] flex items-center justify-between text-xs text-[#565C38]">
                     <span>{seller.followerCount.toLocaleString()} followers</span>
-                    <span className="font-semibold text-zinc-950 group-hover:underline">Visit Storefront &rarr;</span>
+                    <span className="font-semibold text-[#1A1A00] group-hover:underline">Visit Storefront &rarr;</span>
                   </div>
                 </div>
               ))}

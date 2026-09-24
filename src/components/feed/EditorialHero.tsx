@@ -154,7 +154,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
               setIsPaused(false);
               setShowSellerPopover(false);
             }}
-            className="relative aspect-[16/10] sm:aspect-[4/3] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200/90 shadow-sm group"
+            className="relative aspect-[16/10] sm:aspect-[4/3] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#EFF2D2] border border-[#E1E6B6] shadow-sm group"
           >
             {/* Main Photography with Smooth Crossfade */}
             <AnimatePresence mode="wait">
@@ -179,7 +179,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
                   <button
                     key={item.id}
                     onClick={() => setActiveCardIndex(idx)}
-                    className="flex-1 h-1 bg-black/40 backdrop-blur-md rounded-full overflow-hidden cursor-pointer"
+                    className="flex-1 h-1 bg-[#1A1A00]/40 backdrop-blur-md rounded-full overflow-hidden cursor-pointer"
                     aria-label={`Go to slide ${idx + 1}`}
                   >
                     {isActive ? (
@@ -191,12 +191,12 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
                           duration: isPaused ? 0 : 6,
                           ease: 'linear',
                         }}
-                        className="h-full bg-white rounded-full"
+                        className="h-full bg-[#FFFFCC] rounded-full"
                       />
                     ) : (
                       <div
                         className={`h-full rounded-full ${
-                          isPast ? 'bg-white' : 'bg-transparent'
+                          isPast ? 'bg-[#FFFFCC]' : 'bg-transparent'
                         }`}
                       />
                     )}
@@ -207,22 +207,22 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
 
             {/* Top Tag & Prev/Next Controls Capsule */}
             <div className="absolute top-6 left-3 right-3 sm:top-8 sm:left-4 sm:right-4 flex items-center justify-between z-10">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 bg-zinc-950/90 backdrop-blur-md text-white text-[11px] sm:text-xs font-semibold rounded-full shadow-sm">
-                <CustomTagIcon className="w-3.5 h-3.5 text-white" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 bg-[#1A1A00]/90 backdrop-blur-md text-[#FFFFCC] text-[11px] sm:text-xs font-semibold rounded-full shadow-sm">
+                <CustomTagIcon className="w-3.5 h-3.5 text-[#FFFFCC]" />
                 <span>{activeItem.tag}</span>
               </span>
 
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <button
                   onClick={handlePrevCard}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 backdrop-blur-md text-white hover:bg-black/90 flex items-center justify-center transition-colors border border-white/20 cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#1A1A00]/70 backdrop-blur-md text-[#FFFFCC] hover:bg-[#1A1A00] flex items-center justify-center transition-colors border border-[#FFFFCC]/20 cursor-pointer"
                   aria-label="Previous image"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleNextCard}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 backdrop-blur-md text-white hover:bg-black/90 flex items-center justify-center transition-colors border border-white/20 cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#1A1A00]/70 backdrop-blur-md text-[#FFFFCC] hover:bg-[#1A1A00] flex items-center justify-center transition-colors border border-[#FFFFCC]/20 cursor-pointer"
                   aria-label="Next image"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -231,16 +231,16 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
             </div>
 
             {/* Bottom Floating Details Pill */}
-            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-zinc-200/80 shadow-lg flex items-center justify-between gap-2.5 sm:gap-3">
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 bg-[#F8F9EA]/95 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-[#E1E6B6] shadow-lg flex items-center justify-between gap-2.5 sm:gap-3">
               <div className="truncate max-w-[62%] relative">
-                <h3 className="font-cooper text-xs sm:text-base font-bold text-zinc-950 truncate">
+                <h3 className="font-cooper text-xs sm:text-base font-bold text-[#1A1A00] truncate">
                   {activeItem.title}
                 </h3>
-                <div className="flex items-center gap-1 text-[10px] sm:text-xs text-zinc-600 font-sans mt-0.5 truncate">
+                <div className="flex items-center gap-1 text-[10px] sm:text-xs text-[#565C38] font-sans mt-0.5 truncate">
                   <button
                     onMouseEnter={() => setShowSellerPopover(true)}
                     onClick={() => onSelectBrand(activeItem.sellerId)}
-                    className="font-bold text-zinc-950 hover:underline cursor-pointer truncate"
+                    className="font-bold text-[#1A1A00] hover:underline cursor-pointer truncate"
                   >
                     @{activeItem.sellerHandle}
                   </button>
@@ -255,30 +255,30 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute bottom-full left-0 mb-3 w-64 bg-zinc-950 text-white p-4 rounded-2xl shadow-2xl z-30 border border-zinc-800 space-y-3 font-sans"
+                      className="absolute bottom-full left-0 mb-3 w-64 bg-[#1A1A00]/95 text-[#FFFFCC] p-4 rounded-2xl shadow-2xl z-30 border border-[#FFFFCC]/20 space-y-3 font-sans"
                     >
                       <div className="flex items-center gap-3">
                         <img
                           src={activeItem.sellerAvatar}
                           alt={activeItem.sellerName}
-                          className="w-10 h-10 rounded-full object-cover border border-white/30"
+                          className="w-10 h-10 rounded-full object-cover border border-[#FFFFCC]/30"
                         />
                         <div>
-                          <div className="font-outfit font-bold text-sm text-white flex items-center gap-1">
+                          <div className="font-outfit font-bold text-sm text-[#FFFFCC] flex items-center gap-1">
                             <span>{activeItem.sellerName}</span>
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400/20" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#FFFFCC]" />
                           </div>
-                          <div className="text-[11px] text-zinc-400">
+                          <div className="text-[11px] text-[#DCE2B8]">
                             @{activeItem.sellerHandle} • {activeItem.sellerFollowers}
                           </div>
                         </div>
                       </div>
 
-                      <div className="text-xs text-zinc-300 border-t border-zinc-800 pt-2 flex items-center justify-between">
-                        <span className="text-[11px] text-zinc-400">{activeItem.location}</span>
+                      <div className="text-xs text-[#DCE2B8] border-t border-[#FFFFCC]/15 pt-2 flex items-center justify-between">
+                        <span className="text-[11px] text-[#DCE2B8]">{activeItem.location}</span>
                         <button
                           onClick={() => onSelectBrand(activeItem.sellerId)}
-                          className="px-3 py-1 bg-white text-zinc-950 rounded-full text-[11px] font-bold flex items-center gap-1 hover:bg-zinc-100 transition-colors"
+                          className="px-3 py-1 bg-[#FFFFCC] text-[#1A1A00] rounded-full text-[11px] font-bold flex items-center gap-1 hover:bg-[#EFF2D2] transition-colors cursor-pointer"
                         >
                           <span>Storefront</span>
                           <CustomStoreIcon className="w-3 h-3" />
@@ -290,12 +290,12 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
               </div>
 
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                <span className="font-cooper text-sm sm:text-lg font-bold text-zinc-950">
+                <span className="font-cooper text-sm sm:text-lg font-bold text-[#1A1A00]">
                   ₱{activeItem.price.toLocaleString()}
                 </span>
                 <button
                   onClick={() => onSelectBrand(activeItem.sellerId)}
-                  className="px-3 py-1.5 sm:px-3.5 sm:py-1.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-[11px] sm:text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer"
+                  className="px-3 py-1.5 sm:px-3.5 sm:py-1.5 bg-[#1A1A00] hover:bg-[#1A1A00]/90 text-[#FFFFCC] rounded-full text-[11px] sm:text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer"
                 >
                   <span>Inspect</span>
                   <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />

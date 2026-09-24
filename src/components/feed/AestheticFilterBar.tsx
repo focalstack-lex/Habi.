@@ -42,9 +42,9 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
   return (
     <div className="space-y-3.5 mb-8 font-sans">
       {/* Category Pills Row */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-zinc-100 font-avantgarde">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#E1E6B6] font-avantgarde">
         <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
-          <span className="text-xs font-semibold text-zinc-400 shrink-0 mr-1">
+          <span className="text-xs font-semibold text-[#565C38] shrink-0 mr-1">
             Category:
           </span>
           {CATEGORY_OPTIONS.map((cat) => {
@@ -55,8 +55,8 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all shrink-0 cursor-pointer ${
                   isActive
-                    ? 'bg-zinc-950 text-white shadow-sm'
-                    : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-950'
+                    ? 'bg-[#1A1A00] text-[#FFFFCC] font-bold shadow-sm'
+                    : 'bg-[#EFF2D2] text-[#565C38] hover:bg-[#E2E6C2] hover:text-[#1A1A00]'
                 }`}
               >
                 {cat}
@@ -68,21 +68,21 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
         {/* 1-of-1 Thrift Capsule Toggle */}
         <button
           onClick={() => setIsOneOfOneOnly(!isOneOfOneOnly)}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all shrink-0 cursor-pointer ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all shrink-0 cursor-pointer border border-[#E1E6B6] ${
             isOneOfOneOnly
-              ? 'bg-zinc-950 text-white shadow-sm'
-              : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200/80'
+              ? 'bg-[#1A1A00] text-[#FFFFCC] shadow-sm font-bold'
+              : 'bg-[#EFF2D2] text-[#565C38] hover:bg-[#E2E6C2] hover:text-[#1A1A00]'
           }`}
         >
           <CustomTagIcon className="w-3.5 h-3.5" />
           <span>1-of-1 Thrift Vault</span>
-          <span className={`w-2 h-2 rounded-full ${isOneOfOneOnly ? 'bg-white' : 'bg-zinc-400'}`} />
+          <span className={`w-2 h-2 rounded-full ${isOneOfOneOnly ? 'bg-[#FFFFCC]' : 'bg-[#565C38]'}`} />
         </button>
       </div>
 
       {/* Aesthetic Style Pills */}
       <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none font-avantgarde">
-        <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-semibold shrink-0 mr-1">
+        <div className="flex items-center gap-1.5 text-xs text-[#565C38] font-semibold shrink-0 mr-1">
           <CustomFilterIcon className="w-3.5 h-3.5" />
           <span>Style:</span>
         </div>
@@ -95,8 +95,8 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
               onClick={() => setSelectedAesthetic(style)}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all shrink-0 cursor-pointer ${
                 isActive
-                  ? 'bg-zinc-950 text-white shadow-sm'
-                  : 'bg-zinc-100/90 text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-950'
+                  ? 'bg-[#1A1A00] text-[#FFFFCC] font-bold shadow-sm'
+                  : 'bg-[#EFF2D2] text-[#565C38] hover:bg-[#E2E6C2] hover:text-[#1A1A00]'
               }`}
             >
               {style}

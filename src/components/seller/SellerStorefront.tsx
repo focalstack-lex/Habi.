@@ -28,13 +28,13 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
       <SellerHeader seller={seller} />
 
       {/* Storefront Navigation Tabs */}
-      <div className="flex items-center gap-8 border-b border-zinc-200/80 pb-1">
+      <div className="flex items-center gap-8 border-b border-[#E1E6B6] pb-1">
         <button
           onClick={() => setActiveTab('products')}
           className={`pb-3 text-xs font-avantgarde font-bold tracking-widest uppercase transition-all relative cursor-pointer ${
             activeTab === 'products'
-              ? 'text-zinc-950 border-b-2 border-zinc-950 -mb-[5px]'
-              : 'text-zinc-400 hover:text-zinc-700'
+              ? 'text-[#1A1A00] border-b-2 border-[#1A1A00] -mb-[5px]'
+              : 'text-[#565C38] hover:text-[#1A1A00]'
           }`}
         >
           Catalog Pieces ({products.length})
@@ -44,8 +44,8 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
           onClick={() => setActiveTab('drops')}
           className={`pb-3 text-xs font-avantgarde font-bold tracking-widest uppercase transition-all relative cursor-pointer ${
             activeTab === 'drops'
-              ? 'text-zinc-950 border-b-2 border-zinc-950 -mb-[5px]'
-              : 'text-zinc-400 hover:text-zinc-700'
+              ? 'text-[#1A1A00] border-b-2 border-[#1A1A00] -mb-[5px]'
+              : 'text-[#565C38] hover:text-[#1A1A00]'
           }`}
         >
           Scheduled Drops ({drops.length})
@@ -55,8 +55,8 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
           onClick={() => setActiveTab('info')}
           className={`pb-3 text-xs font-avantgarde font-bold tracking-widest uppercase transition-all relative cursor-pointer ${
             activeTab === 'info'
-              ? 'text-zinc-950 border-b-2 border-zinc-950 -mb-[5px]'
-              : 'text-zinc-400 hover:text-zinc-700'
+              ? 'text-[#1A1A00] border-b-2 border-[#1A1A00] -mb-[5px]'
+              : 'text-[#565C38] hover:text-[#1A1A00]'
           }`}
         >
           Store Location
@@ -66,7 +66,7 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
       {/* Tab 1: Products */}
       {activeTab === 'products' && (
         <div className="space-y-6">
-          <h2 className="font-outfit text-2xl font-bold text-zinc-950 tracking-tight">
+          <h2 className="font-outfit text-2xl font-bold text-[#1A1A00] tracking-tight">
             Available Pieces from {seller.name}
           </h2>
           <ProductGrid
@@ -79,7 +79,7 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
       {/* Tab 2: Drops */}
       {activeTab === 'drops' && (
         <div className="space-y-6 max-w-4xl">
-          <h2 className="font-outfit text-2xl font-bold text-zinc-950 tracking-tight">
+          <h2 className="font-outfit text-2xl font-bold text-[#1A1A00] tracking-tight">
             Upcoming Collection Releases
           </h2>
           {drops.length > 0 ? (
@@ -91,7 +91,7 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
               />
             ))
           ) : (
-            <div className="p-12 bg-white border border-zinc-200/80 rounded-3xl text-center text-sm text-zinc-500 font-sans shadow-sm">
+            <div className="p-12 bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl text-center text-sm text-[#565C38] font-sans shadow-sm">
               No upcoming drops scheduled for this brand at the moment.
             </div>
           )}
@@ -100,41 +100,41 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
 
       {/* Tab 3: Store Info */}
       {activeTab === 'info' && (
-        <div className="bg-white border border-zinc-200/80 rounded-3xl p-8 max-w-3xl space-y-6 shadow-sm font-sans">
+        <div className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl p-8 max-w-3xl space-y-6 shadow-sm font-sans">
           <div className="space-y-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#565C38]">
               Verification Status
             </span>
-            <div className="flex items-center gap-2 text-base font-semibold text-zinc-950">
-              <ShieldCheck className="w-5 h-5 text-zinc-950" />
+            <div className="flex items-center gap-2 text-base font-semibold text-[#1A1A00]">
+              <ShieldCheck className="w-5 h-5 text-[#1A1A00]" />
               <span>{seller.verificationStatus}</span>
             </div>
           </div>
 
-          <div className="space-y-2 pt-6 border-t border-zinc-100">
-            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+          <div className="space-y-2 pt-6 border-t border-[#E1E6B6]">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#565C38]">
               Physical Location & Directions
             </span>
-            <div className="flex items-start gap-2.5 text-sm text-zinc-900">
-              <MapPin className="w-5 h-5 text-zinc-950 shrink-0 mt-0.5" />
+            <div className="flex items-start gap-2.5 text-sm text-[#1A1A00]">
+              <MapPin className="w-5 h-5 text-[#1A1A00] shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold text-base">{seller.location.city} ({seller.location.district})</p>
                 {seller.location.address ? (
-                  <p className="text-zinc-600 font-sans mt-1">{seller.location.address}</p>
+                  <p className="text-[#565C38] font-sans mt-1">{seller.location.address}</p>
                 ) : (
-                  <p className="text-zinc-500 font-sans mt-1">Online creator based in {seller.location.district}, {seller.location.city}.</p>
+                  <p className="text-[#565C38] font-sans mt-1">Online creator based in {seller.location.district}, {seller.location.city}.</p>
                 )}
               </div>
             </div>
           </div>
 
           {seller.location.openingHours && (
-            <div className="space-y-2 pt-6 border-t border-zinc-100">
-              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
+            <div className="space-y-2 pt-6 border-t border-[#E1E6B6]">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#565C38]">
                 Operating Hours
               </span>
-              <div className="flex items-center gap-2.5 text-sm text-zinc-900 font-medium">
-                <Clock className="w-5 h-5 text-zinc-600 shrink-0" />
+              <div className="flex items-center gap-2.5 text-sm text-[#1A1A00] font-medium">
+                <Clock className="w-5 h-5 text-[#565C38] shrink-0" />
                 <span>{seller.location.openingHours}</span>
               </div>
             </div>

@@ -32,45 +32,45 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
   });
 
   return (
-    <div className="bg-white border border-zinc-200/80 rounded-3xl overflow-hidden hover:border-zinc-300 hover:shadow-xl transition-all font-sans">
+    <div className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl overflow-hidden hover:border-[#1A1A00]/40 hover:shadow-xl transition-all font-sans">
       <div className="grid grid-cols-1 md:grid-cols-12 items-center">
         {/* Cover Photo */}
-        <div className="md:col-span-5 aspect-[16/10] md:aspect-auto md:h-full bg-zinc-950 relative overflow-hidden group">
+        <div className="md:col-span-5 aspect-[16/10] md:aspect-auto md:h-full bg-[#1A1A00] relative overflow-hidden group">
           <img
             src={drop.coverImage}
             alt={drop.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A00]/80 via-transparent to-transparent" />
 
-          <div className="absolute top-3.5 left-3.5 bg-zinc-950/90 backdrop-blur-md text-white text-xs font-semibold px-3 py-1 rounded-full border border-white/20 shadow-sm">
+          <div className="absolute top-3.5 left-3.5 bg-[#1A1A00]/90 backdrop-blur-md text-[#FFFFCC] text-xs font-semibold px-3 py-1 rounded-full border border-[#FFFFCC]/20 shadow-sm">
             {drop.itemCount} Collection Pieces
           </div>
         </div>
 
         {/* Details & Countdown */}
         <div className="md:col-span-7 p-6 sm:p-8 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-zinc-100">
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#E1E6B6]">
             <div className="flex items-center gap-2">
               <img
                 src={drop.sellerLogo}
                 alt={drop.sellerName}
-                className="w-6 h-6 rounded-full object-cover border border-zinc-200"
+                className="w-6 h-6 rounded-full object-cover border border-[#E1E6B6]"
               />
-              <span className="text-xs font-semibold text-zinc-900">{drop.sellerName}</span>
+              <span className="text-xs font-semibold text-[#1A1A00]">{drop.sellerName}</span>
             </div>
 
-            <div className="flex items-center gap-1.5 text-xs text-zinc-600 bg-zinc-100 px-3 py-1 rounded-full">
+            <div className="flex items-center gap-1.5 text-xs text-[#565C38] bg-[#EFF2D2] px-3 py-1 rounded-full">
               <Clock className="w-3.5 h-3.5" />
               <span>{formattedDate}</span>
             </div>
           </div>
 
           <div>
-            <h3 className="font-outfit text-xl sm:text-2xl font-bold text-zinc-950 tracking-tight">
+            <h3 className="font-outfit text-xl sm:text-2xl font-bold text-[#1A1A00] tracking-tight">
               {drop.title}
             </h3>
-            <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
+            <p className="text-xs text-[#565C38] mt-1 leading-relaxed">
               {drop.description}
             </p>
           </div>
@@ -78,7 +78,7 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
           {/* Live Countdown & Remind Action */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
             <div>
-              <span className="text-[11px] font-medium text-zinc-400 block mb-1.5">
+              <span className="text-[11px] font-medium text-[#565C38] block mb-1.5">
                 Drop Launch Timer:
               </span>
               <DropCountdownTimer targetDate={drop.releaseTime} />
@@ -87,9 +87,9 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsPreviewOpen(!isPreviewOpen)}
-                className="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5"
+                className="px-4 py-2 bg-[#EFF2D2] hover:bg-[#EFF2D2]/80 text-[#1A1A00] rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer"
               >
-                <Eye className="w-3.5 h-3.5" />
+                <Eye className="w-3.5 h-3.5 text-[#1A1A00]" />
                 <span>{isPreviewOpen ? 'Hide Catalog' : 'Preview Catalog'}</span>
               </button>
 
@@ -99,8 +99,8 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
                 title="Drop reminders store local browser alert preferences; toggle anytime to unsubscribe."
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 shadow-sm cursor-pointer ${
                   hasReminder
-                    ? 'bg-zinc-950 text-white'
-                    : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200'
+                    ? 'bg-[#1A1A00] text-[#FFFFCC]'
+                    : 'bg-[#EFF2D2] text-[#1A1A00] hover:bg-[#EFF2D2]/80'
                 }`}
               >
                 {hasReminder ? <BellCheck className="w-3.5 h-3.5" /> : <Bell className="w-3.5 h-3.5" />}
@@ -114,22 +114,22 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
 
       {/* Catalog Preview Drawer */}
       {isPreviewOpen && drop.items && drop.items.length > 0 && (
-        <div className="bg-zinc-50/80 p-6 border-t border-zinc-100">
-          <div className="text-xs font-semibold text-zinc-400 mb-3">
+        <div className="bg-[#EFF2D2]/60 p-6 border-t border-[#E1E6B6]">
+          <div className="text-xs font-semibold text-[#565C38] mb-3">
             Catalog Items Preview ({drop.items.length} previewed)
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
             {drop.items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white border border-zinc-200/70 rounded-2xl p-3 space-y-2 shadow-xs hover:shadow-md transition-shadow"
+                className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-2xl p-3 space-y-2 shadow-xs hover:shadow-md transition-shadow"
               >
-                <div className="aspect-square bg-zinc-100 rounded-xl overflow-hidden">
+                <div className="aspect-square bg-[#EFF2D2] rounded-xl overflow-hidden">
                   <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover" />
                 </div>
-                <div className="font-outfit text-xs font-semibold truncate text-zinc-950">{item.name}</div>
-                <div className="flex items-center justify-between text-[11px] text-zinc-500">
-                  <span className="font-bold text-zinc-900">₱{item.price.toLocaleString()}</span>
+                <div className="font-outfit text-xs font-semibold truncate text-[#1A1A00]">{item.name}</div>
+                <div className="flex items-center justify-between text-[11px] text-[#565C38]">
+                  <span className="font-bold text-[#1A1A00]">₱{item.price.toLocaleString()}</span>
                   <span>Size {item.size}</span>
                 </div>
               </div>

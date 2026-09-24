@@ -44,40 +44,40 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A1A00]/70 backdrop-blur-md animate-fade-in font-sans">
       <div
         className="fixed inset-0"
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-lg bg-white rounded-3xl border border-zinc-200/80 shadow-2xl p-6 sm:p-8 z-10 space-y-5 font-sans">
+      <div className="relative w-full max-w-lg bg-[#F8F9EA] rounded-3xl border border-[#E1E6B6] shadow-2xl p-6 sm:p-8 z-10 space-y-5 font-sans">
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
+        <div className="flex items-center justify-between pb-3 border-b border-[#E1E6B6]">
           <div className="flex items-center gap-2">
-            <MessageSquare className="w-5 h-5 text-zinc-950" />
-            <h2 className="font-outfit text-lg font-bold text-zinc-950">
+            <MessageSquare className="w-5 h-5 text-[#1A1A00]" />
+            <h2 className="font-outfit text-lg font-bold text-[#1A1A00]">
               Direct Seller Inquiry
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-zinc-400 hover:text-zinc-950 rounded-full hover:bg-zinc-100 transition-colors"
+            className="p-2 text-[#565C38] hover:text-[#1A1A00] rounded-full hover:bg-[#EFF2D2] transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Item Summary Mini Card */}
-        <div className="flex items-center gap-3.5 bg-zinc-50/80 border border-zinc-200/70 p-3 rounded-2xl">
+        <div className="flex items-center gap-3.5 bg-[#EFF2D2] border border-[#E1E6B6] p-3 rounded-2xl">
           <img
             src={product.images[0]}
             alt={product.name}
-            className="w-14 h-14 object-cover rounded-xl border border-zinc-200 shrink-0"
+            className="w-14 h-14 object-cover rounded-xl border border-[#E1E6B6] shrink-0"
           />
           <div className="min-w-0 flex-1">
-            <div className="text-xs text-zinc-500 font-medium truncate">{seller.name}</div>
-            <h3 className="font-outfit text-sm font-bold text-zinc-950 truncate">{product.name}</h3>
-            <div className="text-xs font-bold text-zinc-950 mt-0.5">
+            <div className="text-xs text-[#565C38] font-medium truncate">{seller.name}</div>
+            <h3 className="font-outfit text-sm font-bold text-[#1A1A00] truncate">{product.name}</h3>
+            <div className="text-xs font-bold text-[#1A1A00] mt-0.5">
               ₱{product.price.toLocaleString()} • Size {product.size}
             </div>
           </div>
@@ -85,7 +85,7 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
 
         {/* Messaging Channel Options */}
         <div className="space-y-2">
-          <label className="block text-xs text-zinc-500 font-semibold">
+          <label className="block text-xs text-[#565C38] font-semibold">
             Select Preferred Channel:
           </label>
           <div className="grid grid-cols-3 gap-2">
@@ -97,10 +97,10 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
               <button
                 key={channel.id}
                 onClick={() => setSelectedChannel(channel.id as any)}
-                className={`py-2 px-3 rounded-full text-xs font-semibold border text-center transition-all ${
+                className={`py-2 px-3 rounded-full text-xs font-semibold border text-center transition-all cursor-pointer ${
                   selectedChannel === channel.id
-                    ? 'bg-zinc-950 border-zinc-950 text-white shadow-sm'
-                    : 'bg-zinc-50 border-zinc-200 text-zinc-700 hover:bg-zinc-100'
+                    ? 'bg-[#1A1A00] border-[#1A1A00] text-[#FFFFCC] shadow-sm'
+                    : 'bg-[#FFFFCC] border-[#E1E6B6] text-[#565C38] hover:bg-[#EFF2D2]'
                 }`}
               >
                 {channel.label}
@@ -111,55 +111,55 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
 
         {/* Pre-formatted Message Generator Box */}
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs text-zinc-500 font-semibold">
+          <div className="flex items-center justify-between text-xs text-[#565C38] font-semibold">
             <span>Formatted Inquiry Text:</span>
             <button
               onClick={handleCopy}
-              className="text-zinc-950 hover:underline inline-flex items-center gap-1 font-bold text-xs"
+              className="text-[#1A1A00] hover:underline inline-flex items-center gap-1 font-bold text-xs cursor-pointer"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-zinc-950" />
+                  <Check className="w-3.5 h-3.5 text-[#1A1A00]" />
                   <span>Copied</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5" />
+                  <Copy className="w-3.5 h-3.5 text-[#1A1A00]" />
                   <span>Copy Text</span>
                 </>
               )}
             </button>
           </div>
 
-          <div className="p-3.5 bg-zinc-50 border border-zinc-200/80 rounded-2xl text-xs text-zinc-800 leading-relaxed select-all">
+          <div className="p-3.5 bg-[#FFFFCC] border border-[#E1E6B6] rounded-2xl text-xs text-[#1A1A00] leading-relaxed select-all">
             {defaultMessage}
           </div>
         </div>
 
-        {/* Supported Payment Methods & Regional Shipping Disclosure (P2 Tax & Financial Transparency Fix) */}
+        {/* Supported Payment Methods & Regional Shipping Disclosure */}
         <div className="space-y-2 pt-1">
-          <span className="block text-[11px] text-zinc-500 font-semibold uppercase tracking-wider">
+          <span className="block text-[11px] text-[#565C38] font-semibold uppercase tracking-wider">
             Accepted Local Payment Methods & Shipping:
           </span>
-          <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold text-zinc-700">
-            <span className="px-2.5 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-800">
+          <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold text-[#1A1A00]">
+            <span className="px-2.5 py-1 rounded-full bg-[#FFFFCC] border border-[#E1E6B6] text-[#1A1A00]">
               GCash
             </span>
-            <span className="px-2.5 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-800">
+            <span className="px-2.5 py-1 rounded-full bg-[#FFFFCC] border border-[#E1E6B6] text-[#1A1A00]">
               Cash on Pickup
             </span>
-            <span className="px-2.5 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-800">
+            <span className="px-2.5 py-1 rounded-full bg-[#FFFFCC] border border-[#E1E6B6] text-[#1A1A00]">
               Bank Transfer
             </span>
-            <span className="px-2.5 py-1 rounded-full bg-zinc-50 border border-zinc-200/60 text-zinc-500 font-normal">
+            <span className="px-2.5 py-1 rounded-full bg-[#EFF2D2] border border-[#E1E6B6] text-[#565C38] font-normal">
               Courier Delivery ₱80-120
             </span>
           </div>
         </div>
 
         {/* Seller Direct Guarantee Notice */}
-        <div className="flex items-start gap-2.5 text-xs text-zinc-600 bg-zinc-100/80 p-3 rounded-2xl border border-zinc-200/60">
-          <ShieldCheck className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
+        <div className="flex items-start gap-2.5 text-xs text-[#1A1A00]/80 bg-[#EFF2D2] p-3 rounded-2xl border border-[#E1E6B6]">
+          <ShieldCheck className="w-4 h-4 text-[#1A1A00] shrink-0 mt-0.5" />
           <p className="text-[11px] leading-tight">
             Contacting seller directly via Instagram/Facebook. You can arrange local Davao cash on pickup or GCash payment with the seller.
           </p>
@@ -169,7 +169,7 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
         <div className="flex flex-col sm:flex-row gap-3 pt-1">
           <button
             onClick={handleCopy}
-            className="flex-1 py-3 px-4 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 rounded-full text-xs font-semibold transition-colors flex items-center justify-center gap-2"
+            className="flex-1 py-3 px-4 bg-[#EFF2D2] hover:bg-[#EFF2D2]/80 text-[#1A1A00] rounded-full text-xs font-semibold transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
             <span>{copied ? 'Text Copied' : 'Copy Message'}</span>
@@ -179,7 +179,7 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
             href={getChannelLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-3 px-4 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-xs font-semibold transition-colors flex items-center justify-center gap-2 shadow-md"
+            className="flex-1 py-3 px-4 bg-[#1A1A00] hover:bg-[#1A1A00]/90 text-[#FFFFCC] rounded-full text-xs font-semibold transition-colors flex items-center justify-center gap-2 shadow-md cursor-pointer"
           >
             <span>Open {selectedChannel.toUpperCase()}</span>
             <ExternalLink className="w-4 h-4" />

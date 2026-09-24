@@ -123,19 +123,19 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           <div className="flex items-center gap-3">
             {/* Search Input Bar */}
             <div className="hidden md:flex relative w-52 lg:w-60">
-              <CustomSearchIcon className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <CustomSearchIcon className="w-4 h-4 text-[#565C38] absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search pieces, brands..."
                 aria-label="Search local Davao fashion pieces and sellers"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-zinc-100/90 border border-transparent focus:border-zinc-300 focus:bg-white rounded-full pl-9 pr-7 py-2 text-xs font-sans text-zinc-900 placeholder:text-zinc-400 focus:outline-none transition-all shadow-inner"
+                className="w-full bg-[#EFF2D2] border border-[#E1E6B6] focus:border-[#1A1A00] focus:bg-[#FFFFCC] rounded-full pl-9 pr-7 py-2 text-xs font-sans text-[#1A1A00] placeholder:text-[#565C38] focus:outline-none transition-all shadow-inner"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-950"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#565C38] hover:text-[#1A1A00] cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -145,12 +145,12 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
             {/* Saved Wishlist Button (Mobile) */}
             <button
               onClick={() => setActiveTab('saved')}
-              className="lg:hidden p-2 text-zinc-800 hover:text-zinc-950 relative rounded-full hover:bg-zinc-100 transition-colors"
+              className="lg:hidden p-2 text-[#1A1A00] hover:text-[#1A1A00] relative rounded-full hover:bg-[#EFF2D2] transition-colors cursor-pointer"
               aria-label="Saved items"
             >
               <SavedIcon className="w-5 h-5" />
               {savedCount > 0 && (
-                <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-zinc-950 text-white text-[9px] flex items-center justify-center font-bold">
+                <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#1A1A00] text-[#FFFFCC] text-[9px] flex items-center justify-center font-bold">
                   {savedCount}
                 </span>
               )}
@@ -159,7 +159,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
             {/* Seller Portal Link */}
             <button
               onClick={() => setActiveTab('dashboard')}
-              className="hidden sm:flex items-center gap-1.5 px-4 py-2 bg-zinc-950 text-white hover:bg-zinc-800 rounded-full text-xs font-semibold transition-all shadow-sm"
+              className="hidden sm:flex items-center gap-1.5 px-4 py-2 bg-[#1A1A00] text-[#FFFFCC] hover:bg-[#1A1A00]/90 rounded-full text-xs font-semibold transition-all shadow-sm cursor-pointer"
             >
               <CustomStoreIcon className="w-3.5 h-3.5" />
               <span>Seller Portal</span>
@@ -168,7 +168,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
             {/* Mobile Drawer Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-zinc-950 rounded-full hover:bg-zinc-100 transition-colors focus:outline-none"
+              className="lg:hidden p-2 text-[#1A1A00] rounded-full hover:bg-[#EFF2D2] transition-colors focus:outline-none cursor-pointer"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -179,14 +179,14 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
         {/* Mobile Search Bar */}
         <div className="md:hidden pb-3">
           <div className="relative">
-            <CustomSearchIcon className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <CustomSearchIcon className="w-4 h-4 text-[#565C38] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search pieces, brands, hoodies..."
               aria-label="Search local Davao fashion pieces and sellers"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-zinc-100 rounded-full pl-9 pr-4 py-2 text-xs font-sans text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:bg-white focus:ring-1 focus:ring-zinc-300 border border-transparent"
+              className="w-full bg-[#EFF2D2] text-[#1A1A00] placeholder:text-[#565C38] focus:bg-[#FFFFCC] rounded-full pl-9 pr-4 py-2 text-xs font-sans focus:outline-none border border-[#E1E6B6]"
             />
           </div>
         </div>
