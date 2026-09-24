@@ -27,14 +27,14 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
       {/* Seller Header Component */}
       <SellerHeader seller={seller} />
 
-      {/* Storefront Navigation Capsule Tabs */}
-      <div className="flex flex-wrap items-center gap-2 p-1.5 bg-zinc-100 rounded-full w-fit">
+      {/* Storefront Navigation Tabs */}
+      <div className="flex items-center gap-8 border-b border-zinc-200/80 pb-1">
         <button
           onClick={() => setActiveTab('products')}
-          className={`px-5 py-2.5 text-xs font-semibold rounded-full transition-all ${
+          className={`pb-3 text-xs font-avantgarde font-bold tracking-widest uppercase transition-all relative cursor-pointer ${
             activeTab === 'products'
-              ? 'bg-zinc-950 text-white shadow-sm'
-              : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
+              ? 'text-zinc-950 border-b-2 border-zinc-950 -mb-[5px]'
+              : 'text-zinc-400 hover:text-zinc-700'
           }`}
         >
           Catalog Pieces ({products.length})
@@ -42,10 +42,10 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
 
         <button
           onClick={() => setActiveTab('drops')}
-          className={`px-5 py-2.5 text-xs font-semibold rounded-full transition-all ${
+          className={`pb-3 text-xs font-avantgarde font-bold tracking-widest uppercase transition-all relative cursor-pointer ${
             activeTab === 'drops'
-              ? 'bg-zinc-950 text-white shadow-sm'
-              : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
+              ? 'text-zinc-950 border-b-2 border-zinc-950 -mb-[5px]'
+              : 'text-zinc-400 hover:text-zinc-700'
           }`}
         >
           Scheduled Drops ({drops.length})
@@ -53,10 +53,10 @@ export const SellerStorefront: React.FC<SellerStorefrontProps> = ({
 
         <button
           onClick={() => setActiveTab('info')}
-          className={`px-5 py-2.5 text-xs font-semibold rounded-full transition-all ${
+          className={`pb-3 text-xs font-avantgarde font-bold tracking-widest uppercase transition-all relative cursor-pointer ${
             activeTab === 'info'
-              ? 'bg-zinc-950 text-white shadow-sm'
-              : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
+              ? 'text-zinc-950 border-b-2 border-zinc-950 -mb-[5px]'
+              : 'text-zinc-400 hover:text-zinc-700'
           }`}
         >
           Store Location

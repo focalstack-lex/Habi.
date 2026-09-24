@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ShieldCheck, MapPin, Clock, Globe, MessageCircle, UserPlus, UserCheck } from 'lucide-react';
+import { MapPin, Clock, Globe, MessageCircle, UserPlus, UserCheck } from 'lucide-react';
 import type { Seller } from '../../types/fashion';
 import { storageService } from '../../services/storageService';
 
@@ -20,20 +20,20 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
   };
 
   return (
-    <div className="bg-white border border-zinc-200/80 rounded-3xl overflow-hidden mb-8 font-sans shadow-sm">
+    <div className="bg-white border border-zinc-200/90 rounded-3xl overflow-hidden mb-8 font-sans shadow-sm">
       {/* Cover Banner */}
-      <div className="h-56 sm:h-72 relative bg-zinc-950 overflow-hidden">
+      <div className="h-48 sm:h-64 relative bg-zinc-950 overflow-hidden">
         <img
           src={seller.coverUrl}
           alt={seller.name}
           className="w-full h-full object-cover opacity-85"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
       </div>
 
       {/* Profile Details Header Container */}
-      <div className="px-6 sm:px-10 pb-8 relative -mt-16 sm:-mt-20">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-8 border-b border-zinc-100">
+      <div className="px-6 sm:px-10 pb-8 relative">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 -mt-14 sm:-mt-16 pb-6 border-b border-zinc-100">
           {/* Avatar & Title */}
           <div className="flex flex-col sm:flex-row sm:items-end gap-5">
             <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-white overflow-hidden bg-zinc-950 shadow-xl shrink-0">
@@ -44,19 +44,23 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
               />
             </div>
 
-            <div className="space-y-1">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <h1 className="font-outfit text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-950 tracking-tight">
-                  {seller.name}
-                </h1>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-950 text-white rounded-full text-xs font-semibold shadow-sm">
-                  <ShieldCheck className="w-3.5 h-3.5 text-white" />
-                  <span>{seller.verificationStatus}</span>
+            <div className="space-y-1 sm:mb-1">
+              <div className="flex items-center gap-2">
+                <span className="font-avantgarde text-[11px] tracking-widest uppercase text-zinc-500 font-semibold">
+                  {seller.verificationStatus.toUpperCase()}
+                </span>
+                <span className="text-zinc-300">•</span>
+                <span className="font-avantgarde text-[11px] tracking-widest uppercase text-zinc-500 font-semibold">
+                  {seller.location.district.toUpperCase()}, {seller.location.city.toUpperCase()}
                 </span>
               </div>
 
-              <div className="text-xs sm:text-sm text-zinc-500 font-sans">
-                @{seller.handle} • {seller.location.district}, {seller.location.city}
+              <h1 className="font-cooper text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-950 tracking-tight leading-none pt-0.5">
+                {seller.name}
+              </h1>
+
+              <div className="text-xs sm:text-sm text-zinc-500 font-sans pt-0.5">
+                @{seller.handle}
               </div>
             </div>
           </div>
@@ -64,7 +68,7 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
           {/* Follow Button */}
           <button
             onClick={handleFollowToggle}
-            className={`px-7 py-3 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-sm ${
+            className={`px-7 py-3 rounded-full text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-sm shrink-0 cursor-pointer ${
               isFollowed
                 ? 'bg-zinc-100 text-zinc-950 border border-zinc-200 hover:bg-zinc-200'
                 : 'bg-zinc-950 text-white hover:bg-zinc-800'
