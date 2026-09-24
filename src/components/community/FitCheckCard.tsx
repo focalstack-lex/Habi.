@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Tag, Heart, MapPin, ArrowRight } from 'lucide-react';
+import { CustomTagIcon, MapIcon, SavedIcon } from '../common/CustomIcons';
+import { ArrowRight } from 'lucide-react';
 import type { FitCheckPost, TaggedItem } from '../../types/fashion';
 
 interface FitCheckCardProps {
@@ -22,7 +23,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
   };
 
   return (
-    <div className="bg-white border border-zinc-200/80 rounded-3xl overflow-hidden font-sans space-y-4 p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white border border-zinc-200/80 rounded-3xl overflow-hidden font-sans space-y-4 p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
       {/* Post Author Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -38,7 +39,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
         </div>
 
         <div className="flex items-center gap-1 text-xs text-zinc-400 font-sans bg-zinc-100 px-3 py-1 rounded-full">
-          <MapPin className="w-3.5 h-3.5" />
+          <MapIcon className="w-3.5 h-3.5" />
           <span className="text-xs font-medium">{post.location}</span>
         </div>
       </div>
@@ -59,7 +60,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
               className="w-8 h-8 bg-zinc-950/90 text-white rounded-full flex items-center justify-center border-2 border-white shadow-xl hover:scale-110 active:scale-95 transition-transform backdrop-blur-md"
               aria-label="View tagged item"
             >
-              <Tag className="w-3.5 h-3.5" />
+              <CustomTagIcon className="w-3.5 h-3.5" />
             </button>
 
             {/* Tag Popup Tooltip Card */}
@@ -119,7 +120,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
                 : 'bg-zinc-50 text-zinc-600 border-zinc-200/80 hover:bg-zinc-100'
             }`}
           >
-            <Heart className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
+            <SavedIcon className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
             <span>{likes} Fit Checks</span>
           </button>
         </div>

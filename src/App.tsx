@@ -223,12 +223,12 @@ export const App: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {sellers.map((seller) => (
                 <div
                   key={seller.id}
                   onClick={() => handleSelectSeller(seller.id)}
-                  className="bg-white border border-zinc-200/80 rounded-3xl p-6 space-y-4 cursor-pointer hover:border-zinc-400 hover:shadow-md transition-all shadow-sm group"
+                  className="bg-white border border-zinc-200/80 rounded-2xl sm:rounded-3xl p-3 sm:p-6 space-y-3 sm:space-y-4 cursor-pointer hover:border-zinc-400 hover:shadow-md transition-all shadow-sm group"
                 >
                   <div className="aspect-[16/9] bg-zinc-900 rounded-2xl overflow-hidden relative shadow-inner">
                     <img

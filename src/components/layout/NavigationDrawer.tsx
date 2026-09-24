@@ -1,5 +1,6 @@
 import React from 'react';
-import { MapPin, X, Store, ArrowRight } from 'lucide-react';
+import { MapIcon, CustomStoreIcon } from '../common/CustomIcons';
+import { X, ArrowRight } from 'lucide-react';
 import { DAVAO_CITIES, NAV_TABS } from './NavigationHeader';
 
 interface NavigationDrawerProps {
@@ -58,7 +59,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
               Region Location
             </label>
             <div className="flex items-center gap-2 bg-zinc-100 px-3.5 py-2.5 rounded-full border border-zinc-200/80 text-xs">
-              <MapPin className="w-4 h-4 text-zinc-600 shrink-0" />
+              <MapIcon className="w-4 h-4 text-zinc-600 shrink-0" />
               <select
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
@@ -116,7 +117,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
             }}
             className="w-full flex items-center justify-center gap-2 py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-xs font-semibold shadow-md transition-all"
           >
-            <Store className="w-4 h-4" />
+            <CustomStoreIcon className="w-4 h-4" />
             <span>Open Seller Portal</span>
           </button>
         </div>

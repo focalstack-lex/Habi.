@@ -4,7 +4,8 @@ import { DropCard } from '../components/drops/DropCard';
 import type { Product, Seller, Drop } from '../types/fashion';
 import { fashionService } from '../services/fashionService';
 import { storageService } from '../services/storageService';
-import { Bookmark, Users, Bell } from 'lucide-react';
+import { SavedIcon, DashboardIcon, DropsIcon } from '../components/common/CustomIcons';
+import { Bell } from 'lucide-react';
 
 interface SavedViewProps {
   onSelectProduct: (product: Product) => void;
@@ -39,10 +40,9 @@ export const SavedView: React.FC<SavedViewProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Header Banner */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 backdrop-blur-md border border-white/15 rounded-full text-xs text-white">
-          <Bookmark className="w-3.5 h-3.5 text-white" />
-          <span className="font-semibold text-xs">Personal Closet</span>
+      <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl space-y-3">
+        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-zinc-400 font-semibold">
+          PERSONAL CLOSET
         </div>
 
         <h1 className="font-outfit text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
@@ -64,7 +64,7 @@ export const SavedView: React.FC<SavedViewProps> = ({
               : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
           }`}
         >
-          <Bookmark className="w-3.5 h-3.5" />
+          <SavedIcon className="w-3.5 h-3.5" />
           <span>Saved Items ({savedProducts.length})</span>
         </button>
 
@@ -76,7 +76,7 @@ export const SavedView: React.FC<SavedViewProps> = ({
               : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
           }`}
         >
-          <Users className="w-3.5 h-3.5" />
+          <DashboardIcon className="w-3.5 h-3.5" />
           <span>Followed Brands ({followedSellers.length})</span>
         </button>
 
@@ -88,7 +88,7 @@ export const SavedView: React.FC<SavedViewProps> = ({
               : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
           }`}
         >
-          <Bell className="w-3.5 h-3.5" />
+          <DropsIcon className="w-3.5 h-3.5" />
           <span>Drop Reminders ({remindedDrops.length})</span>
         </button>
       </div>
@@ -105,7 +105,7 @@ export const SavedView: React.FC<SavedViewProps> = ({
           ) : (
             <div className="p-12 bg-white border border-zinc-200/80 rounded-3xl text-center space-y-3 shadow-sm">
               <div className="w-14 h-14 rounded-full bg-zinc-100 flex items-center justify-center mx-auto text-zinc-400">
-                <Bookmark className="w-6 h-6" />
+                <SavedIcon className="w-6 h-6" />
               </div>
               <div className="font-outfit text-lg font-bold text-zinc-900">No Saved Items Yet</div>
               <p className="text-sm text-zinc-500 font-sans max-w-sm mx-auto">
@@ -118,7 +118,7 @@ export const SavedView: React.FC<SavedViewProps> = ({
 
       {/* Tab 2: Followed Sellers */}
       {activeTab === 'sellers' && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {followedSellers.length > 0 ? (
             followedSellers.map((seller) => (
               <div
@@ -143,7 +143,7 @@ export const SavedView: React.FC<SavedViewProps> = ({
           ) : (
             <div className="col-span-full p-12 bg-white border border-zinc-200/80 rounded-3xl text-center space-y-3 shadow-sm">
               <div className="w-14 h-14 rounded-full bg-zinc-100 flex items-center justify-center mx-auto text-zinc-400">
-                <Users className="w-6 h-6" />
+                <DashboardIcon className="w-6 h-6" />
               </div>
               <div className="font-outfit text-lg font-bold text-zinc-900">No Followed Brands</div>
               <p className="text-sm text-zinc-500 font-sans max-w-sm mx-auto">

@@ -1,16 +1,23 @@
 import React from 'react';
-import { Compass, Sparkles, MapPin, Heart, User, Flame } from 'lucide-react';
+import {
+  FeedIcon,
+  DiscoverIcon,
+  DropsIcon,
+  MapIcon,
+  SavedIcon,
+  DashboardIcon,
+} from '../common/CustomIcons';
 import { NAV_TABS } from './NavigationHeader';
 
 const BOTTOM_TAB_IDS: string[] = ['feed', 'discover', 'drops', 'map', 'saved', 'dashboard'];
 
 const TAB_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  feed: Compass,
-  discover: Sparkles,
-  drops: Flame,
-  map: MapPin,
-  saved: Heart,
-  dashboard: User,
+  feed: FeedIcon,
+  discover: DiscoverIcon,
+  drops: DropsIcon,
+  map: MapIcon,
+  saved: SavedIcon,
+  dashboard: DashboardIcon,
 };
 
 interface BottomTabBarProps {
@@ -37,7 +44,7 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
         className="pointer-events-auto bg-white/95 backdrop-blur-xl border border-zinc-200/80 shadow-2xl rounded-full px-3 py-1.5 flex items-center justify-between gap-1 max-w-md w-full"
       >
         {tabs.map((tab) => {
-          const Icon = TAB_ICONS[tab.id] || Compass;
+          const Icon = TAB_ICONS[tab.id] || FeedIcon;
           const isActive = activeTab === tab.id;
           return (
             <button

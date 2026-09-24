@@ -1,5 +1,11 @@
 import React from 'react';
-import { Search, MapPin, Bookmark, Store, Menu, X } from 'lucide-react';
+import {
+  MapIcon,
+  CustomSearchIcon,
+  SavedIcon,
+  CustomStoreIcon,
+} from '../common/CustomIcons';
+import { Menu, X } from 'lucide-react';
 
 interface NavigationHeaderProps {
   activeTab: string;
@@ -61,17 +67,17 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
               onClick={() => setActiveTab('feed')}
               className="text-left focus:outline-none group flex items-center gap-2"
             >
-              <span className="font-outfit text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 group-hover:opacity-80 transition-opacity">
+              <span className="font-cooper text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 group-hover:opacity-80 transition-opacity">
                 Habi
               </span>
-              <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 text-[10px] font-semibold tracking-wide">
+              <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 text-[10px] font-avantgarde font-bold tracking-widest uppercase">
                 Davao
               </span>
             </button>
 
             {/* Davao Location Selector Capsule */}
             <div className="hidden sm:flex items-center gap-1.5 bg-zinc-100/80 hover:bg-zinc-200/80 px-3.5 py-1.5 rounded-full border border-zinc-200/60 text-xs font-medium transition-colors">
-              <MapPin className="w-3.5 h-3.5 text-zinc-800 shrink-0" />
+              <MapIcon className="w-3.5 h-3.5 text-zinc-800 shrink-0" />
               <select
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
@@ -117,7 +123,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           <div className="flex items-center gap-3">
             {/* Search Input Bar */}
             <div className="hidden md:flex relative w-52 lg:w-60">
-              <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <CustomSearchIcon className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 placeholder="Search pieces, brands..."
@@ -141,7 +147,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
               className="lg:hidden p-2 text-zinc-800 hover:text-zinc-950 relative rounded-full hover:bg-zinc-100 transition-colors"
               aria-label="Saved items"
             >
-              <Bookmark className="w-5 h-5" />
+              <SavedIcon className="w-5 h-5" />
               {savedCount > 0 && (
                 <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-zinc-950 text-white text-[9px] flex items-center justify-center font-bold">
                   {savedCount}
@@ -154,7 +160,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
               onClick={() => setActiveTab('dashboard')}
               className="hidden sm:flex items-center gap-1.5 px-4 py-2 bg-zinc-950 text-white hover:bg-zinc-800 rounded-full text-xs font-semibold transition-all shadow-sm"
             >
-              <Store className="w-3.5 h-3.5" />
+              <CustomStoreIcon className="w-3.5 h-3.5" />
               <span>Seller Portal</span>
             </button>
 
@@ -172,7 +178,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
         {/* Mobile Search Bar */}
         <div className="md:hidden pb-3">
           <div className="relative">
-            <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <CustomSearchIcon className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search pieces, brands, hoodies..."

@@ -75,9 +75,8 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
       {/* Dashboard Top Header */}
       <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 backdrop-blur-md border border-white/15 rounded-full text-xs text-white">
-            <ShieldCheck className="w-3.5 h-3.5 text-white" />
-            <span className="font-semibold text-xs">Seller Portal</span>
+          <div className="font-avantgarde text-[11px] tracking-widest uppercase text-zinc-400 font-semibold">
+            SELLER PORTAL
           </div>
 
           <h1 className="font-outfit text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">

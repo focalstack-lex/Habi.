@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropCard } from '../components/drops/DropCard';
 import type { Drop } from '../types/fashion';
-import { Sparkles, Calendar } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 interface DropsViewProps {
   drops: Drop[];
@@ -12,10 +12,9 @@ export const DropsView: React.FC<DropsViewProps> = ({ drops, onExploreDrop }) =>
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Header Banner */}
-      <div className="bg-gradient-to-br from-zinc-950 via-zinc-900 to-black text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md border border-white/10 rounded-full text-xs text-zinc-300 font-semibold">
-          <Calendar className="w-3.5 h-3.5 text-white" />
-          <span>Scheduled Releases</span>
+      <div className="bg-gradient-to-br from-zinc-950 via-zinc-900 to-black text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl space-y-3">
+        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-zinc-400 font-semibold">
+          SCHEDULED RELEASES
         </div>
 
         <h1 className="font-outfit text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
