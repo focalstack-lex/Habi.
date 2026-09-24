@@ -51,40 +51,75 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
     if (markersGroup) {
       markersGroup.clearLayers();
 
-      filteredSellers.forEach((seller) => {
+      filteredSellers.forEach((seller, idx) => {
         const isPhysical = seller.location.isPhysicalStore;
+        const isSelected = selectedSeller?.id === seller.id;
         
-        // Custom SVG DivIcon for Black & White Minimalist Capsule Pins
+        // Custom SVG DivIcon with Compact Avatar Pin Badge & Floating Label
         const customIcon = L.divIcon({
           className: 'custom-map-pin-container',
           html: `
             <div style="
-              background-color: ${isPhysical ? '#09090b' : '#ffffff'};
-              color: ${isPhysical ? '#ffffff' : '#09090b'};
-              border: 1.5px solid ${isPhysical ? '#09090b' : '#d4d4d8'};
-              border-radius: 9999px;
-              padding: 6px 14px;
-              font-family: 'Avant Garde', 'Outfit', sans-serif;
-              font-size: 11px;
-              font-weight: 700;
-              letter-spacing: 0.04em;
-              box-shadow: 0 10px 25px -5px rgba(0,0,0,0.25), 0 4px 6px -2px rgba(0,0,0,0.05);
+              position: relative;
               display: flex;
+              flex-direction: column;
               align-items: center;
-              gap: 6px;
-              white-space: nowrap;
               cursor: pointer;
-              transition: transform 0.2s ease, box-shadow 0.2s ease;
+              z-index: ${isSelected ? 999 : idx + 10};
             ">
-              <span style="width: 7px; height: 7px; border-radius: 9999px; background-color: ${isPhysical ? '#10b981' : '#09090b'}; display: inline-block; flex-shrink: 0;"></span>
-              <span>${seller.name}</span>
+              <!-- Top Label Pill -->
+              <div style="
+                background-color: ${isSelected ? '#09090b' : '#18181b'};
+                color: #ffffff;
+                border: 1px solid ${isSelected ? '#ffffff' : '#3f3f46'};
+                border-radius: 9999px;
+                padding: 4px 10px;
+                font-family: 'Avant Garde', 'Outfit', sans-serif;
+                font-size: 10px;
+                font-weight: 700;
+                letter-spacing: 0.05em;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+                white-space: nowrap;
+                margin-bottom: 4px;
+                transition: all 0.2s ease;
+              ">
+                ${seller.name}
+              </div>
+
+              <!-- Bottom Circular Avatar Pin -->
+              <div style="
+                width: 36px;
+                height: 36px;
+                border-radius: 9999px;
+                background-color: #09090b;
+                border: 2px solid ${isPhysical ? '#ffffff' : '#a1a1aa'};
+                box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+                position: relative;
+                overflow: hidden;
+                flex-shrink: 0;
+              ">
+                <img src="${seller.logoUrl}" alt="${seller.name}" style="width: 100%; height: 100%; object-fit: cover;" />
+                <span style="
+                  position: absolute;
+                  bottom: 1px;
+                  right: 1px;
+                  width: 9px;
+                  height: 9px;
+                  border-radius: 9999px;
+                  background-color: ${isPhysical ? '#10b981' : '#71717a'};
+                  border: 1.5px solid #09090b;
+                "></span>
+              </div>
             </div>
           `,
-          iconSize: [140, 36],
-          iconAnchor: [70, 18],
+          iconSize: [120, 64],
+          iconAnchor: [60, 60],
         });
 
-        const marker = L.marker([seller.location.lat, seller.location.lng], { icon: customIcon });
+        const marker = L.marker([seller.location.lat, seller.location.lng], {
+          icon: customIcon,
+          zIndexOffset: isSelected ? 1000 : idx * 10,
+        });
 
         marker.on('click', () => {
           setSelectedSeller(seller);
@@ -96,7 +131,7 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
 
       if (filteredSellers.length > 0) {
         const bounds = L.latLngBounds(filteredSellers.map((s) => [s.location.lat, s.location.lng]));
-        map.fitBounds(bounds, { padding: [60, 60], maxZoom: 12 });
+        map.fitBounds(bounds, { padding: [70, 70], maxZoom: 12 });
       }
     }
   }, [filteredSellers]);
