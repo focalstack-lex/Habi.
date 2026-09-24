@@ -32,12 +32,12 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
     if (!mapInstanceRef.current) {
       const map = L.map(mapContainerRef.current, {
         center: [7.0707, 125.6087],
-        zoom: 11,
+        zoom: 12,
         zoomControl: true,
       });
 
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap &copy; CARTO',
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19,
       }).addTo(map);
 
@@ -61,33 +61,34 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
             <div style="
               background-color: ${isPhysical ? '#09090b' : '#ffffff'};
               color: ${isPhysical ? '#ffffff' : '#09090b'};
-              border: 1.5px solid ${isPhysical ? '#27272a' : '#e4e4e7'};
+              border: 1.5px solid ${isPhysical ? '#09090b' : '#d4d4d8'};
               border-radius: 9999px;
               padding: 6px 14px;
-              font-family: 'Outfit', sans-serif;
-              font-size: 12px;
+              font-family: 'Avant Garde', 'Outfit', sans-serif;
+              font-size: 11px;
               font-weight: 700;
-              box-shadow: 0 10px 25px -5px rgba(0,0,0,0.18), 0 8px 10px -6px rgba(0,0,0,0.1);
+              letter-spacing: 0.04em;
+              box-shadow: 0 10px 25px -5px rgba(0,0,0,0.25), 0 4px 6px -2px rgba(0,0,0,0.05);
               display: flex;
               align-items: center;
               gap: 6px;
               white-space: nowrap;
               cursor: pointer;
-              transition: transform 0.2s ease;
+              transition: transform 0.2s ease, box-shadow 0.2s ease;
             ">
-              <span style="width: 7px; height: 7px; border-radius: 9999px; background-color: ${isPhysical ? '#ffffff' : '#09090b'}; display: inline-block;"></span>
+              <span style="width: 7px; height: 7px; border-radius: 9999px; background-color: ${isPhysical ? '#10b981' : '#09090b'}; display: inline-block; flex-shrink: 0;"></span>
               <span>${seller.name}</span>
             </div>
           `,
-          iconSize: [130, 36],
-          iconAnchor: [65, 18],
+          iconSize: [140, 36],
+          iconAnchor: [70, 18],
         });
 
         const marker = L.marker([seller.location.lat, seller.location.lng], { icon: customIcon });
 
         marker.on('click', () => {
           setSelectedSeller(seller);
-          map.setView([seller.location.lat, seller.location.lng], 13, { animate: true });
+          map.setView([seller.location.lat, seller.location.lng], 14, { animate: true });
         });
 
         markersGroup.addLayer(marker);
@@ -95,7 +96,7 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
 
       if (filteredSellers.length > 0) {
         const bounds = L.latLngBounds(filteredSellers.map((s) => [s.location.lat, s.location.lng]));
-        map.fitBounds(bounds, { padding: [40, 40], maxZoom: 13 });
+        map.fitBounds(bounds, { padding: [60, 60], maxZoom: 12 });
       }
     }
   }, [filteredSellers]);
@@ -115,18 +116,6 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
         <p className="text-zinc-300 text-sm sm:text-base max-w-2xl font-sans leading-relaxed">
           Explore local thrift shops, clothing boutiques, pop-up markets, and independent fashion creators across Davao City, Tagum, Digos, Panabo, and Mati.
         </p>
-
-        {/* Legend */}
-        <div className="flex flex-wrap items-center gap-4 text-xs pt-2">
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-            <span className="w-2.5 h-2.5 rounded-full bg-white" />
-            <span className="text-zinc-200">Physical Storefront / Pop-up Market</span>
-          </div>
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-            <span className="w-2.5 h-2.5 rounded-full bg-zinc-400" />
-            <span className="text-zinc-300">Online Creator Area</span>
-          </div>
-        </div>
       </div>
 
       {/* Map Container */}
