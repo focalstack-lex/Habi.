@@ -4,15 +4,15 @@
   html {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    background-color: #F8F9EA;
-    color: #161B05;
+    background-color: #FBF4E4;
+    color: #161D1F;
   }
 
   body {
     margin: 0;
     padding: 0;
-    background-color: #F8F9EA;
-    color: #161B05;
+    background-color: #FBF4E4;
+    color: #161D1F;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
@@ -43,44 +43,44 @@
   font-family: 'Space Mono', monospace;
 }
 
-/* Muted Blue Green (#1A1A00) & Fresh Green (#FFFFCC) Theme Design System Tokens */
+/* Muted Blue Green (#1A2225) & Fresh Green (#FFF9E9) Theme Design System Tokens */
 :root {
-  --color-brand-dark: #1A1A00;
-  --color-brand-light: #FFFFCC;
-  --color-brand-canvas: #F8F9EA;
-  --color-brand-surface: #EFF2D2;
-  --color-brand-hairline: #E1E6B6;
-  --color-brand-text-dark: #141703;
-  --color-brand-text-muted: #565C38;
+  --color-brand-dark: #1A2225;
+  --color-brand-light: #FFF9E9;
+  --color-brand-canvas: #FBF4E4;
+  --color-brand-surface: #F3ECD8;
+  --color-brand-hairline: #E6DCC0;
+  --color-brand-text-dark: #141A1C;
+  --color-brand-text-muted: #55615D;
 }
 
 /* Custom Brand Palette Utility Helper Classes */
 .bg-brand-dark {
-  background-color: #1A1A00;
+  background-color: #1A2225;
 }
 
 .bg-brand-light {
-  background-color: #FFFFCC;
+  background-color: #FFF9E9;
 }
 
 .bg-brand-canvas {
-  background-color: #F8F9EA;
+  background-color: #FBF4E4;
 }
 
 .bg-brand-surface {
-  background-color: #EFF2D2;
+  background-color: #F3ECD8;
 }
 
 .border-brand-hairline {
-  border-color: #E1E6B6;
+  border-color: #E6DCC0;
 }
 
 .text-brand-dark {
-  color: #141703;
+  color: #141A1C;
 }
 
 .text-brand-muted {
-  color: #565C38;
+  color: #55615D;
 }
 
 .text-display {

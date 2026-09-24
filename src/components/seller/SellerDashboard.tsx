@@ -73,9 +73,9 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Dashboard Top Header */}
-      <div className="relative overflow-hidden bg-[#1A1A00] text-[#FFFFCC] p-8 sm:p-12 rounded-3xl border border-[#1A1A00]/20 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-8 sm:p-12 rounded-3xl border border-[#1A2225]/20 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-3">
-          <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#DCE2B8] font-semibold">
+          <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#E0DFC8] font-semibold">
             SELLER PORTAL
           </div>
 
@@ -83,15 +83,15 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
             {seller.name} Dashboard
           </h1>
 
-          <p className="text-[#DCE2B8] text-sm sm:text-base font-sans max-w-xl leading-relaxed">
+          <p className="text-[#E0DFC8] text-sm sm:text-base font-sans max-w-xl leading-relaxed">
             Track profile views, product saves, drop performance, and manage your 1-of-1 Davao thrift inventory.
           </p>
         </div>
 
-        <div className="bg-[#FFFFCC]/10 backdrop-blur-md border border-[#FFFFCC]/15 p-5 rounded-2xl text-xs space-y-1.5 shrink-0">
-          <div className="text-xs uppercase text-[#DCE2B8] font-semibold tracking-wider">Verification Status</div>
-          <div className="font-bold text-[#FFFFCC] flex items-center gap-2 text-base">
-            <ShieldCheck className="w-5 h-5 text-[#FFFFCC]" />
+        <div className="bg-[#FFF9E9]/10 backdrop-blur-md border border-[#FFF9E9]/15 p-5 rounded-2xl text-xs space-y-1.5 shrink-0">
+          <div className="text-xs uppercase text-[#E0DFC8] font-semibold tracking-wider">Verification Status</div>
+          <div className="font-bold text-[#FFF9E9] flex items-center gap-2 text-base">
+            <ShieldCheck className="w-5 h-5 text-[#FFF9E9]" />
             <span>{seller.verificationStatus}</span>
           </div>
         </div>
@@ -99,59 +99,59 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
 
       {/* Analytics Metric Cards Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl p-6 space-y-3 shadow-sm hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between text-[#565C38]">
+        <div className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl p-6 space-y-3 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between text-[#55615D]">
             <span className="text-xs font-semibold uppercase tracking-wider">Profile Views</span>
-            <div className="w-8 h-8 rounded-full bg-[#EFF2D2] flex items-center justify-center text-[#1A1A00]">
+            <div className="w-8 h-8 rounded-full bg-[#F3ECD8] flex items-center justify-center text-[#1A2225]">
               <Eye className="w-4 h-4" />
             </div>
           </div>
-          <div className="font-outfit text-3xl font-bold text-[#1A1A00]">2,431</div>
-          <div className="text-xs text-[#1A1A00] font-medium">+18% this week</div>
+          <div className="font-outfit text-3xl font-bold text-[#1A2225]">2,431</div>
+          <div className="text-xs text-[#1A2225] font-medium">+18% this week</div>
         </div>
 
-        <div className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl p-6 space-y-3 shadow-sm hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between text-[#565C38]">
+        <div className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl p-6 space-y-3 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between text-[#55615D]">
             <span className="text-xs font-semibold uppercase tracking-wider">Product Saves</span>
-            <div className="w-8 h-8 rounded-full bg-[#EFF2D2] flex items-center justify-center text-[#1A1A00]">
+            <div className="w-8 h-8 rounded-full bg-[#F3ECD8] flex items-center justify-center text-[#1A2225]">
               <Bookmark className="w-4 h-4" />
             </div>
           </div>
-          <div className="font-outfit text-3xl font-bold text-[#1A1A00]">482</div>
-          <div className="text-xs text-[#565C38] font-sans">Across 8 pieces</div>
+          <div className="font-outfit text-3xl font-bold text-[#1A2225]">482</div>
+          <div className="text-xs text-[#55615D] font-sans">Across 8 pieces</div>
         </div>
 
-        <div className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl p-6 space-y-3 shadow-sm hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between text-[#565C38]">
+        <div className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl p-6 space-y-3 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between text-[#55615D]">
             <span className="text-xs font-semibold uppercase tracking-wider">Followers</span>
-            <div className="w-8 h-8 rounded-full bg-[#EFF2D2] flex items-center justify-center text-[#1A1A00]">
+            <div className="w-8 h-8 rounded-full bg-[#F3ECD8] flex items-center justify-center text-[#1A2225]">
               <Users className="w-4 h-4" />
             </div>
           </div>
-          <div className="font-outfit text-3xl font-bold text-[#1A1A00]">{seller.followerCount}</div>
-          <div className="text-xs text-[#565C38] font-sans">Active Davao buyers</div>
+          <div className="font-outfit text-3xl font-bold text-[#1A2225]">{seller.followerCount}</div>
+          <div className="text-xs text-[#55615D] font-sans">Active Davao buyers</div>
         </div>
 
-        <div className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl p-6 space-y-3 shadow-sm hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between text-[#565C38]">
+        <div className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl p-6 space-y-3 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center justify-between text-[#55615D]">
             <span className="text-xs font-semibold uppercase tracking-wider">Active Pieces</span>
-            <div className="w-8 h-8 rounded-full bg-[#EFF2D2] flex items-center justify-center text-[#1A1A00]">
+            <div className="w-8 h-8 rounded-full bg-[#F3ECD8] flex items-center justify-center text-[#1A2225]">
               <Tag className="w-4 h-4" />
             </div>
           </div>
-          <div className="font-outfit text-3xl font-bold text-[#1A1A00]">{inventoryList.length}</div>
-          <div className="text-xs text-[#565C38] font-sans">Available in catalog</div>
+          <div className="font-outfit text-3xl font-bold text-[#1A2225]">{inventoryList.length}</div>
+          <div className="text-xs text-[#55615D] font-sans">Available in catalog</div>
         </div>
       </div>
 
       {/* Capsule Tabs Bar */}
-      <div className="flex flex-wrap items-center gap-2 p-1.5 bg-[#EFF2D2] rounded-full w-fit">
+      <div className="flex flex-wrap items-center gap-2 p-1.5 bg-[#F3ECD8] rounded-full w-fit">
         <button
           onClick={() => setActiveTab('overview')}
           className={`px-5 py-2.5 text-xs font-semibold rounded-full transition-all cursor-pointer ${
             activeTab === 'overview'
-              ? 'bg-[#1A1A00] text-[#FFFFCC] shadow-sm'
-              : 'text-[#565C38] hover:text-[#1A1A00] hover:bg-[#EFF2D2]/80'
+              ? 'bg-[#1A2225] text-[#FFF9E9] shadow-sm'
+              : 'text-[#55615D] hover:text-[#1A2225] hover:bg-[#F3ECD8]/80'
           }`}
         >
           Inventory Manager
@@ -161,8 +161,8 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
           onClick={() => setActiveTab('inventory')}
           className={`px-5 py-2.5 text-xs font-semibold rounded-full transition-all cursor-pointer ${
             activeTab === 'inventory'
-              ? 'bg-[#1A1A00] text-[#FFFFCC] shadow-sm'
-              : 'text-[#565C38] hover:text-[#1A1A00] hover:bg-[#EFF2D2]/80'
+              ? 'bg-[#1A2225] text-[#FFF9E9] shadow-sm'
+              : 'text-[#55615D] hover:text-[#1A2225] hover:bg-[#F3ECD8]/80'
           }`}
         >
           Add New Piece
@@ -171,25 +171,25 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
 
       {/* Success Toast */}
       {isSuccessToast && (
-        <div className="bg-[#1A1A00] text-[#FFFFCC] p-4 rounded-2xl text-xs sm:text-sm font-medium flex items-center gap-3 shadow-lg border border-[#1A1A00]/20 animate-in fade-in">
-          <CheckCircle2 className="w-5 h-5 text-[#FFFFCC] shrink-0" />
+        <div className="bg-[#1A2225] text-[#FFF9E9] p-4 rounded-2xl text-xs sm:text-sm font-medium flex items-center gap-3 shadow-lg border border-[#1A2225]/20 animate-in fade-in">
+          <CheckCircle2 className="w-5 h-5 text-[#FFF9E9] shrink-0" />
           <span>New product successfully added to your Davao storefront catalog!</span>
         </div>
       )}
 
       {/* Inventory Manager */}
       {activeTab === 'overview' && (
-        <div className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl p-6 sm:p-8 space-y-4 shadow-sm">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E1E6B6] gap-2">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#565C38]">
+        <div className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl p-6 sm:p-8 space-y-4 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E6DCC0] gap-2">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#55615D]">
               Manage Catalog Items ({inventoryList.length})
             </h3>
-            <span className="text-xs text-[#565C38] font-sans">
+            <span className="text-xs text-[#55615D] font-sans">
               Click status to cycle: Available &rarr; Reserved &rarr; Sold Out
             </span>
           </div>
 
-          <div className="divide-y divide-[#E1E6B6]">
+          <div className="divide-y divide-[#E6DCC0]">
             {inventoryList.map((item) => (
               <div
                 key={item.id}
@@ -199,28 +199,28 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
                   <img
                     src={item.images[0]}
                     alt={item.name}
-                    className="w-14 h-14 rounded-2xl object-cover border border-[#E1E6B6] shadow-sm shrink-0"
+                    className="w-14 h-14 rounded-2xl object-cover border border-[#E6DCC0] shadow-sm shrink-0"
                   />
                   <div>
-                    <h4 className="font-outfit font-bold text-sm text-[#1A1A00]">{item.name}</h4>
-                    <div className="text-xs text-[#565C38] mt-0.5">
+                    <h4 className="font-outfit font-bold text-sm text-[#1A2225]">{item.name}</h4>
+                    <div className="text-xs text-[#55615D] mt-0.5">
                       ₱{item.price.toLocaleString()} • Size {item.size} • {item.isOneOfOne ? '1-of-1' : 'Standard Stock'}
                     </div>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <span className="text-xs text-[#565C38]">
+                  <span className="text-xs text-[#55615D]">
                     {item.saveCount} saves
                   </span>
                   <button
                     onClick={() => handleToggleStatus(item.id)}
                     className={`px-4 py-2 rounded-full text-xs font-semibold transition-all border cursor-pointer ${
                       item.status === 'Available'
-                        ? 'bg-[#1A1A00] text-[#FFFFCC] border-[#1A1A00] shadow-sm'
+                        ? 'bg-[#1A2225] text-[#FFF9E9] border-[#1A2225] shadow-sm'
                         : item.status === 'Reserved'
-                        ? 'bg-[#EFF2D2] text-[#1A1A00] border-[#E1E6B6]'
-                        : 'bg-[#EFF2D2] text-[#565C38] border-[#E1E6B6] line-through'
+                        ? 'bg-[#F3ECD8] text-[#1A2225] border-[#E6DCC0]'
+                        : 'bg-[#F3ECD8] text-[#55615D] border-[#E6DCC0] line-through'
                     }`}
                   >
                     {item.status}
@@ -236,14 +236,14 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
       {activeTab === 'inventory' && (
         <form
           onSubmit={handleCreateProduct}
-          className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl p-6 sm:p-8 max-w-2xl space-y-6 shadow-sm"
+          className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl p-6 sm:p-8 max-w-2xl space-y-6 shadow-sm"
         >
-          <h3 className="font-outfit text-xl font-bold text-[#1A1A00] border-b border-[#E1E6B6] pb-4">
+          <h3 className="font-outfit text-xl font-bold text-[#1A2225] border-b border-[#E6DCC0] pb-4">
             Add New Fashion Piece to Storefront
           </h3>
 
           <div className="space-y-2">
-            <label className="block text-xs font-semibold text-[#565C38]">
+            <label className="block text-xs font-semibold text-[#55615D]">
               Item Title / Name *
             </label>
             <input
@@ -252,13 +252,13 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
               placeholder="e.g. Vintage 1994 Carhartt Detroit Jacket"
               value={newTitle}
               onChange={(e) => setNewTitle(e.target.value)}
-              className="w-full bg-[#F8F9EA] border border-[#E1E6B6] rounded-2xl px-4 py-3 text-sm text-[#1A1A00] focus:outline-none focus:ring-2 focus:ring-[#1A1A00]/20 font-sans"
+              className="w-full bg-[#FBF4E4] border border-[#E6DCC0] rounded-2xl px-4 py-3 text-sm text-[#1A2225] focus:outline-none focus:ring-2 focus:ring-[#1A2225]/20 font-sans"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-[#565C38]">
+              <label className="block text-xs font-semibold text-[#55615D]">
                 Price (PHP ₱) *
               </label>
               <input
@@ -267,18 +267,18 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
                 placeholder="e.g. 1250"
                 value={newPrice}
                 onChange={(e) => setNewPrice(e.target.value)}
-                className="w-full bg-[#F8F9EA] border border-[#E1E6B6] rounded-2xl px-4 py-3 text-sm text-[#1A1A00] focus:outline-none focus:ring-2 focus:ring-[#1A1A00]/20"
+                className="w-full bg-[#FBF4E4] border border-[#E6DCC0] rounded-2xl px-4 py-3 text-sm text-[#1A2225] focus:outline-none focus:ring-2 focus:ring-[#1A2225]/20"
               />
             </div>
 
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-[#565C38]">
+              <label className="block text-xs font-semibold text-[#55615D]">
                 Size
               </label>
               <select
                 value={newSize}
                 onChange={(e) => setNewSize(e.target.value)}
-                className="w-full bg-[#F8F9EA] border border-[#E1E6B6] rounded-2xl px-4 py-3 text-sm text-[#1A1A00] focus:outline-none focus:ring-2 focus:ring-[#1A1A00]/20"
+                className="w-full bg-[#FBF4E4] border border-[#E6DCC0] rounded-2xl px-4 py-3 text-sm text-[#1A2225] focus:outline-none focus:ring-2 focus:ring-[#1A2225]/20"
               >
                 <option value="Small">Small</option>
                 <option value="Medium">Medium</option>
@@ -291,13 +291,13 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-[#565C38]">
+              <label className="block text-xs font-semibold text-[#55615D]">
                 Category
               </label>
               <select
                 value={newCategory}
                 onChange={(e) => setNewCategory(e.target.value)}
-                className="w-full bg-[#F8F9EA] border border-[#E1E6B6] rounded-2xl px-4 py-3 text-sm text-[#1A1A00] focus:outline-none focus:ring-2 focus:ring-[#1A1A00]/20"
+                className="w-full bg-[#FBF4E4] border border-[#E6DCC0] rounded-2xl px-4 py-3 text-sm text-[#1A2225] focus:outline-none focus:ring-2 focus:ring-[#1A2225]/20"
               >
                 <option value="Outerwear">Outerwear</option>
                 <option value="Streetwear">Streetwear</option>
@@ -309,7 +309,7 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
             </div>
 
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-[#565C38]">
+              <label className="block text-xs font-semibold text-[#55615D]">
                 Inventory Type
               </label>
               <button
@@ -317,8 +317,8 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
                 onClick={() => setIsOneOfOne(!isOneOfOne)}
                 className={`w-full py-3 px-4 rounded-2xl text-xs font-semibold transition-all border cursor-pointer ${
                   isOneOfOne
-                    ? 'bg-[#1A1A00] text-[#FFFFCC] border-[#1A1A00] shadow-sm'
-                    : 'bg-[#EFF2D2] text-[#1A1A00] border-[#E1E6B6]'
+                    ? 'bg-[#1A2225] text-[#FFF9E9] border-[#1A2225] shadow-sm'
+                    : 'bg-[#F3ECD8] text-[#1A2225] border-[#E6DCC0]'
                 }`}
               >
                 {isOneOfOne ? '1-of-1 Thrift Piece' : 'Standard Stock'}
@@ -328,7 +328,7 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
 
           <button
             type="submit"
-            className="w-full py-3.5 bg-[#1A1A00] hover:bg-[#1A1A00]/90 text-[#FFFFCC] rounded-full text-xs font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-3.5 bg-[#1A2225] hover:bg-[#1A2225]/90 text-[#FFF9E9] rounded-full text-xs font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Publish Piece to Davao Storefront</span>

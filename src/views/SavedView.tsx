@@ -40,8 +40,8 @@ export const SavedView: React.FC<SavedViewProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Header Banner */}
-      <div className="relative overflow-hidden bg-[#1A1A00] text-[#FFFFCC] p-8 sm:p-12 rounded-3xl border border-[#1A1A00]/20 shadow-xl space-y-3">
-        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#DCE2B8] font-semibold">
+      <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-8 sm:p-12 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
+        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#E0DFC8] font-semibold">
           PERSONAL CLOSET
         </div>
 
@@ -49,19 +49,19 @@ export const SavedView: React.FC<SavedViewProps> = ({
           Saved Fashion
         </h1>
 
-        <p className="text-[#DCE2B8] text-sm sm:text-base max-w-2xl font-sans leading-relaxed">
+        <p className="text-[#E0DFC8] text-sm sm:text-base max-w-2xl font-sans leading-relaxed">
           Your saved 1-of-1 thrift pieces, followed Davao creators, and drop reminders stored in your browser.
         </p>
       </div>
 
       {/* Capsule Tabs */}
-      <div className="flex flex-wrap items-center gap-2 p-1.5 bg-[#EFF2D2] rounded-full w-fit">
+      <div className="flex flex-wrap items-center gap-2 p-1.5 bg-[#F3ECD8] rounded-full w-fit">
         <button
           onClick={() => setActiveTab('products')}
           className={`flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-full transition-all cursor-pointer ${
             activeTab === 'products'
-              ? 'bg-[#1A1A00] text-[#FFFFCC] shadow-sm'
-              : 'text-[#565C38] hover:text-[#1A1A00] hover:bg-[#EFF2D2]/80'
+              ? 'bg-[#1A2225] text-[#FFF9E9] shadow-sm'
+              : 'text-[#55615D] hover:text-[#1A2225] hover:bg-[#F3ECD8]/80'
           }`}
         >
           <SavedIcon className="w-3.5 h-3.5" />
@@ -72,8 +72,8 @@ export const SavedView: React.FC<SavedViewProps> = ({
           onClick={() => setActiveTab('sellers')}
           className={`flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-full transition-all cursor-pointer ${
             activeTab === 'sellers'
-              ? 'bg-[#1A1A00] text-[#FFFFCC] shadow-sm'
-              : 'text-[#565C38] hover:text-[#1A1A00] hover:bg-[#EFF2D2]/80'
+              ? 'bg-[#1A2225] text-[#FFF9E9] shadow-sm'
+              : 'text-[#55615D] hover:text-[#1A2225] hover:bg-[#F3ECD8]/80'
           }`}
         >
           <DashboardIcon className="w-3.5 h-3.5" />
@@ -84,8 +84,8 @@ export const SavedView: React.FC<SavedViewProps> = ({
           onClick={() => setActiveTab('drops')}
           className={`flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-full transition-all cursor-pointer ${
             activeTab === 'drops'
-              ? 'bg-[#1A1A00] text-[#FFFFCC] shadow-sm'
-              : 'text-[#565C38] hover:text-[#1A1A00] hover:bg-[#EFF2D2]/80'
+              ? 'bg-[#1A2225] text-[#FFF9E9] shadow-sm'
+              : 'text-[#55615D] hover:text-[#1A2225] hover:bg-[#F3ECD8]/80'
           }`}
         >
           <DropsIcon className="w-3.5 h-3.5" />
@@ -103,12 +103,12 @@ export const SavedView: React.FC<SavedViewProps> = ({
               onSelectSeller={onSelectSeller}
             />
           ) : (
-            <div className="p-12 bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl text-center space-y-3 shadow-sm">
-              <div className="w-14 h-14 rounded-full bg-[#EFF2D2] flex items-center justify-center mx-auto text-[#1A1A00]">
+            <div className="p-12 bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl text-center space-y-3 shadow-sm">
+              <div className="w-14 h-14 rounded-full bg-[#F3ECD8] flex items-center justify-center mx-auto text-[#1A2225]">
                 <SavedIcon className="w-6 h-6" />
               </div>
-              <div className="font-outfit text-lg font-bold text-[#1A1A00]">No Saved Items Yet</div>
-              <p className="text-sm text-[#565C38] font-sans max-w-sm mx-auto">
+              <div className="font-outfit text-lg font-bold text-[#1A2225]">No Saved Items Yet</div>
+              <p className="text-sm text-[#55615D] font-sans max-w-sm mx-auto">
                 Explore the feed and tap the bookmark icon on any item to save it here.
               </p>
             </div>
@@ -124,29 +124,29 @@ export const SavedView: React.FC<SavedViewProps> = ({
               <div
                 key={seller.id}
                 onClick={() => onSelectSeller(seller.id)}
-                className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl p-6 space-y-4 cursor-pointer hover:border-[#1A1A00]/40 hover:shadow-md transition-all shadow-sm group"
+                className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl p-6 space-y-4 cursor-pointer hover:border-[#1A2225]/40 hover:shadow-md transition-all shadow-sm group"
               >
                 <div className="flex items-center gap-3.5">
                   <img
                     src={seller.logoUrl}
                     alt={seller.name}
-                    className="w-12 h-12 rounded-full object-cover border border-[#E1E6B6] shrink-0 group-hover:scale-105 transition-transform"
+                    className="w-12 h-12 rounded-full object-cover border border-[#E6DCC0] shrink-0 group-hover:scale-105 transition-transform"
                   />
                   <div>
-                    <h3 className="font-outfit font-bold text-base text-[#1A1A00]">{seller.name}</h3>
-                    <div className="text-xs text-[#565C38] font-sans">@{seller.handle} • {seller.location.district}</div>
+                    <h3 className="font-outfit font-bold text-base text-[#1A2225]">{seller.name}</h3>
+                    <div className="text-xs text-[#55615D] font-sans">@{seller.handle} • {seller.location.district}</div>
                   </div>
                 </div>
-                <p className="text-sm font-sans text-[#565C38] line-clamp-2 leading-relaxed">{seller.description}</p>
+                <p className="text-sm font-sans text-[#55615D] line-clamp-2 leading-relaxed">{seller.description}</p>
               </div>
             ))
           ) : (
-            <div className="col-span-full p-12 bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl text-center space-y-3 shadow-sm">
-              <div className="w-14 h-14 rounded-full bg-[#EFF2D2] flex items-center justify-center mx-auto text-[#1A1A00]">
+            <div className="col-span-full p-12 bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl text-center space-y-3 shadow-sm">
+              <div className="w-14 h-14 rounded-full bg-[#F3ECD8] flex items-center justify-center mx-auto text-[#1A2225]">
                 <DashboardIcon className="w-6 h-6" />
               </div>
-              <div className="font-outfit text-lg font-bold text-[#1A1A00]">No Followed Brands</div>
-              <p className="text-sm text-[#565C38] font-sans max-w-sm mx-auto">
+              <div className="font-outfit text-lg font-bold text-[#1A2225]">No Followed Brands</div>
+              <p className="text-sm text-[#55615D] font-sans max-w-sm mx-auto">
                 Follow local Davao streetwear creators and thrift accounts to prioritize their drops in your feed.
               </p>
             </div>
@@ -162,12 +162,12 @@ export const SavedView: React.FC<SavedViewProps> = ({
               <DropCard key={drop.id} drop={drop} onExploreDrop={onExploreDrop} />
             ))
           ) : (
-            <div className="p-12 bg-[#FFFFCC] border border-[#E1E6B6] rounded-3xl text-center space-y-3 shadow-sm">
-              <div className="w-14 h-14 rounded-full bg-[#EFF2D2] flex items-center justify-center mx-auto text-[#1A1A00]">
+            <div className="p-12 bg-[#FFF9E9] border border-[#E6DCC0] rounded-3xl text-center space-y-3 shadow-sm">
+              <div className="w-14 h-14 rounded-full bg-[#F3ECD8] flex items-center justify-center mx-auto text-[#1A2225]">
                 <Bell className="w-6 h-6" />
               </div>
-              <div className="font-outfit text-lg font-bold text-[#1A1A00]">No Active Drop Reminders</div>
-              <p className="text-sm text-[#565C38] font-sans max-w-sm mx-auto">
+              <div className="font-outfit text-lg font-bold text-[#1A2225]">No Active Drop Reminders</div>
+              <p className="text-sm text-[#55615D] font-sans max-w-sm mx-auto">
                 Tap 'Remind Me' on upcoming Davao collection drops to get notified before launch.
               </p>
             </div>

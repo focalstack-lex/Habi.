@@ -21,29 +21,29 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
 
   return (
     <>
-      <footer className="bg-[#1A1A00] text-[#DCE2B8] border-t border-[#3A401D] font-sans">
+      <footer className="bg-[#1A2225] text-[#E0DFC8] border-t border-[#39464A] font-sans">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
             {/* Brand Col */}
             <div className="md:col-span-1 space-y-4">
-              <span className="font-outfit text-3xl font-bold tracking-tight text-[#FFFFCC] block">
+              <span className="font-outfit text-3xl font-bold tracking-tight text-[#FFF9E9] block">
                 Habi
               </span>
-              <p className="text-[#B5BC91] text-sm leading-relaxed font-sans">
+              <p className="text-[#B9BCA8] text-sm leading-relaxed font-sans">
                 Davao Region's digital fashion community, visual discovery platform, and local marketplace for independent clothing brands, thrift shops, and vintage sellers.
               </p>
-              <div className="flex items-center gap-2 text-xs text-[#B5BC91] pt-2">
-                <MapPin className="w-4 h-4 text-[#FFFFCC]" />
+              <div className="flex items-center gap-2 text-xs text-[#B9BCA8] pt-2">
+                <MapPin className="w-4 h-4 text-[#FFF9E9]" />
                 <span>Davao Region, Philippines</span>
               </div>
             </div>
 
             {/* Davao Cities Directory */}
             <div className="space-y-3 text-sm">
-              <div className="text-xs uppercase tracking-wider text-[#FFFFCC] font-semibold">
+              <div className="text-xs uppercase tracking-wider text-[#FFF9E9] font-semibold">
                 Explore Cities
               </div>
-              <ul className="space-y-2 text-[#DCE2B8]">
+              <ul className="space-y-2 text-[#E0DFC8]">
                 {['Davao City', 'Tagum City', 'Digos City', 'Panabo City', 'Mati City', 'Samal Island'].map((city) => (
                   <li key={city}>
                     <button
@@ -52,7 +52,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
                         setActiveTab('feed');
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
-                      className="hover:text-[#FFFFCC] transition-colors flex items-center gap-1 group text-sm cursor-pointer"
+                      className="hover:text-[#FFF9E9] transition-colors flex items-center gap-1 group text-sm cursor-pointer"
                     >
                       <span>{city}</span>
                       <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -64,10 +64,10 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
 
             {/* Aesthetic Styles */}
             <div className="space-y-3 text-sm">
-              <div className="text-xs uppercase tracking-wider text-[#FFFFCC] font-semibold">
+              <div className="text-xs uppercase tracking-wider text-[#FFF9E9] font-semibold">
                 Style Aesthetics
               </div>
-              <ul className="space-y-2 text-[#DCE2B8]">
+              <ul className="space-y-2 text-[#E0DFC8]">
                 {['Streetwear', 'Vintage Denim', 'Y2K Archives', 'Techwear', 'Gorpcore Outerwear', 'Workwear'].map((style) => (
                   <li key={style}>
                     <button
@@ -75,7 +75,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
                         setActiveTab('discover');
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
-                      className="hover:text-[#FFFFCC] transition-colors text-sm cursor-pointer"
+                      className="hover:text-[#FFF9E9] transition-colors text-sm cursor-pointer"
                     >
                       {style}
                     </button>
@@ -86,10 +86,10 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
 
             {/* Local Creator & Seller Links */}
             <div className="space-y-3">
-              <div className="text-xs uppercase tracking-wider text-[#FFFFCC] font-semibold">
+              <div className="text-xs uppercase tracking-wider text-[#FFF9E9] font-semibold">
                 Local Creators
               </div>
-              <p className="text-[#B5BC91] text-sm leading-relaxed font-sans">
+              <p className="text-[#B9BCA8] text-sm leading-relaxed font-sans">
                 Are you a Davao thrift seller or local fashion brand? Create your storefront and schedule collection drops.
               </p>
               <button
@@ -97,7 +97,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
                   setActiveTab('dashboard');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FFFFCC] text-[#1A1A00] font-semibold text-xs rounded-full hover:bg-[#F2F7BF] transition-colors shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FFF9E9] text-[#1A2225] font-semibold text-xs rounded-full hover:bg-[#F2F7BF] transition-colors shadow-sm cursor-pointer"
               >
                 <span>Join as Davao Seller</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
@@ -106,26 +106,26 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
           </div>
 
           {/* Bottom Bar with Mandatory Legal & Privacy Disclosures */}
-          <div className="mt-16 pt-8 border-t border-[#3A401D] flex flex-col sm:flex-row items-center justify-between text-xs text-[#B5BC91] gap-4">
+          <div className="mt-16 pt-8 border-t border-[#39464A] flex flex-col sm:flex-row items-center justify-between text-xs text-[#B9BCA8] gap-4">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#FFFFCC]" />
+              <ShieldCheck className="w-4 h-4 text-[#FFF9E9]" />
               <span>Habi Davao Fashion Discovery. Registered Davao Reseller Network.</span>
             </div>
 
             <div className="flex items-center gap-6">
               <button
                 onClick={() => openLegalModal('privacy')}
-                className="hover:text-[#FFFFCC] transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="hover:text-[#FFF9E9] transition-colors flex items-center gap-1.5 cursor-pointer"
               >
                 <Lock className="w-3.5 h-3.5" />
                 <span>Privacy Policy</span>
               </button>
 
-              <span className="text-[#3A401D]">•</span>
+              <span className="text-[#39464A]">•</span>
 
               <button
                 onClick={() => openLegalModal('terms')}
-                className="hover:text-[#FFFFCC] transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="hover:text-[#FFF9E9] transition-colors flex items-center gap-1.5 cursor-pointer"
               >
                 <Scale className="w-3.5 h-3.5" />
                 <span>Terms of Service</span>

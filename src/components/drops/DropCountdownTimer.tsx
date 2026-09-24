@@ -35,32 +35,32 @@ export const DropCountdownTimer: React.FC<DropCountdownTimerProps> = ({ targetDa
 
   return (
     <div className="flex items-center gap-2 font-mono">
-      <div className="bg-[#1A1A00] text-[#FFFFCC] px-2.5 py-1 rounded-lg text-center">
+      <div className="bg-[#1A2225] text-[#FFF9E9] px-2.5 py-1 rounded-lg text-center">
         <span className="text-sm font-black block leading-none">
           {String(timeLeft.days).padStart(2, '0')}
         </span>
-        <span className="text-[8px] uppercase tracking-wider text-[#DCE2B8] block">Days</span>
+        <span className="text-[8px] uppercase tracking-wider text-[#E0DFC8] block">Days</span>
       </div>
-      <span className="font-bold text-[#1A1A00]">:</span>
-      <div className="bg-[#1A1A00] text-[#FFFFCC] px-2.5 py-1 rounded-lg text-center">
+      <span className="font-bold text-[#1A2225]">:</span>
+      <div className="bg-[#1A2225] text-[#FFF9E9] px-2.5 py-1 rounded-lg text-center">
         <span className="text-sm font-black block leading-none">
           {String(timeLeft.hours).padStart(2, '0')}
         </span>
-        <span className="text-[8px] uppercase tracking-wider text-[#DCE2B8] block">Hours</span>
+        <span className="text-[8px] uppercase tracking-wider text-[#E0DFC8] block">Hours</span>
       </div>
-      <span className="font-bold text-[#1A1A00]">:</span>
-      <div className="bg-[#1A1A00] text-[#FFFFCC] px-2.5 py-1 rounded-lg text-center">
+      <span className="font-bold text-[#1A2225]">:</span>
+      <div className="bg-[#1A2225] text-[#FFF9E9] px-2.5 py-1 rounded-lg text-center">
         <span className="text-sm font-black block leading-none">
           {String(timeLeft.minutes).padStart(2, '0')}
         </span>
-        <span className="text-[8px] uppercase tracking-wider text-[#DCE2B8] block">Mins</span>
+        <span className="text-[8px] uppercase tracking-wider text-[#E0DFC8] block">Mins</span>
       </div>
-      <span className="font-bold text-[#1A1A00]">:</span>
-      <div className="bg-[#1A1A00] text-[#FFFFCC] px-2.5 py-1 rounded-lg text-center">
+      <span className="font-bold text-[#1A2225]">:</span>
+      <div className="bg-[#1A2225] text-[#FFF9E9] px-2.5 py-1 rounded-lg text-center">
         <span className="text-sm font-black block leading-none">
           {String(timeLeft.seconds).padStart(2, '0')}
         </span>
-        <span className="text-[8px] uppercase tracking-wider text-[#DCE2B8] block">Secs</span>
+        <span className="text-[8px] uppercase tracking-wider text-[#E0DFC8] block">Secs</span>
       </div>
     </div>
   );

@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-24",
+  "branch": "feature/color-theme-cream-green-pair",
+  "change": "Palette swap: #FFF9E9 cream dominant, #1A2225 dark green secondary (15-tone ramp remapped, rgba map vignette included)",
+  "launch": "npm run dev -- --host 127.0.0.1 --port 5199",
+  "doctor": {
+    "httpStatus": 200,
+    "rootElementPresent": true,
+    "title": "Habi - Davao Local Fashion Discovery Platform"
+  },
+  "drive": {
+    "viewportMobile": "390x844",
+    "viewportDesktop": "1440x900",
+    "steps": [
+      { "action": "load home feed", "evidence": "01-home-feed.png" },
+      { "action": "click Drops tab", "evidence": "02-drops.png" },
+      { "action": "click Map tab", "evidence": "03-map.png" },
+      { "action": "click Saved tab", "evidence": "04-saved.png" },
+      { "action": "click Dashboard tab", "evidence": "05-seller-dashboard.png" },
+      { "action": "click product card 'Heavyweight Boxy Monochrome Hoodie'", "evidence": "06-product-detail-modal.png" },
+      { "action": "Escape closes modal, desktop viewport home", "evidence": "07-home-desktop.png" }
+    ]
+  },
+  "console": { "errors": 0, "warnings": 0, "logFile": "console-all.log" },
+  "build": { "command": "npm run build", "result": "pass (tsc -b && vite build, 524ms; pre-existing 638kB chunk-size warning)" },
+  "lint": { "command": "npm run lint", "result": "0 errors, 9 warnings — identical count on stashed baseline, all pre-existing" },
+  "cleanup": "dev server stopped by task id, browser closed"
+}

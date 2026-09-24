@@ -37,9 +37,9 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
   };
 
   return (
-    <div className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden mb-6 sm:mb-8 font-sans shadow-sm hover:shadow-md transition-shadow duration-300 max-w-full">
+    <div className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden mb-6 sm:mb-8 font-sans shadow-sm hover:shadow-md transition-shadow duration-300 max-w-full">
       {/* Cover Banner with Misty Gradient Overlay & Bookmark Button */}
-      <div className="h-44 sm:h-56 md:h-72 relative bg-[#1A1A00] overflow-hidden">
+      <div className="h-44 sm:h-56 md:h-72 relative bg-[#1A2225] overflow-hidden">
         <img
           src={seller.coverUrl}
           alt={seller.name}
@@ -47,10 +47,10 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
         />
 
         {/* Top subtle dark gradient for bookmark visibility */}
-        <div className="absolute inset-x-0 top-0 h-16 sm:h-20 bg-gradient-to-b from-[#1A1A00]/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-16 sm:h-20 bg-gradient-to-b from-[#1A2225]/40 to-transparent pointer-events-none" />
 
         {/* Bottom smooth misty gradient fade transitioning into solid card background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FFFFCC]/70 via-65% to-[#FFFFCC] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FFF9E9]/70 via-65% to-[#FFF9E9] pointer-events-none" />
 
         {/* Floating Bookmark Button (Top-Right) */}
         <button
@@ -58,18 +58,18 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
           aria-label="Save seller profile"
           className={`absolute top-3 right-3 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-md border cursor-pointer ${
             isBookmarked
-              ? 'bg-[#1A1A00] text-[#FFFFCC] border-[#1A1A00] shadow-md scale-105'
-              : 'bg-[#FFFFCC]/85 text-[#1A1A00] border-[#E1E6B6] hover:bg-[#FFFFCC] shadow-sm hover:scale-105'
+              ? 'bg-[#1A2225] text-[#FFF9E9] border-[#1A2225] shadow-md scale-105'
+              : 'bg-[#FFF9E9]/85 text-[#1A2225] border-[#E6DCC0] hover:bg-[#FFF9E9] shadow-sm hover:scale-105'
           }`}
         >
-          <Bookmark className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isBookmarked ? 'fill-[#FFFFCC]' : ''}`} />
+          <Bookmark className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isBookmarked ? 'fill-[#FFF9E9]' : ''}`} />
         </button>
       </div>
 
       {/* Main Profile Info Section */}
       <div className="px-4 sm:px-8 lg:px-10 pb-6 sm:pb-8 relative z-10 -mt-12 sm:-mt-16 lg:-mt-20">
         {/* Avatar Circle */}
-        <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full border-3 sm:border-4 border-[#FFFFCC] shadow-xl overflow-hidden bg-[#1A1A00] shrink-0 mb-3 sm:mb-4 lg:mb-5">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full border-3 sm:border-4 border-[#FFF9E9] shadow-xl overflow-hidden bg-[#1A2225] shrink-0 mb-3 sm:mb-4 lg:mb-5">
           <img
             src={seller.logoUrl}
             alt={seller.name}
@@ -82,27 +82,27 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
           {/* Left Column: Name & Description */}
           <div className="space-y-1.5 sm:space-y-2 max-w-2xl">
             <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-              <h1 className="font-outfit text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1A1A00] tracking-tight leading-tight">
+              <h1 className="font-outfit text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1A2225] tracking-tight leading-tight">
                 {seller.name}
               </h1>
-              <span className="text-xs text-[#565C38] font-mono shrink-0">@{seller.handle}</span>
+              <span className="text-xs text-[#55615D] font-mono shrink-0">@{seller.handle}</span>
             </div>
 
-            <p className="text-[#1A1A00]/80 text-xs sm:text-sm md:text-base font-normal leading-relaxed">
+            <p className="text-[#1A2225]/80 text-xs sm:text-sm md:text-base font-normal leading-relaxed">
               {seller.description}
             </p>
 
             {/* Micro Metadata Line with Icons */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs sm:text-sm text-[#565C38] font-medium pt-0.5 sm:pt-1">
-              <div className="flex items-center gap-1.5 text-[#1A1A00]">
-                <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#565C38] shrink-0" />
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs sm:text-sm text-[#55615D] font-medium pt-0.5 sm:pt-1">
+              <div className="flex items-center gap-1.5 text-[#1A2225]">
+                <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#55615D] shrink-0" />
                 <span>{seller.verificationStatus}</span>
               </div>
 
-              <span className="text-[#E1E6B6]">•</span>
+              <span className="text-[#E6DCC0]">•</span>
 
-              <div className="flex items-center gap-1.5 text-[#1A1A00]">
-                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#565C38] shrink-0" />
+              <div className="flex items-center gap-1.5 text-[#1A2225]">
+                <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#55615D] shrink-0" />
                 <span>
                   {seller.location.district}, {seller.location.city}
                 </span>
@@ -110,9 +110,9 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
 
               {seller.location.openingHours && (
                 <>
-                  <span className="text-[#E1E6B6] hidden xs:inline">•</span>
-                  <div className="flex items-center gap-1.5 text-[#565C38] w-full xs:w-auto mt-0.5 xs:mt-0">
-                    <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#565C38] shrink-0" />
+                  <span className="text-[#E6DCC0] hidden xs:inline">•</span>
+                  <div className="flex items-center gap-1.5 text-[#55615D] w-full xs:w-auto mt-0.5 xs:mt-0">
+                    <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#55615D] shrink-0" />
                     <span>{seller.location.openingHours}</span>
                   </div>
                 </>
@@ -121,27 +121,27 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
           </div>
 
           {/* Right Column: Category Badges & Social Links */}
-          <div className="flex flex-wrap lg:flex-col items-center sm:items-start lg:items-end justify-between sm:justify-start gap-2.5 shrink-0 pt-1 lg:pt-0 border-t border-[#E1E6B6] sm:border-none pt-3 sm:pt-0">
+          <div className="flex flex-wrap lg:flex-col items-center sm:items-start lg:items-end justify-between sm:justify-start gap-2.5 shrink-0 pt-1 lg:pt-0 border-t border-[#E6DCC0] sm:border-none pt-3 sm:pt-0">
             {/* Category Chips / Aesthetics */}
             <div className="flex items-center gap-1.5 flex-wrap">
               {seller.categories && seller.categories.length > 0 ? (
                 seller.categories.map((cat) => (
                   <span
                     key={cat}
-                    className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#EFF2D2] text-[#1A1A00] text-[11px] sm:text-xs font-medium border border-[#E1E6B6]"
+                    className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#F3ECD8] text-[#1A2225] text-[11px] sm:text-xs font-medium border border-[#E6DCC0]"
                   >
                     {cat}
                   </span>
                 ))
               ) : (
-                <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#EFF2D2] text-[#1A1A00] text-[11px] sm:text-xs font-medium border border-[#E1E6B6]">
+                <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#F3ECD8] text-[#1A2225] text-[11px] sm:text-xs font-medium border border-[#E6DCC0]">
                   Curated Archive
                 </span>
               )}
               {seller.aesthetics && seller.aesthetics.slice(0, 2).map((aes) => (
                 <span
                   key={aes}
-                  className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#F8F9EA] text-[#565C38] text-[11px] sm:text-xs font-medium border border-[#E1E6B6] hidden xs:inline-block"
+                  className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#FBF4E4] text-[#55615D] text-[11px] sm:text-xs font-medium border border-[#E6DCC0] hidden xs:inline-block"
                 >
                   {aes}
                 </span>
@@ -150,7 +150,7 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
 
             {/* Social Links & Web */}
             <div className="flex items-center gap-2">
-              <span className="text-[10px] sm:text-xs font-semibold text-[#565C38] uppercase tracking-wider mr-0.5">
+              <span className="text-[10px] sm:text-xs font-semibold text-[#55615D] uppercase tracking-wider mr-0.5">
                 Connect
               </span>
               {seller.socialLinks.instagram && (
@@ -158,7 +158,7 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
                   href={seller.socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#EFF2D2] text-[#1A1A00] hover:bg-[#1A1A00] hover:text-[#FFFFCC] transition-colors flex items-center justify-center border border-[#E1E6B6] shadow-2xs cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F3ECD8] text-[#1A2225] hover:bg-[#1A2225] hover:text-[#FFF9E9] transition-colors flex items-center justify-center border border-[#E6DCC0] shadow-2xs cursor-pointer"
                   aria-label="Instagram"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -171,7 +171,7 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
                   href={seller.socialLinks.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#EFF2D2] text-[#1A1A00] hover:bg-[#1A1A00] hover:text-[#FFFFCC] transition-colors flex items-center justify-center border border-[#E1E6B6] shadow-2xs cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F3ECD8] text-[#1A2225] hover:bg-[#1A2225] hover:text-[#FFF9E9] transition-colors flex items-center justify-center border border-[#E6DCC0] shadow-2xs cursor-pointer"
                   aria-label="Facebook"
                 >
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -181,7 +181,7 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
               )}
               <a
                 href="#store-info"
-                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#EFF2D2] text-[#1A1A00] hover:bg-[#1A1A00] hover:text-[#FFFFCC] transition-colors flex items-center justify-center border border-[#E1E6B6] shadow-2xs cursor-pointer"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F3ECD8] text-[#1A2225] hover:bg-[#1A2225] hover:text-[#FFF9E9] transition-colors flex items-center justify-center border border-[#E6DCC0] shadow-2xs cursor-pointer"
                 aria-label="Website"
               >
                 <Globe className="w-3.5 h-3.5" />
@@ -191,42 +191,42 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
         </div>
 
         {/* Divider & Bottom Section (Stats + Primary Actions) */}
-        <div className="border-t border-[#E1E6B6] mt-5 sm:mt-8 pt-4 sm:pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
+        <div className="border-t border-[#E6DCC0] mt-5 sm:mt-8 pt-4 sm:pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
           {/* Stats Section with Hairline Vertical Dividers */}
-          <div className="grid grid-cols-3 sm:flex items-center gap-2 sm:gap-8 bg-[#EFF2D2]/50 sm:bg-transparent p-2.5 sm:p-0 rounded-2xl sm:rounded-none border border-[#E1E6B6] sm:border-none divide-x divide-[#E1E6B6] sm:divide-x-0 text-center sm:text-left">
+          <div className="grid grid-cols-3 sm:flex items-center gap-2 sm:gap-8 bg-[#F3ECD8]/50 sm:bg-transparent p-2.5 sm:p-0 rounded-2xl sm:rounded-none border border-[#E6DCC0] sm:border-none divide-x divide-[#E6DCC0] sm:divide-x-0 text-center sm:text-left">
             {/* Metric 1: Rating */}
             <div className="space-y-0.5 px-1 sm:px-0">
-              <div className="flex items-center justify-center sm:justify-start gap-1 font-bold text-[#1A1A00] text-sm sm:text-base lg:text-lg tracking-tight">
+              <div className="flex items-center justify-center sm:justify-start gap-1 font-bold text-[#1A2225] text-sm sm:text-base lg:text-lg tracking-tight">
                 <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400 shrink-0" />
                 <span>4.9</span>
               </div>
-              <span className="text-[10px] sm:text-xs text-[#565C38] font-medium lowercase tracking-wide block">
+              <span className="text-[10px] sm:text-xs text-[#55615D] font-medium lowercase tracking-wide block">
                 rating
               </span>
             </div>
 
             {/* Vertical Divider (Desktop) */}
-            <div className="hidden sm:block h-8 w-px bg-[#E1E6B6]" />
+            <div className="hidden sm:block h-8 w-px bg-[#E6DCC0]" />
 
             {/* Metric 2: Followers */}
             <div className="space-y-0.5 px-1 sm:px-0">
-              <div className="font-bold text-[#1A1A00] text-sm sm:text-base lg:text-lg tracking-tight">
+              <div className="font-bold text-[#1A2225] text-sm sm:text-base lg:text-lg tracking-tight">
                 {followerCount.toLocaleString()}
               </div>
-              <span className="text-[10px] sm:text-xs text-[#565C38] font-medium lowercase tracking-wide block">
+              <span className="text-[10px] sm:text-xs text-[#55615D] font-medium lowercase tracking-wide block">
                 followers
               </span>
             </div>
 
             {/* Vertical Divider (Desktop) */}
-            <div className="hidden sm:block h-8 w-px bg-[#E1E6B6]" />
+            <div className="hidden sm:block h-8 w-px bg-[#E6DCC0]" />
 
             {/* Metric 3: Store Views */}
             <div className="space-y-0.5 px-1 sm:px-0">
-              <div className="font-bold text-[#1A1A00] text-sm sm:text-base lg:text-lg tracking-tight">
+              <div className="font-bold text-[#1A2225] text-sm sm:text-base lg:text-lg tracking-tight">
                 {seller.viewCount.toLocaleString()}
               </div>
-              <span className="text-[10px] sm:text-xs text-[#565C38] font-medium lowercase tracking-wide block">
+              <span className="text-[10px] sm:text-xs text-[#55615D] font-medium lowercase tracking-wide block">
                 store views
               </span>
             </div>
@@ -236,9 +236,9 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
           <div className="flex items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
             <button
               onClick={() => setShowContactModal((prev) => !prev)}
-              className="flex-1 sm:flex-initial px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-[#EFF2D2] text-[#1A1A00] hover:bg-[#EFF2D2]/80 text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 border border-[#E1E6B6] cursor-pointer shrink-0"
+              className="flex-1 sm:flex-initial px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-[#F3ECD8] text-[#1A2225] hover:bg-[#F3ECD8]/80 text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 border border-[#E6DCC0] cursor-pointer shrink-0"
             >
-              <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1A1A00]" />
+              <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1A2225]" />
               <span>Get in touch</span>
             </button>
 
@@ -246,8 +246,8 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
               onClick={handleFollowToggle}
               className={`flex-1 sm:flex-initial px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition-all flex items-center justify-center gap-1.5 shadow-sm cursor-pointer shrink-0 ${
                 isFollowed
-                  ? 'bg-[#EFF2D2] text-[#1A1A00] border border-[#E1E6B6] hover:bg-[#EFF2D2]/80'
-                  : 'bg-[#1A1A00] text-[#FFFFCC] hover:bg-[#1A1A00]/90 hover:shadow-md'
+                  ? 'bg-[#F3ECD8] text-[#1A2225] border border-[#E6DCC0] hover:bg-[#F3ECD8]/80'
+                  : 'bg-[#1A2225] text-[#FFF9E9] hover:bg-[#1A2225]/90 hover:shadow-md'
               }`}
             >
               {isFollowed ? (
@@ -267,7 +267,7 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
 
         {/* Contact Toast / Popover when 'Get in touch' is clicked */}
         {showContactModal && (
-          <div className="mt-4 p-3.5 sm:p-4 rounded-2xl bg-[#1A1A00] text-[#FFFFCC] flex items-center justify-between text-xs sm:text-sm shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="mt-4 p-3.5 sm:p-4 rounded-2xl bg-[#1A2225] text-[#FFF9E9] flex items-center justify-between text-xs sm:text-sm shadow-xl animate-in fade-in slide-in-from-top-2 duration-200">
             <div className="flex items-center gap-2.5 sm:gap-3">
               <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />
               <span>
@@ -276,7 +276,7 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
             </div>
             <button
               onClick={() => setShowContactModal(false)}
-              className="px-3 py-1 rounded-full bg-[#1A1A00]/80 text-[#FFFFCC] hover:bg-[#1A1A00] text-xs transition-colors cursor-pointer shrink-0 ml-2"
+              className="px-3 py-1 rounded-full bg-[#1A2225]/80 text-[#FFF9E9] hover:bg-[#1A2225] text-xs transition-colors cursor-pointer shrink-0 ml-2"
             >
               Dismiss
             </button>

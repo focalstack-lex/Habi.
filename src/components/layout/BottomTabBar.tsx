@@ -41,7 +41,7 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
     <div className="lg:hidden fixed bottom-4 left-4 right-4 z-40 flex justify-center pointer-events-none">
       <nav
         aria-label="Primary Mobile Navigation"
-        className="pointer-events-auto bg-[#1A1A00]/95 backdrop-blur-xl border border-[#3A401D]/80 shadow-2xl rounded-full px-3 py-1.5 flex items-center justify-between gap-1 max-w-md w-full"
+        className="pointer-events-auto bg-[#1A2225]/95 backdrop-blur-xl border border-[#39464A]/80 shadow-2xl rounded-full px-3 py-1.5 flex items-center justify-between gap-1 max-w-md w-full"
       >
         {tabs.map((tab) => {
           const Icon = TAB_ICONS[tab.id] || FeedIcon;
@@ -54,15 +54,15 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
               aria-current={isActive ? 'page' : undefined}
               className={`relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-full transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-[#FFFFCC] text-[#1A1A00] shadow-md font-bold'
-                  : 'text-[#C3C99C] hover:text-[#FFFFCC] hover:bg-[#2A2A08]'
+                  ? 'bg-[#FFF9E9] text-[#1A2225] shadow-md font-bold'
+                  : 'text-[#C8CBB4] hover:text-[#FFF9E9] hover:bg-[#252E31]'
               }`}
             >
               <Icon className="w-4 h-4" />
               <span className="text-[9px] font-semibold mt-0.5">{tab.label}</span>
               {tab.id === 'saved' && savedCount > 0 && (
                 <span className={`absolute -top-1 -right-1 min-w-[15px] h-[15px] rounded-full text-[8px] flex items-center justify-center font-bold ${
-                  isActive ? 'bg-[#1A1A00] text-[#FFFFCC]' : 'bg-[#FFFFCC] text-[#1A1A00]'
+                  isActive ? 'bg-[#1A2225] text-[#FFF9E9]' : 'bg-[#FFF9E9] text-[#1A2225]'
                 }`}>
                   {savedCount}
                 </span>

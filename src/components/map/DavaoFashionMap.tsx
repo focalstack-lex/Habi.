@@ -95,9 +95,9 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
             ">
               <!-- Top Label Pill -->
               <div style="
-                background-color: #1A1A00;
-                color: #FFFFCC;
-                border: 1px solid ${isSelected ? '#FFFFCC' : '#E1E6B6'};
+                background-color: #1A2225;
+                color: #FFF9E9;
+                border: 1px solid ${isSelected ? '#FFF9E9' : '#E6DCC0'};
                 border-radius: 9999px;
                 padding: 4px 10px;
                 font-family: 'Avant Garde', 'Outfit', sans-serif;
@@ -117,8 +117,8 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
                 width: 36px;
                 height: 36px;
                 border-radius: 9999px;
-                background-color: #1A1A00;
-                border: 2px solid ${isPhysical ? '#FFFFCC' : '#E1E6B6'};
+                background-color: #1A2225;
+                border: 2px solid ${isPhysical ? '#FFF9E9' : '#E6DCC0'};
                 box-shadow: 0 10px 25px rgba(0,0,0,0.35);
                 position: relative;
                 overflow: hidden;
@@ -132,8 +132,8 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
                   width: 9px;
                   height: 9px;
                   border-radius: 9999px;
-                  background-color: ${isPhysical ? '#FFFFCC' : '#565C38'};
-                  border: 1.5px solid #1A1A00;
+                  background-color: ${isPhysical ? '#FFF9E9' : '#55615D'};
+                  border: 1.5px solid #1A2225;
                 "></span>
               </div>
             </div>
@@ -176,9 +176,9 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-6">
       {/* Header Info Banner */}
-      <div className="relative overflow-hidden bg-[#1A1A00] text-[#FFFFCC] p-8 sm:p-12 rounded-3xl border border-[#1A1A00]/20 shadow-xl space-y-3">
-        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#DCE2B8] font-semibold flex items-center gap-2">
-          <Compass className="w-3.5 h-3.5 text-[#FFFFCC]" />
+      <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-8 sm:p-12 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
+        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#E0DFC8] font-semibold flex items-center gap-2">
+          <Compass className="w-3.5 h-3.5 text-[#FFF9E9]" />
           <span>MINDANAO REGION EXCLUSIVE MAP</span>
         </div>
 
@@ -186,20 +186,20 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
           Fashion Near You
         </h1>
 
-        <p className="text-[#DCE2B8] text-sm sm:text-base max-w-2xl font-sans leading-relaxed">
+        <p className="text-[#E0DFC8] text-sm sm:text-base max-w-2xl font-sans leading-relaxed">
           Explore local thrift shops, clothing boutiques, pop-up markets, and independent fashion creators across Davao City, Tagum, Digos, Panabo, and Mati.
         </p>
       </div>
 
       {/* Map Container with Mindanao Focus & Vignette Mask */}
-      <div className="relative rounded-3xl border border-[#E1E6B6] overflow-hidden shadow-lg h-[540px] bg-[#1A1A00] z-0">
+      <div className="relative rounded-3xl border border-[#E6DCC0] overflow-hidden shadow-lg h-[540px] bg-[#1A2225] z-0">
         <div ref={mapContainerRef} className="w-full h-full z-0" />
 
         {/* High-Fashion Vignette Shadow Frame Overlay */}
-        <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_80px_rgba(26,26,0,0.4)] rounded-3xl z-10" />
+        <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_80px_rgba(26,34,37,0.4)] rounded-3xl z-10" />
 
         {/* Floating Quick City Jump Controls */}
-        <div className="absolute top-4 left-4 sm:left-6 z-20 flex flex-wrap items-center gap-2 bg-[#1A1A00]/90 backdrop-blur-md p-1.5 rounded-full border border-[#FFFFCC]/20 shadow-xl">
+        <div className="absolute top-4 left-4 sm:left-6 z-20 flex flex-wrap items-center gap-2 bg-[#1A2225]/90 backdrop-blur-md p-1.5 rounded-full border border-[#FFF9E9]/20 shadow-xl">
           {['All Davao Region', 'Davao City', 'Tagum', 'Digos'].map((city) => {
             const isActive = activeCityFilter === city;
             return (
@@ -208,8 +208,8 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
                 onClick={() => handleCitySelect(city)}
                 className={`px-3.5 py-1.5 text-[11px] font-avantgarde font-bold tracking-wider uppercase rounded-full transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-[#FFFFCC] text-[#1A1A00] shadow-sm'
-                    : 'text-[#DCE2B8] hover:text-[#FFFFCC] hover:bg-[#FFFFCC]/10'
+                    ? 'bg-[#FFF9E9] text-[#1A2225] shadow-sm'
+                    : 'text-[#E0DFC8] hover:text-[#FFF9E9] hover:bg-[#FFF9E9]/10'
                 }`}
               >
                 {city === 'All Davao Region' ? 'Mindanao / Davao' : city}
@@ -220,14 +220,14 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
 
         {/* Selected Seller Drawer Overlay */}
         {selectedSeller && (
-          <div className="absolute bottom-6 left-6 right-6 sm:left-auto sm:right-6 sm:w-96 bg-[#F8F9EA]/95 backdrop-blur-xl border border-[#E1E6B6] rounded-3xl p-6 shadow-2xl z-[1000] space-y-4 animate-in fade-in slide-in-from-bottom-4">
-            <div className="flex items-center justify-between border-b border-[#E1E6B6] pb-3">
-              <span className="font-avantgarde text-[11px] font-bold uppercase tracking-widest text-[#565C38]">
+          <div className="absolute bottom-6 left-6 right-6 sm:left-auto sm:right-6 sm:w-96 bg-[#FBF4E4]/95 backdrop-blur-xl border border-[#E6DCC0] rounded-3xl p-6 shadow-2xl z-[1000] space-y-4 animate-in fade-in slide-in-from-bottom-4">
+            <div className="flex items-center justify-between border-b border-[#E6DCC0] pb-3">
+              <span className="font-avantgarde text-[11px] font-bold uppercase tracking-widest text-[#55615D]">
                 SELECTED SELLER
               </span>
               <button
                 onClick={() => setSelectedSeller(null)}
-                className="text-xs text-[#565C38] hover:text-[#1A1A00] font-semibold px-2.5 py-1 bg-[#EFF2D2] hover:bg-[#EFF2D2]/80 rounded-full transition-colors cursor-pointer"
+                className="text-xs text-[#55615D] hover:text-[#1A2225] font-semibold px-2.5 py-1 bg-[#F3ECD8] hover:bg-[#F3ECD8]/80 rounded-full transition-colors cursor-pointer"
               >
                 Close
               </button>
@@ -237,29 +237,29 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
               <img
                 src={selectedSeller.logoUrl}
                 alt={selectedSeller.name}
-                className="w-12 h-12 rounded-full object-cover border border-[#E1E6B6] shadow-sm shrink-0"
+                className="w-12 h-12 rounded-full object-cover border border-[#E6DCC0] shadow-sm shrink-0"
               />
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-outfit font-bold text-base text-[#1A1A00] truncate">{selectedSeller.name}</h3>
-                  <ShieldCheck className="w-4 h-4 text-[#1A1A00] shrink-0" />
+                  <h3 className="font-outfit font-bold text-base text-[#1A2225] truncate">{selectedSeller.name}</h3>
+                  <ShieldCheck className="w-4 h-4 text-[#1A2225] shrink-0" />
                 </div>
-                <div className="text-xs text-[#565C38] truncate font-sans">
+                <div className="text-xs text-[#55615D] truncate font-sans">
                   @{selectedSeller.handle} • {selectedSeller.location.district}
                 </div>
               </div>
             </div>
 
-            <div className="space-y-1.5 text-xs text-[#565C38] font-sans">
+            <div className="space-y-1.5 text-xs text-[#55615D] font-sans">
               <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#565C38] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#55615D] shrink-0 mt-0.5" />
                 <span>
                   {selectedSeller.location.address || `${selectedSeller.location.district}, ${selectedSeller.location.city}`}
                 </span>
               </div>
               {selectedSeller.location.openingHours && (
-                <div className="flex items-center gap-2 text-[#565C38]">
-                  <Clock className="w-4 h-4 text-[#565C38] shrink-0" />
+                <div className="flex items-center gap-2 text-[#55615D]">
+                  <Clock className="w-4 h-4 text-[#55615D] shrink-0" />
                   <span>{selectedSeller.location.openingHours}</span>
                 </div>
               )}
@@ -267,7 +267,7 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
 
             <button
               onClick={() => onSelectSeller(selectedSeller.id)}
-              className="w-full py-3 bg-[#1A1A00] hover:bg-[#1A1A00]/90 text-[#FFFFCC] rounded-full text-xs font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3 bg-[#1A2225] hover:bg-[#1A2225]/90 text-[#FFF9E9] rounded-full text-xs font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
             >
               <Store className="w-4 h-4" />
               <span>Visit Seller Storefront</span>

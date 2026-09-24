@@ -1,0 +1,12 @@
+Total messages: 3 (Errors: 0, Warnings: 0)
+Returning 9 messages for level "debug"
+
+[DEBUG] [vite] connecting... @ http://127.0.0.1:5199/@vite/client:882
+[INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:5199/node_modules/.vite/deps/react-dom_client.js?v=794bc846:15804
+[DEBUG] [vite] connected. @ http://127.0.0.1:5199/@vite/client:995
+[DEBUG] [vite] connecting... @ http://127.0.0.1:5199/@vite/client:882
+[DEBUG] [vite] connected. @ http://127.0.0.1:5199/@vite/client:995
+[INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:5199/node_modules/.vite/deps/react-dom_client.js?v=794bc846:15804
+[DEBUG] [vite] connecting... @ http://127.0.0.1:5199/@vite/client:882
+[DEBUG] [vite] connected. @ http://127.0.0.1:5199/@vite/client:995
+[INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:5199/node_modules/.vite/deps/react-dom_client.js?v=794bc846:15804

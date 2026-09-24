@@ -488,6 +488,26 @@
 - Omnichannel Responsiveness: Verified responsive behavior across mobile, tablet, and desktop viewports with updated color tokens.
 - Compliance: Maintained strict Zero Emoji, Zero Em-Dash, and Anti-Eyebrow-Pill directives.
 
+## [2026-09-24] Session Log: Cream-Dominant Dark Green Color Pair Theme (`feature/color-theme-cream-green-pair`)
+
+### System Architecture & Color Integration
+- **Separate Theme Branch**: Created branch `feature/color-theme-cream-green-pair` from `feature/color-theme-green-pair` HEAD so the prior token architecture is inherited and the two palettes remain independently comparable.
+- **Palette Roles Per Reference Pair**: Upper color cream (`#FFF9E9`) promoted to dominant (canvas, cards, light surfaces, text-on-dark); darker tone (`#1A2225`) demoted to secondary (headers, footer, buttons, active chips, dark panels).
+- **15-Tone Ramp Remapped**: Every derived olive tone re-hued to the cream/charcoal ramp at its original lightness step so hover states, hairlines, and text-on-dark relationships are preserved:
+  - Dark anchor `#1A1A00` → `#1A2225`; near-black text `#141703` → `#141A1C`, `#161B05` → `#161D1F`; dark hover `#2A2A08` → `#252E31`; dark borders `#3A401D` → `#39464A`; hover text `#4A5028` → `#4A575B`; muted text `#565C38` → `#55615D`.
+  - Light anchor `#FFFFCC` → `#FFF9E9`; light hover `#F2F7BF` → `#F8F1DC`; canvas `#F8F9EA` → `#FBF4E4`; surface `#EFF2D2` → `#F3ECD8`; surface hover `#E2E6C2` → `#E8DFC6`; hairline `#E1E6B6` → `#E6DCC0`; text-on-dark `#DCE2B8` → `#E0DFC8`; inactive-on-dark `#C3C99C` → `#C8CBB4`; muted-on-dark `#B5BC91` → `#B9BCA8`.
+- **Map Vignette rgba**: `rgba(26,26,0,0.4)` inset shadow in `DavaoFashionMap.tsx` → `rgba(26,34,37,0.4)` (the only non-hex palette carrier found).
+- **Contrast Verified By Computation**: muted text on cream ~6.2:1 (AA), cream on dark anchor ~15.4:1, muted-on-dark ~8.3:1 — all pairs meet or exceed WCAG AA.
+- **Scope Discipline**: Neutral zinc scrollbar/overlay colors (`#09090B`, `#18181B`, `#ffffff`) left untouched; semantic accent colors untouched; token names unchanged (minimal diff, no class renames).
+
+### Verification Results
+- `grep` sweep: 0 occurrences of all 15 old palette hexes or `26,26,0` remain in `src/` or `index.html`.
+- `npm run build`: 0 errors in 524ms (pre-existing 638 kB chunk-size warning only).
+- `npm run lint`: 0 errors, 9 warnings — identical count on stashed baseline (all pre-existing, none introduced).
+- UI Verification (reports/ui-verification/2026-09-24-cream-green/): Vite driven at 127.0.0.1:5199 (doctor: HTTP 200, root mounted); Playwright drive at 390x844 and 1440x900 across Feed, Drops, Map, Saved, Dashboard, and Product Detail Modal; 7 screenshots + console log + summary.json captured; console 0 errors / 0 warnings; dev server stopped by task id after the run.
+- Known pre-existing gap re-observed, unchanged: detail sheet does not close on Escape (documented in project memory; out of scope for this color-only change).
+- Compliance: Maintained strict Zero Emoji, Zero Em-Dash, and Anti-Eyebrow-Pill directives.
+
 
 
 
