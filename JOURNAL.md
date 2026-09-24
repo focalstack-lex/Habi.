@@ -488,8 +488,6 @@
 - Omnichannel Responsiveness: Verified responsive behavior across mobile, tablet, and desktop viewports with updated color tokens.
 - Compliance: Maintained strict Zero Emoji, Zero Em-Dash, and Anti-Eyebrow-Pill directives.
 
-## [2026-09-24] Session Log: Cream-Dominant Dark Green Color Pair Theme (`feature/color-theme-cream-green-pair`)
-
 ### System Architecture & Color Integration
 - **Separate Theme Branch**: Created branch `feature/color-theme-cream-green-pair` from `feature/color-theme-green-pair` HEAD so the prior token architecture is inherited and the two palettes remain independently comparable.
 - **Palette Roles Per Reference Pair**: Upper color cream (`#FFF9E9`) promoted to dominant (canvas, cards, light surfaces, text-on-dark); darker tone (`#1A2225`) demoted to secondary (headers, footer, buttons, active chips, dark panels).
@@ -511,3 +509,10 @@
 
 
 
+
+## [2026-09-25] Session Log: Branch Publication to Origin
+
+- **Pushed all local branches to `origin`** (github.com/focalstack-lex/Habi): `feature/color-theme-cream-green-pair` (35c90c7, new), `feature/color-theme-green-pair` (d726534, new), and `master` (6ef8fd8, fast-forward `b85b0d1..6ef8fd8`).
+- Upstream tracking set on all three; verified via `git ls-remote --heads` that remote SHAs match local.
+- Secret pre-push check: only `.env.example` tracked, no credential material in pushed history.
+- Enables collaborator checkout of both theme branches for side-by-side palette comparison.
