@@ -403,6 +403,21 @@
 - `npm run build`: Compiled with **0 errors** in 872ms (`dist/assets/index-DC4GgLIL.css` 55.64 kB, `dist/assets/index-CU3XkY1R.js` 618.38 kB).
 - Pushed commit `d978a1b` to `origin/master`.
 
+---
+
+## [2026-09-24] Session Log: Seller Profile Redesign & Anti-Slop Layout Fix
+
+### UI Layout & Typography Refinements
+- **Title Overlap Resolution**: Restructured cover image and profile container positioning in [`SellerHeader.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/seller/SellerHeader.tsx). Pushed seller title (`VOID ARCHIVE`) 100% onto the white canvas below the avatar, eliminating text clipping across cover photos.
+- **Cooper BT Typography**: Upgraded seller brand title to chunky Cooper BT typography (`font-cooper text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-950`).
+- **Pill Badge Elimination**: Removed formulaic black rounded pill badge (`Verified Business`) and replaced it with clean Avant Garde Gothic micro-typography (`VERIFIED BUSINESS • MATINA, DAVAO CITY`).
+- **High-Fashion Underline Navigation**: Replaced rounded bubble pills in [`SellerStorefront.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/seller/SellerStorefront.tsx) with clean text tabs (`font-avantgarde text-xs uppercase tracking-widest`) featuring hairline active underlines (`border-b-2 border-zinc-950`).
+
+### Verification & Deployment
+- `npm run build`: Compiled with **0 errors** in 1.11s (`dist/assets/index-Aj-aU7RL.css` 56.14 kB, `dist/assets/index-BN3V716w.js` 618.64 kB).
+- Pushed commit `4edb5dc` to `origin/master`.
+
+
 
 
 
