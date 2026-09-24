@@ -157,7 +157,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                         selectedImageIndex === idx ? 'border-white scale-95 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'
                       }`}
                     >
-                      <img src={img} alt="" className="w-full h-full object-cover" />
+                      <img src={img} alt={`${product.name} thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>
@@ -181,8 +181,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   <h1 className="font-outfit text-2xl sm:text-3xl font-bold text-zinc-950 tracking-tight leading-snug">
                     {product.name}
                   </h1>
-                  <div className="text-2xl font-bold text-zinc-950 mt-1">
-                    ₱{product.price.toLocaleString()}
+                  <div className="flex items-baseline gap-2 mt-1">
+                    <span className="text-2xl font-bold text-zinc-950">
+                      ₱{product.price.toLocaleString()}
+                    </span>
+                    <span className="text-xs text-zinc-400 font-medium">
+                      (Inclusive of regional processing)
+                    </span>
                   </div>
                 </div>
 
@@ -199,6 +204,17 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       <span>{product.location}</span>
                     </span>
                   </div>
+                </div>
+
+                {/* Consumer Protection & Return Policy Disclaimer (P2 & P3 Fix) */}
+                <div className="p-3.5 rounded-2xl bg-zinc-50 border border-zinc-200/70 space-y-1.5 text-xs text-zinc-600">
+                  <div className="flex items-center gap-1.5 text-zinc-900 font-semibold text-[11px]">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>Consumer Terms & Pre-Owned Sanitization</span>
+                  </div>
+                  <p className="text-[11px] leading-relaxed text-zinc-500">
+                    1-of-1 curated vintage items are final sale. Pre-owned garments are sanitized by local Davao sellers prior to fulfillment. Independent reseller catalog listing.
+                  </p>
                 </div>
 
                 {/* Conditional Variant Block */}

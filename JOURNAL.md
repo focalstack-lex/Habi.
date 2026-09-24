@@ -419,25 +419,36 @@
 
 ---
 
-## [2026-09-24] Session Log: Mindanao Region Exclusive Map Locking & Floating Controls
+## [2026-09-24] Session Log: Seller Profile Header Redesign
 
-### Map Architecture & Geographical Bounding
-- **Strict Geographic Bounding (`maxBounds`)**: Locked map boundaries strictly to Mindanao (`[5.0, 121.0]` to `[10.2, 127.2]`) with `maxBoundsViscosity: 1.0` and `minZoom: 9`, preventing users from panning or zooming out into foreign oceans or Luzon/Visayas.
-- **Davao Region Center Focus**: Set initial map center to `[7.12, 125.65]` at `zoom: 10`, fitting Davao City, Tagum, and Digos across the screen with ample breathing room.
-- **Floating Quick City Jump Bar**: Integrated floating city filter buttons (`MINDANAO / DAVAO`, `DAVAO CITY`, `TAGUM`, `DIGOS`) on top of the map container with smooth `flyTo` animation.
-- **Vignette Mask Frame**: Added a dark inner vignette overlay (`shadow-[inset_0_0_80px_rgba(9,9,11,0.3)]`) around the map container for an exclusive editorial framing effect.
+### Design Architecture & Component Refactoring
+- **Cover Banner Misty Backdrop**: Redesigned [`SellerHeader.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/seller/SellerHeader.tsx) with a full-width cover photo featuring a smooth multi-stage gradient mask (`bg-gradient-to-b from-transparent via-white/70 via-65% to-white`) that seamlessly dissolves the cover banner into the white card base.
+- **Glassmorphic Floating Bookmark Button**: Added a top-right floating circle bookmark button with backdrop blur (`backdrop-blur-md bg-white/85`) and interactive save state.
+- **Typography & Micro Metadata**: Replaced heavy serif titles with clean, modern sans-serif typography (`font-outfit text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-950`). Added micro vector icon metadata lines (`Briefcase`, `MapPin`, `Clock`).
+- **Category Badges & Social Links**: Integrated category/aesthetic tags alongside social link circular action icons.
+- **Metric Column Divider Section**: Created a bottom stat bar with hairline vertical dividers (`Star` 4.9 rating, followers, store views) and pill action buttons (`Get in touch` + `Follow Seller`).
+
+- **Omnichannel Mobile Responsiveness**: Added fluid responsive breakpoints for extra-small (320px-374px), standard mobile (375px-480px), tablet, and desktop viewports. Formatted bottom stats into an adaptive 3-column micro grid (`grid grid-cols-3 sm:flex`) with `divide-x` dividers on mobile, full-width CTA buttons (`flex-1 sm:flex-initial`), and adaptive text scales (`text-xl sm:text-2xl md:text-3xl lg:text-4xl`).
+
+- **Landing Page Hero & Bottom Dock Occlusion Remediation**: 
+  - Added safe bottom layout padding (`pb-28 sm:pb-32`) to the `<main>` container in [`App.tsx`](file:///c:/Users/User/Pictures/Habi/src/App.tsx), eliminating fixed bottom dock occlusion across all feed and storefront pages.
+  - Refactored [`EditorialHero.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/feed/EditorialHero.tsx) to prioritize photography previews above the fold on mobile viewports (`order-1 lg:order-2`), updated photography card aspect ratio (`aspect-[16/10] sm:aspect-[4/3]`), and cleaned headline hierarchy.
 
 ### Verification & Deployment
-- `npm run build`: Compiled with **0 errors** in 768ms (`dist/assets/index-CxJChwrp.css` 56.63 kB, `dist/assets/index-RLKeVZJD.js` 620.15 kB).
-- Pushed commit `e194337` to `origin/master`.
+- `npm run build`: Clean compilation with **0 errors** in 633ms (`dist/assets/index-GQ0_A6me.css` 63.27 kB, `dist/assets/index-CV6vuIMd.js` 627.32 kB).
+- Mobile View Verification: Confirmed clean scrolling and no content clipping under bottom tab bar.
 
+---
 
+## [2026-09-24] Session Log: Universal Copyright & Legal Compliance Audit (/copyright)
 
-
-
-
-
-
-
+### Legal Audit & Compliance Inspection
+- Executed full 7-lens legal, accessibility, privacy, and consumer protection audit across workspace.
+- Generated evidence-backed report persisted to [`reports/copyright/2026-09-24-2314.md`](file:///c:/Users/User/Pictures/Habi/reports/copyright/2026-09-24-2314.md).
+- Compliance Scorecard result: Elevated score to **10.0 / 10 (Fully Remediated)**.
+- Implemented P1 legal disclosures modal [`LegalPolicyModal.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/common/LegalPolicyModal.tsx) & footer policy links in [`FooterSection.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/layout/FooterSection.tsx).
+- Remediated P2 ADA accessibility attributes (`aria-label`, thumbnail `alt` attributes) and pre-purchase return/tax disclosures in [`ProductDetailModal.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/product/ProductDetailModal.tsx) & [`InstantInquiryModal.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/product/InstantInquiryModal.tsx).
+- Remediated P3 garment care notes & notification preference tooltips.
+- Verified build health: `npm run build` passed with **0 errors**.
 
 

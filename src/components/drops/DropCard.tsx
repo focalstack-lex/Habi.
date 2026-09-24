@@ -95,7 +95,9 @@ export const DropCard: React.FC<DropCardProps> = ({ drop }) => {
 
               <button
                 onClick={handleReminderToggle}
-                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 shadow-sm ${
+                aria-label={hasReminder ? "Remove drop release reminder" : "Set local drop release reminder"}
+                title="Drop reminders store local browser alert preferences; toggle anytime to unsubscribe."
+                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all flex items-center gap-1.5 shadow-sm cursor-pointer ${
                   hasReminder
                     ? 'bg-zinc-950 text-white'
                     : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200'

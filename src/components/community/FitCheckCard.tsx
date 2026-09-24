@@ -114,7 +114,8 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
         <div className="flex items-center justify-between pt-3 border-t border-zinc-100 text-sm">
           <button
             onClick={handleLike}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all ${
+            aria-label={hasLiked ? "Unlike outfit post" : "Like outfit post"}
+            className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all cursor-pointer ${
               hasLiked
                 ? 'bg-zinc-950 text-white border-zinc-950 font-semibold'
                 : 'bg-zinc-50 text-zinc-600 border-zinc-200/80 hover:bg-zinc-100'

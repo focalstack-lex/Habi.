@@ -127,6 +127,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
               <input
                 type="text"
                 placeholder="Search pieces, brands..."
+                aria-label="Search local Davao fashion pieces and sellers"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-zinc-100/90 border border-transparent focus:border-zinc-300 focus:bg-white rounded-full pl-9 pr-7 py-2 text-xs font-sans text-zinc-900 placeholder:text-zinc-400 focus:outline-none transition-all shadow-inner"
@@ -182,6 +183,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
             <input
               type="text"
               placeholder="Search pieces, brands, hoodies..."
+              aria-label="Search local Davao fashion pieces and sellers"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-zinc-100 rounded-full pl-9 pr-4 py-2 text-xs font-sans text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:bg-white focus:ring-1 focus:ring-zinc-300 border border-transparent"

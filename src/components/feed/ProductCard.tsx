@@ -56,12 +56,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Floating Wishlist Pill Button */}
         <button
           onClick={handleSaveClick}
+          aria-label={isSaved ? "Remove from saved products" : "Save product"}
           className={`absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all shadow-md z-10 ${
             isSaved
               ? 'bg-zinc-950 text-white'
               : 'bg-white/90 backdrop-blur-md text-zinc-700 hover:bg-white hover:text-zinc-950 hover:scale-105'
           }`}
-          aria-label="Save item"
         >
           <SavedIcon className={`w-3.5 h-3.5 ${isSaved ? 'fill-current' : ''}`} />
         </button>

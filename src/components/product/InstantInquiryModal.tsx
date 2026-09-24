@@ -136,6 +136,27 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
           </div>
         </div>
 
+        {/* Supported Payment Methods & Regional Shipping Disclosure (P2 Tax & Financial Transparency Fix) */}
+        <div className="space-y-2 pt-1">
+          <span className="block text-[11px] text-zinc-500 font-semibold uppercase tracking-wider">
+            Accepted Local Payment Methods & Shipping:
+          </span>
+          <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold text-zinc-700">
+            <span className="px-2.5 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-800">
+              GCash
+            </span>
+            <span className="px-2.5 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-800">
+              Cash on Pickup
+            </span>
+            <span className="px-2.5 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-800">
+              Bank Transfer
+            </span>
+            <span className="px-2.5 py-1 rounded-full bg-zinc-50 border border-zinc-200/60 text-zinc-500 font-normal">
+              Courier Delivery ₱80-120
+            </span>
+          </div>
+        </div>
+
         {/* Seller Direct Guarantee Notice */}
         <div className="flex items-start gap-2.5 text-xs text-zinc-600 bg-zinc-100/80 p-3 rounded-2xl border border-zinc-200/60">
           <ShieldCheck className="w-4 h-4 text-zinc-950 shrink-0 mt-0.5" />
