@@ -1,13 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import type { Seller } from '../../types/fashion';
-import { MapPin, Store, ShieldCheck, Clock } from 'lucide-react';
+import { MapPin, Store, ShieldCheck, Clock, Compass } from 'lucide-react';
 
 interface DavaoFashionMapProps {
   sellers: Seller[];
   selectedCity: string;
   onSelectSeller: (sellerId: string) => void;
 }
+
+// Bounding box strictly covering Mindanao Region (prevents panning into foreign oceans/islands)
+const MINDANAO_BOUNDS = L.latLngBounds(
+  [5.0, 121.0], // Southwest
+  [10.2, 127.2]  // Northeast
+);
+
+const CITY_COORDINATES: Record<string, { lat: number; lng: number; zoom: number }> = {
+  'All Davao Region': { lat: 7.12, lng: 125.65, zoom: 10 },
+  'Davao City': { lat: 7.0707, lng: 125.6087, zoom: 13 },
+  'Tagum': { lat: 7.4473, lng: 125.8078, zoom: 13 },
+  'Digos': { lat: 6.7562, lng: 125.3572, zoom: 13 },
+};
 
 export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
   sellers,
@@ -18,27 +31,40 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
   const mapInstanceRef = useRef<L.Map | null>(null);
   const markersGroupRef = useRef<L.LayerGroup | null>(null);
   const [selectedSeller, setSelectedSeller] = useState<Seller | null>(null);
+  const [activeCityFilter, setActiveCityFilter] = useState<string>(selectedCity || 'All Davao Region');
+
+  useEffect(() => {
+    if (selectedCity) {
+      setActiveCityFilter(selectedCity);
+    }
+  }, [selectedCity]);
 
   // Filter sellers by selected city
   const filteredSellers = sellers.filter((seller) => {
-    if (selectedCity === 'All Davao Region') return true;
-    return seller.location.city.toLowerCase().includes(selectedCity.toLowerCase());
+    if (activeCityFilter === 'All Davao Region') return true;
+    return seller.location.city.toLowerCase().includes(activeCityFilter.toLowerCase());
   });
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
 
-    // Initialize Leaflet Map centered on Davao Region (Davao City 7.0707, 125.6087)
+    // Initialize Leaflet Map locked strictly to Mindanao Region
     if (!mapInstanceRef.current) {
       const map = L.map(mapContainerRef.current, {
-        center: [7.0707, 125.6087],
-        zoom: 12,
+        center: [7.12, 125.65],
+        zoom: 10,
+        minZoom: 9,
+        maxZoom: 18,
+        maxBounds: MINDANAO_BOUNDS,
+        maxBoundsViscosity: 1.0,
         zoomControl: true,
       });
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19,
+        minZoom: 9,
+        maxZoom: 18,
+        bounds: MINDANAO_BOUNDS,
       }).addTo(map);
 
       markersGroupRef.current = L.layerGroup().addTo(map);
@@ -130,18 +156,30 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
       });
 
       if (filteredSellers.length > 0) {
-        const bounds = L.latLngBounds(filteredSellers.map((s) => [s.location.lat, s.location.lng]));
-        map.fitBounds(bounds, { padding: [70, 70], maxZoom: 12 });
+        if (activeCityFilter === 'All Davao Region') {
+          map.flyTo([7.12, 125.65], 10, { duration: 0.8 });
+        } else {
+          const coords = CITY_COORDINATES[activeCityFilter];
+          if (coords) {
+            map.flyTo([coords.lat, coords.lng], coords.zoom, { duration: 0.8 });
+          }
+        }
       }
     }
-  }, [filteredSellers]);
+  }, [filteredSellers, activeCityFilter]);
+
+  const handleCitySelect = (city: string) => {
+    setActiveCityFilter(city);
+    setSelectedSeller(null);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-6">
       {/* Header Info Banner */}
       <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 rounded-3xl border border-zinc-800/80 shadow-xl space-y-3">
-        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-zinc-400 font-semibold">
-          INTERACTIVE DAVAO MAP
+        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-zinc-400 font-semibold flex items-center gap-2">
+          <Compass className="w-3.5 h-3.5 text-emerald-400" />
+          <span>MINDANAO REGION EXCLUSIVE MAP</span>
         </div>
 
         <h1 className="font-outfit text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
@@ -153,20 +191,43 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
         </p>
       </div>
 
-      {/* Map Container */}
-      <div className="relative rounded-3xl border border-zinc-200/80 overflow-hidden shadow-md h-[520px] bg-zinc-100 z-0">
+      {/* Map Container with Mindanao Focus & Vignette Mask */}
+      <div className="relative rounded-3xl border border-zinc-200/90 overflow-hidden shadow-lg h-[540px] bg-zinc-950 z-0">
         <div ref={mapContainerRef} className="w-full h-full z-0" />
+
+        {/* High-Fashion Vignette Shadow Frame Overlay */}
+        <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_80px_rgba(9,9,11,0.3)] rounded-3xl z-10" />
+
+        {/* Floating Quick City Jump Controls */}
+        <div className="absolute top-4 left-4 sm:left-6 z-20 flex flex-wrap items-center gap-2 bg-zinc-950/90 backdrop-blur-md p-1.5 rounded-full border border-white/20 shadow-xl">
+          {['All Davao Region', 'Davao City', 'Tagum', 'Digos'].map((city) => {
+            const isActive = activeCityFilter === city;
+            return (
+              <button
+                key={city}
+                onClick={() => handleCitySelect(city)}
+                className={`px-3.5 py-1.5 text-[11px] font-avantgarde font-bold tracking-wider uppercase rounded-full transition-all cursor-pointer ${
+                  isActive
+                    ? 'bg-white text-zinc-950 shadow-sm'
+                    : 'text-zinc-300 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {city === 'All Davao Region' ? 'Mindanao / Davao' : city}
+              </button>
+            );
+          })}
+        </div>
 
         {/* Selected Seller Drawer Overlay */}
         {selectedSeller && (
           <div className="absolute bottom-6 left-6 right-6 sm:left-auto sm:right-6 sm:w-96 bg-white/95 backdrop-blur-xl border border-zinc-200/90 rounded-3xl p-6 shadow-2xl z-[1000] space-y-4 animate-in fade-in slide-in-from-bottom-4">
             <div className="flex items-center justify-between border-b border-zinc-100 pb-3">
-              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">
-                Selected Seller
+              <span className="font-avantgarde text-[11px] font-bold uppercase tracking-widest text-zinc-400">
+                SELECTED SELLER
               </span>
               <button
                 onClick={() => setSelectedSeller(null)}
-                className="text-xs text-zinc-500 hover:text-zinc-950 font-semibold px-2.5 py-1 bg-zinc-100 hover:bg-zinc-200 rounded-full transition-colors"
+                className="text-xs text-zinc-500 hover:text-zinc-950 font-semibold px-2.5 py-1 bg-zinc-100 hover:bg-zinc-200 rounded-full transition-colors cursor-pointer"
               >
                 Close
               </button>
@@ -206,7 +267,7 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
 
             <button
               onClick={() => onSelectSeller(selectedSeller.id)}
-              className="w-full py-3 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-xs font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+              className="w-full py-3 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-xs font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer"
             >
               <Store className="w-4 h-4" />
               <span>Visit Seller Storefront</span>
