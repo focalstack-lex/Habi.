@@ -109,20 +109,20 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
   };
 
   return (
-    <section className="bg-[#FAF9F6] border border-zinc-200/90 rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-12 my-3 sm:my-6 font-sans shadow-sm relative overflow-hidden">
+    <section className="bg-[#FFFFCC] border border-[#E1E6B6] rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-12 my-3 sm:my-6 font-sans shadow-sm relative overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-14 items-center">
         {/* Left Column: Clean Editorial Copy & Primary Action */}
         <div className="lg:col-span-5 space-y-4 sm:space-y-6 order-2 lg:order-1">
           <div className="space-y-2">
-            <h1 className="font-cooper text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-950 leading-[1.08]">
+            <h1 className="font-cooper text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1A1A00] leading-[1.08]">
               Local finds. Your style.
             </h1>
-            <p className="text-xs sm:text-sm font-semibold tracking-wider text-zinc-500 uppercase font-sans">
+            <p className="text-xs sm:text-sm font-semibold tracking-wider text-[#565C38] uppercase font-sans">
               Davao Region Fashion Archive
             </p>
           </div>
 
-          <p className="text-zinc-600 text-xs sm:text-sm font-sans leading-relaxed max-w-md">
+          <p className="text-[#3A401D] text-xs sm:text-sm font-sans leading-relaxed max-w-md">
             Independent Davao clothing creators, artisan denim reworkers, and authenticated vintage archives across Davao City, Tagum, Digos, Panabo, and Mati.
           </p>
 
@@ -130,17 +130,17 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1">
             <button
               onClick={() => onExploreDrop(featuredDrop?.id || 'drop-1')}
-              className="px-5 py-3 sm:px-6 sm:py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs sm:text-sm font-semibold rounded-full transition-all flex items-center gap-2 shadow-md hover:scale-[1.02] cursor-pointer"
+              className="px-5 py-3 sm:px-6 sm:py-3.5 bg-[#1A1A00] hover:bg-[#2A2A08] text-[#FFFFCC] text-xs sm:text-sm font-semibold rounded-full transition-all flex items-center gap-2 shadow-md hover:scale-[1.02] cursor-pointer"
             >
               <span>Explore Featured Drop</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <ArrowUpRight className="w-4 h-4 text-[#FFFFCC]" />
             </button>
 
             <button
               onClick={() => onSelectBrand('seller-1')}
-              className="text-xs sm:text-sm font-semibold text-zinc-800 hover:text-zinc-600 transition-colors flex items-center gap-1.5 cursor-pointer underline underline-offset-4 py-2"
+              className="text-xs sm:text-sm font-semibold text-[#1A1A00] hover:text-[#4A5028] transition-colors flex items-center gap-1.5 cursor-pointer underline underline-offset-4 py-2"
             >
-              <MapIcon className="w-4 h-4 text-zinc-600" />
+              <MapIcon className="w-4 h-4 text-[#1A1A00]" />
               <span>Davao Brand Directory</span>
             </button>
           </div>

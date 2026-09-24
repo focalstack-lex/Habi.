@@ -41,7 +41,7 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
     <div className="lg:hidden fixed bottom-4 left-4 right-4 z-40 flex justify-center pointer-events-none">
       <nav
         aria-label="Primary Mobile Navigation"
-        className="pointer-events-auto bg-white/95 backdrop-blur-xl border border-zinc-200/80 shadow-2xl rounded-full px-3 py-1.5 flex items-center justify-between gap-1 max-w-md w-full"
+        className="pointer-events-auto bg-[#1A1A00]/95 backdrop-blur-xl border border-[#3A401D]/80 shadow-2xl rounded-full px-3 py-1.5 flex items-center justify-between gap-1 max-w-md w-full"
       >
         {tabs.map((tab) => {
           const Icon = TAB_ICONS[tab.id] || FeedIcon;
@@ -52,17 +52,17 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
               type="button"
               onClick={() => setActiveTab(tab.id)}
               aria-current={isActive ? 'page' : undefined}
-              className={`relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-full transition-all duration-200 ${
+              className={`relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-full transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-zinc-950 text-white shadow-md'
-                  : 'text-zinc-500 hover:text-zinc-950 hover:bg-zinc-100'
+                  ? 'bg-[#FFFFCC] text-[#1A1A00] shadow-md font-bold'
+                  : 'text-[#C3C99C] hover:text-[#FFFFCC] hover:bg-[#2A2A08]'
               }`}
             >
               <Icon className="w-4 h-4" />
               <span className="text-[9px] font-semibold mt-0.5">{tab.label}</span>
               {tab.id === 'saved' && savedCount > 0 && (
                 <span className={`absolute -top-1 -right-1 min-w-[15px] h-[15px] rounded-full text-[8px] flex items-center justify-center font-bold ${
-                  isActive ? 'bg-white text-zinc-950' : 'bg-zinc-950 text-white'
+                  isActive ? 'bg-[#1A1A00] text-[#FFFFCC]' : 'bg-[#FFFFCC] text-[#1A1A00]'
                 }`}>
                   {savedCount}
                 </span>

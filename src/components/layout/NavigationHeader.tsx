@@ -52,9 +52,9 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   setIsMobileMenuOpen,
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-100 font-sans transition-all">
+    <header className="sticky top-0 z-40 bg-[#F8F9EA]/95 backdrop-blur-md border-b border-[#E1E6B6] font-sans transition-all">
       {/* Top Ticker Bar */}
-      <div className="bg-zinc-950 text-white text-[11px] py-1.5 px-4 text-center tracking-wide font-medium">
+      <div className="bg-[#1A1A00] text-[#FFFFCC] text-[11px] py-1.5 px-4 text-center tracking-wide font-medium">
         Discover Local Fashion • Davao Region, Philippines
       </div>
 
@@ -65,23 +65,23 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           <div className="flex items-center gap-4 sm:gap-6">
             <button
               onClick={() => setActiveTab('feed')}
-              className="text-left focus:outline-none group flex items-center gap-2"
+              className="text-left focus:outline-none group flex items-center gap-2 cursor-pointer"
             >
-              <span className="font-cooper text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 group-hover:opacity-80 transition-opacity">
+              <span className="font-cooper text-2xl sm:text-3xl font-bold tracking-tight text-[#1A1A00] group-hover:opacity-80 transition-opacity">
                 Habi
               </span>
-              <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600 text-[10px] font-avantgarde font-bold tracking-widest uppercase">
+              <span className="hidden sm:inline-block px-2 py-0.5 rounded-full bg-[#FFFFCC] text-[#1A1A00] text-[10px] font-avantgarde font-bold tracking-widest uppercase border border-[#E1E6B6]">
                 Davao
               </span>
             </button>
 
             {/* Davao Location Selector Capsule */}
-            <div className="hidden sm:flex items-center gap-1.5 bg-zinc-100/80 hover:bg-zinc-200/80 px-3.5 py-1.5 rounded-full border border-zinc-200/60 text-xs font-medium transition-colors">
-              <MapIcon className="w-3.5 h-3.5 text-zinc-800 shrink-0" />
+            <div className="hidden sm:flex items-center gap-1.5 bg-[#EFF2D2] hover:bg-[#E2E6C2] px-3.5 py-1.5 rounded-full border border-[#E1E6B6] text-xs font-medium transition-colors">
+              <MapIcon className="w-3.5 h-3.5 text-[#1A1A00] shrink-0" />
               <select
                 value={selectedCity}
                 onChange={(e) => setSelectedCity(e.target.value)}
-                className="bg-transparent text-zinc-900 font-semibold cursor-pointer focus:outline-none border-none pr-1 text-xs"
+                className="bg-transparent text-[#1A1A00] font-semibold cursor-pointer focus:outline-none border-none pr-1 text-xs"
               >
                 {DAVAO_CITIES.map((city) => (
                   <option key={city} value={city}>
@@ -93,23 +93,23 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           </div>
 
           {/* Center Navigation Capsule Links */}
-          <nav className="hidden lg:flex items-center gap-1.5 bg-zinc-100/70 p-1.5 rounded-full border border-zinc-200/50">
+          <nav className="hidden lg:flex items-center gap-1.5 bg-[#EFF2D2] p-1.5 rounded-full border border-[#E1E6B6]">
             {NAV_TABS.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                     isActive
-                      ? 'bg-zinc-950 text-white shadow-sm'
-                      : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
+                      ? 'bg-[#1A1A00] text-[#FFFFCC] shadow-sm font-bold'
+                      : 'text-[#565C38] hover:text-[#1A1A00] hover:bg-[#E2E6C2]'
                   }`}
                 >
                   <span>{tab.label}</span>
                   {tab.id === 'saved' && savedCount > 0 && (
                     <span className={`ml-1.5 px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
-                      isActive ? 'bg-white text-zinc-950' : 'bg-zinc-900 text-white'
+                      isActive ? 'bg-[#FFFFCC] text-[#1A1A00]' : 'bg-[#1A1A00] text-[#FFFFCC]'
                     }`}>
                       {savedCount}
                     </span>

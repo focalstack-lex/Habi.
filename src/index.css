@@ -4,15 +4,15 @@
   html {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    background-color: #ffffff;
-    color: #09090b;
+    background-color: #F8F9EA;
+    color: #161B05;
   }
 
   body {
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
-    color: #09090b;
+    background-color: #F8F9EA;
+    color: #161B05;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
@@ -43,15 +43,44 @@
   font-family: 'Space Mono', monospace;
 }
 
-/* Habi scale, tracking, and safe-area tokens */
+/* Muted Blue Green (#1A1A00) & Fresh Green (#FFFFCC) Theme Design System Tokens */
 :root {
-  --habi-ink: #09090b;
-  --habi-canvas: #ffffff;
-  --habi-canvas-soft: #f8f9fa;
-  --habi-surface: #f3f4f6;
-  --habi-hairline: #e5e7eb;
-  --habi-muted: #6b7280;
-  --habi-faint: #9ca3af;
+  --color-brand-dark: #1A1A00;
+  --color-brand-light: #FFFFCC;
+  --color-brand-canvas: #F8F9EA;
+  --color-brand-surface: #EFF2D2;
+  --color-brand-hairline: #E1E6B6;
+  --color-brand-text-dark: #141703;
+  --color-brand-text-muted: #565C38;
+}
+
+/* Custom Brand Palette Utility Helper Classes */
+.bg-brand-dark {
+  background-color: #1A1A00;
+}
+
+.bg-brand-light {
+  background-color: #FFFFCC;
+}
+
+.bg-brand-canvas {
+  background-color: #F8F9EA;
+}
+
+.bg-brand-surface {
+  background-color: #EFF2D2;
+}
+
+.border-brand-hairline {
+  border-color: #E1E6B6;
+}
+
+.text-brand-dark {
+  color: #141703;
+}
+
+.text-brand-muted {
+  color: #565C38;
 }
 
 .text-display {
