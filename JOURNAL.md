@@ -390,6 +390,20 @@
 - `npm run build`: Compiled with **0 errors** in 626ms (`dist/assets/index-DC4GgLIL.css` 55.64 kB, `dist/assets/index-B3vTYKQS.js` 617.39 kB).
 - Pushed commit `9482cca` to `origin/master`.
 
+---
+
+## [2026-09-24] Session Log: Map Marker Overlap Fix & Vertical Stack Architecture
+
+### UI & Map Marker Engineering
+- **Vertical Stack Marker Pin Architecture**: Redesigned map markers in [`DavaoFashionMap.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/map/DavaoFashionMap.tsx) into a compact vertical stacked assembly (top floating label pill + bottom circular seller logo avatar badge with live status dot).
+- **Dynamic Z-Indexing**: Assigned explicit `zIndexOffset` (`isSelected ? 1000 : idx * 10`) to eliminate overlapping text clipping when multiple sellers are located within the same district (e.g. Matina / Ecoland).
+- **Expanded Boundary Padding**: Updated `map.fitBounds(bounds, { padding: [70, 70], maxZoom: 12 })` for optimal geographic spacing.
+
+### Verification & Deployment
+- `npm run build`: Compiled with **0 errors** in 872ms (`dist/assets/index-DC4GgLIL.css` 55.64 kB, `dist/assets/index-CU3XkY1R.js` 618.38 kB).
+- Pushed commit `d978a1b` to `origin/master`.
+
+
 
 
 
