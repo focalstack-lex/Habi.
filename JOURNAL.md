@@ -417,6 +417,21 @@
 - `npm run build`: Compiled with **0 errors** in 1.11s (`dist/assets/index-Aj-aU7RL.css` 56.14 kB, `dist/assets/index-BN3V716w.js` 618.64 kB).
 - Pushed commit `4edb5dc` to `origin/master`.
 
+---
+
+## [2026-09-24] Session Log: Mindanao Region Exclusive Map Locking & Floating Controls
+
+### Map Architecture & Geographical Bounding
+- **Strict Geographic Bounding (`maxBounds`)**: Locked map boundaries strictly to Mindanao (`[5.0, 121.0]` to `[10.2, 127.2]`) with `maxBoundsViscosity: 1.0` and `minZoom: 9`, preventing users from panning or zooming out into foreign oceans or Luzon/Visayas.
+- **Davao Region Center Focus**: Set initial map center to `[7.12, 125.65]` at `zoom: 10`, fitting Davao City, Tagum, and Digos across the screen with ample breathing room.
+- **Floating Quick City Jump Bar**: Integrated floating city filter buttons (`MINDANAO / DAVAO`, `DAVAO CITY`, `TAGUM`, `DIGOS`) on top of the map container with smooth `flyTo` animation.
+- **Vignette Mask Frame**: Added a dark inner vignette overlay (`shadow-[inset_0_0_80px_rgba(9,9,11,0.3)]`) around the map container for an exclusive editorial framing effect.
+
+### Verification & Deployment
+- `npm run build`: Compiled with **0 errors** in 768ms (`dist/assets/index-CxJChwrp.css` 56.63 kB, `dist/assets/index-RLKeVZJD.js` 620.15 kB).
+- Pushed commit `e194337` to `origin/master`.
+
+
 
 
 
