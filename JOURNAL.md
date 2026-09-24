@@ -377,11 +377,19 @@
 
 ---
 
-## [2026-09-24] Session Log: GitHub Repository Deployment
+---
 
-### Git Synchronization
-- Configured git remote origin to `https://github.com/focalstack-lex/Habi..git`.
-- Successfully pushed `master` branch to GitHub (`origin/master`).
+## [2026-09-24] Session Log: Davao Fashion Map Enhancements
+
+### UI & Tile Engine Improvements
+- **Legend Pill Removal**: Removed formulaic legend pill badges (`Physical Storefront / Pop-up Market`, `Online Creator Area`) in [`DavaoFashionMap.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/map/DavaoFashionMap.tsx).
+- **Watermark Elimination**: Switched tile provider from CARTO restricted CDN to standard OpenStreetMap vector tiles (`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`), eliminating the "API KEY REQUIRED" background watermark completely.
+- **Marker Overlap & Layout Fix**: Adjusted initial zoom level to `12` and added `[60, 60]` boundary padding to prevent map pins from clumping together.
+
+### Verification & Push
+- `npm run build`: Compiled with **0 errors** in 626ms (`dist/assets/index-DC4GgLIL.css` 55.64 kB, `dist/assets/index-B3vTYKQS.js` 617.39 kB).
+- Pushed commit `9482cca` to `origin/master`.
+
 
 
 
