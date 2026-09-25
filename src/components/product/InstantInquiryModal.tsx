@@ -50,12 +50,12 @@ export const InstantInquiryModal: React.FC<InstantInquiryModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-lg bg-white rounded-3xl border border-zinc-200/80 shadow-2xl p-6 sm:p-8 z-10 space-y-5 font-sans">
+      <div className="relative w-full max-w-lg bg-white rounded-2xl sm:rounded-3xl border border-zinc-200/80 shadow-2xl p-4 sm:p-6 lg:p-8 z-10 space-y-4 sm:space-y-5 max-h-[92vh] overflow-y-auto font-sans">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
           <div className="flex items-center gap-2">
             <MessageSquare className="w-5 h-5 text-zinc-950" />
-            <h2 className="font-outfit text-lg font-bold text-zinc-950">
+            <h2 className="font-outfit text-base sm:text-lg font-bold text-zinc-950">
               Direct Seller Inquiry
             </h2>
           </div>

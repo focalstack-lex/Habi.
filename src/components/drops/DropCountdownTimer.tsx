@@ -34,33 +34,33 @@ export const DropCountdownTimer: React.FC<DropCountdownTimerProps> = ({ targetDa
   }, [targetDate]);
 
   return (
-    <div className="flex items-center gap-2 font-mono">
-      <div className="bg-zinc-950 text-white px-2.5 py-1 rounded-none text-center">
+    <div className="flex items-center gap-1.5 sm:gap-2 font-mono">
+      <div className="bg-zinc-950 text-white px-2 py-1 sm:px-2.5 rounded-none text-center">
         <span className="text-sm font-black block leading-none">
           {String(timeLeft.days).padStart(2, '0')}
         </span>
-        <span className="text-[8px] uppercase tracking-wider text-zinc-400 block">Days</span>
+        <span className="text-[11px] uppercase tracking-wide text-zinc-400 block">Days</span>
       </div>
       <span className="font-bold text-zinc-950">:</span>
-      <div className="bg-zinc-950 text-white px-2.5 py-1 rounded-none text-center">
+      <div className="bg-zinc-950 text-white px-2 py-1 sm:px-2.5 rounded-none text-center">
         <span className="text-sm font-black block leading-none">
           {String(timeLeft.hours).padStart(2, '0')}
         </span>
-        <span className="text-[8px] uppercase tracking-wider text-zinc-400 block">Hours</span>
+        <span className="text-[11px] uppercase tracking-wide text-zinc-400 block">Hours</span>
       </div>
       <span className="font-bold text-zinc-950">:</span>
-      <div className="bg-zinc-950 text-white px-2.5 py-1 rounded-none text-center">
+      <div className="bg-zinc-950 text-white px-2 py-1 sm:px-2.5 rounded-none text-center">
         <span className="text-sm font-black block leading-none">
           {String(timeLeft.minutes).padStart(2, '0')}
         </span>
-        <span className="text-[8px] uppercase tracking-wider text-zinc-400 block">Mins</span>
+        <span className="text-[11px] uppercase tracking-wide text-zinc-400 block">Mins</span>
       </div>
       <span className="font-bold text-zinc-950">:</span>
-      <div className="bg-zinc-950 text-white px-2.5 py-1 rounded-none text-center">
+      <div className="bg-zinc-950 text-white px-2 py-1 sm:px-2.5 rounded-none text-center">
         <span className="text-sm font-black block leading-none">
           {String(timeLeft.seconds).padStart(2, '0')}
         </span>
-        <span className="text-[8px] uppercase tracking-wider text-zinc-400 block">Secs</span>
+        <span className="text-[11px] uppercase tracking-wide text-zinc-400 block">Secs</span>
       </div>
     </div>
   );
