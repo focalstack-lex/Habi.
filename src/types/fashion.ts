@@ -29,12 +29,36 @@ export interface Seller {
     tiktok?: string;
     whatsapp?: string;
   };
+  theme?: SellerTheme;
 }
 
 export interface Colourway {
   name: string;
   hex?: string;
   images: string[];
+}
+
+/** Garment measurements in centimetres, filled by the seller. */
+export interface Measurements {
+  pitToPit?: number;
+  length?: number;
+  shoulder?: number;
+  sleeve?: number;
+  waist?: number;
+  hips?: number;
+  rise?: number;
+  inseam?: number;
+}
+
+export interface FlawPhoto {
+  imageUrl: string;
+  note: string;
+}
+
+export interface SellerTheme {
+  /** Hex accent used for the follow button, active tabs, and pills on the storefront. */
+  accent: string;
+  layout: 'banner' | 'minimal' | 'split';
 }
 
 export interface Product {
@@ -54,6 +78,9 @@ export interface Product {
   isOneOfOne: boolean;
   sizes?: string[];           // multi-stock brand items only; omit on 1-of-1 pieces
   colourways?: Colourway[];   // omit when the piece exists in a single colourway
+  measurements?: Measurements;
+  flawPhotos?: FlawPhoto[];
+  conditionNotes?: string;
   status: 'Available' | 'Reserved' | 'Sold Out';
   location: string;
   tags: string[];
@@ -101,15 +128,72 @@ export interface FitCheckPost {
   likesCount: number;
   datePosted: string;
   taggedItems: TaggedItem[];
+  /** Weekly style challenge tag the post was submitted to, e.g. `y2k-week`. */
+  challengeTag?: string;
 }
+
+export interface FitCheckComment {
+  id: string;
+  postId: string;
+  authorName: string;
+  text: string;
+  createdAt: string;
+}
+
+export type FashionEventType = 'ukay-market' | 'pop-up' | 'launch' | 'swap-meet';
 
 export interface FashionEvent {
   id: string;
   title: string;
-  location: string;
+  type: FashionEventType;
+  location: string;      // city
   venue: string;
-  date: string;
+  address?: string;
+  date: string;          // ISO start
+  endDate?: string;      // ISO end
   description: string;
-  organizerId: string;
+  organizerId?: string;
+  organizerName: string;
   bannerImage: string;
+  lat: number;
+  lng: number;
+  url?: string;
+}
+
+export interface OutfitBoard {
+  id: string;
+  name: string;
+  productIds: string[];
+  createdAt: string;
+}
+
+export type ReportReason = 'counterfeit' | 'scam' | 'wrong-photos' | 'prohibited' | 'other';
+
+export interface ProductReport {
+  id: string;
+  productId: string;
+  productName: string;
+  sellerId: string;
+  reason: ReportReason;
+  note: string;
+  createdAt: string;
+  status: 'open' | 'dismissed' | 'actioned';
+}
+
+export interface SizeProfile {
+  tops: string[];            // XS, S, M, L, XL, XXL, 3XL
+  waistMin: number | null;   // inches
+  waistMax: number | null;
+  shoes: string[];           // US sizes as strings, e.g. "9", "9.5"
+}
+
+export interface StyleProfile {
+  aesthetics: string[];
+  completedAt: string | null;
+}
+
+export interface ReplyTemplate {
+  id: string;
+  name: string;
+  text: string;
 }

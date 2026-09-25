@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
 import { MapIcon, CustomTagIcon, CustomStoreIcon } from '../common/CustomIcons';
 import type { Drop } from '../../types/fashion';
+import { useI18n } from '../../i18n';
 
 interface EditorialHeroProps {
   featuredDrop?: Drop;
@@ -81,6 +82,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
   onExploreDrop,
   onSelectBrand,
 }) => {
+  const { t } = useI18n();
   const [activeCardIndex, setActiveCardIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [showSellerPopover, setShowSellerPopover] = useState<boolean>(false);
@@ -109,30 +111,30 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
   };
 
   return (
-    <section className="bg-[#FAF9F6] border border-zinc-200/90 rounded-2xl sm:rounded-3xl p-4 sm:p-8 lg:p-12 my-3 sm:my-6 font-sans shadow-sm relative overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-14 items-center">
+    <section className="bg-zinc-50 border border-zinc-200/90 rounded-2xl sm:rounded-3xl p-3.5 sm:p-8 lg:p-12 my-2 sm:my-6 font-sans shadow-sm relative overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-14 items-center">
         {/* Left Column: Clean Editorial Copy & Primary Action */}
-        <div className="lg:col-span-5 space-y-4 sm:space-y-6 order-2 lg:order-1">
-          <div className="space-y-2">
-            <h1 className="font-cooper text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-950 leading-[1.08]">
-              Local finds. Your style.
+        <div className="lg:col-span-5 space-y-3 sm:space-y-6 order-2 lg:order-1">
+          <div className="space-y-1 sm:space-y-2">
+            <h1 className="font-cooper text-2xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-950 leading-tight sm:leading-[1.08]">
+              {t('hero.title')}
             </h1>
             <p className="text-xs sm:text-sm font-semibold tracking-wider text-zinc-500 uppercase font-sans">
-              Davao Region Fashion Archive
+              {t('hero.eyebrow')}
             </p>
           </div>
 
-          <p className="text-zinc-600 text-xs sm:text-sm font-sans leading-relaxed max-w-md">
-            Independent Davao clothing creators, artisan denim reworkers, and authenticated vintage archives across Davao City, Tagum, Digos, Panabo, and Mati.
+          <p className="text-zinc-600 text-xs sm:text-sm font-sans leading-relaxed max-w-md line-clamp-2 sm:line-clamp-none">
+            {t('hero.body')}
           </p>
 
           {/* Action Row */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 pt-0.5 sm:pt-1">
             <button
               onClick={() => onExploreDrop(featuredDrop?.id || 'drop-1')}
-              className="px-5 py-3 sm:px-6 sm:py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs sm:text-sm font-semibold rounded-full transition-all flex items-center gap-2 shadow-md hover:scale-[1.02] cursor-pointer"
+              className="px-4 py-2.5 sm:px-6 sm:py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs sm:text-sm font-semibold rounded-full transition-all flex items-center gap-2 shadow-md hover:scale-[1.02] cursor-pointer"
             >
-              <span>Explore Featured Drop</span>
+              <span>{t('hero.cta')}</span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
 
@@ -141,7 +143,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
               className="text-xs sm:text-sm font-semibold text-zinc-800 hover:text-zinc-600 transition-colors flex items-center gap-1.5 cursor-pointer underline underline-offset-4 py-2"
             >
               <MapIcon className="w-4 h-4 text-zinc-600" />
-              <span>Davao Brand Directory</span>
+              <span>{t('hero.directory')}</span>
             </button>
           </div>
         </div>
@@ -207,7 +209,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
 
             {/* Top Tag & Prev/Next Controls Capsule */}
             <div className="absolute top-6 left-3 right-3 sm:top-8 sm:left-4 sm:right-4 flex items-center justify-between z-10">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 bg-zinc-950/90 backdrop-blur-md text-white text-[11px] sm:text-xs font-semibold rounded-full shadow-sm">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 bg-zinc-950/90 backdrop-blur-md text-white text-[11px] sm:text-xs font-semibold rounded-full shadow-sm">
                 <CustomTagIcon className="w-3.5 h-3.5 text-white" />
                 <span>{activeItem.tag}</span>
               </span>
@@ -231,12 +233,12 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
             </div>
 
             {/* Bottom Floating Details Pill */}
-            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-zinc-200/80 shadow-lg flex items-center justify-between gap-2.5 sm:gap-3">
-              <div className="truncate max-w-[62%] relative">
-                <h3 className="font-cooper text-xs sm:text-base font-bold text-zinc-950 truncate">
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 bg-white/95 backdrop-blur-md p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-zinc-200/80 shadow-lg flex items-center justify-between gap-2 sm:gap-3">
+              <div className="min-w-0 flex-1 relative">
+                <h3 className="font-cooper text-[11px] sm:text-base font-bold text-zinc-950 truncate">
                   {activeItem.title}
                 </h3>
-                <div className="flex items-center gap-1 text-[10px] sm:text-xs text-zinc-600 font-sans mt-0.5 truncate">
+                <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-zinc-600 font-sans mt-0.5 truncate">
                   <button
                     onMouseEnter={() => setShowSellerPopover(true)}
                     onClick={() => onSelectBrand(activeItem.sellerId)}
@@ -290,15 +292,16 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
               </div>
 
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                <span className="font-cooper text-sm sm:text-lg font-bold text-zinc-950">
+                <span className="font-cooper text-xs sm:text-lg font-bold text-zinc-950">
                   ₱{activeItem.price.toLocaleString()}
                 </span>
                 <button
                   onClick={() => onSelectBrand(activeItem.sellerId)}
-                  className="px-3 py-1.5 sm:px-3.5 sm:py-1.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-[11px] sm:text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer"
+                  className="px-2.5 py-1.5 sm:px-3.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer"
+                  aria-label="Inspect piece"
                 >
-                  <span>Inspect</span>
-                  <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                  <span className="hidden sm:inline">Inspect</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>

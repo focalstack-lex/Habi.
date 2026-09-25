@@ -4,17 +4,197 @@
   html {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    background-color: #ffffff;
-    color: #09090b;
+    background-color: var(--color-white, #ffffff);
+    color: var(--color-zinc-950, #09090b);
   }
 
   body {
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
-    color: #09090b;
+    background-color: var(--color-white, #ffffff);
+    color: var(--color-zinc-950, #09090b);
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+}
+
+/* Light mode. Soft paper instead of pure white, warm greys instead of cool zinc,
+   and a soft ink instead of pure black, so large light areas do not glare.
+   Unlayered, so it overrides Tailwind's @layer theme; .dark below overrides it. */
+:root {
+  --color-white: #f7f5f0;
+  --color-zinc-50: #f0ede6;
+  --color-zinc-100: #e9e5dd;
+  --color-zinc-200: #dcd7cd;
+  --color-zinc-300: #c7c1b6;
+  --color-zinc-400: #9b958b;
+  --color-zinc-500: #736e65;
+  --color-zinc-600: #58544e;
+  --color-zinc-700: #43403b;
+  --color-zinc-800: #2f2d2a;
+  --color-zinc-900: #22211f;
+  --color-zinc-950: #1a1917;
+}
+
+/* Dark mode. Tailwind v4 utilities reference theme variables, so remapping the
+   zinc scale (and white) under .dark flips every surface, border, and text colour
+   without per-component dark: classes. Palette: warm charcoal surfaces and warm
+   off-white text, with a muted violet for active and primary controls. */
+.dark {
+  --color-white: #1c1a18;
+  --color-zinc-50: #22201e;
+  --color-zinc-100: #2a2724;
+  --color-zinc-200: #38342f;
+  --color-zinc-300: #4a453f;
+  --color-zinc-400: #7f786f;
+  --color-zinc-500: #a39b90;
+  --color-zinc-600: #bdb5aa;
+  --color-zinc-700: #d3ccc1;
+  --color-zinc-800: #e3ddd3;
+  --color-zinc-900: #ece6dc;
+  --color-zinc-950: #f4efe7;
+  --color-emerald-50: #10261d;
+  --color-emerald-100: #143427;
+  --color-emerald-200: #1f4d3a;
+  --color-emerald-800: #a7f3d0;
+  --color-emerald-900: #d1fae5;
+  --color-amber-50: #2e2410;
+  --color-amber-100: #3d3014;
+  --color-amber-200: #5a461c;
+  --color-amber-800: #fde68a;
+  --color-amber-900: #fef3c7;
+  --color-red-50: #2f1614;
+  --color-red-100: #421c19;
+  --color-red-200: #63261f;
+  --color-red-800: #fecaca;
+  --color-red-900: #fee2e2;
+
+  --habi-dark-raised: #262320;
+  --habi-dark-edge: #3f3a35;
+  --habi-accent: #3a3548;
+  --habi-accent-hover: #453f57;
+  --habi-accent-edge: #6e6490;
+  --habi-accent-ink: #f1edf8;
+}
+
+/* Surfaces that are dark in light mode (banners, footer, photo badges, toasts)
+   stay dark: they get a raised charcoal fill and the light-mode meaning of the
+   white and pale zinc steps, so their white and zinc-300 text stays light. */
+.dark [class~='bg-zinc-950'],
+.dark [class~='bg-zinc-950/95'],
+.dark [class~='bg-zinc-950/90'],
+.dark [class~='bg-zinc-950/85'],
+.dark [class~='bg-zinc-950/80'],
+.dark [class~='bg-zinc-950/60'],
+.dark [class~='bg-zinc-900'],
+.dark [class~='from-zinc-950'] {
+  --color-white: #f4efe7;
+  --color-zinc-100: #ece6dc;
+  --color-zinc-200: #d3ccc1;
+  --color-zinc-300: #bdb5aa;
+  --color-zinc-400: #a39b90;
+  --color-zinc-500: #7f786f;
+  --color-zinc-600: #5d5750;
+  --color-zinc-700: #4a453f;
+  --color-zinc-800: var(--habi-dark-edge);
+  --color-zinc-900: #2c2926;
+  --color-zinc-950: var(--habi-dark-raised);
+}
+
+/* Active pills and primary buttons: muted violet with a hairline edge, not an
+   inverted white block */
+.dark button[class~='bg-zinc-950'],
+.dark a[class~='bg-zinc-950'],
+.dark label[class~='bg-zinc-950'] {
+  --color-white: var(--habi-accent-ink);
+  --color-zinc-800: var(--habi-accent-hover);
+  --color-zinc-950: var(--habi-accent);
+  box-shadow: inset 0 0 0 1px var(--habi-accent-edge);
+}
+
+/* Empty dark elements are indicators (progress bars, dots): keep them visible */
+.dark [class~='bg-zinc-950']:empty {
+  background-color: var(--habi-accent-edge);
+}
+
+/* Text over photos and black overlays stays white */
+.dark [class*='bg-black'],
+.dark [class*='from-black'] {
+  --color-white: #ffffff;
+}
+
+.dark html,
+.dark body {
+  background-color: var(--color-white);
+  color: var(--color-zinc-950);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1c1a18;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4a453f;
+}
+
+/* Native swipe gallery: one image per snap point, no scrollbar */
+.snap-gallery {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.snap-gallery > * {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+/* Density scale. Tailwind v4 sizes type, spacing, icons, and radii in rem, so the
+   root font size shrinks every container, gap, and font together. Breakpoints use
+   the browser default (16px) and are not affected. Targets Instagram-like density:
+   14px body text, 13px secondary, ~11.5px meta on phones.
+   Declared outside any layer so the type tokens win over Tailwind's @layer theme. */
+html {
+  font-size: 15px;
+}
+
+:root {
+  --text-xs: 0.8rem; /* 12px */
+}
+
+@media (max-width: 639px) {
+  html {
+    font-size: 14px;
+  }
+
+  :root {
+    --spacing: 0.225rem; /* 3.15px step: paddings, gaps, and boxes ~10% tighter than stock */
+    --text-xs: 0.8125rem; /* 11.4px */
+    --text-sm: 0.9286rem; /* 13px */
+    --text-base: 1rem; /* 14px */
+    --text-lg: 1.0714rem; /* 15px */
+    --text-xl: 1.2143rem; /* 17px */
+    --text-2xl: 1.3571rem; /* 19px */
+    --text-3xl: 1.5714rem; /* 22px */
+    --text-4xl: 1.7857rem; /* 25px */
+    --text-5xl: 2rem; /* 28px */
+    --text-6xl: 2.2857rem; /* 32px */
+  }
+
+  /* Text fields: 13px, compact like the rest of the body text; selects keep their own size */
+  input:not([type='checkbox']):not([type='radio']):not([type='file']),
+  textarea {
+    font-size: 13px;
+  }
+}
+
+/* iOS Safari zooms the page when a focused field is under 16px, so iOS alone keeps 16px */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 639px) {
+    input:not([type='checkbox']):not([type='radio']):not([type='file']),
+    select,
+    textarea {
+      font-size: 16px;
+    }
   }
 }
 
@@ -23,8 +203,10 @@
   font-family: 'Cooper BT', 'Cooper Black', 'Fraunces', 'Young Serif', serif;
 }
 
+/* Micro copy (eyebrows, chips, tabs) uses the body sans. The earlier geometric
+   display face (Syne / Avant Garde) rendered too thin below 12px on phones. */
 .font-avantgarde {
-  font-family: 'ITC Avant Garde Gothic', 'Avant Garde Gothic', 'Avant Garde', 'Syne', 'Outfit', sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 .font-outfit {
@@ -32,7 +214,7 @@
 }
 
 .font-syne {
-  font-family: 'ITC Avant Garde Gothic', 'Avant Garde Gothic', 'Avant Garde', 'Syne', 'Outfit', sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 .font-sans {
@@ -86,8 +268,8 @@
 }
 
 .text-meta {
-  font-family: 'ITC Avant Garde Gothic', 'Avant Garde Gothic', 'Syne', sans-serif;
-  font-size: 11px;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 12px;
   line-height: 1.4;
   letter-spacing: 0.02em;
 }
@@ -125,15 +307,20 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: var(--color-white);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #18181b;
+  background: var(--color-zinc-300);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #09090b;
+  background: var(--color-zinc-400);
+}
+
+/* Map pin labels hide at region zoom so nearby pins do not pile up */
+.habi-map-far .habi-pin-label {
+  display: none !important;
 }
 
 /* Leaflet Map Pins Custom Styles */

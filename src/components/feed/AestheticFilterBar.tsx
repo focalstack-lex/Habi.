@@ -1,5 +1,6 @@
 import React from 'react';
-import { CustomFilterIcon, CustomTagIcon } from '../common/CustomIcons';
+import { CustomTagIcon } from '../common/CustomIcons';
+import { useI18n } from '../../i18n';
 
 interface AestheticFilterBarProps {
   selectedAesthetic: string;
@@ -39,53 +40,48 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
   selectedCategory,
   setSelectedCategory,
 }) => {
+  const { t } = useI18n();
   return (
-    <div className="space-y-3.5 mb-8 font-sans">
-      {/* Category Pills Row */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-zinc-100 font-avantgarde">
-        <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
-          <span className="text-xs font-semibold text-zinc-400 shrink-0 mr-1">
-            Category:
-          </span>
-          {CATEGORY_OPTIONS.map((cat) => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all shrink-0 cursor-pointer ${
-                  isActive
-                    ? 'bg-zinc-950 text-white shadow-sm'
-                    : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-950'
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* 1-of-1 Thrift Capsule Toggle */}
-        <button
-          onClick={() => setIsOneOfOneOnly(!isOneOfOneOnly)}
-          className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all shrink-0 cursor-pointer ${
-            isOneOfOneOnly
-              ? 'bg-zinc-950 text-white shadow-sm'
-              : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200/80'
-          }`}
-        >
-          <CustomTagIcon className="w-3.5 h-3.5" />
-          <span>1-of-1 Thrift Vault</span>
-          <span className={`w-2 h-2 rounded-full ${isOneOfOneOnly ? 'bg-white' : 'bg-zinc-400'}`} />
-        </button>
+    <div className="space-y-2 mb-3 sm:mb-5 font-sans">
+      {/* Category: plain text tabs */}
+      <div className="flex items-center gap-4 sm:gap-5 overflow-x-auto scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 border-b border-zinc-100">
+        <span className="sr-only">{t('filter.category')}</span>
+        {CATEGORY_OPTIONS.map((cat) => {
+          const isActive = selectedCategory === cat;
+          return (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              aria-pressed={isActive}
+              className={`shrink-0 py-2 -mb-px border-b-2 text-xs font-semibold transition-colors cursor-pointer ${
+                isActive
+                  ? 'border-zinc-950 text-zinc-950'
+                  : 'border-transparent text-zinc-500 hover:text-zinc-950'
+              }`}
+            >
+              {cat === 'All' ? t('filter.all') : cat}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Aesthetic Style Pills */}
-      <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none font-avantgarde">
-        <div className="flex items-center gap-1.5 text-xs text-zinc-400 font-semibold shrink-0 mr-1">
-          <CustomFilterIcon className="w-3.5 h-3.5" />
-          <span>Style:</span>
-        </div>
+      {/* Style chips, led by the 1-of-1 toggle */}
+      <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 py-0.5">
+        <span className="sr-only">{t('filter.style')}</span>
+        <button
+          onClick={() => setIsOneOfOneOnly(!isOneOfOneOnly)}
+          aria-pressed={isOneOfOneOnly}
+          className={`shrink-0 h-7 flex items-center gap-1 px-2.5 rounded-full text-[11px] sm:text-xs font-semibold border transition-colors cursor-pointer ${
+            isOneOfOneOnly
+              ? 'bg-zinc-950 text-white border-zinc-950'
+              : 'bg-white text-zinc-700 border-zinc-200 hover:border-zinc-400'
+          }`}
+        >
+          <CustomTagIcon className="w-3 h-3" />
+          <span>{t('filter.oneOfOne')}</span>
+        </button>
+
+        <span className="shrink-0 w-px h-4 bg-zinc-200 mx-0.5" aria-hidden="true" />
 
         {AESTHETIC_OPTIONS.map((style) => {
           const isActive = selectedAesthetic === style;
@@ -93,13 +89,14 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
             <button
               key={style}
               onClick={() => setSelectedAesthetic(style)}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all shrink-0 cursor-pointer ${
+              aria-pressed={isActive}
+              className={`shrink-0 h-7 px-3 rounded-full text-[11px] sm:text-xs font-semibold transition-colors cursor-pointer ${
                 isActive
-                  ? 'bg-zinc-950 text-white shadow-sm'
-                  : 'bg-zinc-100/90 text-zinc-600 hover:bg-zinc-200/70 hover:text-zinc-950'
+                  ? 'bg-zinc-950 text-white'
+                  : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
               }`}
             >
-              {style}
+              {style === 'All' ? t('filter.all') : style}
             </button>
           );
         })}

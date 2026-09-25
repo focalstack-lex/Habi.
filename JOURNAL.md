@@ -440,6 +440,108 @@
 
 ---
 
+## [2026-09-24] Session Log: Phone-First Responsive Pass and Seller / Admin Accounts with ID Verification
+
+### Mobile Responsiveness
+
+- Reported on a 360x800 Samsung Galaxy A55 viewport: headline, banner, and metric type too large, `p-8` / `rounded-3xl` containers eating horizontal space, the sticky header stack (ticker + 64px bar + search) taking 136px, and three rails (Saved tabs, storefront tabs, map city bar) overflowing the viewport.
+- Every view now declares phone values first and restores the previous desktop values at `sm:` / `lg:`: banners `p-5 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl`, banner titles `text-2xl sm:text-3xl lg:text-5xl`, hero headline `text-3xl sm:text-5xl lg:text-6xl`, metric numbers `text-2xl sm:text-3xl`, view wrappers `py-4 sm:py-8`, cards `p-3.5 sm:p-6`. Applied across `EditorialHero`, `AestheticFilterBar`, `ProductGrid`, `ProductDetailModal`, `InstantInquiryModal`, `DropsView`, `DropCard`, `DropCountdownTimer`, `FitCheckView`, `FitCheckCard`, `SavedView`, `DavaoFashionMap`, `SellerHeader`, `SellerStorefront`, `SellerDashboard`, `FooterSection`, and the Discover and Brands sections of `App.tsx`.
+- `NavigationHeader`: ticker hidden below `sm`, bar height `h-14 sm:h-20`, the desktop search input moved to `xl` and the compact search row shown up to `xl`, which also removes the pre-existing 768px and 1024px horizontal overflow from the right-action cluster. Center nav tabs tightened to `px-3 xl:px-4`.
+- Rails that overflowed (`SavedView` tabs, `SellerStorefront` tabs, map city jump bar, filter category row) are now `overflow-x-auto scrollbar-none` with `shrink-0 whitespace-nowrap` children. The filter bar stacks the 1-of-1 toggle under the category rail on phones.
+- `BottomTabBar`: six equal `flex-1 min-w-0` tabs (Feed, Discover, Drops, Map, Saved, portal) so the last label no longer hugs the edge; portal label switches between `Sign In`, `Store`, and `Admin`.
+- `FooterSection`: two-column grid on phones (`grid-cols-2 md:grid-cols-4`), brand and creator columns spanning both, `py-10 sm:py-16`.
+- `ProductDetailModal`: full-screen sheet is `rounded-none md:rounded-3xl` so the top corners no longer show the backdrop.
+- `EditorialHero` floating pill: title block is `min-w-0 flex-1` instead of `max-w-[65%]`, Inspect collapses to its icon below `sm`.
+- `src/index.css`: form controls render at 16px below 640px (unlayered rule, wins over `text-xs`) so iOS Safari does not zoom on focus; `body { overflow-x: clip }` as a safety net.
+- Tab switches now scroll to the top, since a phone user changing tabs from a scrolled position otherwise landed mid-page.
+
+### Seller and Admin Accounts
+
+- Requirement: only real sellers may list. Sign-up must be validated by a national ID, license, or other valid ID; admins hold most controls.
+- No backend exists, so accounts, sessions, ID photos, and seller listings are stored in `localStorage` (`habi_accounts`, `habi_session`, `habi_catalog_*`). Passwords are salted and SHA-256 hashed via Web Crypto with a pure JS fallback (verified against Node `crypto` on 8 vectors including multi-block and unicode input) for plain http LAN testing where `crypto.subtle` is unavailable. This is a prototype gate, not KYC: a browser-only store can be read by whoever holds the device, and the ID check is a manual admin review of the uploaded photo plus a format check on the number.
+- `SellerSignUpForm` is three steps: Account (owner, email, PH mobile, password), Storefront (brand name, auto-derived handle, seller type, city, district, address for physical stores, description, socials), Verify ID (ten accepted document types with per-type number patterns after normalization, name on ID, downscaled ID photo with camera capture, optional permit, declaration). Duplicate emails, handles (including bundled mock sellers), and ID numbers are refused.
+- Applications start `pending`; `ApplicationStatusView` shows the masked submission and, on rejection, the admin note and an ID resubmission form. Pending sellers are invisible to buyers.
+- `AdminSignUpForm` requires `VITE_ADMIN_SETUP_KEY` (fallback `habi-admin-2026`, documented in `.env.example` and README).
+- `AdminDashboard`: overview tiles, Applications queue (filters, full record, ID and permit lightbox, name-mismatch warning, approve as Local Seller or Verified Business, reject or revoke with a note), Sellers (verification badge select, suspend and reinstate), Catalog (delete seller-listed pieces, hide or restore bundled demo pieces).
+- `catalogService` merges mock data with seller-created and admin-moderated records and notifies `useCatalogVersion()` subscribers; `fashionService` reads through it so the feed, map, directory, storefronts, and saved closet share one visibility rule. `SellerDashboard` was rewritten against it: real inventory CRUD, a listing form with up to three photo uploads, and a storefront profile editor that also resyncs the denormalized seller fields on that seller's products.
+- Portal routing lives in `App.tsx` (`renderPortal`): signed out shows `AuthView`, admins the control room, pending or rejected sellers the status view, approved sellers the dashboard. Header, drawer, bottom bar, and footer all route to the same `dashboard` tab.
+
+### Verification
+
+- `npx tsc --noEmit -p tsconfig.app.json`: 0 errors.
+- `npx oxlint src`: 0 errors, 14 warnings (baseline 7). The additions are the four intentional `catalogVersion` dependencies in `App.tsx` memos and Fast Refresh notices for the new `NavigationHeader` constant exports.
+- `npm run build`: 0 errors in 753ms (`dist/assets/index-C4qK6YoZ.css` 65.63 kB, `dist/assets/index-BshlZWBn.js` 704.78 kB).
+- Headless Chromium script at 360x800 against the dev server: `document.documentElement.scrollWidth === innerWidth` on Feed, Discover, Drops, Map, Saved, Brands, Community, a storefront, the detail sheet, the sign-in, pending, admin, and seller dashboard views, and on Feed at 768, 1024, 1280, and 1440 (the only elements past the right edge sit inside horizontal scroll rails). The same run registered an admin with the setup key, submitted a seller application with a generated ID image, confirmed the applicant was absent from the Brands directory, approved it as Local Seller from the admin queue, signed in as the seller, published a piece with a photo, and found that piece in the public feed and the seller in the directory. Zero console errors. Storage after the run: 36.5 kB.
+- Not verified: iOS Safari focus zoom (rule added on the CSS side only), and real ID photos, which will weigh roughly 150 to 300 kB each against the 5 MB localStorage budget.
+
+---
+
+## [2026-09-24] Session Log: Phone Header Compaction, Hero Downsizing, Readable Micro Typography, and eVerify Hook
+
+### Feedback Addressed
+
+- Hero still too tall on a 360px phone; header plus search too tall; micro copy in the geometric face (Syne fallback for Avant Garde) too thin to read on the filter chips and the sign-up step rail; request to validate seller IDs against the Philippine eGov API.
+
+### Header and Hero
+
+- `NavigationHeader`: below `sm` the header is one 48px row with the wordmark at `text-xl`, an inline search field (`h-8`) and the menu toggle. Measured 49px at 360px, down from 94px. The bar is `h-16` on tablets and `h-20` from `lg` (768px header stack now 137px, was 153px). The desktop nav lost `shrink-0` and gained `min-w-0 overflow-x-auto`, and the wide search is `w-44 2xl:w-56`, which removed a 13px overflow found at 1280px with system fallback fonts.
+- `EditorialHero`: `p-3.5`, `my-2`, headline `text-2xl`, copy clamped to two lines, CTA `px-4 py-2.5`, photo `aspect-[16/10]` on phones with an 11px title and price in the floating pill. Measured 410px tall at 360px, down from about 560px.
+
+### Typography
+
+- `src/index.css`: `.font-avantgarde`, `.font-syne`, and `.text-meta` now resolve to Plus Jakarta Sans; Cooper BT / Fraunces stays on headings and prices. `index.html` no longer loads Syne or Outfit, and Fraunces is requested at 600 to 900 only.
+- Sweep of micro sizes: 9px and 10px labels moved to 10px or 11px (`ProductCard` badges, seller row, location; brand directory meta; bottom tab labels; admin badges and detail labels; metric tile labels; drawer and hero eyebrows; sign-up step rail, which is now `text-[11px] font-semibold` without wide tracking). Labels on white moved from `text-zinc-400` to `text-zinc-500` or `text-zinc-600` (filter labels, storefront tabs, form hints, section headings, map drawer eyebrow). The `Showing N pieces` line and the empty grid state dropped Space Mono for the body sans.
+
+### Government ID Check
+
+- Research: the DICT eGov API Developer Portal (platforms.e.gov.ph) exposes National ID eVerify among nine APIs, and PSA onboards relying parties (regulatory review by PSA, then DICT issues the API key). There is no self-serve public key, and no public verification API for driver's licenses, passports, UMID, SSS, PRC, postal, TIN, or voter's IDs.
+- `src/services/idVerificationService.ts`: posts `{ idTypeId, idNumber, fullName, birthDate }` to `VITE_ID_VERIFY_ENDPOINT`, a backend proxy that holds the eVerify key, with a 15s timeout. Result statuses: `verified`, `not_matched`, `error`, `not_configured`, `unsupported` (non-PhilSys IDs). `authService.registerSeller` and `resubmitVerification` run the check; `not_matched` blocks sign-up, everything else is stored on `verification.automatedCheck` and shown to the admin (green, red, or grey line in the identity block) and, as a label, to the applicant.
+- Sign-up step 3 and the resubmission form now collect the date of birth printed on the ID (18+ enforced) because it is a matching factor for PhilSys.
+- `docs/ID_VERIFICATION.md` documents onboarding, the proxy contract, a minimal Node proxy, and the data handled. `.env.example` gained `VITE_ID_VERIFY_ENDPOINT`.
+
+### Verification
+
+- `npx tsc --noEmit -p tsconfig.app.json`: 0 errors. `npx oxlint src`: 0 errors, 14 warnings (unchanged). `npm run build`: 0 errors (`dist/assets/index-DOmMdi9v.css` 65.58 kB, `dist/assets/index-dt6lfNhR.js` 709.62 kB).
+- Headless Chromium: header 49px and hero 410px at 360x800; computed font family on the hero eyebrow and filter chips is Plus Jakarta Sans; `scrollWidth === innerWidth` on the feed at 360, 768, and 1280 and on the sign-up view at 360. Zero console errors.
+- Not verified: the eVerify proxy path against a live endpoint (no credentials yet); the client only exercised the `not_configured` branch.
+
+---
+
+## [2026-09-24] Session Log: Buyer, Seller, Community, and App-Shell Feature Set (29 features)
+
+### Scope
+
+Everything from the feature proposal was built in one pass, split across four parallel workstreams on disjoint files (piece detail, seller dashboard, drops and map, community) with the shared foundations, feed, saved view, shell, routing, PWA, theme, and language done first so the streams had stable contracts.
+
+### Foundations
+
+- `catalogService` now also holds bundled-product overrides (status, price, quantity), seller-scheduled drops (`StoredDrop`, hydrated on read), buyer reports, this browser's live-drop reservations, and per-day view and save metrics with deterministic sample series for bundled pieces. `fashionService.getDrops()` merges bundled and scheduled drops; `getSellerByHandle` and `getDropById` were added for routing.
+- `userPrefsService` (new): theme, language, display name, size profile and "Fits me", style profile, recent views and searches, outfit boards, public closet, Following baseline, saved-piece snapshots for alerts, install-banner dismissal. `communityService` (new): buyer posts, likes, comments, weekly challenge. Each store notifies through `useSyncExternalStore` hooks.
+- `src/i18n`: English and Bisaya dictionaries with `useI18n()`; `src/utils/sizing.ts` (size parsing and measurement fields), `search.ts` (suggestions, closest matches), `router.ts` (hash routes).
+- Dark mode is a variable remap: `.dark` in `index.css` redefines `--color-white`, the zinc scale, and the emerald, amber, and red status shades, so every existing utility flips without `dark:` classes. Map tiles are inverted with a filter. The hero lost its hard-coded cream (`bg-[#FAF9F6]`) for `bg-zinc-50` after a dark-mode screenshot showed invisible text.
+
+### Delivered
+
+- Feed: For You / Following with new-since-last-visit ribbons, "Fits me", price range, sort, style quiz on first visit, recently viewed strip, search type-ahead (recent, sellers, categories, tags) and closest matches on empty results.
+- Piece detail: swipe gallery with pinch-zoom overlay, measurements table, condition guide with flaw photos, similar pieces (switches the open piece), report listing, share as image (canvas PNG via Web Share or download), add to board, reservation note.
+- Drops: 14-day calendar strip, live mode with first-come reservations, Google Calendar and `.ics` export, a bundled live drop (`drop-3`).
+- Map: near-me distances, nearest list, directions, pop-up market layer with calendar export.
+- Community: post fit checks with tag pins, likes, comments, weekly style challenge.
+- Saved: alerts, outfit boards with share links, public closet link, buyer profile (sizes, styles, appearance, language).
+- Seller: edit, duplicate, bulk status and delete; measurements, condition notes, flaw photos; drop scheduler with live preview; quick-reply templates; 7-day SVG chart; storefront accent and layout (banner, minimal, split).
+- Admin: Reports tab (remove piece or dismiss) and an Open Reports tile.
+- Shell: hash routes for pieces, storefronts, drops, boards, closets; PWA manifest, generated icons, service worker (production only), install banner; theme and language toggles in the header, drawer, and Profile tab.
+
+### Verification
+
+- `npx tsc --noEmit -p tsconfig.app.json`: 0 errors. `npx oxlint src`: 0 errors, 21 warnings. `npm run build`: 0 errors (`dist/assets/index-BUvs6Z7q.css` 77.33 kB, `dist/assets/index-g8iNg8sa.js` 899.96 kB; the bundle passed the 500 kB chunk warning, code splitting is a follow-up). Dash scan: one en dash inside a regex in `sizing.ts` replaced with `–`.
+- Three headless Chromium scripts at 360x800 against the dev server, all steps passing and zero console errors:
+  - Buyer flow: quiz stored two aesthetics; sort ascending confirmed on card prices; price range narrowed to one piece; suggestion "Levis" applied a one-result search and "levis 501 jacket" produced a "Closest matches" section with three pieces; Following showed the empty state, then two pieces after following a seller; drops page showed the live section, calendar strip, `.ics` buttons, and "Reserve" turned into "Yours"; the map rendered 9 markers with events and 5 without; a fit check posted with a like and a comment; Saved showed one "Now reserved" alert for the piece reserved in the drop; dark mode set `html.dark` and a `rgb(9, 9, 11)` body; Bisaya rendered "Suroy" and the translated hero; `#/piece/prod-2`, `#/store/voidarchive`, `#/tab/map` deep links resolved; manifest, icons, and `sw.js` returned 200; no horizontal overflow on feed, drops, map, community, saved.
+  - Detail flow: gallery counter, condition guide, board creation ("Weekend fit" with `prod-1`), report stored, similar piece switched the modal from the hoodie to the Nike jacket with the hash following, recently viewed strip present after close, the shared board link rendered the board page with one card, and a tag pin placed on a posted fit check resolved to "Heavyweight Boxy Monochrome Hoodie".
+  - Seller flow: admin and seller accounts, eVerify "not configured" shown to both, birth date visible to admin, approval, a listing with measurements (58 / 66 cm), a flaw photo and condition notes, price edit to 1,500, duplicate, bulk "Reserved", a scheduled drop with preview and list, three seeded templates with copy feedback, analytics chart without the sample chip for real pieces, Brick accent and minimal layout saved and rendered on the storefront (`rgb(185, 28, 28)` follow button).
+- Not verified: pinch-zoom gestures on a real touch device, `beforeinstallprompt` (not fired in headless), geolocation (permission not granted in headless), native share sheet. Bisaya strings were written by the team and need a native review.
+
+
 ## [2026-09-24] Session Log: Universal Copyright & Legal Compliance Audit (/copyright)
 
 ### Legal Audit & Compliance Inspection
