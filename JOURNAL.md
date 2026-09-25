@@ -516,3 +516,9 @@
 - Upstream tracking set on all three; verified via `git ls-remote --heads` that remote SHAs match local.
 - Secret pre-push check: only `.env.example` tracked, no credential material in pushed history.
 - Enables collaborator checkout of both theme branches for side-by-side palette comparison.
+
+## [2026-09-25] Session Log: Side-by-Side Theme Comparison Servers
+
+- Created git worktree `C:/Users/User/Pictures/Habi-green-pair` on `feature/color-theme-green-pair` (d726534) with its own `npm ci` install (52 packages).
+- Two concurrent dev servers verified per-port by palette probe of the Vite CSS module: 5173 = cream-green (36x `#FFF9E9`, 0x `#FFFFCC`, module id main repo), 5175 = green-pair (36x `#FFFFCC`, 0x `#FFF9E9`, module id worktree).
+- Note: port 5174 was already occupied by a foreign process serving the main repo (Vite auto-shifted the worktree server to 5175); not started by this session, left untouched.
