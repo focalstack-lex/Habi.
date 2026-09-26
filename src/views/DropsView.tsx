@@ -12,7 +12,7 @@ export const DropsView: React.FC<DropsViewProps> = ({ drops, onExploreDrop }) =>
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Header Banner */}
-      <div className="bg-[#1A2225] text-[#FFF9E9] p-8 sm:p-12 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
+      <div className="bg-[#1A2225] text-[#FFF9E9] p-6 sm:p-8 md:p-10 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
         <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#E0DFC8] font-semibold">
           SCHEDULED RELEASES
         </div>
@@ -22,7 +22,7 @@ export const DropsView: React.FC<DropsViewProps> = ({ drops, onExploreDrop }) =>
         </h1>
 
         <p className="text-[#E0DFC8] text-xs sm:text-sm max-w-2xl leading-relaxed font-normal">
-          Thrift sellers and streetwear brands in Davao release limited batch collections at scheduled times. Preview catalogs, set launch reminders, and prepare for instant inquiries.
+          Limited batch releases from Davao thrift vaults & streetwear brands.
         </p>
       </div>
 

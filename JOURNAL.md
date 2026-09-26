@@ -522,3 +522,41 @@
 - Created git worktree `C:/Users/User/Pictures/Habi-green-pair` on `feature/color-theme-green-pair` (d726534) with its own `npm ci` install (52 packages).
 - Two concurrent dev servers verified per-port by palette probe of the Vite CSS module: 5173 = cream-green (36x `#FFF9E9`, 0x `#FFFFCC`, module id main repo), 5175 = green-pair (36x `#FFFFCC`, 0x `#FFF9E9`, module id worktree).
 - Note: port 5174 was already occupied by a foreign process serving the main repo (Vite auto-shifted the worktree server to 5175); not started by this session, left untouched.
+
+---
+
+## [2026-09-27] Session Log: UI Simplification & Cognitive Clutter Audit (/simplify-ui)
+
+### Audit & Analysis Summary
+- Executed full codebase UI/UX simplification audit following `/simplify-ui` framework across 8 core views, section header banners, feature grids, and footer modules.
+- **Pillar 1 (Copy Distillation)**: Identified wordy paragraph subtitles across 5 key section headers (Discover Aesthetics, Drops, Davao Fashion Map, Seller Directory, Fit Check Feed) averaging 20-28 words per subtitle. Formulated distilled 8-12 word value statements achieving a **55%+ copy reduction**.
+- **Pillar 2 (Action Button Streamlining)**: Audited filter reset and card action triggers for single-primary CTA discipline.
+- **Pillar 3 (Metadata Scannability)**: Formulated line clamping and compact micro-metadata chip replacements for multiline store descriptions and region labels.
+- **Pillar 4 (Vertical Density)**: Identified heavy container padding (`p-8 sm:p-12`) causing excessive dark card height on standard viewports; recommended tuning to `p-6 sm:p-8 md:p-10`.
+- **Pillar 5 (Grid Simplification)**: Audited card layouts to ensure clean scannability on mobile viewports (320px–480px).
+
+### Reports & Documentation
+- Persisted comprehensive evidence-backed audit report to [`reports/simplify-ui/2026-09-27-0038.md`](file:///c:/Users/User/Pictures/Habi/reports/simplify-ui/2026-09-27-0038.md) with exact `file:line` citations.
+- Invoked `/simplify-ui fix all`: Applied copy distillation across 6 components ([`App.tsx`](file:///c:/Users/User/Pictures/Habi/src/App.tsx), [`DropsView.tsx`](file:///c:/Users/User/Pictures/Habi/src/views/DropsView.tsx), [`DavaoFashionMap.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/map/DavaoFashionMap.tsx), [`FitCheckView.tsx`](file:///c:/Users/User/Pictures/Habi/src/views/FitCheckView.tsx), [`SavedView.tsx`](file:///c:/Users/User/Pictures/Habi/src/views/SavedView.tsx), [`FooterSection.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/layout/FooterSection.tsx)), reducing section banner subtitles from 20-28 words down to punchy 8-12 word value statements (**55%+ copy reduction**).
+- Tuned section banner container vertical padding from `p-8 sm:p-12` to `p-6 sm:p-8 md:p-10` for improved vertical scannability.
+- Streamlined reset action label (`Clear Filters`) in [`App.tsx`](file:///c:/Users/User/Pictures/Habi/src/App.tsx).
+
+### Verification Results
+- `npx tsc --noEmit`: 0 errors.
+- `npm run build`: Production bundle compiled cleanly in 1.31s (`dist/assets/index-7SUwGSTg.css` 58.87 kB, `dist/assets/index-D0Rmbf_u.js` 637.70 kB).
+- Compliance: Maintained strict Zero Emoji, Zero Em-Dash, and Anti-Eyebrow-Pill directives.
+
+---
+
+## [2026-09-27] Session Log: Product Card Grid Architecture Refactoring (`ProductCard.tsx`)
+
+### UI/UX Refactorings Delivered
+- **Streamlined Top-Left Badge Stack**: Merged `1 of 1` tag and `condition` tag into a single unified capsule tag (`1 of 1 • Good Vintage`), eliminating dual badge stacking and top-left photography occlusion.
+- **2-Line Title Clamping**: Converted product title line-clamping from `line-clamp-1` to `line-clamp-2` with `min-h-[2.25rem]`, resolving title truncation (*"Utility Tot..."* &rarr; *"Heavy Canvas Minimalist Utility Tote"*).
+- **Location String Truncation**: Expanded seller location container constraint from `max-w-[80px]` to `max-w-[110px]`, eliminating abrupt district name clipping (*"Davao City - Ba.."* &rarr; *"Davao City - Bajada"*).
+- **Accessible Wishlist Bookmark Target**: Enlarged floating bookmark button touch container to `w-9 h-9` with `w-4 h-4` icon for mobile ergonomic compliance.
+
+### Verification Results
+- `npx tsc --noEmit`: 0 compilation errors.
+- Visual Audit: Verified clean badge alignment, readable 2-line product titles, and expanded location metadata.
+

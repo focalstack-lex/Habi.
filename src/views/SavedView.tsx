@@ -40,7 +40,7 @@ export const SavedView: React.FC<SavedViewProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-8">
       {/* Header Banner */}
-      <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-8 sm:p-12 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
+      <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-6 sm:p-8 md:p-10 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
         <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#E0DFC8] font-semibold">
           PERSONAL CLOSET
         </div>
@@ -50,7 +50,7 @@ export const SavedView: React.FC<SavedViewProps> = ({
         </h1>
 
         <p className="text-[#E0DFC8] text-sm sm:text-base max-w-2xl font-sans leading-relaxed">
-          Your saved 1-of-1 thrift pieces, followed Davao creators, and drop reminders stored in your browser.
+          Your saved 1-of-1 thrift pieces, followed Davao creators, and drop reminders.
         </p>
       </div>
 

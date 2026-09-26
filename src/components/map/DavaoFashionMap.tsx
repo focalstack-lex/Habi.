@@ -176,7 +176,7 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 font-sans space-y-6">
       {/* Header Info Banner */}
-      <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-8 sm:p-12 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
+      <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-6 sm:p-8 md:p-10 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
         <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#E0DFC8] font-semibold flex items-center gap-2">
           <Compass className="w-3.5 h-3.5 text-[#FFF9E9]" />
           <span>MINDANAO REGION EXCLUSIVE MAP</span>
@@ -187,7 +187,7 @@ export const DavaoFashionMap: React.FC<DavaoFashionMapProps> = ({
         </h1>
 
         <p className="text-[#E0DFC8] text-sm sm:text-base max-w-2xl font-sans leading-relaxed">
-          Explore local thrift shops, clothing boutiques, pop-up markets, and independent fashion creators across Davao City, Tagum, Digos, Panabo, and Mati.
+          Locate thrift vaults, boutiques, and fashion creators across Mindanao.
         </p>
       </div>
 

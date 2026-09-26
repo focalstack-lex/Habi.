@@ -30,7 +30,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
                 Habi
               </span>
               <p className="text-[#B9BCA8] text-sm leading-relaxed font-sans">
-                Davao Region's digital fashion community, visual discovery platform, and local marketplace for independent clothing brands, thrift shops, and vintage sellers.
+                Davao Region's digital fashion discovery platform & local marketplace.
               </p>
               <div className="flex items-center gap-2 text-xs text-[#B9BCA8] pt-2">
                 <MapPin className="w-4 h-4 text-[#FFF9E9]" />
@@ -90,7 +90,7 @@ export const FooterSection: React.FC<FooterSectionProps> = ({
                 Local Creators
               </div>
               <p className="text-[#B9BCA8] text-sm leading-relaxed font-sans">
-                Are you a Davao thrift seller or local fashion brand? Create your storefront and schedule collection drops.
+                Sell thrift finds or launch collection drops on Habi.
               </p>
               <button
                 onClick={() => {

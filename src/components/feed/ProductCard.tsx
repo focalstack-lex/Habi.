@@ -40,16 +40,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
 
-        {/* Floating Capsule Tags */}
-        <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 flex flex-col items-start gap-1 z-10">
-          {product.isOneOfOne && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 bg-[#1A2225]/90 backdrop-blur-md text-[#FFF9E9] text-[9px] sm:text-[10px] font-semibold rounded-full shadow-sm">
-              <CustomTagIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#FFF9E9]" />
-              <span>1 of 1</span>
-            </span>
-          )}
-          <span className="px-2 py-0.5 bg-[#F3ECD8]/95 backdrop-blur-md text-[#1A2225] text-[9px] sm:text-[10px] font-semibold rounded-full shadow-sm border border-[#E6DCC0]">
-            {product.condition}
+        {/* Floating Single Capsule Tag */}
+        <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 bg-[#1A2225]/90 backdrop-blur-md text-[#FFF9E9] text-[9px] sm:text-[10px] font-semibold rounded-full shadow-sm">
+            {product.isOneOfOne && <CustomTagIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#FFF9E9]" />}
+            <span>{product.isOneOfOne ? `1 of 1 • ${product.condition}` : product.condition}</span>
           </span>
         </div>
 
@@ -57,13 +52,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <button
           onClick={handleSaveClick}
           aria-label={isSaved ? "Remove from saved products" : "Save product"}
-          className={`absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all shadow-md z-10 cursor-pointer ${
+          className={`absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all shadow-md z-10 cursor-pointer ${
             isSaved
               ? 'bg-[#1A2225] text-[#FFF9E9]'
               : 'bg-[#F3ECD8]/95 backdrop-blur-md text-[#1A2225] hover:bg-[#1A2225] hover:text-[#FFF9E9] hover:scale-105'
           }`}
         >
-          <SavedIcon className={`w-3.5 h-3.5 ${isSaved ? 'fill-current' : ''}`} />
+          <SavedIcon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isSaved ? 'fill-current' : ''}`} />
         </button>
 
         {/* Floating Price Tag Capsule */}
@@ -75,12 +70,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Card Details Body */}
       <div className="p-1.5 sm:p-2 pt-2.5 sm:pt-3 space-y-2">
         <div>
-          <h3 className="font-cooper text-xs sm:text-sm font-semibold text-[#1A2225] tracking-tight leading-snug line-clamp-1 group-hover:text-[#4A575B] transition-colors">
+          <h3 className="font-cooper text-xs sm:text-sm font-semibold text-[#1A2225] tracking-tight leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.25rem] group-hover:text-[#4A575B] transition-colors">
             {product.name}
           </h3>
           <div className="flex items-center justify-between text-[10px] sm:text-xs font-avantgarde font-semibold text-[#55615D] mt-1">
             <span>Size {product.size}</span>
-            <span className="capitalize truncate max-w-[70px] sm:max-w-none">{product.category}</span>
+            <span className="capitalize truncate max-w-[75px] sm:max-w-none">{product.category}</span>
           </div>
         </div>
 
@@ -91,7 +86,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               e.stopPropagation();
               if (onSelectSeller) onSelectSeller(product.sellerId);
             }}
-            className="flex items-center gap-1 sm:gap-1.5 hover:text-[#1A2225] transition-colors truncate max-w-[60%] cursor-pointer"
+            className="flex items-center gap-1 sm:gap-1.5 hover:text-[#1A2225] transition-colors truncate max-w-[55%] cursor-pointer"
           >
             <img
               src={product.sellerLogo}
@@ -105,7 +100,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           <div className="flex items-center gap-0.5 sm:gap-1 shrink-0 text-[#55615D] text-[9px] sm:text-[10px]">
             <MapIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#55615D]" />
-            <span className="truncate max-w-[60px] sm:max-w-[80px]">{product.location}</span>
+            <span className="truncate max-w-[85px] sm:max-w-[110px]">{product.location}</span>
           </div>
         </div>
       </div>

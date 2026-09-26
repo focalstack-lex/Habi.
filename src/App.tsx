@@ -145,7 +145,7 @@ export const App: React.FC = () => {
                   onClick={handleResetFilters}
                   className="text-[#1A2225] underline hover:opacity-80 font-bold"
                 >
-                  Clear Active Filters
+                  Clear Filters
                 </button>
               )}
             </div>
@@ -162,12 +162,12 @@ export const App: React.FC = () => {
         {/* VIEW 2: Discover Aesthetic Catalog */}
         {activeTab === 'discover' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-            <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-8 sm:p-12 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
+            <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-6 sm:p-8 md:p-10 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
               <h1 className="font-outfit text-3xl sm:text-4xl font-bold tracking-tight">
                 Discover Fashion Aesthetics
               </h1>
               <p className="text-sm sm:text-base text-[#E0DFC8] max-w-xl font-sans leading-relaxed">
-                Browse local Davao clothing items categorized strictly by style subculture: Streetwear, Vintage Denim, Y2K Archives, Techwear, and Gorpcore Outerwear.
+                Browse local Davao clothing pieces by style subculture.
               </p>
             </div>
 
@@ -214,12 +214,12 @@ export const App: React.FC = () => {
         {/* VIEW 5: Davao Local Brand Directory */}
         {activeTab === 'brands' && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-            <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-8 sm:p-12 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
+            <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-6 sm:p-8 md:p-10 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
               <h1 className="font-outfit text-3xl sm:text-4xl font-bold tracking-tight">
                 Davao Seller Directory
               </h1>
               <p className="text-sm sm:text-base text-[#E0DFC8] max-w-xl font-sans leading-relaxed">
-                Independent streetwear brands, curated thrift vaults, vintage archives, and local clothing creators across the Davao Region.
+                Explore independent streetwear brands and vintage thrift vaults in Davao.
               </p>
             </div>
 
