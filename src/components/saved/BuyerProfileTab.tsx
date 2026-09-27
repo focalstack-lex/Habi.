@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Check, Link2, Moon, Sun, MonitorSmartphone } from 'lucide-react';
+import { Check, Link2 } from 'lucide-react';
 import { AESTHETIC_OPTIONS } from '../feed/AestheticFilterBar';
-import { SHOE_SIZES, TOP_SIZES, userPrefsService, type ThemePreference } from '../../services/userPrefsService';
+import { SHOE_SIZES, TOP_SIZES, userPrefsService } from '../../services/userPrefsService';
 import { absoluteUrl, buildHash } from '../../utils/router';
 import { useI18n } from '../../i18n';
 import { Field, inputClass } from '../common/FormControls';
@@ -37,7 +37,6 @@ export const BuyerProfileTab: React.FC<BuyerProfileTabProps> = ({ savedProductId
   const { t } = useI18n();
   const sizeProfile = userPrefsService.getSizeProfile();
   const styleProfile = userPrefsService.getStyleProfile();
-  const theme = userPrefsService.getThemePreference();
   const closet = userPrefsService.getClosetSettings();
   const [copied, setCopied] = useState(false);
 
@@ -118,31 +117,6 @@ export const BuyerProfileTab: React.FC<BuyerProfileTabProps> = ({ savedProductId
             <Chip key={style} active={styleProfile.aesthetics.includes(style)} onClick={() => userPrefsService.setStyleProfile(toggleIn(styleProfile.aesthetics, style))}>
               {style}
             </Chip>
-          ))}
-        </div>
-      </Card>
-
-      <Card title={t('profile.theme')}>
-        <div className="grid grid-cols-3 gap-2">
-          {(
-            [
-              { id: 'light', label: t('theme.light'), icon: Sun },
-              { id: 'dark', label: t('theme.dark'), icon: Moon },
-              { id: 'system', label: t('theme.system'), icon: MonitorSmartphone },
-            ] as { id: ThemePreference; label: string; icon: React.ComponentType<{ className?: string }> }[]
-          ).map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => userPrefsService.setThemePreference(id)}
-              aria-pressed={theme === id}
-              className={`flex flex-col items-center gap-1.5 p-3 rounded-2xl border text-xs font-semibold transition-all ${
-                theme === id ? 'bg-zinc-950 text-white border-zinc-950' : 'bg-zinc-50 text-zinc-700 border-zinc-200 hover:border-zinc-400'
-              }`}
-            >
-              <Icon className="w-4 h-4" />
-              <span>{label}</span>
-            </button>
           ))}
         </div>
       </Card>

@@ -5,7 +5,7 @@ import {
   SavedIcon,
   DashboardIcon,
 } from '../common/CustomIcons';
-import { Menu, X, UserRound, ShieldCheck, Moon, Sun, History, Store, Tag, LayoutGrid } from 'lucide-react';
+import { Menu, X, UserRound, ShieldCheck, History, Store, Tag, LayoutGrid } from 'lucide-react';
 import { useI18n, type StringKey } from '../../i18n';
 import { userPrefsService } from '../../services/userPrefsService';
 import { usePrefsVersion } from '../../hooks/usePrefsVersion';
@@ -207,16 +207,12 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   onSelectSeller,
 }) => {
   const { t } = useI18n();
-  usePrefsVersion();
   const isPortalActive = activeTab === PORTAL_TAB_ID;
-  const isDark = userPrefsService.resolveTheme() === 'dark';
 
   // Searching from a non-feed tab jumps to the feed so results are visible.
   const commitSearch = () => {
     if (activeTab !== 'feed' && activeTab !== 'discover') setActiveTab('feed');
   };
-
-  const toggleTheme = () => userPrefsService.setThemePreference(isDark ? 'light' : 'dark');
 
   return (
     <header className="sticky top-0 z-40 bg-[#FBF4E4]/95 backdrop-blur-md border-b border-[#E6DCC0] font-sans transition-all">
@@ -299,18 +295,8 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
             })}
           </nav>
 
-          {/* Right Actions: theme, Portal Link */}
+          {/* Right Actions: Portal Link, Saved Wishlist */}
           <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 shrink-0 sm:ml-auto lg:ml-0">
-            {/* Theme toggle */}
-            <button
-              onClick={toggleTheme}
-              className="hidden sm:flex p-2 text-[#55615D] hover:text-[#1A2225] rounded-full hover:bg-[#F3ECD8] transition-colors cursor-pointer"
-              aria-label={isDark ? t('theme.light') : t('theme.dark')}
-              title={isDark ? t('theme.light') : t('theme.dark')}
-            >
-              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-
             {/* Saved Wishlist Button (tablet; phones use the bottom bar) */}
             <button
               onClick={() => setActiveTab('saved')}
