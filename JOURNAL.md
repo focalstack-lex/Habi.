@@ -791,6 +791,19 @@ Seller verification only checked that the ID number had the right format, that i
 - `npm run build`: Passed cleanly in 930ms (`dist/assets/index-3FRx0rJ0.css` 84.16 kB, `dist/assets/index-BOLcn1JI.js` 939.26 kB).
 - Directives: Verified Zero Emojis, Zero Em-Dashes, and Cream-Green tokens.
 
+---
+
+## [2026-09-27] Session Log: Navigation Drawer Audit & Language Switcher Streamlining
+
+### Delivered
+- **Navigation Drawer Audit**: Evaluated `NavigationDrawer.tsx` design (rated **8.8/10**).
+- **Streamlined Language Controls**: Removed the Bisaya language switcher from `NavigationDrawer.tsx` and `BuyerProfileTab.tsx`, streamlining the appearance section to focus purely on theme customization (`Light`, `Dark`, `System`).
+
+### Verification Results
+- `npm run build`: `tsc -b && vite build` passed cleanly with 0 compilation errors in 994ms (`dist/assets/index-3FRx0rJ0.css` 84.16 kB, `dist/assets/index-BNXAND7A.js` 938.17 kB).
+- Directives: Zero Emojis, Zero Em-Dashes, and Cream-Green tokens preserved.
+
+
 
 
 
