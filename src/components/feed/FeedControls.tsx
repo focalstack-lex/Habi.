@@ -51,15 +51,15 @@ export const FeedControls: React.FC<FeedControlsProps> = ({
   const { t } = useI18n();
 
   return (
-    <div className="space-y-3 mb-3 font-sans">
-      {/* For You / Following: underline tabs */}
-      <div className="flex items-center border-b border-[#E6DCC0]">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3 font-sans pb-3 border-b border-[#E6DCC0]">
+      {/* Left: For You / Following feed mode capsule switcher */}
+      <div className="flex items-center gap-1 bg-[#F3ECD8] p-1 rounded-full border border-[#E6DCC0] shrink-0 self-start sm:self-auto">
         <button
           type="button"
           onClick={() => onModeChange('forYou')}
           aria-pressed={mode === 'forYou'}
-          className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 -mb-px border-b-2 text-xs font-semibold transition-colors cursor-pointer ${
-            mode === 'forYou' ? 'border-[#1A2225] text-[#1A2225] font-bold' : 'border-transparent text-[#55615D] hover:text-[#1A2225]'
+          className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            mode === 'forYou' ? 'bg-[#1A2225] text-[#FFF9E9] shadow-sm font-bold' : 'text-[#55615D] hover:text-[#1A2225] hover:bg-[#E8DFC6]'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -69,15 +69,15 @@ export const FeedControls: React.FC<FeedControlsProps> = ({
           type="button"
           onClick={() => onModeChange('following')}
           aria-pressed={mode === 'following'}
-          className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 -mb-px border-b-2 text-xs font-semibold transition-colors cursor-pointer ${
-            mode === 'following' ? 'border-[#1A2225] text-[#1A2225] font-bold' : 'border-transparent text-[#55615D] hover:text-[#1A2225]'
+          className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+            mode === 'following' ? 'bg-[#1A2225] text-[#FFF9E9] shadow-sm font-bold' : 'text-[#55615D] hover:text-[#1A2225] hover:bg-[#E8DFC6]'
           }`}
         >
           <Users className="w-3.5 h-3.5" />
           <span>{t('feed.following')}</span>
           {followingNewCount > 0 && (
             <span className={`ml-0.5 min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-bold flex items-center justify-center ${
-              mode === 'following' ? 'bg-[#1A2225] text-[#FFF9E9]' : 'bg-[#FFF9E9] text-[#1A2225] border border-[#E6DCC0]'
+              mode === 'following' ? 'bg-[#FFF9E9] text-[#1A2225]' : 'bg-[#1A2225] text-[#FFF9E9]'
             }`}>
               {followingNewCount}
             </span>
@@ -85,7 +85,7 @@ export const FeedControls: React.FC<FeedControlsProps> = ({
         </button>
       </div>
 
-      {/* Fits me, sort, price */}
+      {/* Right: Fits me, sort, price */}
       <div className="flex items-center gap-2 overflow-x-auto scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
         <button
           type="button"
