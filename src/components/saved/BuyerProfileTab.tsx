@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Check, Link2, Moon, Sun, MonitorSmartphone, Languages } from 'lucide-react';
+import { Check, Link2, Moon, Sun, MonitorSmartphone } from 'lucide-react';
 import { AESTHETIC_OPTIONS } from '../feed/AestheticFilterBar';
 import { SHOE_SIZES, TOP_SIZES, userPrefsService, type ThemePreference } from '../../services/userPrefsService';
 import { absoluteUrl, buildHash } from '../../utils/router';
 import { useI18n } from '../../i18n';
-import { Field, inputClass, Segmented } from '../common/FormControls';
+import { Field, inputClass } from '../common/FormControls';
 
 interface BuyerProfileTabProps {
   savedProductIds: string[];
@@ -34,7 +34,7 @@ const Card: React.FC<{ title: string; body?: string; children: React.ReactNode }
 );
 
 export const BuyerProfileTab: React.FC<BuyerProfileTabProps> = ({ savedProductIds }) => {
-  const { t, lang, setLang } = useI18n();
+  const { t } = useI18n();
   const sizeProfile = userPrefsService.getSizeProfile();
   const styleProfile = userPrefsService.getStyleProfile();
   const theme = userPrefsService.getThemePreference();
@@ -144,20 +144,6 @@ export const BuyerProfileTab: React.FC<BuyerProfileTabProps> = ({ savedProductId
               <span>{label}</span>
             </button>
           ))}
-        </div>
-      </Card>
-
-      <Card title={t('profile.language')}>
-        <div className="flex items-center gap-3">
-          <Languages className="w-4 h-4 text-zinc-500 shrink-0" />
-          <Segmented
-            value={lang}
-            onChange={setLang}
-            options={[
-              { id: 'en', label: 'English' },
-              { id: 'bis', label: 'Bisaya' },
-            ]}
-          />
         </div>
       </Card>
 

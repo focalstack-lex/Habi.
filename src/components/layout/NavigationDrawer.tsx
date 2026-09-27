@@ -1,6 +1,6 @@
 import React from 'react';
 import { MapIcon } from '../common/CustomIcons';
-import { X, ArrowRight, LogOut, Moon, Sun, MonitorSmartphone, Languages } from 'lucide-react';
+import { X, ArrowRight, LogOut, Moon, Sun, MonitorSmartphone } from 'lucide-react';
 import {
   DAVAO_CITIES,
   NAV_TABS,
@@ -38,7 +38,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
   accountName,
   onSignOut,
 }) => {
-  const { t, lang, setLang } = useI18n();
+  const { t } = useI18n();
   usePrefsVersion();
 
   if (!isOpen) return null;
@@ -135,7 +135,7 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
             })}
           </div>
 
-          {/* Appearance & Language */}
+          {/* Appearance (Theme Selection) */}
           <div className="space-y-2.5 pt-1">
             <div className="text-xs font-semibold text-[#55615D] uppercase tracking-wider px-2">{t('profile.theme')}</div>
             <div className="grid grid-cols-3 gap-1.5">
@@ -153,23 +153,6 @@ export const NavigationDrawer: React.FC<NavigationDrawerProps> = ({
                   <span>{label}</span>
                 </button>
               ))}
-            </div>
-            <div className="flex items-center gap-2 px-1">
-              <Languages className="w-4 h-4 text-[#55615D] shrink-0" />
-              <div className="flex items-center gap-1 p-1 bg-[#F3ECD8] rounded-full flex-1 border border-[#E6DCC0]">
-                {(['en', 'bis'] as const).map((option) => (
-                  <button
-                    key={option}
-                    type="button"
-                    onClick={() => setLang(option)}
-                    className={`flex-1 px-3 py-1.5 rounded-full text-xs font-semibold cursor-pointer ${
-                      lang === option ? 'bg-[#1A2225] text-[#FFF9E9]' : 'text-[#55615D]'
-                    }`}
-                  >
-                    {option === 'en' ? 'English' : 'Bisaya'}
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
         </div>
