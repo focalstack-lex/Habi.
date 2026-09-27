@@ -776,5 +776,21 @@ Seller verification only checked that the ID number had the right format, that i
 - `npm run build`: `tsc -b && vite build` passed with 0 TypeScript/compilation errors in 4.91s (`dist/assets/index-DIxlFt2g.css` 84.13 kB, `dist/assets/index-Dk6d0u2X.js` 939.22 kB).
 - Directives: Preserved Cream-Green tokens, Zero Emojis, and Zero Em-Dashes.
 
+---
+
+## [2026-09-27] Session Log: Mobile Viewport Clipping & Touch Target Optimization
+
+### Problem
+- On mobile viewports (320px–390px), horizontal filter items (`₱ Any price ▾`, `Tops`) were clipped directly against the right screen border without proper scroll padding, and 32px (`h-8`) touch targets were below mobile thumb standards.
+
+### Delivered
+- **Edge-to-Edge Scroll Padding**: Added `-mx-4 px-4 pr-8 sm:mx-0 sm:px-0 sm:pr-0` across `FeedControls.tsx` and `AestheticFilterBar.tsx` so scroll rails glide smoothly to the right edge with proper breathing room.
+- **Mobile Touch Targets**: Upgraded filter chip heights from `h-8` (32px) to `h-9` (36px–40px) with `px-3.5` / `px-4` for thumb accessibility.
+
+### Verification Results
+- `npm run build`: Passed cleanly in 930ms (`dist/assets/index-3FRx0rJ0.css` 84.16 kB, `dist/assets/index-BOLcn1JI.js` 939.26 kB).
+- Directives: Verified Zero Emojis, Zero Em-Dashes, and Cream-Green tokens.
+
+
 
 
