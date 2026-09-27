@@ -43,12 +43,12 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
   const { t } = useI18n();
   return (
     <div className="mb-3 sm:mb-4 font-sans">
-      <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 py-1">
+      <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none -mx-4 px-4 pr-8 sm:mx-0 sm:px-0 sm:pr-0 py-1">
         {/* 1-of-1 Vault Chip */}
         <button
           onClick={() => setIsOneOfOneOnly(!isOneOfOneOnly)}
           aria-pressed={isOneOfOneOnly}
-          className={`shrink-0 h-8 flex items-center gap-1.5 px-3 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
+          className={`shrink-0 h-9 flex items-center gap-1.5 px-3.5 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
             isOneOfOneOnly
               ? 'bg-[#1A2225] text-[#FFF9E9] border-[#1A2225] shadow-sm font-bold'
               : 'bg-[#F3ECD8] text-[#55615D] border-[#E6DCC0] hover:bg-[#E8DFC6] hover:text-[#1A2225]'
@@ -68,7 +68,7 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               aria-pressed={isActive}
-              className={`shrink-0 h-8 px-3.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              className={`shrink-0 h-9 px-4 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 isActive
                   ? 'bg-[#1A2225] text-[#FFF9E9] border border-[#1A2225] shadow-sm font-bold'
                   : 'bg-[#FFF9E9] text-[#55615D] border border-[#E6DCC0] hover:bg-[#F3ECD8] hover:text-[#1A2225]'
@@ -89,7 +89,7 @@ export const AestheticFilterBar: React.FC<AestheticFilterBarProps> = ({
               key={style}
               onClick={() => setSelectedAesthetic(isActive ? 'All' : style)}
               aria-pressed={isActive}
-              className={`shrink-0 h-8 px-3.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              className={`shrink-0 h-9 px-4 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 isActive
                   ? 'bg-[#1A2225] text-[#FFF9E9] border border-[#1A2225] shadow-sm font-bold'
                   : 'bg-[#F3ECD8] text-[#55615D] border border-transparent hover:bg-[#E8DFC6] hover:text-[#1A2225]'

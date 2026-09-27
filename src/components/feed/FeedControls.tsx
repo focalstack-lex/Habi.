@@ -29,11 +29,11 @@ interface FeedControlsProps {
 }
 
 const chipBase =
-  'shrink-0 h-8 flex items-center gap-1.5 px-3 rounded-full text-xs font-semibold border transition-colors cursor-pointer';
+  'shrink-0 h-9 flex items-center gap-1.5 px-3.5 rounded-full text-xs font-semibold border transition-all cursor-pointer';
 const chipIdle = 'bg-[#FFF9E9] text-[#1A2225] border-[#E6DCC0] hover:bg-[#F3ECD8]';
-const chipActive = 'bg-[#1A2225] text-[#FFF9E9] border-[#1A2225]';
+const chipActive = 'bg-[#1A2225] text-[#FFF9E9] border-[#1A2225] shadow-sm';
 const selectClass =
-  'appearance-none h-8 bg-[#FFF9E9] text-[#1A2225] text-xs font-semibold rounded-full pl-7 pr-6 border border-[#E6DCC0] hover:bg-[#F3ECD8] focus:outline-none focus:border-[#55615D] cursor-pointer';
+  'appearance-none h-9 bg-[#FFF9E9] text-[#1A2225] text-xs font-semibold rounded-full pl-7 pr-7 border border-[#E6DCC0] hover:bg-[#F3ECD8] focus:outline-none focus:border-[#55615D] cursor-pointer';
 
 export const FeedControls: React.FC<FeedControlsProps> = ({
   mode,
@@ -85,8 +85,8 @@ export const FeedControls: React.FC<FeedControlsProps> = ({
         </button>
       </div>
 
-      {/* Right: Fits me, sort, price */}
-      <div className="flex items-center gap-2 overflow-x-auto scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
+      {/* Right: Fits me, sort, price (Edge-to-edge scrollable on mobile with right padding) */}
+      <div className="flex items-center gap-2 overflow-x-auto scrollbar-none -mx-4 px-4 pr-8 sm:mx-0 sm:px-0 sm:pr-0">
         <button
           type="button"
           onClick={() => (hasSizeProfile ? onFitsMeChange(!fitsMe) : onSetSizes())}
@@ -110,7 +110,7 @@ export const FeedControls: React.FC<FeedControlsProps> = ({
             <option value="priceHigh">{t('feed.sort.priceHigh')}</option>
             <option value="mostSaved">{t('feed.sort.mostSaved')}</option>
           </select>
-          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#55615D] text-[10px] pointer-events-none">▾</span>
+          <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#55615D] text-[10px] pointer-events-none">▾</span>
         </label>
 
         <label className="relative shrink-0">
@@ -127,7 +127,7 @@ export const FeedControls: React.FC<FeedControlsProps> = ({
               </option>
             ))}
           </select>
-          <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#55615D] text-[10px] pointer-events-none">▾</span>
+          <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#55615D] text-[10px] pointer-events-none">▾</span>
         </label>
       </div>
     </div>
