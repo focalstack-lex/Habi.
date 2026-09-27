@@ -4,16 +4,16 @@ import { userPrefsService } from '../services/userPrefsService';
 
 export type { Lang, StringKey };
 
-export function translate(lang: Lang, key: StringKey, vars?: Record<string, string | number>): string {
-  const template = STRINGS[lang][key] ?? STRINGS.en[key] ?? key;
+export function translate(_lang: Lang, key: StringKey, vars?: Record<string, string | number>): string {
+  const template = STRINGS.en[key] ?? key;
   if (!vars) return template;
   return template.replace(/\{(\w+)\}/g, (_, name: string) => String(vars[name] ?? `{${name}}`));
 }
 
 const subscribe = (listener: () => void) => userPrefsService.subscribe(listener);
-const getLanguage = () => userPrefsService.getLanguage();
+const getLanguage = () => 'en' as const;
 
-/** Current language plus a `t()` that re-renders the caller when the language changes. */
+/** Current language plus a `t()` that re-renders the caller when language/preferences change. */
 export function useI18n() {
   const lang = useSyncExternalStore(subscribe, getLanguage, getLanguage);
   const t = useCallback(
