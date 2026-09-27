@@ -30,7 +30,7 @@ export const AddToBoardSheet: React.FC<AddToBoardSheetProps> = ({ product, onClo
   return (
     <DetailSheet eyebrow="Outfit boards" title="Add to a board" onClose={onClose}>
       <form onSubmit={handleCreate} className="space-y-1.5">
-        <label htmlFor={inputId} className="block text-xs font-semibold text-zinc-700">
+        <label htmlFor={inputId} className="block text-xs font-semibold text-[#1A2225]">
           New board
         </label>
         <div className="flex items-center gap-2">
@@ -45,7 +45,7 @@ export const AddToBoardSheet: React.FC<AddToBoardSheetProps> = ({ product, onClo
           <button
             type="submit"
             disabled={!canCreate}
-            className="shrink-0 inline-flex items-center gap-1.5 bg-zinc-950 text-white text-xs font-semibold px-4 py-2.5 rounded-full disabled:opacity-40 transition-opacity"
+            className="shrink-0 inline-flex items-center gap-1.5 bg-[#1A2225] text-[#FFF9E9] text-xs font-semibold px-4 py-2.5 rounded-full disabled:opacity-40 transition-opacity cursor-pointer"
           >
             <Plus className="w-3.5 h-3.5" />
             Create
@@ -54,7 +54,7 @@ export const AddToBoardSheet: React.FC<AddToBoardSheetProps> = ({ product, onClo
       </form>
 
       {boards.length === 0 ? (
-        <p className="text-xs text-zinc-500 leading-relaxed">Boards group saved pieces into looks you can share.</p>
+        <p className="text-xs text-[#55615D] leading-relaxed">Boards group saved pieces into looks you can share.</p>
       ) : (
         <ul className="space-y-2">
           {boards.map((board) => {
@@ -63,22 +63,22 @@ export const AddToBoardSheet: React.FC<AddToBoardSheetProps> = ({ product, onClo
               <li key={board.id}>
                 <label
                   className={`flex items-center gap-3 p-3 rounded-2xl border cursor-pointer transition-colors ${
-                    isOn ? 'border-zinc-950 bg-zinc-50' : 'border-zinc-200/80 bg-white hover:bg-zinc-50'
+                    isOn ? 'border-[#1A2225] bg-[#FFF9E9]' : 'border-[#E6DCC0] bg-[#F3ECD8] hover:bg-[#E8DFC6]'
                   }`}
                 >
                   <input
                     type="checkbox"
                     checked={isOn}
                     onChange={() => userPrefsService.toggleInBoard(board.id, product.id)}
-                    className="w-4 h-4 accent-zinc-950 shrink-0"
+                    className="w-4 h-4 accent-[#1A2225] shrink-0 cursor-pointer"
                   />
                   <span className="flex-1 min-w-0">
-                    <span className="block text-xs font-semibold text-zinc-950 truncate">{board.name}</span>
-                    <span className="block text-[11px] text-zinc-500">
+                    <span className="block text-xs font-semibold text-[#1A2225] truncate">{board.name}</span>
+                    <span className="block text-[11px] text-[#55615D]">
                       {board.productIds.length} {board.productIds.length === 1 ? 'piece' : 'pieces'}
                     </span>
                   </span>
-                  {isOn && <Check className="w-4 h-4 text-zinc-950 shrink-0" />}
+                  {isOn && <Check className="w-4 h-4 text-[#1A2225] shrink-0" />}
                 </label>
               </li>
             );

@@ -120,7 +120,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ value, onChange, placeholder,
 
   return (
     <div className="relative w-full">
-      <CustomSearchIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-400 absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+      <CustomSearchIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#55615D] absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
       <input
         type="text"
         placeholder={placeholder}
@@ -144,12 +144,12 @@ const SearchInput: React.FC<SearchInputProps> = ({ value, onChange, placeholder,
         }}
         aria-label="Search pieces and brands"
         autoComplete="off"
-        className={`w-full bg-zinc-100 border border-transparent rounded-full pl-8 sm:pl-9 pr-8 font-sans text-zinc-900 placeholder:text-zinc-500 focus:outline-none focus:bg-white focus:border-zinc-300 transition-all ${className}`}
+        className={`w-full bg-[#F3ECD8] border border-[#E6DCC0] rounded-full pl-8 sm:pl-9 pr-8 font-sans text-[#1A2225] placeholder:text-[#55615D] focus:outline-none focus:bg-[#FFF9E9] focus:border-[#55615D] transition-all ${className}`}
       />
       {value && (
         <button
           onClick={() => onChange('')}
-          className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 text-zinc-400 hover:text-zinc-950"
+          className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 text-[#55615D] hover:text-[#1A2225]"
           aria-label="Clear search"
         >
           <X className="w-3.5 h-3.5" />
@@ -158,15 +158,15 @@ const SearchInput: React.FC<SearchInputProps> = ({ value, onChange, placeholder,
 
       {isFocused && grouped.length > 0 && (
         <div
-          className="absolute left-0 right-0 top-full mt-1.5 bg-white border border-zinc-200 rounded-2xl shadow-xl z-50 overflow-hidden max-h-72 overflow-y-auto"
+          className="absolute left-0 right-0 top-full mt-1.5 bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl shadow-xl z-50 overflow-hidden max-h-72 overflow-y-auto font-sans"
           onMouseDown={(e) => e.preventDefault()}
         >
           {grouped.map((group) => (
             <div key={group.type} className="py-1.5">
               <div className="flex items-center justify-between px-3.5 pt-1 pb-0.5">
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-500">{groupLabel[group.type]}</span>
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#55615D]">{groupLabel[group.type]}</span>
                 {group.type === 'recent' && (
-                  <button type="button" onClick={() => userPrefsService.clearRecentSearches()} className="text-[11px] font-semibold text-zinc-500 hover:text-zinc-950">
+                  <button type="button" onClick={() => userPrefsService.clearRecentSearches()} className="text-[11px] font-semibold text-[#55615D] hover:text-[#1A2225]">
                     {t('search.clear')}
                   </button>
                 )}
@@ -178,9 +178,9 @@ const SearchInput: React.FC<SearchInputProps> = ({ value, onChange, placeholder,
                     key={`${suggestion.type}-${suggestion.value}`}
                     type="button"
                     onClick={() => pick(suggestion)}
-                    className="w-full flex items-center gap-2.5 px-3.5 py-2 text-left text-sm text-zinc-800 hover:bg-zinc-100"
+                    className="w-full flex items-center gap-2.5 px-3.5 py-2 text-left text-sm text-[#1A2225] hover:bg-[#F3ECD8] transition-colors"
                   >
-                    <Icon className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+                    <Icon className="w-3.5 h-3.5 text-[#55615D] shrink-0" />
                     <span className="truncate">{suggestion.label}</span>
                   </button>
                 );

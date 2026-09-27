@@ -40,7 +40,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
         {emptyAction ? (
           <button
             onClick={emptyAction.onClick}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-900 text-white rounded-full text-xs font-bold hover:bg-zinc-800 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1A2225] text-[#FFF9E9] rounded-full text-xs font-bold hover:bg-[#1A2225]/90 transition-colors cursor-pointer"
           >
             <span>{emptyAction.label}</span>
           </button>

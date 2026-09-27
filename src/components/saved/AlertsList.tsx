@@ -21,12 +21,12 @@ const ALERT_COPY: Record<SavedAlert['type'], { label: string; icon: React.Compon
 export const AlertsList: React.FC<AlertsListProps> = ({ alerts, products, onSelectProduct }) => {
   if (alerts.length === 0) {
     return (
-      <div className="p-6 sm:p-12 bg-white border border-zinc-200/80 rounded-2xl sm:rounded-3xl text-center space-y-3 shadow-sm">
-        <div className="w-14 h-14 rounded-full bg-zinc-100 flex items-center justify-center mx-auto text-zinc-500">
+      <div className="p-6 sm:p-12 bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl sm:rounded-3xl text-center space-y-3 shadow-sm font-sans">
+        <div className="w-14 h-14 rounded-full bg-[#F3ECD8] flex items-center justify-center mx-auto text-[#1A2225]">
           <BellRing className="w-6 h-6" />
         </div>
-        <div className="font-cooper text-base sm:text-lg font-bold text-zinc-900">No alerts right now</div>
-        <p className="text-xs sm:text-sm text-zinc-500 max-w-sm mx-auto">
+        <div className="font-cooper text-base sm:text-lg font-bold text-[#1A2225]">No alerts right now</div>
+        <p className="text-xs sm:text-sm text-[#55615D] max-w-sm mx-auto">
           Save a piece and Habi tells you here when its price drops, it sells out, or it comes back.
         </p>
       </div>
@@ -34,14 +34,14 @@ export const AlertsList: React.FC<AlertsListProps> = ({ alerts, products, onSele
   }
 
   return (
-    <div className="bg-white border border-zinc-200/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm space-y-3">
+    <div className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-sm space-y-3 font-sans">
       <div className="flex items-center justify-between">
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Changes since you saved</h3>
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-[#55615D]">Changes since you saved</h3>
         <Button type="button" variant="secondary" onClick={() => userPrefsService.dismissAlerts(products)} className="px-3 py-1.5 text-[11px]">
           Dismiss all
         </Button>
       </div>
-      <div className="divide-y divide-zinc-100">
+      <div className="divide-y divide-[#E6DCC0]/60">
         {alerts.map((alert, index) => {
           const product = products.find((p) => p.id === alert.productId);
           if (!product) return null;
@@ -52,12 +52,12 @@ export const AlertsList: React.FC<AlertsListProps> = ({ alerts, products, onSele
               key={`${alert.productId}-${alert.type}-${index}`}
               type="button"
               onClick={() => onSelectProduct(product)}
-              className="w-full py-3 flex items-center gap-3 text-left hover:bg-zinc-50 rounded-xl px-1 transition-colors"
+              className="w-full py-3 flex items-center gap-3 text-left hover:bg-[#F3ECD8] rounded-xl px-1 transition-colors cursor-pointer"
             >
-              <img src={product.images[0]} alt={product.name} className="w-12 h-12 rounded-xl object-cover border border-zinc-200 shrink-0" />
+              <img src={product.images[0]} alt={product.name} className="w-12 h-12 rounded-xl object-cover border border-[#E6DCC0] shrink-0" />
               <div className="min-w-0 flex-1">
-                <div className="text-sm font-semibold text-zinc-950 truncate">{product.name}</div>
-                <div className="text-[11px] text-zinc-600 truncate">
+                <div className="text-sm font-semibold text-[#1A2225] truncate">{product.name}</div>
+                <div className="text-[11px] text-[#55615D] truncate">
                   {product.sellerName} • from {alert.from} to {alert.to}
                 </div>
               </div>
