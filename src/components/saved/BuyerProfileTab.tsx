@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Check, Link2, Moon, Sun, MonitorSmartphone, Languages } from 'lucide-react';
+import { Check, Link2 } from 'lucide-react';
 import { AESTHETIC_OPTIONS } from '../feed/AestheticFilterBar';
-import { SHOE_SIZES, TOP_SIZES, userPrefsService, type ThemePreference } from '../../services/userPrefsService';
+import { SHOE_SIZES, TOP_SIZES, userPrefsService } from '../../services/userPrefsService';
 import { absoluteUrl, buildHash } from '../../utils/router';
 import { useI18n } from '../../i18n';
-import { Field, inputClass, Segmented } from '../common/FormControls';
+import { Field, inputClass } from '../common/FormControls';
 
 interface BuyerProfileTabProps {
   savedProductIds: string[];
@@ -34,10 +34,9 @@ const Card: React.FC<{ title: string; body?: string; children: React.ReactNode }
 );
 
 export const BuyerProfileTab: React.FC<BuyerProfileTabProps> = ({ savedProductIds }) => {
-  const { t, lang, setLang } = useI18n();
+  const { t } = useI18n();
   const sizeProfile = userPrefsService.getSizeProfile();
   const styleProfile = userPrefsService.getStyleProfile();
-  const theme = userPrefsService.getThemePreference();
   const closet = userPrefsService.getClosetSettings();
   const [copied, setCopied] = useState(false);
 
@@ -119,45 +118,6 @@ export const BuyerProfileTab: React.FC<BuyerProfileTabProps> = ({ savedProductId
               {style}
             </Chip>
           ))}
-        </div>
-      </Card>
-
-      <Card title={t('profile.theme')}>
-        <div className="grid grid-cols-3 gap-2">
-          {(
-            [
-              { id: 'light', label: t('theme.light'), icon: Sun },
-              { id: 'dark', label: t('theme.dark'), icon: Moon },
-              { id: 'system', label: t('theme.system'), icon: MonitorSmartphone },
-            ] as { id: ThemePreference; label: string; icon: React.ComponentType<{ className?: string }> }[]
-          ).map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => userPrefsService.setThemePreference(id)}
-              aria-pressed={theme === id}
-              className={`flex flex-col items-center gap-1.5 p-3 rounded-2xl border text-xs font-semibold transition-all ${
-                theme === id ? 'bg-zinc-950 text-white border-zinc-950' : 'bg-zinc-50 text-zinc-700 border-zinc-200 hover:border-zinc-400'
-              }`}
-            >
-              <Icon className="w-4 h-4" />
-              <span>{label}</span>
-            </button>
-          ))}
-        </div>
-      </Card>
-
-      <Card title={t('profile.language')}>
-        <div className="flex items-center gap-3">
-          <Languages className="w-4 h-4 text-zinc-500 shrink-0" />
-          <Segmented
-            value={lang}
-            onChange={setLang}
-            options={[
-              { id: 'en', label: 'English' },
-              { id: 'bis', label: 'Bisaya' },
-            ]}
-          />
         </div>
       </Card>
 

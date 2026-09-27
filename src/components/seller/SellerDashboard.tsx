@@ -89,16 +89,16 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 font-sans space-y-4 sm:space-y-8">
-      {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-5 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl border border-zinc-800/80 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
+      {/* Header Banner */}
+      <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border border-[#1A2225]/20 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
         <div className="space-y-2 sm:space-y-3 min-w-0">
-          <div className="font-avantgarde text-[11px] tracking-wider uppercase text-zinc-400 font-semibold">
+          <div className="font-avantgarde text-[11px] tracking-wider uppercase text-[#E0DFC8] font-semibold">
             SELLER PORTAL
           </div>
-          <h1 className="font-cooper text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight leading-tight break-words">
+          <h1 className="font-outfit text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight leading-tight break-words text-[#FFF9E9]">
             {seller.name}
           </h1>
-          <p className="text-zinc-300 text-xs sm:text-sm lg:text-base max-w-xl leading-relaxed">
+          <p className="text-[#E0DFC8] text-xs sm:text-sm lg:text-base max-w-xl leading-relaxed">
             Hi {account.ownerName.split(' ')[0]}. List pieces, update stock status, and keep your Davao storefront current.
           </p>
           <div className="flex flex-wrap items-center gap-2 pt-1">
@@ -113,29 +113,28 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
           </div>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-md border border-white/15 p-4 sm:p-5 rounded-2xl text-xs space-y-1.5 shrink-0">
-          <div className="text-[11px] sm:text-xs uppercase text-zinc-300 font-semibold tracking-wider">Verification Status</div>
-          <div className="font-bold text-white flex items-center gap-2 text-sm sm:text-base">
+        <div className="bg-[#FFF9E9]/10 backdrop-blur-md border border-[#FFF9E9]/15 p-4 sm:p-5 rounded-2xl text-xs space-y-1.5 shrink-0">
+          <div className="text-[11px] sm:text-xs uppercase text-[#E0DFC8] font-semibold tracking-wider">Verification Status</div>
+          <div className="font-bold text-[#FFF9E9] flex items-center gap-2 text-sm sm:text-base">
             <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" />
             <span>{seller.verificationStatus}</span>
           </div>
-          <div className="text-[11px] text-zinc-400">Verified with {account.verification.idTypeLabel}</div>
+          <div className="text-[11px] text-[#E0DFC8]/80">Verified with {account.verification.idTypeLabel}</div>
         </div>
       </div>
 
       {isSuspended && (
         <Alert tone="error">
-          <span className="font-semibold">Your storefront is suspended.</span> Buyers cannot see your pieces
-          until a Habi admin reinstates the account. Contact support if you think this is a mistake.
+          Your seller account is currently suspended. Catalog changes will not appear to buyers until resolved.
         </Alert>
       )}
 
-      {/* Metric tiles */}
+      {/* Metrics Row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        <MetricTile label="Profile Views" value={profileViews} icon={Eye} note="Storefront visits" />
-        <MetricTile label="Product Saves" value={totalSaves} icon={Bookmark} note={`Across ${products.length} pieces`} />
-        <MetricTile label="Followers" value={seller.followerCount} icon={Users} note="Active Davao buyers" />
-        <MetricTile label="Available Pieces" value={availableCount} icon={Tag} note="Live in the feed" />
+        <MetricTile label="Store Views" value={profileViews} note="Total impressions" icon={Eye} />
+        <MetricTile label="Total Saves" value={totalSaves} note="Across all pieces" icon={Bookmark} />
+        <MetricTile label="Followers" value={seller.followerCount} note="Interested buyers" icon={Users} />
+        <MetricTile label="Available Pieces" value={availableCount} note={`Of ${products.length} listed`} icon={Tag} />
       </div>
 
       <Segmented
@@ -153,7 +152,7 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
       />
 
       {toast && (
-        <div className="bg-zinc-950 text-white px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium flex items-center gap-3 shadow-lg border border-zinc-800">
+        <div className="bg-[#1A2225] text-[#FFF9E9] px-4 py-3 rounded-2xl text-xs sm:text-sm font-medium flex items-center gap-3 shadow-lg border border-[#1A2225]/80">
           <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
           <span>{toast}</span>
         </div>
@@ -212,14 +211,14 @@ export const SellerDashboard: React.FC<SellerDashboardProps> = ({
 // Sub components --------------------------------------------------------------
 
 const MetricTile: React.FC<{ label: string; value: number; note: string; icon: React.ComponentType<{ className?: string }> }> = ({ label, value, note, icon: Icon }) => (
-  <div className="bg-white border border-zinc-200/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-2 sm:space-y-3 shadow-sm">
-    <div className="flex items-center justify-between text-zinc-500">
+  <div className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl sm:rounded-3xl p-4 sm:p-6 space-y-2 sm:space-y-3 shadow-sm">
+    <div className="flex items-center justify-between text-[#55615D]">
       <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider">{label}</span>
-      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-950">
+      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F3ECD8] flex items-center justify-center text-[#1A2225]">
         <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
       </div>
     </div>
-    <div className="font-cooper text-2xl sm:text-3xl font-bold text-zinc-950">{value.toLocaleString()}</div>
-    <div className="text-[11px] sm:text-xs text-zinc-500">{note}</div>
+    <div className="font-outfit text-2xl sm:text-3xl font-bold text-[#1A2225]">{value.toLocaleString()}</div>
+    <div className="text-[11px] sm:text-xs text-[#55615D]">{note}</div>
   </div>
 );

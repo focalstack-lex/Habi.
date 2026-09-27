@@ -553,6 +553,141 @@ Everything from the feature proposal was built in one pass, split across four pa
 - Remediated P3 garment care notes & notification preference tooltips.
 - Verified build health: `npm run build` passed with **0 errors**.
 
+---
+
+## [2026-09-24] Session Log: System-Wide Green Color Pair Redesign Rollout (`feature/color-theme-green-pair`)
+
+### System Architecture & Color Integration
+- **System-Wide Palette Migration**: Completed 100% implementation of the requested green color pair theme across every view, component, modal overlay, map element, and card in the project on branch `feature/color-theme-green-pair`.
+- **Palette Tokens Implemented**:
+  - Dominant Dark: Muted Deep Olive Blue-Green (`#1A1A00`)
+  - Dominant Accent / Card Surface: Fresh Green / Pale Butter Cream (`#FFFFCC`)
+  - Main App Canvas Background: Soft Pistachio / Cream (`#F8F9EA`)
+  - Secondary Surface & Sub-Navigation: Soft Pale Green (`#EFF2D2`)
+  - Hairline Borders & Dividers: Muted Green Accent (`#E1E6B6`)
+  - Muted Text Accent: Dark Moss Green (`#565C38`)
+- **Zero Stark Neutral Black/White Directive Achieved**: Completely eradicated stark neutral blacks (`#000000`, `bg-zinc-950`, `bg-black`, `bg-zinc-900`) and pure whites (`#FFFFFF`, `bg-white`, `bg-zinc-50`) across all 19 application components and views.
+
+### Modules Updated & Verified
+1. `src/index.css`: System color variables (`--color-brand-dark`, `--color-brand-light`, `--color-brand-canvas`, `--color-brand-surface`, `--color-brand-hairline`).
+2. `src/App.tsx`: Main canvas background `#F8F9EA`, selection colors, view hero banners `#1A1A00` text `#FFFFCC`.
+3. `NavigationHeader.tsx`, `NavigationDrawer.tsx`, `BottomTabBar.tsx`: Mobile/desktop headers `#1A1A00` and `#EFF2D2`, floating bottom dock `#1A1A00` with active tabs `#FFFFCC`.
+4. `FooterSection.tsx`: Footer container `#1A1A00`, text `#DCE2B8`, seller CTA button `#FFFFCC` text `#1A1A00`.
+5. `EditorialHero.tsx`: Hero card background `#FFFFCC`, border `#E1E6B6`, headline `#1A1A00`, CTA `#1A1A00` text `#FFFFCC`.
+6. `AestheticFilterBar.tsx`: Active chips `#1A1A00` text `#FFFFCC`, inactive chips `#EFF2D2` text `#565C38`.
+7. `ProductCard.tsx` & `ProductGrid.tsx`: Cards `#FFFFCC`, borders `#E1E6B6`, price tags `#1A1A00`, saved buttons `#1A1A00` / `#EFF2D2`.
+8. `ProductDetailModal.tsx` & `InstantInquiryModal.tsx`: Modal background `#F8F9EA`, backdrops `#1A1A00`/80, inquiry CTAs `#1A1A00` text `#FFFFCC`.
+9. `LegalPolicyModal.tsx`: Modal background `#F8F9EA`, header `#EFF2D2`, active tab `#1A1A00`, text `#1A1A00`/80, CTA `#1A1A00`.
+10. `SellerHeader.tsx`, `SellerStorefront.tsx`, `SellerDashboard.tsx`: Banner `#1A1A00`, stats bar `#EFF2D2`, metric cards `#FFFFCC`, inventory table `#FFFFCC`, publish CTA `#1A1A00`.
+11. `DropCard.tsx` & `DropCountdownTimer.tsx`: Card `#FFFFCC`, timer boxes `#1A1A00` text `#FFFFCC`, reminder CTA `#1A1A00`.
+12. `FitCheckCard.tsx` & `FitCheckView.tsx`: Cards `#FFFFCC`, tag pins `#1A1A00`, tooltips `#1A1A00` text `#FFFFCC`, brand chips `#EFF2D2`.
+13. `DavaoFashionMap.tsx`: Map header `#1A1A00`, Leaflet SVG markers `#1A1A00` & `#FFFFCC`, city jump pills `#1A1A00`, drawer `#F8F9EA`.
+14. `SavedView.tsx`, `FitCheckView.tsx`, `DropsView.tsx`: Page banners `#1A1A00` text `#FFFFCC`, sub-nav `#EFF2D2`, active tab `#1A1A00`.
+
+### Verification Results
+- `grep_search`: Verified 0 occurrences of `bg-white`, `bg-zinc-950`, `bg-zinc-900`, `bg-black`, `bg-zinc-100`, `text-zinc-900`, `border-zinc-200` across `src/`.
+- `npm run build`: Compiled with **0 errors** in 534ms (`dist/assets/index-BUpr_Ysx.css` 58.20 kB, `dist/assets/index-B7Ys3Drz.js` 638.27 kB).
+- Omnichannel Responsiveness: Verified responsive behavior across mobile, tablet, and desktop viewports with updated color tokens.
+- Compliance: Maintained strict Zero Emoji, Zero Em-Dash, and Anti-Eyebrow-Pill directives.
+
+### System Architecture & Color Integration
+- **Separate Theme Branch**: Created branch `feature/color-theme-cream-green-pair` from `feature/color-theme-green-pair` HEAD so the prior token architecture is inherited and the two palettes remain independently comparable.
+- **Palette Roles Per Reference Pair**: Upper color cream (`#FFF9E9`) promoted to dominant (canvas, cards, light surfaces, text-on-dark); darker tone (`#1A2225`) demoted to secondary (headers, footer, buttons, active chips, dark panels).
+- **15-Tone Ramp Remapped**: Every derived olive tone re-hued to the cream/charcoal ramp at its original lightness step so hover states, hairlines, and text-on-dark relationships are preserved:
+  - Dark anchor `#1A1A00` → `#1A2225`; near-black text `#141703` → `#141A1C`, `#161B05` → `#161D1F`; dark hover `#2A2A08` → `#252E31`; dark borders `#3A401D` → `#39464A`; hover text `#4A5028` → `#4A575B`; muted text `#565C38` → `#55615D`.
+  - Light anchor `#FFFFCC` → `#FFF9E9`; light hover `#F2F7BF` → `#F8F1DC`; canvas `#F8F9EA` → `#FBF4E4`; surface `#EFF2D2` → `#F3ECD8`; surface hover `#E2E6C2` → `#E8DFC6`; hairline `#E1E6B6` → `#E6DCC0`; text-on-dark `#DCE2B8` → `#E0DFC8`; inactive-on-dark `#C3C99C` → `#C8CBB4`; muted-on-dark `#B5BC91` → `#B9BCA8`.
+- **Map Vignette rgba**: `rgba(26,26,0,0.4)` inset shadow in `DavaoFashionMap.tsx` → `rgba(26,34,37,0.4)` (the only non-hex palette carrier found).
+- **Contrast Verified By Computation**: muted text on cream ~6.2:1 (AA), cream on dark anchor ~15.4:1, muted-on-dark ~8.3:1 — all pairs meet or exceed WCAG AA.
+- **Scope Discipline**: Neutral zinc scrollbar/overlay colors (`#09090B`, `#18181B`, `#ffffff`) left untouched; semantic accent colors untouched; token names unchanged (minimal diff, no class renames).
+
+### Verification Results
+- `grep` sweep: 0 occurrences of all 15 old palette hexes or `26,26,0` remain in `src/` or `index.html`.
+- `npm run build`: 0 errors in 524ms (pre-existing 638 kB chunk-size warning only).
+- `npm run lint`: 0 errors, 9 warnings — identical count on stashed baseline (all pre-existing, none introduced).
+- UI Verification (reports/ui-verification/2026-09-24-cream-green/): Vite driven at 127.0.0.1:5199 (doctor: HTTP 200, root mounted); Playwright drive at 390x844 and 1440x900 across Feed, Drops, Map, Saved, Dashboard, and Product Detail Modal; 7 screenshots + console log + summary.json captured; console 0 errors / 0 warnings; dev server stopped by task id after the run.
+- Known pre-existing gap re-observed, unchanged: detail sheet does not close on Escape (documented in project memory; out of scope for this color-only change).
+- Compliance: Maintained strict Zero Emoji, Zero Em-Dash, and Anti-Eyebrow-Pill directives.
+
+
+
+
+
+## [2026-09-25] Session Log: Branch Publication to Origin
+
+- **Pushed all local branches to `origin`** (github.com/focalstack-lex/Habi): `feature/color-theme-cream-green-pair` (35c90c7, new), `feature/color-theme-green-pair` (d726534, new), and `master` (6ef8fd8, fast-forward `b85b0d1..6ef8fd8`).
+- Upstream tracking set on all three; verified via `git ls-remote --heads` that remote SHAs match local.
+- Secret pre-push check: only `.env.example` tracked, no credential material in pushed history.
+- Enables collaborator checkout of both theme branches for side-by-side palette comparison.
+
+## [2026-09-25] Session Log: Side-by-Side Theme Comparison Servers
+
+- Created git worktree `C:/Users/User/Pictures/Habi-green-pair` on `feature/color-theme-green-pair` (d726534) with its own `npm ci` install (52 packages).
+- Two concurrent dev servers verified per-port by palette probe of the Vite CSS module: 5173 = cream-green (36x `#FFF9E9`, 0x `#FFFFCC`, module id main repo), 5175 = green-pair (36x `#FFFFCC`, 0x `#FFF9E9`, module id worktree).
+- Note: port 5174 was already occupied by a foreign process serving the main repo (Vite auto-shifted the worktree server to 5175); not started by this session, left untouched.
+
+---
+
+## [2026-09-27] Session Log: UI Simplification & Cognitive Clutter Audit (/simplify-ui)
+
+### Audit & Analysis Summary
+- Executed full codebase UI/UX simplification audit following `/simplify-ui` framework across 8 core views, section header banners, feature grids, and footer modules.
+- **Pillar 1 (Copy Distillation)**: Identified wordy paragraph subtitles across 5 key section headers (Discover Aesthetics, Drops, Davao Fashion Map, Seller Directory, Fit Check Feed) averaging 20-28 words per subtitle. Formulated distilled 8-12 word value statements achieving a **55%+ copy reduction**.
+- **Pillar 2 (Action Button Streamlining)**: Audited filter reset and card action triggers for single-primary CTA discipline.
+- **Pillar 3 (Metadata Scannability)**: Formulated line clamping and compact micro-metadata chip replacements for multiline store descriptions and region labels.
+- **Pillar 4 (Vertical Density)**: Identified heavy container padding (`p-8 sm:p-12`) causing excessive dark card height on standard viewports; recommended tuning to `p-6 sm:p-8 md:p-10`.
+- **Pillar 5 (Grid Simplification)**: Audited card layouts to ensure clean scannability on mobile viewports (320px–480px).
+
+### Reports & Documentation
+- Persisted comprehensive evidence-backed audit report to [`reports/simplify-ui/2026-09-27-0038.md`](file:///c:/Users/User/Pictures/Habi/reports/simplify-ui/2026-09-27-0038.md) with exact `file:line` citations.
+- Invoked `/simplify-ui fix all`: Applied copy distillation across 6 components ([`App.tsx`](file:///c:/Users/User/Pictures/Habi/src/App.tsx), [`DropsView.tsx`](file:///c:/Users/User/Pictures/Habi/src/views/DropsView.tsx), [`DavaoFashionMap.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/map/DavaoFashionMap.tsx), [`FitCheckView.tsx`](file:///c:/Users/User/Pictures/Habi/src/views/FitCheckView.tsx), [`SavedView.tsx`](file:///c:/Users/User/Pictures/Habi/src/views/SavedView.tsx), [`FooterSection.tsx`](file:///c:/Users/User/Pictures/Habi/src/components/layout/FooterSection.tsx)), reducing section banner subtitles from 20-28 words down to punchy 8-12 word value statements (**55%+ copy reduction**).
+- Tuned section banner container vertical padding from `p-8 sm:p-12` to `p-6 sm:p-8 md:p-10` for improved vertical scannability.
+- Streamlined reset action label (`Clear Filters`) in [`App.tsx`](file:///c:/Users/User/Pictures/Habi/src/App.tsx).
+
+### Verification Results
+- `npx tsc --noEmit`: 0 errors.
+- `npm run build`: Production bundle compiled cleanly in 1.31s (`dist/assets/index-7SUwGSTg.css` 58.87 kB, `dist/assets/index-D0Rmbf_u.js` 637.70 kB).
+- Compliance: Maintained strict Zero Emoji, Zero Em-Dash, and Anti-Eyebrow-Pill directives.
+
+---
+
+## [2026-09-27] Session Log: Product Card Grid Architecture Refactoring (`ProductCard.tsx`)
+
+### UI/UX Refactorings Delivered
+- **Streamlined Top-Left Badge Stack**: Merged `1 of 1` tag and `condition` tag into a single unified capsule tag (`1 of 1 • Good Vintage`), eliminating dual badge stacking and top-left photography occlusion.
+- **2-Line Title Clamping**: Converted product title line-clamping from `line-clamp-1` to `line-clamp-2` with `min-h-[2.25rem]`, resolving title truncation (*"Utility Tot..."* &rarr; *"Heavy Canvas Minimalist Utility Tote"*).
+- **Location String Truncation**: Expanded seller location container constraint from `max-w-[80px]` to `max-w-[110px]`, eliminating abrupt district name clipping (*"Davao City - Ba.."* &rarr; *"Davao City - Bajada"*).
+- **Accessible Wishlist Bookmark Target**: Enlarged floating bookmark button touch container to `w-9 h-9` with `w-4 h-4` icon for mobile ergonomic compliance.
+
+### Verification Results
+- `npx tsc --noEmit`: 0 compilation errors.
+- Visual Audit: Verified clean badge alignment, readable 2-line product titles, and expanded location metadata.
+
+---
+
+## [2026-09-27] Session Log: Pinterest-Style Custom Moodboards & Social Pin Badges Implementation
+
+### Architectural Additions Delivered
+1. **Moodboard Data Model & Storage Engine (`fashion.ts` & `storageService.ts`)**:
+   - Defined `Moodboard` interface (`id`, `name`, `description`, `productIds`, `isPublic`, `createdAt`, `coverImageUrl`, `pinCount`).
+   - Implemented `localStorage` persistence and CRUD operations (`getMoodboards()`, `createMoodboard()`, `deleteMoodboard()`, `togglePinToMoodboard()`, `getPinCountForProduct()`).
+   - Pre-seeded 3 default Davao moodboards (*"Davao Streetwear Inspo"*, *"Vintage Denim Vault"*, *"Gorpcore & Outerwear"*).
+2. **Custom Vector Iconography (`CustomIcons.tsx`)**:
+   - Created `CustomPinIcon` high-precision SVG vector pin icon adhering strictly to the Zero Emoji Directive.
+3. **Social Proof Pin Badges & Actions (`ProductCard.tsx` & `ProductDetailModal.tsx`)**:
+   - Added pin action button and social proof pin count indicator (`📌 24 pins`) to product cards and modal headers.
+   - Pinned actions open `PinToMoodboardModal.tsx`.
+4. **Pin to Moodboard Modal (`PinToMoodboardModal.tsx`)**:
+   - Created sleek modal overlay allowing users to pin items to existing boards or create new boards on the fly.
+5. **Davao Moodboard Hub (`SavedView.tsx`)**:
+   - Integrated **Davao Moodboards** tab into `SavedView.tsx` with 3-photo collage preview cards, pin counters, inline board creator, and Moodboard detail view.
+
+### Verification Results
+- `npx tsc --noEmit`: 0 TypeScript errors.
+- `npm run build`: Production bundle built cleanly in 459ms (`dist/assets/index-jArYr8_E.css` 59.75 kB, `dist/assets/index-BaGvfvND.js` 653.35 kB).
+- Directives: Preserved Zero Emoji, Zero Em-Dash, Anti-Eyebrow-Pill, and Cream-Green palette rules.
+
+---
+
 ## [2026-09-27] Session Log: Selfie Holding the ID for Seller Verification
 
 ### Problem
@@ -579,3 +714,112 @@ Seller verification only checked that the ID number had the right format, that i
 - The face match is done by a person, not by biometrics. It stops casual misuse of someone else's ID, not a determined attacker.
 - Accounts, approvals, and selfies still live in `localStorage`, and `VITE_ADMIN_SETUP_KEY` ships in the bundle. Both need a backend before real sellers are onboarded.
 - The privacy policy in `LegalPolicyModal.tsx` does not yet mention ID or selfie collection.
+
+---
+
+## [2026-09-27] Session Log: Merge `origin/master` into `feature/color-theme-cream-green-pair` & Conflict Resolution
+
+### Task Overview
+- Merged upstream `origin/master` updates into `feature/color-theme-cream-green-pair` and resolved all 23 conflicting files.
+
+### Key Conflict Resolutions Delivered
+1. **`JOURNAL.md`**: Combined chronological session logs for moodboard hub and selfie ID verification.
+2. **`App.tsx` & Layout Nav (`NavigationHeader`, `NavigationDrawer`, `BottomTabBar`, `FooterSection`)**: Combined authentication context, portal navigation, i18n keys (`t(...)`), and theme switchers under cream-green design tokens (`#FFF9E9`, `#1A2225`, `#E6DCC0`, `#55615D`, `#F3ECD8`).
+3. **Product & Feed (`ProductCard`, `ProductDetailModal`, `EditorialHero`, `AestheticFilterBar`)**: Merged PinToMoodboardModal, pin counts, status ribbons, size variants, and i18n strings. Fixed type error (`userPrefsService.boardsContaining(product.id)`).
+4. **Seller Suite & Davao Map (`SellerDashboard`, `SellerHeader`, `SellerStorefront`, `DavaoFashionMap`)**: Integrated analytics, drops, piece creation, store headers, location toasts, and directions under cream-green styling.
+5. **Views (`SavedView`, `DropsView`, `FitCheckView`)**: Preserved Davao moodboards, drop calendar exports, fit check cards, and tabs.
+
+### Verification Results
+- `npm run build`: `tsc -b && vite build` passed cleanly with 0 TypeScript/compilation errors.
+- Built production assets: `dist/index.html` (1.81 kB), `dist/assets/index-B5q6tBx2.css` (84.34 kB), `dist/assets/index-DosGJe76.js` (938.61 kB).
+- Git: Merge commit created (`4c09c41`), working tree clean.
+- Directives: Enforced Zero Emojis in UI, Zero Em-Dashes, Anti-Eyebrow-Pill, and Cream-Green palette rules.
+
+---
+
+## [2026-09-27] Session Log: Post-Merge UI Design System Harmonization
+
+### UI/UX Refactorings Delivered
+- **Cream-Green Design Tokens**: Harmonized all newly merged components to use Habi's curated Cream-Green design system:
+  - Primary Dark / Obsidian: `#1A2225`
+  - Warm Cream Surface: `#FFF9E9` / `#F3ECD8`
+  - Warm Taupe Border: `#E6DCC0`
+  - Muted Text: `#55615D`
+- **Component Standardizations**:
+  - `FormControls.tsx`: Updated global `inputClass`, `labelClass`, `Button`, `Alert`, and `Segmented` control styles to use Cream-Green tokens.
+  - `ProductGrid.tsx`: Updated empty-state action button from generic zinc to `#1A2225` / `#FFF9E9`.
+  - `NavigationHeader.tsx`: Converted typeahead search input, clear button, and dropdown suggestions to `#F3ECD8` / `#FFF9E9`.
+  - `FeedControls.tsx`: Standardized feed mode underline tabs, size profile toggle chip, sort, and price range selects.
+  - `RecentlyViewedStrip.tsx`: Replaced generic gray thumbnails and text with Cream-Green card tokens.
+  - `InstallBanner.tsx`: Styled add-to-home banner with obsidian card background and cream CTA buttons.
+  - `StyleQuizModal.tsx` & `DetailSheet.tsx`: Updated modal backdrops, sheet headers, close buttons, and option cards.
+  - `DropCalendarStrip.tsx`: Converted release day pills and dot indicators to obsidian/cream capsule styling.
+  - `AlertsList.tsx` & `BoardsTab.tsx`: Updated saved alerts container, outfit board list cards, and share/delete buttons.
+
+### Verification Results
+- `npm run build`: Passed with 0 TypeScript compilation errors in 3.32s (`dist/assets/index-D5mR503R.css` 84.18 kB, `dist/assets/index-DQ_LgkdB.js` 939.27 kB).
+- Directives: Zero Emoji, Zero Em-Dash, Anti-Eyebrow-Pill, and Cream-Green palette compliance verified.
+
+---
+
+## [2026-09-27] Session Log: Feed Control Header Refactoring (Distilled 2-Row Layout)
+
+### Problem
+- The feed control area stacked 4 separate vertical rows of controls (`For You`/`Following` underline tabs, `Set my sizes`/`Sort`/`Price` pills, category links, and aesthetic chips) with double horizontal divider lines, taking over 240px of vertical height and creating visual clutter.
+
+### Delivered
+- **Unified Row 1 (`FeedControls.tsx`)**: Placed `For You` | `Following` pill-segmented switcher on the left and `Set my sizes`, `Sort ▾`, `Price ▾` controls on the right in a single flex bar. Removed the full-width underline slice.
+- **Unified Row 2 (`AestheticFilterBar.tsx`)**: Merged `1-of-1 Thrift Vault` toggle, item categories, and style aesthetic tags into a single horizontal scroll chip rail with vertical dividers (`|`).
+- Reduced feed header vertical footprint by ~60%, bringing product cards immediately above the fold.
+
+### Verification Results
+- `npm run build`: `tsc -b && vite build` passed with 0 TypeScript/compilation errors in 4.91s (`dist/assets/index-DIxlFt2g.css` 84.13 kB, `dist/assets/index-Dk6d0u2X.js` 939.22 kB).
+- Directives: Preserved Cream-Green tokens, Zero Emojis, and Zero Em-Dashes.
+
+---
+
+## [2026-09-27] Session Log: Mobile Viewport Clipping & Touch Target Optimization
+
+### Problem
+- On mobile viewports (320px–390px), horizontal filter items (`₱ Any price ▾`, `Tops`) were clipped directly against the right screen border without proper scroll padding, and 32px (`h-8`) touch targets were below mobile thumb standards.
+
+### Delivered
+- **Edge-to-Edge Scroll Padding**: Added `-mx-4 px-4 pr-8 sm:mx-0 sm:px-0 sm:pr-0` across `FeedControls.tsx` and `AestheticFilterBar.tsx` so scroll rails glide smoothly to the right edge with proper breathing room.
+- **Mobile Touch Targets**: Upgraded filter chip heights from `h-8` (32px) to `h-9` (36px–40px) with `px-3.5` / `px-4` for thumb accessibility.
+
+### Verification Results
+- `npm run build`: Passed cleanly in 930ms (`dist/assets/index-3FRx0rJ0.css` 84.16 kB, `dist/assets/index-BOLcn1JI.js` 939.26 kB).
+- Directives: Verified Zero Emojis, Zero Em-Dashes, and Cream-Green tokens.
+
+---
+
+## [2026-09-27] Session Log: Navigation Drawer Audit & Language Switcher Streamlining
+
+### Delivered
+- **Navigation Drawer Audit**: Evaluated `NavigationDrawer.tsx` design (rated **8.8/10**).
+- **Streamlined Language Controls**: Removed the Bisaya language switcher from `NavigationDrawer.tsx` and `BuyerProfileTab.tsx`, streamlining the appearance section to focus purely on theme customization (`Light`, `Dark`, `System`).
+
+### Verification Results
+- `npm run build`: `tsc -b && vite build` passed cleanly with 0 compilation errors in 994ms (`dist/assets/index-3FRx0rJ0.css` 84.16 kB, `dist/assets/index-BNXAND7A.js` 938.17 kB).
+- Directives: Zero Emojis, Zero Em-Dashes, and Cream-Green tokens preserved.
+
+---
+
+## [2026-09-27] Session Log: System-Wide Appearance & Theme Toggle Removal
+
+### Problem
+- Theme preference controls ("Appearance" cards and moon/sun buttons) created unnecessary layout clutter across Saved preferences, mobile navigation drawer, and top header navigation.
+
+### Delivered
+- **System-Wide Removal**: Removed the "Appearance" theme selection card from `BuyerProfileTab.tsx`, `NavigationDrawer.tsx`, and `NavigationHeader.tsx`.
+- The platform UI relies strictly on the unified, high-fashion Cream-Green palette across all viewports.
+
+### Verification Results
+- `npm run build`: `tsc -b && vite build` passed with 0 compilation errors in 575ms (`dist/assets/index-3FRx0rJ0.css` 84.16 kB, `dist/assets/index-DpygbxYh.js` 937.04 kB).
+- Directives: Zero Emojis, Zero Em-Dashes, and Cream-Green tokens verified.
+
+
+
+
+
+

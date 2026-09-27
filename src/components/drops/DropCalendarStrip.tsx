@@ -63,8 +63,8 @@ export const DropCalendarStrip: React.FC<DropCalendarStripProps> = ({ drops, sel
         aria-pressed={isAllSelected}
         className={`shrink-0 px-4 rounded-full text-xs font-semibold transition-colors cursor-pointer border ${
           isAllSelected
-            ? 'bg-zinc-950 text-white border-zinc-950'
-            : 'bg-white text-zinc-700 border-zinc-200/80 hover:border-zinc-300 hover:text-zinc-950'
+            ? 'bg-[#1A2225] text-[#FFF9E9] border-[#1A2225]'
+            : 'bg-[#FFF9E9] text-[#1A2225] border-[#E6DCC0] hover:bg-[#F3ECD8]'
         }`}
       >
         All
@@ -73,13 +73,13 @@ export const DropCalendarStrip: React.FC<DropCalendarStripProps> = ({ drops, sel
       {days.map((day) => {
         const isSelected = selectedDay === day.key;
         const pillClass = isSelected
-          ? 'bg-zinc-950 text-white border-zinc-950'
+          ? 'bg-[#1A2225] text-[#FFF9E9] border-[#1A2225]'
           : day.isToday
-            ? 'bg-white text-zinc-950 border-zinc-950'
-            : 'bg-white text-zinc-900 border-zinc-200/80 hover:border-zinc-300';
-        const weekdayClass = isSelected ? 'text-zinc-300' : 'text-zinc-500';
+            ? 'bg-[#FFF9E9] text-[#1A2225] border-[#1A2225]'
+            : 'bg-[#FFF9E9] text-[#1A2225] border-[#E6DCC0] hover:bg-[#F3ECD8]';
+        const weekdayClass = isSelected ? 'text-[#E6DCC0]' : 'text-[#55615D]';
         const dotClass = day.dropCount > 0
-          ? isSelected ? 'bg-white' : 'bg-zinc-400'
+          ? isSelected ? 'bg-[#FFF9E9]' : 'bg-[#1A2225]'
           : 'bg-transparent';
 
         return (

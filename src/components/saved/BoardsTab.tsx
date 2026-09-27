@@ -40,9 +40,9 @@ export const BoardsTab: React.FC<BoardsTabProps> = ({ boards, onSelectProduct })
   if (openBoard) {
     const products = productsOf(openBoard);
     return (
-      <div className="space-y-4">
+      <div className="space-y-4 font-sans">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <button type="button" onClick={() => setOpenBoardId(null)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-600 hover:text-zinc-950">
+          <button type="button" onClick={() => setOpenBoardId(null)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#55615D] hover:text-[#1A2225] cursor-pointer">
             <ArrowLeft className="w-4 h-4" />
             <span>All boards</span>
           </button>
@@ -69,8 +69,8 @@ export const BoardsTab: React.FC<BoardsTabProps> = ({ boards, onSelectProduct })
             </form>
           ) : (
             <>
-              <h2 className="font-cooper text-xl sm:text-2xl font-bold text-zinc-950 truncate">{openBoard.name}</h2>
-              <button type="button" onClick={() => setRenaming({ id: openBoard.id, name: openBoard.name })} aria-label="Rename board" className="p-1.5 rounded-full text-zinc-500 hover:text-zinc-950 hover:bg-zinc-100">
+              <h2 className="font-cooper text-xl sm:text-2xl font-bold text-[#1A2225] truncate">{openBoard.name}</h2>
+              <button type="button" onClick={() => setRenaming({ id: openBoard.id, name: openBoard.name })} aria-label="Rename board" className="p-1.5 rounded-full text-[#55615D] hover:text-[#1A2225] hover:bg-[#F3ECD8] cursor-pointer">
                 <Pencil className="w-3.5 h-3.5" />
               </button>
             </>
@@ -78,26 +78,26 @@ export const BoardsTab: React.FC<BoardsTabProps> = ({ boards, onSelectProduct })
         </div>
 
         {products.length === 0 ? (
-          <div className="p-6 sm:p-10 bg-white border border-zinc-200/80 rounded-2xl sm:rounded-3xl text-center space-y-2 shadow-sm">
-            <div className="font-cooper text-base font-bold text-zinc-900">Empty board</div>
-            <p className="text-xs text-zinc-500">Open any piece and tap the board icon to add it here.</p>
+          <div className="p-6 sm:p-10 bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl sm:rounded-3xl text-center space-y-2 shadow-sm">
+            <div className="font-cooper text-base font-bold text-[#1A2225]">Empty board</div>
+            <p className="text-xs text-[#55615D]">Open any piece and tap the board icon to add it here.</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
             {products.map((product) => (
               <div key={product.id} className="relative group">
-                <button type="button" onClick={() => onSelectProduct(product)} className="w-full text-left bg-white border border-zinc-200/80 rounded-2xl p-2 sm:p-3 hover:shadow-md transition-all">
-                  <div className="aspect-[3/4] bg-zinc-100 rounded-xl overflow-hidden">
+                <button type="button" onClick={() => onSelectProduct(product)} className="w-full text-left bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl p-2 sm:p-3 hover:shadow-md transition-all cursor-pointer">
+                  <div className="aspect-[3/4] bg-[#F3ECD8] rounded-xl overflow-hidden">
                     <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" />
                   </div>
-                  <div className="mt-2 text-xs font-semibold text-zinc-950 truncate">{product.name}</div>
-                  <div className="text-[11px] text-zinc-600">₱{product.price.toLocaleString()} • {product.sellerName}</div>
+                  <div className="mt-2 text-xs font-semibold text-[#1A2225] truncate">{product.name}</div>
+                  <div className="text-[11px] text-[#55615D]">₱{product.price.toLocaleString()} • {product.sellerName}</div>
                 </button>
                 <button
                   type="button"
                   onClick={() => userPrefsService.toggleInBoard(openBoard.id, product.id)}
                   aria-label="Remove from board"
-                  className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/95 border border-zinc-200 text-zinc-700 flex items-center justify-center shadow hover:text-red-700"
+                  className="absolute top-3 right-3 w-7 h-7 rounded-full bg-[#FFF9E9] border border-[#E6DCC0] text-[#1A2225] flex items-center justify-center shadow hover:text-red-700 cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -110,7 +110,7 @@ export const BoardsTab: React.FC<BoardsTabProps> = ({ boards, onSelectProduct })
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 font-sans">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -129,12 +129,12 @@ export const BoardsTab: React.FC<BoardsTabProps> = ({ boards, onSelectProduct })
       </form>
 
       {boards.length === 0 ? (
-        <div className="p-6 sm:p-12 bg-white border border-zinc-200/80 rounded-2xl sm:rounded-3xl text-center space-y-3 shadow-sm">
-          <div className="w-14 h-14 rounded-full bg-zinc-100 flex items-center justify-center mx-auto text-zinc-500">
+        <div className="p-6 sm:p-12 bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl sm:rounded-3xl text-center space-y-3 shadow-sm">
+          <div className="w-14 h-14 rounded-full bg-[#F3ECD8] flex items-center justify-center mx-auto text-[#1A2225]">
             <Layers className="w-6 h-6" />
           </div>
-          <div className="font-cooper text-base sm:text-lg font-bold text-zinc-900">No outfit boards yet</div>
-          <p className="text-xs sm:text-sm text-zinc-500 max-w-sm mx-auto">
+          <div className="font-cooper text-base sm:text-lg font-bold text-[#1A2225]">No outfit boards yet</div>
+          <p className="text-xs sm:text-sm text-[#55615D] max-w-sm mx-auto">
             Group saved pieces into looks and share one link with friends or the seller.
           </p>
         </div>
@@ -143,25 +143,25 @@ export const BoardsTab: React.FC<BoardsTabProps> = ({ boards, onSelectProduct })
           {boards.map((board) => {
             const products = productsOf(board);
             return (
-              <div key={board.id} className="bg-white border border-zinc-200/80 rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-sm space-y-3">
-                <button type="button" onClick={() => setOpenBoardId(board.id)} className="w-full text-left">
-                  <div className="grid grid-cols-4 gap-1.5 aspect-[4/2] rounded-xl overflow-hidden bg-zinc-100">
+              <div key={board.id} className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-sm space-y-3">
+                <button type="button" onClick={() => setOpenBoardId(board.id)} className="w-full text-left cursor-pointer">
+                  <div className="grid grid-cols-4 gap-1.5 aspect-[4/2] rounded-xl overflow-hidden bg-[#F3ECD8]">
                     {[0, 1, 2, 3].map((slot) => {
                       const product = products[slot];
                       return product ? (
                         <img key={slot} src={product.images[0]} alt="" className="w-full h-full object-cover" />
                       ) : (
-                        <div key={slot} className="w-full h-full bg-zinc-200/60" />
+                        <div key={slot} className="w-full h-full bg-[#E6DCC0]/40" />
                       );
                     })}
                   </div>
                   <div className="mt-2.5 flex items-center justify-between gap-2">
-                    <span className="font-cooper font-bold text-sm sm:text-base text-zinc-950 truncate">{board.name}</span>
-                    <span className="text-[11px] text-zinc-600 shrink-0">{products.length} pieces</span>
+                    <span className="font-cooper font-bold text-sm sm:text-base text-[#1A2225] truncate">{board.name}</span>
+                    <span className="text-[11px] text-[#55615D] shrink-0">{products.length} pieces</span>
                   </div>
                 </button>
                 <div className="flex items-center gap-1.5">
-                  <button type="button" onClick={() => copyLink(board)} className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-zinc-100 text-zinc-900 text-[11px] font-semibold hover:bg-zinc-200">
+                  <button type="button" onClick={() => copyLink(board)} className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F3ECD8] text-[#1A2225] text-[11px] font-semibold hover:bg-[#E8DFC6] cursor-pointer">
                     {copiedId === board.id ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copiedId === board.id ? 'Copied' : 'Share link'}</span>
                   </button>
@@ -176,7 +176,7 @@ export const BoardsTab: React.FC<BoardsTabProps> = ({ boards, onSelectProduct })
                         window.setTimeout(() => setPendingDelete((id) => (id === board.id ? null : id)), 3000);
                       }
                     }}
-                    className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-semibold border ${
+                    className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-semibold border cursor-pointer ${
                       pendingDelete === board.id ? 'bg-red-600 text-white border-red-600' : 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100'
                     }`}
                   >

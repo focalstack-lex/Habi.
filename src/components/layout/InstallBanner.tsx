@@ -71,31 +71,31 @@ export const InstallBanner: React.FC = () => {
 
   return (
     <div className="fixed bottom-[84px] lg:bottom-6 left-3 right-3 lg:left-auto lg:right-6 lg:w-96 z-30 font-sans">
-      <div className="bg-zinc-950 text-white rounded-2xl shadow-2xl border border-zinc-800 p-3.5 sm:p-4 flex items-start gap-3">
-        <div className="w-10 h-10 rounded-xl bg-white text-zinc-950 flex items-center justify-center font-cooper font-bold text-lg shrink-0">
+      <div className="bg-[#1A2225] text-[#FFF9E9] rounded-2xl shadow-2xl border border-[#E6DCC0]/30 p-3.5 sm:p-4 flex items-start gap-3">
+        <div className="w-10 h-10 rounded-xl bg-[#FFF9E9] text-[#1A2225] flex items-center justify-center font-cooper font-bold text-lg shrink-0">
           H
         </div>
         <div className="min-w-0 flex-1 space-y-1">
           <div className="text-sm font-semibold leading-tight">{t('pwa.title')}</div>
-          <p className="text-[11px] text-zinc-400 leading-snug">{promptEvent ? t('pwa.body') : t('pwa.iosHint')}</p>
+          <p className="text-[11px] text-[#E6DCC0]/80 leading-snug">{promptEvent ? t('pwa.body') : t('pwa.iosHint')}</p>
           <div className="flex items-center gap-2 pt-1.5">
             {promptEvent ? (
-              <button type="button" onClick={install} className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white text-zinc-950 rounded-full text-xs font-semibold hover:bg-zinc-200">
+              <button type="button" onClick={install} className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FFF9E9] text-[#1A2225] rounded-full text-xs font-semibold hover:bg-[#F3ECD8] cursor-pointer">
                 <Download className="w-3.5 h-3.5" />
                 <span>{t('pwa.install')}</span>
               </button>
             ) : (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 rounded-full text-[11px] font-semibold">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FFF9E9]/10 rounded-full text-[11px] font-semibold text-[#FFF9E9]">
                 <Share className="w-3.5 h-3.5" />
                 <span>Share, then Add to Home Screen</span>
               </span>
             )}
-            <button type="button" onClick={dismiss} className="px-3 py-1.5 rounded-full text-xs font-semibold text-zinc-300 hover:text-white">
+            <button type="button" onClick={dismiss} className="px-3 py-1.5 rounded-full text-xs font-semibold text-[#E6DCC0] hover:text-[#FFF9E9] cursor-pointer">
               {t('pwa.later')}
             </button>
           </div>
         </div>
-        <button type="button" onClick={dismiss} aria-label={t('common.close')} className="p-1 text-zinc-400 hover:text-white shrink-0">
+        <button type="button" onClick={dismiss} aria-label={t('common.close')} className="p-1 text-[#E6DCC0] hover:text-[#FFF9E9] shrink-0 cursor-pointer">
           <X className="w-4 h-4" />
         </button>
       </div>

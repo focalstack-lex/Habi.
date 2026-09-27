@@ -45,16 +45,16 @@ export const FitCheckView: React.FC<FitCheckViewProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 font-sans space-y-4 sm:space-y-8">
       {/* Header Banner */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-5 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl border border-zinc-800/80 shadow-xl space-y-2 sm:space-y-3">
-        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-zinc-400 font-semibold">
+      <div className="relative overflow-hidden bg-[#1A2225] text-[#FFF9E9] p-6 sm:p-8 md:p-10 rounded-3xl border border-[#1A2225]/20 shadow-xl space-y-3">
+        <div className="font-avantgarde text-[11px] tracking-widest uppercase text-[#E0DFC8] font-semibold">
           DAVAO COMMUNITY FEED
         </div>
 
-        <h1 className="font-outfit text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight">
+        <h1 className="font-outfit text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight text-[#FFF9E9]">
           Davao Fit Check
         </h1>
 
-        <p className="text-zinc-300 text-xs sm:text-sm lg:text-base max-w-2xl font-sans leading-relaxed">
+        <p className="text-[#E0DFC8] text-xs sm:text-sm lg:text-base max-w-2xl font-sans leading-relaxed">
           See how local Davao fashion buyers and creators style their vintage finds, streetwear hoodies, and independent brand pieces in real life. Tap tag pins to discover where to buy each item.
         </p>
 

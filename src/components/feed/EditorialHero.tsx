@@ -111,20 +111,20 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
   };
 
   return (
-    <section className="bg-zinc-50 border border-zinc-200/90 rounded-2xl sm:rounded-3xl p-3.5 sm:p-8 lg:p-12 my-2 sm:my-6 font-sans shadow-sm relative overflow-hidden">
+    <section className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl sm:rounded-3xl p-3.5 sm:p-8 lg:p-12 my-2 sm:my-6 font-sans shadow-sm relative overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-14 items-center">
         {/* Left Column: Clean Editorial Copy & Primary Action */}
         <div className="lg:col-span-5 space-y-3 sm:space-y-6 order-2 lg:order-1">
           <div className="space-y-1 sm:space-y-2">
-            <h1 className="font-cooper text-2xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-950 leading-tight sm:leading-[1.08]">
+            <h1 className="font-cooper text-2xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1A2225] leading-tight sm:leading-[1.08]">
               {t('hero.title')}
             </h1>
-            <p className="text-xs sm:text-sm font-semibold tracking-wider text-zinc-500 uppercase font-sans">
+            <p className="text-xs sm:text-sm font-semibold tracking-wider text-[#55615D] uppercase font-sans">
               {t('hero.eyebrow')}
             </p>
           </div>
 
-          <p className="text-zinc-600 text-xs sm:text-sm font-sans leading-relaxed max-w-md line-clamp-2 sm:line-clamp-none">
+          <p className="text-[#39464A] text-xs sm:text-sm font-sans leading-relaxed max-w-md line-clamp-2 sm:line-clamp-none">
             {t('hero.body')}
           </p>
 
@@ -132,17 +132,17 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-4 pt-0.5 sm:pt-1">
             <button
               onClick={() => onExploreDrop(featuredDrop?.id || 'drop-1')}
-              className="px-4 py-2.5 sm:px-6 sm:py-3.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs sm:text-sm font-semibold rounded-full transition-all flex items-center gap-2 shadow-md hover:scale-[1.02] cursor-pointer"
+              className="px-4 py-2.5 sm:px-6 sm:py-3.5 bg-[#1A2225] hover:bg-[#252E31] text-[#FFF9E9] text-xs sm:text-sm font-semibold rounded-full transition-all flex items-center gap-2 shadow-md hover:scale-[1.02] cursor-pointer"
             >
               <span>{t('hero.cta')}</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <ArrowUpRight className="w-4 h-4 text-[#FFF9E9]" />
             </button>
 
             <button
               onClick={() => onSelectBrand('seller-1')}
-              className="text-xs sm:text-sm font-semibold text-zinc-800 hover:text-zinc-600 transition-colors flex items-center gap-1.5 cursor-pointer underline underline-offset-4 py-2"
+              className="text-xs sm:text-sm font-semibold text-[#1A2225] hover:text-[#4A575B] transition-colors flex items-center gap-1.5 cursor-pointer underline underline-offset-4 py-2"
             >
-              <MapIcon className="w-4 h-4 text-zinc-600" />
+              <MapIcon className="w-4 h-4 text-[#1A2225]" />
               <span>{t('hero.directory')}</span>
             </button>
           </div>
@@ -156,7 +156,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
               setIsPaused(false);
               setShowSellerPopover(false);
             }}
-            className="relative aspect-[16/10] sm:aspect-[4/3] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-zinc-100 border border-zinc-200/90 shadow-sm group"
+            className="relative aspect-[16/10] sm:aspect-[4/3] w-full rounded-xl sm:rounded-2xl overflow-hidden bg-[#F3ECD8] border border-[#E6DCC0] shadow-sm group"
           >
             {/* Main Photography with Smooth Crossfade */}
             <AnimatePresence mode="wait">
@@ -181,7 +181,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
                   <button
                     key={item.id}
                     onClick={() => setActiveCardIndex(idx)}
-                    className="flex-1 h-1 bg-black/40 backdrop-blur-md rounded-full overflow-hidden cursor-pointer"
+                    className="flex-1 h-1 bg-[#1A2225]/40 backdrop-blur-md rounded-full overflow-hidden cursor-pointer"
                     aria-label={`Go to slide ${idx + 1}`}
                   >
                     {isActive ? (
@@ -193,12 +193,12 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
                           duration: isPaused ? 0 : 6,
                           ease: 'linear',
                         }}
-                        className="h-full bg-white rounded-full"
+                        className="h-full bg-[#FFF9E9] rounded-full"
                       />
                     ) : (
                       <div
                         className={`h-full rounded-full ${
-                          isPast ? 'bg-white' : 'bg-transparent'
+                          isPast ? 'bg-[#FFF9E9]' : 'bg-transparent'
                         }`}
                       />
                     )}
@@ -209,22 +209,22 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
 
             {/* Top Tag & Prev/Next Controls Capsule */}
             <div className="absolute top-6 left-3 right-3 sm:top-8 sm:left-4 sm:right-4 flex items-center justify-between z-10">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 bg-zinc-950/90 backdrop-blur-md text-white text-[11px] sm:text-xs font-semibold rounded-full shadow-sm">
-                <CustomTagIcon className="w-3.5 h-3.5 text-white" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 bg-[#1A2225]/90 backdrop-blur-md text-[#FFF9E9] text-[11px] sm:text-xs font-semibold rounded-full shadow-sm">
+                <CustomTagIcon className="w-3.5 h-3.5 text-[#FFF9E9]" />
                 <span>{activeItem.tag}</span>
               </span>
 
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <button
                   onClick={handlePrevCard}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 backdrop-blur-md text-white hover:bg-black/90 flex items-center justify-center transition-colors border border-white/20 cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#1A2225]/70 backdrop-blur-md text-[#FFF9E9] hover:bg-[#1A2225] flex items-center justify-center transition-colors border border-[#FFF9E9]/20 cursor-pointer"
                   aria-label="Previous image"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleNextCard}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/60 backdrop-blur-md text-white hover:bg-black/90 flex items-center justify-center transition-colors border border-white/20 cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#1A2225]/70 backdrop-blur-md text-[#FFF9E9] hover:bg-[#1A2225] flex items-center justify-center transition-colors border border-[#FFF9E9]/20 cursor-pointer"
                   aria-label="Next image"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -233,16 +233,16 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
             </div>
 
             {/* Bottom Floating Details Pill */}
-            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 bg-white/95 backdrop-blur-md p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-zinc-200/80 shadow-lg flex items-center justify-between gap-2 sm:gap-3">
+            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 bg-[#FBF4E4]/95 backdrop-blur-md p-2.5 sm:p-4 rounded-xl sm:rounded-2xl border border-[#E6DCC0] shadow-lg flex items-center justify-between gap-2 sm:gap-3">
               <div className="min-w-0 flex-1 relative">
-                <h3 className="font-cooper text-[11px] sm:text-base font-bold text-zinc-950 truncate">
+                <h3 className="font-cooper text-[11px] sm:text-base font-bold text-[#1A2225] truncate">
                   {activeItem.title}
                 </h3>
-                <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-zinc-600 font-sans mt-0.5 truncate">
+                <div className="flex items-center gap-1 text-[10px] sm:text-[11px] text-[#55615D] font-sans mt-0.5 truncate">
                   <button
                     onMouseEnter={() => setShowSellerPopover(true)}
                     onClick={() => onSelectBrand(activeItem.sellerId)}
-                    className="font-bold text-zinc-950 hover:underline cursor-pointer truncate"
+                    className="font-bold text-[#1A2225] hover:underline cursor-pointer truncate"
                   >
                     @{activeItem.sellerHandle}
                   </button>
@@ -257,30 +257,30 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute bottom-full left-0 mb-3 w-64 bg-zinc-950 text-white p-4 rounded-2xl shadow-2xl z-30 border border-zinc-800 space-y-3 font-sans"
+                      className="absolute bottom-full left-0 mb-3 w-64 bg-[#1A2225]/95 text-[#FFF9E9] p-4 rounded-2xl shadow-2xl z-30 border border-[#FFF9E9]/20 space-y-3 font-sans"
                     >
                       <div className="flex items-center gap-3">
                         <img
                           src={activeItem.sellerAvatar}
                           alt={activeItem.sellerName}
-                          className="w-10 h-10 rounded-full object-cover border border-white/30"
+                          className="w-10 h-10 rounded-full object-cover border border-[#FFF9E9]/30"
                         />
                         <div>
-                          <div className="font-outfit font-bold text-sm text-white flex items-center gap-1">
+                          <div className="font-outfit font-bold text-sm text-[#FFF9E9] flex items-center gap-1">
                             <span>{activeItem.sellerName}</span>
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400/20" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#FFF9E9]" />
                           </div>
-                          <div className="text-[11px] text-zinc-400">
+                          <div className="text-[11px] text-[#E0DFC8]">
                             @{activeItem.sellerHandle} • {activeItem.sellerFollowers}
                           </div>
                         </div>
                       </div>
 
-                      <div className="text-xs text-zinc-300 border-t border-zinc-800 pt-2 flex items-center justify-between">
-                        <span className="text-[11px] text-zinc-400">{activeItem.location}</span>
+                      <div className="text-xs text-[#E0DFC8] border-t border-[#FFF9E9]/15 pt-2 flex items-center justify-between">
+                        <span className="text-[11px] text-[#E0DFC8]">{activeItem.location}</span>
                         <button
                           onClick={() => onSelectBrand(activeItem.sellerId)}
-                          className="px-3 py-1 bg-white text-zinc-950 rounded-full text-[11px] font-bold flex items-center gap-1 hover:bg-zinc-100 transition-colors"
+                          className="px-3 py-1 bg-[#FFF9E9] text-[#1A2225] rounded-full text-[11px] font-bold flex items-center gap-1 hover:bg-[#F3ECD8] transition-colors cursor-pointer"
                         >
                           <span>Storefront</span>
                           <CustomStoreIcon className="w-3 h-3" />
@@ -292,12 +292,12 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({
               </div>
 
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                <span className="font-cooper text-xs sm:text-lg font-bold text-zinc-950">
+                <span className="font-cooper text-xs sm:text-lg font-bold text-[#1A2225]">
                   ₱{activeItem.price.toLocaleString()}
                 </span>
                 <button
                   onClick={() => onSelectBrand(activeItem.sellerId)}
-                  className="px-2.5 py-1.5 sm:px-3.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer"
+                  className="px-2.5 py-1.5 sm:px-3.5 bg-[#1A2225] hover:bg-[#1A2225]/90 text-[#FFF9E9] rounded-full text-xs font-semibold flex items-center gap-1 transition-colors cursor-pointer"
                   aria-label="Inspect piece"
                 >
                   <span className="hidden sm:inline">Inspect</span>

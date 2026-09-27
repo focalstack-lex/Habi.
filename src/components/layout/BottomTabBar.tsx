@@ -46,7 +46,7 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
     <div className="lg:hidden fixed bottom-3 left-3 right-3 z-40 flex justify-center pointer-events-none tabbar-safe">
       <nav
         aria-label="Primary Mobile Navigation"
-        className="pointer-events-auto bg-white/95 backdrop-blur-xl border border-zinc-200/80 shadow-2xl rounded-full px-1.5 py-1.5 flex items-center gap-0.5 max-w-md w-full"
+        className="pointer-events-auto bg-[#1A2225]/95 backdrop-blur-xl border border-[#39464A]/80 shadow-2xl rounded-full px-2 py-1.5 flex items-center gap-0.5 max-w-md w-full"
       >
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
@@ -57,17 +57,17 @@ export const BottomTabBar: React.FC<BottomTabBarProps> = ({
               type="button"
               onClick={() => setActiveTab(tab.id)}
               aria-current={isActive ? 'page' : undefined}
-              className={`relative flex-1 min-w-0 flex flex-col items-center justify-center py-1.5 px-1 rounded-full transition-all duration-200 ${
+              className={`relative flex-1 min-w-0 flex flex-col items-center justify-center py-1.5 px-1 rounded-full transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-zinc-950 text-white shadow-md'
-                  : 'text-zinc-500 hover:text-zinc-950 hover:bg-zinc-100'
+                  ? 'bg-[#FFF9E9] text-[#1A2225] shadow-md font-bold'
+                  : 'text-[#C8CBB4] hover:text-[#FFF9E9] hover:bg-[#252E31]'
               }`}
             >
               {Icon ? <Icon className="w-4 h-4" /> : <PortalIcon role={portalRole} className="w-4 h-4" />}
               <span className="text-[10px] font-semibold mt-0.5 truncate w-full text-center">{t(tab.labelKey)}</span>
               {tab.id === 'saved' && savedCount > 0 && (
                 <span className={`absolute top-0 right-1 min-w-[15px] h-[15px] px-1 rounded-full text-[8px] flex items-center justify-center font-bold ${
-                  isActive ? 'bg-white text-zinc-950' : 'bg-zinc-950 text-white'
+                  isActive ? 'bg-[#1A2225] text-[#FFF9E9]' : 'bg-[#FFF9E9] text-[#1A2225]'
                 }`}>
                   {savedCount}
                 </span>

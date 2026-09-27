@@ -62,7 +62,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
   };
 
   return (
-    <div className="bg-white border border-zinc-200/80 rounded-2xl sm:rounded-3xl overflow-hidden font-sans space-y-3 sm:space-y-4 p-3 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-[#FFF9E9] border border-[#E6DCC0] rounded-2xl sm:rounded-3xl overflow-hidden font-sans space-y-3 sm:space-y-4 p-3 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
       {/* Post Author Header */}
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3 min-w-0">
@@ -70,19 +70,19 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
             <img
               src={post.authorAvatar}
               alt={post.authorName}
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-zinc-200 shrink-0"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-[#E6DCC0] shrink-0"
             />
           ) : (
             <div
               aria-hidden="true"
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-zinc-950 text-white text-xs font-bold flex items-center justify-center shrink-0"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#1A2225] text-[#FFF9E9] text-xs font-bold flex items-center justify-center shrink-0"
             >
               {initials(post.authorName)}
             </div>
           )}
           <div className="min-w-0">
-            <div className="font-outfit font-bold text-sm text-zinc-950 truncate">{post.authorName}</div>
-            <div className="text-xs text-zinc-500 font-sans truncate">@{post.authorHandle} • {post.location}</div>
+            <div className="font-outfit font-bold text-sm text-[#1A2225] truncate">{post.authorName}</div>
+            <div className="text-xs text-[#55615D] font-sans truncate">@{post.authorHandle} • {post.location}</div>
           </div>
         </div>
 
@@ -96,7 +96,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
               <span>{challenge.title}</span>
             </span>
           )}
-          <div className="hidden sm:flex items-center gap-1 text-xs text-zinc-400 font-sans bg-zinc-100 px-3 py-1 rounded-full">
+          <div className="hidden sm:flex items-center gap-1 text-xs text-[#55615D] font-sans bg-[#F3ECD8] px-3 py-1 rounded-full">
             <MapIcon className="w-3.5 h-3.5" />
             <span className="text-xs font-medium">{post.location}</span>
           </div>
@@ -104,7 +104,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
       </div>
 
       {/* Outfit Image with Interactive Tag Pins */}
-      <div className="relative aspect-[3/4] bg-zinc-100 rounded-2xl overflow-hidden border border-zinc-200/80 group shadow-inner">
+      <div className="relative aspect-[3/4] bg-[#F3ECD8] rounded-2xl overflow-hidden border border-[#E6DCC0] group shadow-inner">
         <img src={post.imageUrl} alt={post.caption} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
 
         {/* Tag Pins Overlay */}
@@ -117,7 +117,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
             <button
               type="button"
               onClick={() => setActiveTag(activeTag?.id === tag.id ? null : tag)}
-              className="w-8 h-8 bg-zinc-950/90 text-white rounded-full flex items-center justify-center border-2 border-white shadow-xl hover:scale-110 active:scale-95 transition-transform backdrop-blur-md"
+              className="w-8 h-8 bg-[#1A2225]/90 text-[#FFF9E9] rounded-full flex items-center justify-center border-2 border-[#FFF9E9] shadow-xl hover:scale-110 active:scale-95 transition-transform backdrop-blur-md cursor-pointer"
               aria-label="View tagged item"
             >
               <CustomTagIcon className="w-3.5 h-3.5" />
@@ -125,12 +125,12 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
 
             {/* Tag Popup Tooltip Card */}
             {activeTag?.id === tag.id && (
-              <div className="absolute left-1/2 bottom-full mb-3 -translate-x-1/2 w-52 sm:w-60 bg-zinc-950/95 text-white p-4 rounded-2xl shadow-2xl z-20 space-y-2 border border-zinc-800 backdrop-blur-xl animate-in fade-in zoom-in-95">
-                <div className="text-[11px] text-zinc-400 font-medium">
+              <div className="absolute left-1/2 bottom-full mb-3 -translate-x-1/2 w-52 sm:w-60 bg-[#1A2225]/95 text-[#FFF9E9] p-4 rounded-2xl shadow-2xl z-20 space-y-2 border border-[#FFF9E9]/20 backdrop-blur-xl animate-in fade-in zoom-in-95">
+                <div className="text-[11px] text-[#E0DFC8] font-medium">
                   Tagged piece from @{tag.sellerName}
                 </div>
-                <div className="font-outfit text-sm font-bold truncate text-white">{tag.itemTitle}</div>
-                <div className="text-sm font-bold text-white">₱{tag.price.toLocaleString()}</div>
+                <div className="font-outfit text-sm font-bold truncate text-[#FFF9E9]">{tag.itemTitle}</div>
+                <div className="text-sm font-bold text-[#FFF9E9]">₱{tag.price.toLocaleString()}</div>
                 <div className="space-y-1.5 pt-1">
                   <button
                     type="button"
@@ -138,7 +138,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
                       setActiveTag(null);
                       onSelectProduct?.(tag.productId);
                     }}
-                    className="w-full py-2 bg-white text-zinc-950 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 hover:bg-zinc-100 transition-colors shadow-sm"
+                    className="w-full py-2 bg-[#FFF9E9] text-[#1A2225] rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 hover:bg-[#F3ECD8] transition-colors shadow-sm cursor-pointer"
                   >
                     <span>View piece</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -148,7 +148,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
                     onClick={() => {
                       if (onSelectSeller) onSelectSeller(tag.sellerId);
                     }}
-                    className="w-full py-2 bg-white/10 text-white border border-white/15 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 hover:bg-white/20 transition-colors"
+                    className="w-full py-2 bg-[#FFF9E9]/10 text-[#FFF9E9] border border-[#FFF9E9]/15 rounded-full text-xs font-semibold flex items-center justify-center gap-1.5 hover:bg-[#FFF9E9]/20 transition-colors cursor-pointer"
                   >
                     <span>Visit Storefront</span>
                   </button>
@@ -161,14 +161,14 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
 
       {/* Caption & Actions */}
       <div className="space-y-3">
-        <p className="text-xs sm:text-sm text-zinc-700 font-sans leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#1A2225]/80 font-sans leading-relaxed">
           {post.caption}
         </p>
 
         {/* Tagged Brands Chips */}
         {post.taggedItems.length > 0 && (
           <div className="flex flex-wrap items-center gap-1.5 pt-1">
-            <span className="text-xs font-semibold text-zinc-500">
+            <span className="text-xs font-semibold text-[#55615D]">
               Pieces from:
             </span>
             {post.taggedItems.map((tag) => (
@@ -178,7 +178,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
                 onClick={() => {
                   if (onSelectSeller) onSelectSeller(tag.sellerId);
                 }}
-                className="px-3 py-1 bg-zinc-100 hover:bg-zinc-200 text-zinc-900 text-xs font-medium rounded-full border border-zinc-200/80 transition-colors"
+                className="px-3 py-1 bg-[#F3ECD8] hover:bg-[#F3ECD8]/80 text-[#1A2225] text-xs font-medium rounded-full border border-[#E6DCC0] transition-colors cursor-pointer"
               >
                 @{tag.sellerName}
               </button>
@@ -187,7 +187,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
         )}
 
         {/* Like, Comment, Delete Row */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-zinc-100 text-sm">
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-[#E6DCC0] text-sm">
           <div className="flex items-center gap-2">
             <button
               type="button"
@@ -196,8 +196,8 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
               aria-label={hasLiked ? "Unlike outfit post" : "Like outfit post"}
               className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all cursor-pointer ${
                 hasLiked
-                  ? 'bg-zinc-950 text-white border-zinc-950 font-semibold'
-                  : 'bg-zinc-50 text-zinc-600 border-zinc-200/80 hover:bg-zinc-100'
+                  ? 'bg-[#1A2225] text-[#FFF9E9] border-[#1A2225] font-semibold'
+                  : 'bg-[#F3ECD8] text-[#1A2225] border-[#E6DCC0] hover:bg-[#F3ECD8]/80'
               }`}
             >
               <SavedIcon className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
@@ -207,7 +207,7 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
             <button
               type="button"
               onClick={() => setIsCommentsOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-full border bg-zinc-50 text-zinc-600 border-zinc-200/80 hover:bg-zinc-100 transition-all"
+              className="flex items-center gap-2 px-4 py-2 rounded-full border bg-[#F3ECD8] text-[#1A2225] border-[#E6DCC0] hover:bg-[#F3ECD8]/80 transition-all cursor-pointer"
             >
               <MessageCircle className="w-4 h-4" />
               <span>{commentCount}</span>
@@ -219,8 +219,8 @@ export const FitCheckCard: React.FC<FitCheckCardProps> = ({
             <button
               type="button"
               onClick={handleDelete}
-              className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-colors ${
-                confirmDelete ? 'text-red-600 bg-red-50' : 'text-zinc-500 hover:text-red-600'
+              className={`text-xs font-semibold px-3 py-1.5 rounded-full transition-colors cursor-pointer ${
+                confirmDelete ? 'text-red-600 bg-red-50' : 'text-[#55615D] hover:text-red-600'
               }`}
             >
               {confirmDelete ? 'Tap again to delete' : 'Delete'}

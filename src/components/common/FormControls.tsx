@@ -2,9 +2,9 @@ import React from 'react';
 import { AlertCircle, CheckCircle2, Info } from 'lucide-react';
 
 export const inputClass =
-  'w-full bg-zinc-50 border border-zinc-200/80 rounded-lg sm:rounded-xl px-3 py-2 sm:py-2.5 text-[13px] sm:text-sm text-zinc-950 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-950/20 focus:bg-white font-sans disabled:opacity-60';
+  'w-full bg-[#F3ECD8] border border-[#E6DCC0] rounded-xl px-3 py-2 sm:py-2.5 text-[13px] sm:text-sm text-[#1A2225] placeholder:text-[#55615D] focus:outline-none focus:ring-2 focus:ring-[#1A2225]/20 focus:bg-[#FFF9E9] font-sans disabled:opacity-60';
 
-export const labelClass = 'block text-[11px] sm:text-xs font-semibold text-zinc-700';
+export const labelClass = 'block text-[11px] sm:text-xs font-semibold text-[#1A2225]';
 
 interface FieldProps {
   label: string;
@@ -19,13 +19,13 @@ export const Field: React.FC<FieldProps> = ({ label, htmlFor, hint, error, requi
   <div className="space-y-1">
     <label htmlFor={htmlFor} className={labelClass}>
       {label}
-      {required && <span className="text-zinc-400"> *</span>}
+      {required && <span className="text-[#55615D]"> *</span>}
     </label>
     {children}
     {error ? (
       <p className="text-[11px] text-red-600 font-medium">{error}</p>
     ) : hint ? (
-      <p className="text-[11px] text-zinc-500">{hint}</p>
+      <p className="text-[11px] text-[#55615D]">{hint}</p>
     ) : null}
   </div>
 );
@@ -39,7 +39,7 @@ export const Alert: React.FC<AlertProps> = ({ tone, children }) => {
   const styles = {
     error: 'bg-red-50 border-red-200 text-red-800',
     success: 'bg-emerald-50 border-emerald-200 text-emerald-900',
-    info: 'bg-zinc-100 border-zinc-200 text-zinc-700',
+    info: 'bg-[#F3ECD8] border-[#E6DCC0] text-[#1A2225]',
   }[tone];
   const Icon = tone === 'error' ? AlertCircle : tone === 'success' ? CheckCircle2 : Info;
   return (
@@ -65,11 +65,11 @@ export const Button: React.FC<ButtonProps> = ({
   ...rest
 }) => {
   const styles = {
-    primary: 'bg-zinc-950 hover:bg-zinc-800 text-white shadow-sm',
-    secondary: 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900 border border-zinc-200',
-    danger: 'bg-red-600 hover:bg-red-700 text-white shadow-md',
-    inverse: 'bg-white hover:bg-zinc-200 text-zinc-950 shadow-md',
-    'ghost-dark': 'bg-white/10 hover:bg-white/20 text-white border border-white/15',
+    primary: 'bg-[#1A2225] hover:bg-[#1A2225]/90 text-[#FFF9E9] shadow-sm cursor-pointer',
+    secondary: 'bg-[#F3ECD8] hover:bg-[#E8DFC6] text-[#1A2225] border border-[#E6DCC0] cursor-pointer',
+    danger: 'bg-red-600 hover:bg-red-700 text-white shadow-md cursor-pointer',
+    inverse: 'bg-[#FFF9E9] hover:bg-[#F3ECD8] text-[#1A2225] shadow-md cursor-pointer',
+    'ghost-dark': 'bg-[#FFF9E9]/10 hover:bg-[#FFF9E9]/20 text-[#FFF9E9] border border-[#FFF9E9]/20 cursor-pointer',
   }[variant];
   return (
     <button
@@ -94,7 +94,7 @@ interface SegmentedProps<T extends string> {
 
 export function Segmented<T extends string>({ value, options, onChange, className = '' }: SegmentedProps<T>) {
   return (
-    <div className={`flex items-center gap-0.5 p-0.5 bg-zinc-100 rounded-full w-full overflow-x-auto scrollbar-none ${className}`}>
+    <div className={`flex items-center gap-0.5 p-0.5 bg-[#F3ECD8] rounded-full w-full overflow-x-auto scrollbar-none border border-[#E6DCC0] ${className}`}>
       {options.map((option) => {
         const isActive = option.id === value;
         return (
@@ -102,8 +102,8 @@ export function Segmented<T extends string>({ value, options, onChange, classNam
             key={option.id}
             type="button"
             onClick={() => onChange(option.id)}
-            className={`flex-1 shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-              isActive ? 'bg-zinc-950 text-white shadow-sm' : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/60'
+            className={`flex-1 shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+              isActive ? 'bg-[#1A2225] text-[#FFF9E9] shadow-sm' : 'text-[#55615D] hover:text-[#1A2225] hover:bg-[#E8DFC6]/60'
             }`}
           >
             {option.label}

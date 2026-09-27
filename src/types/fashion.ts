@@ -86,8 +86,20 @@ export interface Product {
   tags: string[];
   aesthetics: string[];
   saveCount: number;
+  pinCount?: number;
   viewCount: number;
   dateAdded: string;
+}
+
+export interface Moodboard {
+  id: string;
+  name: string;
+  description: string;
+  productIds: string[];
+  isPublic: boolean;
+  createdAt: string;
+  coverImageUrl?: string;
+  pinCount?: number;
 }
 
 export interface Drop {
