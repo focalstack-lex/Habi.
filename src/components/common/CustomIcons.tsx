@@ -175,3 +175,20 @@ export const CustomStoreIcon: React.FC<IconProps> = ({ className = "w-4 h-4" }) 
     <path d="M10 20V16H14V20" />
   </svg>
 );
+
+// 11. Push Pin / Moodboard Pin Icon
+export const CustomPinIcon: React.FC<IconProps> = ({ className = "w-4 h-4" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M12 17V22M9 3H15M10 3V8.5L7.5 11.5V14H16.5V11.5L14 8.5V3" />
+    <circle cx="12" cy="14" r="1" fill="currentColor" />
+  </svg>
+);
+

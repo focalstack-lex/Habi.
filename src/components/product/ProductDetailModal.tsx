@@ -3,6 +3,8 @@ import { ArrowLeft, Share2, Bookmark, MapPin, Tag, MessageSquare, ArrowRight, Sh
 import type { Product, Seller } from '../../types/fashion';
 import { storageService } from '../../services/storageService';
 import { InstantInquiryModal } from './InstantInquiryModal';
+import { PinToMoodboardModal } from './PinToMoodboardModal';
+import { CustomPinIcon } from '../common/CustomIcons';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -27,6 +29,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const [shareNote, setShareNote] = useState<string>('');
   const [selectedSize, setSelectedSize] = useState<string>(product?.sizes?.[0] ?? product?.size ?? '');
   const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
+  const [isPinModalOpen, setIsPinModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     setSelectedImageIndex(0);
@@ -96,6 +99,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             </button>
 
             <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setIsPinModalOpen(true)}
+                className="pointer-events-auto w-10 h-10 rounded-full bg-[#FFF9E9] text-[#1A2225] border border-[#E6DCC0] shadow-md flex items-center justify-center hover:scale-105 transition-all cursor-pointer"
+                aria-label="Pin to moodboard"
+                title="Pin to Moodboard"
+              >
+                <CustomPinIcon className="w-4 h-4" />
+              </button>
               <button
                 type="button"
                 onClick={handleShare}
@@ -388,6 +400,13 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           onClose={() => setIsInquiryOpen(false)}
         />
       )}
+
+      {/* Pin to Moodboard Modal */}
+      <PinToMoodboardModal
+        product={product}
+        isOpen={isPinModalOpen}
+        onClose={() => setIsPinModalOpen(false)}
+      />
     </>
   );
 };
