@@ -714,3 +714,24 @@ Seller verification only checked that the ID number had the right format, that i
 - The face match is done by a person, not by biometrics. It stops casual misuse of someone else's ID, not a determined attacker.
 - Accounts, approvals, and selfies still live in `localStorage`, and `VITE_ADMIN_SETUP_KEY` ships in the bundle. Both need a backend before real sellers are onboarded.
 - The privacy policy in `LegalPolicyModal.tsx` does not yet mention ID or selfie collection.
+
+---
+
+## [2026-09-27] Session Log: Merge `origin/master` into `feature/color-theme-cream-green-pair` & Conflict Resolution
+
+### Task Overview
+- Merged upstream `origin/master` updates into `feature/color-theme-cream-green-pair` and resolved all 23 conflicting files.
+
+### Key Conflict Resolutions Delivered
+1. **`JOURNAL.md`**: Combined chronological session logs for moodboard hub and selfie ID verification.
+2. **`App.tsx` & Layout Nav (`NavigationHeader`, `NavigationDrawer`, `BottomTabBar`, `FooterSection`)**: Combined authentication context, portal navigation, i18n keys (`t(...)`), and theme switchers under cream-green design tokens (`#FFF9E9`, `#1A2225`, `#E6DCC0`, `#55615D`, `#F3ECD8`).
+3. **Product & Feed (`ProductCard`, `ProductDetailModal`, `EditorialHero`, `AestheticFilterBar`)**: Merged PinToMoodboardModal, pin counts, status ribbons, size variants, and i18n strings. Fixed type error (`userPrefsService.boardsContaining(product.id)`).
+4. **Seller Suite & Davao Map (`SellerDashboard`, `SellerHeader`, `SellerStorefront`, `DavaoFashionMap`)**: Integrated analytics, drops, piece creation, store headers, location toasts, and directions under cream-green styling.
+5. **Views (`SavedView`, `DropsView`, `FitCheckView`)**: Preserved Davao moodboards, drop calendar exports, fit check cards, and tabs.
+
+### Verification Results
+- `npm run build`: `tsc -b && vite build` passed cleanly with 0 TypeScript/compilation errors.
+- Built production assets: `dist/index.html` (1.81 kB), `dist/assets/index-B5q6tBx2.css` (84.34 kB), `dist/assets/index-DosGJe76.js` (938.61 kB).
+- Git: Merge commit created (`4c09c41`), working tree clean.
+- Directives: Enforced Zero Emojis in UI, Zero Em-Dashes, Anti-Eyebrow-Pill, and Cream-Green palette rules.
+
