@@ -3,6 +3,7 @@ import {
   BadgeCheck,
   Ban,
   CheckCircle2,
+  Columns2,
   Eye,
   EyeOff,
   Flag,
@@ -14,6 +15,7 @@ import {
   ShieldCheck,
   Store,
   Trash2,
+  UserCheck,
   Users,
   X,
   XCircle,
@@ -46,6 +48,22 @@ const REPORT_REASON_LABELS: Record<ProductReport['reason'], string> = {
 };
 type ApplicationFilter = 'pending' | 'approved' | 'rejected' | 'all';
 
+interface LightboxImage {
+  src: string;
+  label: string;
+}
+
+/** Every box must be ticked before an application can be approved. */
+const IDENTITY_CHECKS = [
+  { id: 'faceMatch', label: 'The face in the selfie matches the photo on the ID.' },
+  { id: 'sameDocument', label: 'The ID held in the selfie is the same document: same type, name, and photo.' },
+  { id: 'gesture', label: 'The applicant is making the requested gesture.' },
+] as const;
+
+type IdentityCheckId = (typeof IDENTITY_CHECKS)[number]['id'];
+
+const NO_CHECKS: Record<IdentityCheckId, boolean> = { faceMatch: false, sameDocument: false, gesture: false };
+
 const VERIFICATION_LEVELS: VerificationStatus[] = ['Verified Business', 'Local Seller', 'Community Creator'];
 
 const STATUS_STYLES: Record<SellerAccount['status'], string> = {
@@ -66,7 +84,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   const [, setTick] = useState(0);
   const [tab, setTab] = useState<AdminTab>('applications');
   const [filter, setFilter] = useState<ApplicationFilter>('pending');
-  const [lightbox, setLightbox] = useState<{ src: string; label: string } | null>(null);
+  const [lightbox, setLightbox] = useState<LightboxImage[] | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [errorNotice, setErrorNotice] = useState<string | null>(null);
 
@@ -263,17 +281,18 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               <CheckCircle2 className="w-8 h-8 text-zinc-300 mx-auto" />
               <div className="font-cooper text-base sm:text-lg font-bold text-zinc-900">No {filter === 'all' ? '' : filter} applications</div>
               <p className="text-xs text-zinc-500 max-w-sm mx-auto">
-                Seller sign-ups with an uploaded ID appear here for manual verification.
+                Seller sign-ups with an ID photo and a selfie holding it appear here for manual verification.
               </p>
             </div>
           ) : (
             <div className="space-y-4">
               {filteredApplications.map((application) => (
                 <ApplicationCard
-                  key={application.id}
+                  // A resubmission is a fresh review, so the identity checklist starts empty again.
+                  key={`${application.id}-${application.verification.submittedAt}`}
                   application={application}
                   admin={admin}
-                  onOpenImage={(src, label) => setLightbox({ src, label })}
+                  onOpenImages={setLightbox}
                   onViewSeller={onViewSeller}
                   onAction={runAction}
                 />
@@ -415,9 +434,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
       )}
 
-      {/* ID image lightbox */}
+      {/* ID image lightbox; two images show side by side for face matching */}
       {lightbox && (
-        <div className="fixed inset-0 z-[60] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setLightbox(null)}>
+        <div className="fixed inset-0 z-[60] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto" onClick={() => setLightbox(null)}>
           <button
             type="button"
             onClick={() => setLightbox(null)}
@@ -426,10 +445,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           >
             <X className="w-5 h-5" />
           </button>
-          <figure className="max-w-3xl w-full space-y-2" onClick={(e) => e.stopPropagation()}>
-            <img src={lightbox.src} alt={lightbox.label} className="w-full max-h-[80vh] object-contain rounded-xl" />
-            <figcaption className="text-center text-xs text-zinc-300">{lightbox.label}</figcaption>
-          </figure>
+          <div
+            className={`w-full ${lightbox.length > 1 ? 'max-w-6xl grid grid-cols-1 sm:grid-cols-2 gap-4' : 'max-w-3xl'}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {lightbox.map((image) => (
+              <figure key={image.label} className="space-y-2 min-w-0">
+                <img
+                  src={image.src}
+                  alt={image.label}
+                  className={`w-full object-contain rounded-xl ${lightbox.length > 1 ? 'max-h-[38vh] sm:max-h-[80vh]' : 'max-h-[80vh]'}`}
+                />
+                <figcaption className="text-center text-xs text-zinc-300">{image.label}</figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       )}
     </div>
@@ -453,18 +483,32 @@ const StatTile: React.FC<{ label: string; value: number; icon: React.ComponentTy
 interface ApplicationCardProps {
   application: SellerAccount;
   admin: AdminAccount;
-  onOpenImage: (src: string, label: string) => void;
+  onOpenImages: (images: LightboxImage[]) => void;
   onViewSeller: (sellerId: string) => void;
   onAction: (action: () => void, message: string) => void;
 }
 
-const ApplicationCard: React.FC<ApplicationCardProps> = ({ application, admin, onOpenImage, onViewSeller, onAction }) => {
+const ApplicationCard: React.FC<ApplicationCardProps> = ({ application, admin, onOpenImages, onViewSeller, onAction }) => {
   const [level, setLevel] = useState<ApprovedVerificationLevel>(
     application.verification.permitImageDataUrl ? 'Verified Business' : 'Local Seller'
   );
   const [note, setNote] = useState('');
   const [isRejecting, setIsRejecting] = useState(false);
+  const [checks, setChecks] = useState(NO_CHECKS);
   const { verification } = application;
+  const { selfie } = verification;
+  const identityConfirmed = Boolean(selfie) && IDENTITY_CHECKS.every((check) => checks[check.id]);
+
+  const idImage: LightboxImage = {
+    src: verification.idImageDataUrl,
+    label: `${verification.idTypeLabel} of ${verification.fullNameOnId}`,
+  };
+  const selfieImage: LightboxImage | null = selfie
+    ? { src: selfie.imageDataUrl, label: `Selfie of ${application.ownerName} holding the ID. Asked to ${selfie.challenge}.` }
+    : null;
+  const permitImage: LightboxImage | null = verification.permitImageDataUrl
+    ? { src: verification.permitImageDataUrl, label: `Business permit of ${application.businessName}` }
+    : null;
 
   const submittedOn = new Date(verification.submittedAt).toLocaleString('en-PH', {
     month: 'short',
@@ -474,11 +518,13 @@ const ApplicationCard: React.FC<ApplicationCardProps> = ({ application, admin, o
     minute: '2-digit',
   });
 
-  const approve = () =>
+  const approve = () => {
+    if (!identityConfirmed) return;
     onAction(
       () => authService.approveSeller(application.id, admin, level, note.trim()),
       `${application.businessName} approved as ${level}.`
     );
+  };
 
   const reject = () => {
     if (note.trim().length < 5) return;
@@ -545,6 +591,23 @@ const ApplicationCard: React.FC<ApplicationCardProps> = ({ application, admin, o
                 Name on ID differs from the owner name entered. Check the photo before approving.
               </div>
             )}
+            {selfie ? (
+              <div
+                className={`text-[11px] rounded-lg px-2.5 py-1.5 border ${
+                  selfie.method === 'upload' ? 'bg-amber-50 border-amber-200 text-amber-800' : 'bg-zinc-50 border-zinc-200 text-zinc-600'
+                }`}
+              >
+                <span className="font-semibold">{selfie.method === 'upload' ? 'Selfie uploaded as a file' : 'Selfie taken with the live camera'}</span>
+                {' · '}Asked to {selfie.challenge}.
+                {selfie.method === 'upload' ? ' The camera was unavailable, so look for signs of an old or edited photo.' : ''}
+              </div>
+            ) : (
+              <div className="text-[11px] text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-2.5 py-1.5">
+                {application.status === 'approved'
+                  ? 'No selfie on file. This seller was approved before the selfie step.'
+                  : 'No selfie on file. This application was sent before the selfie step. Reject it with a note asking for a selfie so the seller can resubmit.'}
+              </div>
+            )}
             {verification.automatedCheck && (
               <div
                 className={`text-[11px] rounded-lg px-2.5 py-1.5 border ${
@@ -573,43 +636,68 @@ const ApplicationCard: React.FC<ApplicationCardProps> = ({ application, admin, o
         </div>
 
         {/* ID images */}
-        <div className="lg:col-span-5 grid grid-cols-2 gap-3">
-          <button
-            type="button"
-            onClick={() => onOpenImage(verification.idImageDataUrl, `${verification.idTypeLabel} of ${verification.fullNameOnId}`)}
-            className="group text-left space-y-1.5"
-          >
-            <div className="aspect-[16/10] bg-zinc-100 rounded-xl overflow-hidden border border-zinc-200 relative">
-              <img src={verification.idImageDataUrl} alt="Uploaded ID front" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform" />
-              <span className="absolute bottom-1.5 right-1.5 px-2 py-0.5 rounded-full bg-black/60 text-white text-[11px] font-semibold">Tap to enlarge</span>
-            </div>
-            <div className="text-[11px] font-semibold text-zinc-700">ID front</div>
-          </button>
-          {verification.permitImageDataUrl ? (
+        <div className="lg:col-span-5 grid grid-cols-2 gap-3 content-start">
+          <ImageTile image={idImage} caption="ID front" alt="Uploaded ID front" onOpen={() => onOpenImages([idImage])} />
+          {selfie && selfieImage ? (
+            <ImageTile
+              image={selfieImage}
+              caption="Selfie with ID"
+              alt="Selfie holding the ID"
+              badge={selfie.method === 'upload' ? 'Uploaded' : undefined}
+              onOpen={() => onOpenImages([selfieImage])}
+            />
+          ) : (
+            <EmptyTile caption="Selfie with ID" text="No selfie on file" />
+          )}
+          {selfieImage && (
             <button
               type="button"
-              onClick={() => onOpenImage(verification.permitImageDataUrl!, `Business permit of ${application.businessName}`)}
-              className="group text-left space-y-1.5"
+              onClick={() => onOpenImages([idImage, selfieImage])}
+              className="col-span-2 px-3 py-2 rounded-full text-[11px] font-semibold bg-zinc-950 text-white hover:bg-zinc-800 flex items-center justify-center gap-1.5"
             >
-              <div className="aspect-[16/10] bg-zinc-100 rounded-xl overflow-hidden border border-zinc-200 relative">
-                <img src={verification.permitImageDataUrl} alt="Uploaded business permit" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform" />
-                <span className="absolute bottom-1.5 right-1.5 px-2 py-0.5 rounded-full bg-black/60 text-white text-[11px] font-semibold">Tap to enlarge</span>
-              </div>
-              <div className="text-[11px] font-semibold text-zinc-700">Business permit</div>
+              <Columns2 className="w-3.5 h-3.5" />
+              <span>Compare ID and selfie side by side</span>
             </button>
+          )}
+          {permitImage ? (
+            <ImageTile image={permitImage} caption="Business permit" alt="Uploaded business permit" onOpen={() => onOpenImages([permitImage])} />
           ) : (
-            <div className="space-y-1.5">
-              <div className="aspect-[16/10] bg-zinc-50 rounded-xl border border-dashed border-zinc-200 flex items-center justify-center text-[11px] text-zinc-400 text-center px-3">
-                No permit uploaded
-              </div>
-              <div className="text-[11px] font-semibold text-zinc-400">Business permit</div>
-            </div>
+            <EmptyTile caption="Business permit" text="No permit uploaded" />
           )}
         </div>
       </div>
 
       {/* Decision controls */}
       <div className="pt-3 border-t border-zinc-100 space-y-3">
+        {application.status !== 'approved' && (
+          <fieldset className="border border-zinc-200/80 rounded-xl p-3 space-y-2">
+            <legend className="px-1 text-[11px] font-avantgarde font-bold tracking-wider uppercase text-zinc-500">
+              <UserCheck className="w-3.5 h-3.5 text-zinc-950 inline -mt-0.5 mr-1.5" />
+              Identity match
+            </legend>
+            {IDENTITY_CHECKS.map((check) => (
+              <label key={check.id} className={`flex items-start gap-2.5 text-xs leading-relaxed ${selfie ? 'text-zinc-700 cursor-pointer' : 'text-zinc-400'}`}>
+                <input
+                  type="checkbox"
+                  disabled={!selfie}
+                  checked={checks[check.id]}
+                  onChange={(e) => setChecks((prev) => ({ ...prev, [check.id]: e.target.checked }))}
+                  className="mt-0.5 w-4 h-4 rounded border-zinc-300 accent-zinc-950 shrink-0"
+                />
+                <span>
+                  {check.label}
+                  {check.id === 'gesture' && selfie ? ` Requested: ${selfie.challenge}.` : ''}
+                </span>
+              </label>
+            ))}
+            {!identityConfirmed && (
+              <p className="text-[11px] text-zinc-500">
+                {selfie ? 'Tick all three to enable approval.' : 'Approval needs a selfie. Reject with a note so the seller can add one.'}
+              </p>
+            )}
+          </fieldset>
+        )}
+
         {application.status !== 'approved' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Field label="Approve as" htmlFor={`level-${application.id}`}>
@@ -619,14 +707,14 @@ const ApplicationCard: React.FC<ApplicationCardProps> = ({ application, admin, o
               </select>
             </Field>
             <Field label={isRejecting ? 'Reason for rejection (shown to seller)' : 'Reviewer note (optional)'} htmlFor={`note-${application.id}`}>
-              <input id={`note-${application.id}`} type="text" value={note} onChange={(e) => setNote(e.target.value)} placeholder={isRejecting ? 'e.g. ID photo is blurry, corners cut off' : 'Internal note'} className={inputClass} />
+              <input id={`note-${application.id}`} type="text" value={note} onChange={(e) => setNote(e.target.value)} placeholder={isRejecting ? 'e.g. Face in the selfie does not match the ID' : 'Internal note'} className={inputClass} />
             </Field>
           </div>
         )}
 
         <div className="flex flex-wrap items-center gap-2">
           {application.status !== 'approved' && (
-            <Button type="button" onClick={approve} className="flex-1 sm:flex-none whitespace-nowrap">
+            <Button type="button" onClick={approve} disabled={!identityConfirmed} className="flex-1 sm:flex-none whitespace-nowrap">
               <CheckCircle2 className="w-4 h-4" />
               <span>Approve Storefront</span>
             </Button>
@@ -660,6 +748,36 @@ const ApplicationCard: React.FC<ApplicationCardProps> = ({ application, admin, o
     </div>
   );
 };
+
+const ImageTile: React.FC<{ image: LightboxImage; caption: string; alt: string; badge?: string; onOpen: () => void }> = ({
+  image,
+  caption,
+  alt,
+  badge,
+  onOpen,
+}) => (
+  <button type="button" onClick={onOpen} className="group text-left space-y-1.5 min-w-0">
+    <div className="aspect-[4/3] bg-zinc-100 rounded-xl overflow-hidden border border-zinc-200 relative">
+      <img src={image.src} alt={alt} className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform" />
+      {badge && (
+        <span className="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200 text-[11px] font-semibold">
+          {badge}
+        </span>
+      )}
+      <span className="absolute bottom-1.5 right-1.5 px-2 py-0.5 rounded-full bg-black/60 text-white text-[11px] font-semibold">Tap to enlarge</span>
+    </div>
+    <div className="text-[11px] font-semibold text-zinc-700">{caption}</div>
+  </button>
+);
+
+const EmptyTile: React.FC<{ caption: string; text: string }> = ({ caption, text }) => (
+  <div className="space-y-1.5 min-w-0">
+    <div className="aspect-[4/3] bg-zinc-50 rounded-xl border border-dashed border-zinc-200 flex items-center justify-center text-[11px] text-zinc-400 text-center px-3">
+      {text}
+    </div>
+    <div className="text-[11px] font-semibold text-zinc-400">{caption}</div>
+  </div>
+);
 
 const Detail: React.FC<{ label: string; value: string; icon?: React.ComponentType<{ className?: string }>; mono?: boolean }> = ({ label, value, icon: Icon, mono }) => (
   <div className="min-w-0">

@@ -23,7 +23,7 @@ const COPY: Record<AuthMode, { eyebrow: string; title: string; body: string }> =
   'seller-signup': {
     eyebrow: 'JOIN AS DAVAO SELLER',
     title: 'Open your storefront.',
-    body: 'For independent brands, thrift vaults, and vintage sellers across the Davao Region. A valid government ID is required before approval.',
+    body: 'For independent brands, thrift vaults, and vintage sellers across the Davao Region. A valid government ID and a selfie holding it are required before approval.',
   },
   'admin-signup': {
     eyebrow: 'PLATFORM ADMINISTRATION',

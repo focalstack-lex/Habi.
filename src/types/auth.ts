@@ -15,6 +15,19 @@ export interface ValidIdType {
   hint: string;
 }
 
+export type SelfieCaptureMethod = 'live-camera' | 'upload';
+
+/** Selfie of the applicant holding the ID, so an admin can confirm the ID belongs to them. */
+export interface SelfieCapture {
+  /** Downscaled JPEG data URL. */
+  imageDataUrl: string;
+  /** Gesture the applicant was asked to make, so an old or borrowed photo does not pass. */
+  challenge: string;
+  /** `upload` only happens when the browser could not open a live camera stream. */
+  method: SelfieCaptureMethod;
+  capturedAt: string;
+}
+
 export interface IdVerification {
   idTypeId: string;
   idTypeLabel: string;
@@ -24,6 +37,8 @@ export interface IdVerification {
   birthDate?: string;
   /** Downscaled JPEG data URL of the ID front. */
   idImageDataUrl: string;
+  /** Missing on applications submitted before the selfie step existed. */
+  selfie?: SelfieCapture;
   /** Optional DTI registration or Mayor's permit for business accounts. */
   permitImageDataUrl?: string;
   /** Result of the automated PhilSys eVerify check, when one ran. */
@@ -98,6 +113,7 @@ export interface SellerRegistrationInput {
   fullNameOnId: string;
   birthDate?: string;
   idImageDataUrl: string;
+  selfie: SelfieCapture;
   permitImageDataUrl?: string;
 }
 

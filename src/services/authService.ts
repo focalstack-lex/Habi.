@@ -4,6 +4,7 @@ import type {
   AdminRegistrationInput,
   ApprovedVerificationLevel,
   AuthSession,
+  SelfieCapture,
   SellerAccount,
   SellerRegistrationInput,
   ValidIdType,
@@ -13,8 +14,8 @@ import { catalogService } from './catalogService';
 import { runAutomatedIdCheck } from './idVerificationService';
 
 /**
- * Client-side account store for the prototype. Accounts, sessions, and the
- * uploaded ID images live in localStorage. Passwords are salted and hashed
+ * Client-side account store for the prototype. Accounts, sessions, the
+ * uploaded ID images, and ID selfies live in localStorage. Passwords are salted and hashed
  * with SHA-256 before storage, but a browser-only store is not a substitute
  * for a real backend: anyone with the device can read it.
  */
@@ -102,6 +103,12 @@ export function validateIdNumber(idTypeId: string, idNumber: string): string | n
   const normalized = normalizeIdNumber(idNumber);
   if (!normalized) return 'Enter the ID number exactly as printed.';
   if (!type.pattern.test(normalized)) return `That does not look like a ${type.label} number. ${type.hint}.`;
+  return null;
+}
+
+export function validateSelfie(selfie: SelfieCapture | null | undefined): string | null {
+  if (!selfie?.imageDataUrl) return 'Take a selfie while holding the same ID next to your face.';
+  if (!selfie.challenge) return 'Retake the selfie so it includes the requested gesture.';
   return null;
 }
 
@@ -282,6 +289,8 @@ export const authService = {
     const idError = validateIdNumber(input.idTypeId, input.idNumber);
     if (idError) throw new Error(idError);
     if (!input.idImageDataUrl) throw new Error('Upload a clear photo of the front of your ID.');
+    const selfieError = validateSelfie(input.selfie);
+    if (selfieError) throw new Error(selfieError);
     if (!input.fullNameOnId.trim()) throw new Error('Enter the full name printed on the ID.');
 
     const normalizedId = normalizeIdNumber(input.idNumber);
@@ -334,6 +343,7 @@ export const authService = {
         fullNameOnId: input.fullNameOnId.trim(),
         birthDate: input.birthDate || undefined,
         idImageDataUrl: input.idImageDataUrl,
+        selfie: input.selfie,
         permitImageDataUrl: input.permitImageDataUrl || undefined,
         automatedCheck,
         submittedAt: now,
@@ -387,14 +397,23 @@ export const authService = {
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
   },
 
-  /** Rejected applicants may swap the ID and go back into the queue. */
+  /** Rejected applicants may swap the ID, retake the selfie, and go back into the queue. */
   async resubmitVerification(
     accountId: string,
-    patch: { idTypeId: string; idNumber: string; fullNameOnId: string; birthDate?: string; idImageDataUrl: string }
+    patch: {
+      idTypeId: string;
+      idNumber: string;
+      fullNameOnId: string;
+      birthDate?: string;
+      idImageDataUrl: string;
+      selfie: SelfieCapture | null;
+    }
   ): Promise<SellerAccount> {
     const idError = validateIdNumber(patch.idTypeId, patch.idNumber);
     if (idError) throw new Error(idError);
     if (!patch.idImageDataUrl) throw new Error('Upload a clear photo of the front of your ID.');
+    const selfieError = validateSelfie(patch.selfie);
+    if (selfieError || !patch.selfie) throw new Error(selfieError ?? 'Take a selfie while holding your ID.');
     if (!patch.fullNameOnId.trim()) throw new Error('Enter the full name printed on the ID.');
     const idType = VALID_ID_TYPES.find((t) => t.id === patch.idTypeId)!;
     const normalizedId = normalizeIdNumber(patch.idNumber);
@@ -426,6 +445,7 @@ export const authService = {
         fullNameOnId: patch.fullNameOnId.trim(),
         birthDate: patch.birthDate || current.verification.birthDate,
         idImageDataUrl: patch.idImageDataUrl,
+        selfie: patch.selfie,
         automatedCheck,
         submittedAt: new Date().toISOString(),
       },

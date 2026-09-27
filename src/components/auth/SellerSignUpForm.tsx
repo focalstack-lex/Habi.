@@ -8,12 +8,14 @@ import {
   validateIdNumber,
   validatePassword,
   validatePhone,
+  validateSelfie,
   VALID_ID_TYPES,
 } from '../../services/authService';
-import type { Account, SellerType } from '../../types/auth';
+import type { Account, SelfieCapture, SellerType } from '../../types/auth';
 import { DAVAO_CITIES } from '../layout/NavigationHeader';
 import { Alert, Button, Field, inputClass, Segmented } from '../common/FormControls';
 import { ImageUploadField } from '../common/ImageUploadField';
+import { SelfieCaptureField } from './SelfieCaptureField';
 
 interface SellerSignUpFormProps {
   onAuthenticated: (account: Account) => void;
@@ -45,6 +47,7 @@ interface FormState {
   fullNameOnId: string;
   birthDate: string;
   idImageDataUrl: string;
+  selfie: SelfieCapture | null;
   permitImageDataUrl: string;
   consent: boolean;
 }
@@ -70,6 +73,7 @@ const INITIAL: FormState = {
   fullNameOnId: '',
   birthDate: '',
   idImageDataUrl: '',
+  selfie: null,
   permitImageDataUrl: '',
   consent: false,
 };
@@ -133,6 +137,8 @@ export const SellerSignUpForm: React.FC<SellerSignUpFormProps> = ({ onAuthentica
       if (!form.birthDate) next.birthDate = 'Enter the date of birth printed on the ID.';
       else if (ageOn(form.birthDate) < 18) next.birthDate = 'Sellers must be at least 18 years old.';
       if (!form.idImageDataUrl) next.idImageDataUrl = 'A photo of the ID front is required.';
+      const selfieError = validateSelfie(form.selfie);
+      if (selfieError) next.selfie = selfieError;
       if (!form.consent) next.consent = 'Please confirm the declaration to continue.';
     }
     return next;
@@ -159,7 +165,7 @@ export const SellerSignUpForm: React.FC<SellerSignUpFormProps> = ({ onAuthentica
     e.preventDefault();
     const stepErrors = validateStep(2);
     setErrors(stepErrors);
-    if (Object.keys(stepErrors).length > 0) return;
+    if (Object.keys(stepErrors).length > 0 || !form.selfie) return;
 
     setSubmitError(null);
     setIsSubmitting(true);
@@ -183,6 +189,7 @@ export const SellerSignUpForm: React.FC<SellerSignUpFormProps> = ({ onAuthentica
         fullNameOnId: form.fullNameOnId,
         birthDate: form.birthDate,
         idImageDataUrl: form.idImageDataUrl,
+        selfie: form.selfie,
         permitImageDataUrl: form.permitImageDataUrl || undefined,
       });
       onAuthenticated(account);
@@ -322,9 +329,10 @@ export const SellerSignUpForm: React.FC<SellerSignUpFormProps> = ({ onAuthentica
       {step === 2 && (
         <div className="space-y-3">
           <Alert tone="info">
-            Only verified local sellers can list on Habi. PhilSys National IDs are checked through the
-            government eVerify service when enabled, and a Habi admin reviews every application before
-            the storefront goes live. Your ID is never shown to buyers.
+            Only verified local sellers can list on Habi. You will photograph your ID, then take a live
+            selfie holding the same ID so a Habi admin can confirm it belongs to you. PhilSys National IDs
+            are also checked through the government eVerify service when enabled. Your ID and selfie are
+            never shown to buyers.
           </Alert>
 
           <Field label="Valid ID type" htmlFor="su-idtype" required>
@@ -358,6 +366,14 @@ export const SellerSignUpForm: React.FC<SellerSignUpFormProps> = ({ onAuthentica
             hint="All four corners visible, no glare, text readable."
           />
 
+          <SelfieCaptureField
+            label="Selfie holding your ID"
+            required
+            value={form.selfie}
+            onChange={(value) => update('selfie', value)}
+            error={errors.selfie}
+          />
+
           <ImageUploadField
             label={form.sellerType === 'physical-store' ? 'Business permit or DTI registration' : 'Business permit or DTI registration (optional)'}
             value={form.permitImageDataUrl}
@@ -373,8 +389,8 @@ export const SellerSignUpForm: React.FC<SellerSignUpFormProps> = ({ onAuthentica
               className="mt-0.5 w-4 h-4 rounded border-zinc-300 accent-zinc-950 shrink-0"
             />
             <span>
-              I confirm this ID is mine, the details are accurate, and I agree that Habi admins may
-              review it to verify my seller application.
+              I confirm this ID is mine, the selfie is of me holding it, the details are accurate, and I
+              agree that Habi admins may review both to verify my seller application.
             </span>
           </label>
           {errors.consent && <p className="text-[11px] text-red-600 font-medium -mt-2">{errors.consent}</p>}

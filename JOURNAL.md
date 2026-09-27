@@ -553,4 +553,29 @@ Everything from the feature proposal was built in one pass, split across four pa
 - Remediated P3 garment care notes & notification preference tooltips.
 - Verified build health: `npm run build` passed with **0 errors**.
 
+## [2026-09-27] Session Log: Selfie Holding the ID for Seller Verification
 
+### Problem
+
+Seller verification only checked that the ID number had the right format, that it was not already used, and that an admin liked the look of an uploaded ID photo. Anyone with a picture of someone else's ID could apply. eVerify (PhilSys only) is still not configured, so nothing tied the ID to the person applying.
+
+### Delivered
+
+- `SelfieCaptureField` (new, `src/components/auth`): opens the front camera with `getUserMedia`, shows one random gesture instruction ("Hold the ID next to your face and make a peace sign with your free hand"), captures a 1000 px JPEG, and stops the camera on capture, cancel, or unmount. A retake gets a different gesture. The preview is mirrored; the saved frame is not, so the ID text reads normally.
+- Camera fallback: when the camera cannot open (plain http, permission denied, no front camera) the applicant sees the reason and can upload a selfie through `capture="user"`. Uploads are stored as `method: 'upload'` and flagged to the admin.
+- Types and service: `SelfieCapture` on `IdVerification.selfie` (optional, for older applications) and required on `SellerRegistrationInput`. `validateSelfie` runs in the form and again in `registerSeller` and `resubmitVerification`.
+- Seller sign-up step 3 and the rejected-application resubmit form both require the selfie. Status page lists how the selfie was taken. Copy on the auth intro, step 3 notice, consent line, and status page mentions the selfie.
+- Control Room: ID, selfie, and permit tiles (`object-contain`, no cropping), an "Uploaded" badge, the requested gesture, and a "Compare ID and selfie side by side" lightbox. An Identity match checklist (face matches, same document, gesture shown) must be fully ticked before Approve Storefront unlocks. The checklist resets on resubmission (card key includes `submittedAt`). Applications without a selfie cannot be approved and tell the admin to reject with a note.
+- `docs/ID_VERIFICATION.md`: new "Selfie with ID" section (capture, fallback, admin checklist, limits, upgrade path through eGov Face Liveness or a KYC provider) and a data-handling row for selfies.
+
+### Verification
+
+- `npx tsc --noEmit -p tsconfig.app.json`: 0 errors. `npx oxlint src`: 0 errors, 21 warnings (same as before, none in changed files). `npm run build`: 0 errors.
+- Headless Chromium with the fake camera device against the dev server, 24 checks passing and zero console errors: submit blocked without a selfie; live stream starts and captures a JPEG (about 10 kB) stored with `method: 'live-camera'` and its gesture; retake offers a different gesture and cancel keeps the earlier selfie; no horizontal overflow at 360 px; admin Approve stays disabled until all three boxes are ticked; a legacy application without a selfie shows the warning with disabled checkboxes and Approve; compare lightbox shows two images; reject, then resubmit is blocked without a selfie and accepted with one; the checklist is empty again after resubmission; approval succeeds. A second browser with no camera showed "No front camera was found on this device." and the upload fallback stored a flagged selfie.
+- Not verified: a real phone camera, iOS Safari `getUserMedia`, and the `capture="user"` behavior on real devices.
+
+### Known limits
+
+- The face match is done by a person, not by biometrics. It stops casual misuse of someone else's ID, not a determined attacker.
+- Accounts, approvals, and selfies still live in `localStorage`, and `VITE_ADMIN_SETUP_KEY` ships in the bundle. Both need a backend before real sellers are onboarded.
+- The privacy policy in `LegalPolicyModal.tsx` does not yet mention ID or selfie collection.
