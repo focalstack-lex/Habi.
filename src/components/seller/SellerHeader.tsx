@@ -29,7 +29,7 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
   const handleFollowToggle = () => {
     const updated = storageService.toggleFollowSeller(seller.id);
     setIsFollowed(updated);
-    setFollowerCount((prev) => (updated ? prev - 1 : prev + 1));
+    setFollowerCount((prev) => (updated ? prev + 1 : Math.max(0, prev - 1)));
   };
 
   const handleBookmarkToggle = () => {
@@ -286,4 +286,3 @@ export const SellerHeader: React.FC<SellerHeaderProps> = ({ seller }) => {
     </div>
   );
 };
-

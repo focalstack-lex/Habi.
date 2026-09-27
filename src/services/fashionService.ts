@@ -1,8 +1,6 @@
 import type { Product, Seller, Drop, FitCheckPost } from '../types/fashion';
-import { mockProducts } from '../data/mockProducts';
-import { mockSellers } from '../data/mockSellers';
-import { mockDrops } from '../data/mockDrops';
-import { mockOutfitPosts } from '../data/mockOutfitPosts';
+import { catalogService } from './catalogService';
+import { communityService } from './communityService';
 
 export interface ProductFilters {
   city?: string;
@@ -16,7 +14,7 @@ export interface ProductFilters {
 
 export const fashionService = {
   getProducts(filters?: ProductFilters): Product[] {
-    let result = [...mockProducts];
+    let result = catalogService.getVisibleProducts();
 
     if (!filters) return result;
 
@@ -53,19 +51,20 @@ export const fashionService = {
   },
 
   getProductById(id: string): Product | undefined {
-    return mockProducts.find((p) => p.id === id);
+    return catalogService.getVisibleProducts().find((p) => p.id === id);
   },
 
   getProductsBySeller(sellerId: string): Product[] {
-    return mockProducts.filter((p) => p.sellerId === sellerId);
+    return catalogService.getVisibleProducts().filter((p) => p.sellerId === sellerId);
   },
 
   getSellers(searchQuery?: string): Seller[] {
+    const sellers = catalogService.getVisibleSellers();
     if (!searchQuery || searchQuery.trim() === '') {
-      return mockSellers;
+      return sellers;
     }
     const q = searchQuery.toLowerCase();
-    return mockSellers.filter(
+    return sellers.filter(
       (s) =>
         s.name.toLowerCase().includes(q) ||
         s.handle.toLowerCase().includes(q) ||
@@ -76,14 +75,23 @@ export const fashionService = {
   },
 
   getSellerById(id: string): Seller | undefined {
-    return mockSellers.find((s) => s.id === id);
+    return catalogService.getSellerById(id);
   },
 
+  getSellerByHandle(handle: string): Seller | undefined {
+    return catalogService.getSellerByHandle(handle);
+  },
+
+  /** Bundled and seller-scheduled drops, soonest first, minus suspended sellers. */
   getDrops(): Drop[] {
-    return mockDrops;
+    return catalogService.getVisibleDrops();
+  },
+
+  getDropById(id: string): Drop | undefined {
+    return catalogService.getDropById(id);
   },
 
   getOutfitPosts(): FitCheckPost[] {
-    return mockOutfitPosts;
+    return communityService.getPosts();
   }
 };

@@ -4,6 +4,8 @@ import { mockProducts } from './mockProducts';
 // Set future drop release dates relative to current date
 const futureDate1 = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000 + 4 * 60 * 60 * 1000).toISOString();
 const futureDate2 = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000 + 12 * 60 * 60 * 1000).toISOString();
+// One drop went live an hour ago so the live reservation flow is visible without waiting
+const liveSinceDate = new Date(Date.now() - 60 * 60 * 1000).toISOString();
 
 export const mockDrops: Drop[] = [
   {
@@ -35,5 +37,20 @@ export const mockDrops: Drop[] = [
     items: [mockProducts[1], mockProducts[4]],
     remindCount: 710,
     isLive: false,
+  },
+  {
+    id: 'drop-3',
+    sellerId: 'seller-5',
+    sellerName: 'DIGOS VINTAGE CLUB',
+    sellerHandle: 'digosvintageclub',
+    sellerLogo: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80',
+    title: 'DIGOS VINTAGE CLUB: RETRO SPORTSWEAR LIVE NOW',
+    releaseTime: liveSinceDate,
+    itemCount: 12,
+    coverImage: 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=1200&q=80',
+    description: '12 retro Nike and Adidas track jackets and windbreakers from the 90s, every piece 1-of-1. Reserve first come, first served while the drop is live.',
+    items: [mockProducts[5], mockProducts[1]],
+    remindCount: 156,
+    isLive: true,
   }
 ];

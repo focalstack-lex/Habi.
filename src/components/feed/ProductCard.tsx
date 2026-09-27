@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { CustomTagIcon, SavedIcon, MapIcon, CustomPinIcon } from '../common/CustomIcons';
 import type { Product } from '../../types/fashion';
 import { storageService } from '../../services/storageService';
+import { catalogService } from '../../services/catalogService';
+import { userPrefsService } from '../../services/userPrefsService';
+import { useI18n } from '../../i18n';
 import { PinToMoodboardModal } from '../product/PinToMoodboardModal';
 
 interface ProductCardProps {
@@ -9,6 +12,8 @@ interface ProductCardProps {
   onSelectProduct: (product: Product) => void;
   onSelectSeller?: (sellerId: string) => void;
   onToggleSave?: (productId: string) => void;
+  /** Shows a "New" ribbon, used by the Following feed for pieces added since the last visit. */
+  isNew?: boolean;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -16,7 +21,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onSelectProduct,
   onSelectSeller,
   onToggleSave,
+  isNew = false,
 }) => {
+  const { t } = useI18n();
   const [isSaved, setIsSaved] = useState<boolean>(() =>
     storageService.isProductSaved(product.id)
   );
@@ -24,11 +31,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const [pinCount, setPinCount] = useState<number>(() =>
     storageService.getPinCountForProduct(product.id)
   );
+  const [imageFailed, setImageFailed] = useState<boolean>(false);
 
   const handleSaveClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     const newStatus = storageService.toggleSaveProduct(product.id);
     setIsSaved(newStatus);
+    catalogService.recordProductSave(product.id, newStatus ? 1 : -1);
+    if (newStatus) userPrefsService.snapshotSaved(product);
+    else userPrefsService.removeSnapshot(product.id);
     if (onToggleSave) onToggleSave(product.id);
   };
 
@@ -36,6 +47,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     e.stopPropagation();
     setIsPinModalOpen(true);
   };
+
+  const isUnavailable = product.status !== 'Available';
 
   return (
     <>
@@ -45,17 +58,37 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       >
         {/* Top Image Container */}
         <div className="relative aspect-[3/4] bg-[#F3ECD8] rounded-xl sm:rounded-2xl overflow-hidden">
-          <img
-            src={product.images[0]}
-            alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
+          {imageFailed ? (
+            <div className="w-full h-full flex items-center justify-center text-[#55615D]">
+              <CustomTagIcon className="w-8 h-8" />
+            </div>
+          ) : (
+            <img
+              src={product.images[0]}
+              alt={product.name}
+              loading="lazy"
+              onError={() => setImageFailed(true)}
+              className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${isUnavailable ? 'opacity-70' : ''}`}
+            />
+          )}
 
           {/* Floating Single Capsule Tag */}
           <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 bg-[#1A2225]/90 backdrop-blur-md text-[#FFF9E9] text-[9px] sm:text-[10px] font-semibold rounded-full shadow-sm">
-              {product.isOneOfOne && <CustomTagIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#FFF9E9]" />}
-              <span>{product.isOneOfOne ? `1 of 1 • ${product.condition}` : product.condition}</span>
+            <span
+              className={`inline-flex items-center gap-1 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[9px] sm:text-[10px] font-semibold rounded-full shadow-sm ${
+                isNew
+                  ? 'bg-emerald-600 text-[#FFF9E9] uppercase tracking-wide font-bold'
+                  : 'bg-[#1A2225]/90 backdrop-blur-md text-[#FFF9E9]'
+              }`}
+            >
+              {!isNew && product.isOneOfOne && <CustomTagIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#FFF9E9]" />}
+              <span>
+                {isNew
+                  ? t('feed.new')
+                  : product.isOneOfOne
+                  ? `1 of 1 • ${product.condition}`
+                  : product.condition}
+              </span>
             </span>
           </div>
 
@@ -72,7 +105,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
             <button
               onClick={handleSaveClick}
-              aria-label={isSaved ? "Remove from saved products" : "Save product"}
+              aria-label={isSaved ? t('common.saved') : t('common.save')}
+              aria-pressed={isSaved}
               className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all shadow-md cursor-pointer ${
                 isSaved
                   ? 'bg-[#1A2225] text-[#FFF9E9]'
@@ -82,6 +116,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               <SavedIcon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isSaved ? 'fill-current' : ''}`} />
             </button>
           </div>
+
+          {/* Status Ribbon for Reserved/Sold */}
+          {isUnavailable && (
+            <div className="absolute top-12 left-2 px-2 py-0.5 rounded-full bg-[#1A2225]/95 text-[#FFF9E9] text-[10px] font-bold uppercase tracking-wide shadow-sm z-10">
+              {product.status}
+            </div>
+          )}
 
           {/* Social Proof Pin Count Badge */}
           <div className="absolute bottom-2 left-2 sm:bottom-2.5 sm:left-2.5 bg-[#1A2225]/80 backdrop-blur-md text-[#FFF9E9] px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold flex items-center gap-1 shadow-md">
