@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Clock, LogOut, RefreshCw, ShieldCheck, XCircle, Compass } from 'lucide-react';
-import type { SellerAccount } from '../../types/auth';
+import type { SelfieCapture, SellerAccount } from '../../types/auth';
 import { authService, maskIdNumber, VALID_ID_TYPES } from '../../services/authService';
 import { AUTOMATED_CHECK_LABELS } from '../../services/idVerificationService';
 import { Alert, Button, Field, inputClass } from '../common/FormControls';
 import { ImageUploadField } from '../common/ImageUploadField';
+import { SelfieCaptureField } from './SelfieCaptureField';
 
 interface ApplicationStatusViewProps {
   account: SellerAccount;
@@ -25,6 +26,7 @@ export const ApplicationStatusView: React.FC<ApplicationStatusViewProps> = ({
   const [fullNameOnId, setFullNameOnId] = useState(account.verification.fullNameOnId);
   const [birthDate, setBirthDate] = useState(account.verification.birthDate ?? '');
   const [idImageDataUrl, setIdImageDataUrl] = useState('');
+  const [selfie, setSelfie] = useState<SelfieCapture | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const automatedCheck = account.verification.automatedCheck;
@@ -46,6 +48,7 @@ export const ApplicationStatusView: React.FC<ApplicationStatusViewProps> = ({
         fullNameOnId,
         birthDate,
         idImageDataUrl,
+        selfie,
       });
       onUpdated(updated);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -71,8 +74,8 @@ export const ApplicationStatusView: React.FC<ApplicationStatusViewProps> = ({
         </h1>
         <p className={`text-xs sm:text-sm leading-relaxed max-w-lg ${isRejected ? 'text-red-800' : 'text-zinc-300'}`}>
           {isRejected
-            ? 'Review the admin note below, then resubmit a clearer photo or a different valid ID. Your storefront details are kept.'
-            : 'A Habi admin compares your uploaded ID with the application details. Storefronts usually go live within 1 to 2 days. You will see your dashboard here once approved.'}
+            ? 'Review the admin note below, then resubmit your ID with a new selfie holding it. Your storefront details are kept.'
+            : 'A Habi admin compares your ID photo, your selfie, and the application details. Storefronts usually go live within 1 to 2 days. You will see your dashboard here once approved.'}
         </p>
         {isRejected && account.review?.note && (
           <div className="bg-white/80 border border-red-200 rounded-xl p-3.5 text-xs text-red-900">
@@ -94,13 +97,23 @@ export const ApplicationStatusView: React.FC<ApplicationStatusViewProps> = ({
           <SummaryRow label="Contact" value={`${account.email} • ${account.phone}`} />
           <SummaryRow label="ID type" value={account.verification.idTypeLabel} />
           <SummaryRow label="ID number" value={maskIdNumber(account.verification.idNumber)} />
+          <SummaryRow
+            label="Selfie with ID"
+            value={
+              !account.verification.selfie
+                ? 'Not provided'
+                : account.verification.selfie.method === 'live-camera'
+                ? 'Taken with live camera'
+                : 'Uploaded file'
+            }
+          />
           {automatedCheck && (
             <SummaryRow label="Government ID check" value={AUTOMATED_CHECK_LABELS[automatedCheck.status]} />
           )}
         </dl>
         <div className="flex items-center gap-2 text-[11px] text-zinc-500 pt-3 border-t border-zinc-100">
           <ShieldCheck className="w-3.5 h-3.5 text-zinc-950 shrink-0" />
-          <span>Your ID photo is visible to Habi admins only and never to buyers.</span>
+          <span>Your ID photo and selfie are visible to Habi admins only and never to buyers.</span>
         </div>
       </div>
 
@@ -129,6 +142,7 @@ export const ApplicationStatusView: React.FC<ApplicationStatusViewProps> = ({
             </Field>
           </div>
           <ImageUploadField label="Photo of ID (front)" required capture value={idImageDataUrl} onChange={setIdImageDataUrl} hint="All four corners visible, no glare, text readable." />
+          <SelfieCaptureField label="Selfie holding your ID" required value={selfie} onChange={setSelfie} />
 
           <Button type="submit" loading={isSubmitting} className="w-full">
             <RefreshCw className="w-4 h-4" />
