@@ -803,6 +803,22 @@ Seller verification only checked that the ID number had the right format, that i
 - `npm run build`: `tsc -b && vite build` passed cleanly with 0 compilation errors in 994ms (`dist/assets/index-3FRx0rJ0.css` 84.16 kB, `dist/assets/index-BNXAND7A.js` 938.17 kB).
 - Directives: Zero Emojis, Zero Em-Dashes, and Cream-Green tokens preserved.
 
+---
+
+## [2026-09-27] Session Log: System-Wide Appearance & Theme Toggle Removal
+
+### Problem
+- Theme preference controls ("Appearance" cards and moon/sun buttons) created unnecessary layout clutter across Saved preferences, mobile navigation drawer, and top header navigation.
+
+### Delivered
+- **System-Wide Removal**: Removed the "Appearance" theme selection card from `BuyerProfileTab.tsx`, `NavigationDrawer.tsx`, and `NavigationHeader.tsx`.
+- The platform UI relies strictly on the unified, high-fashion Cream-Green palette across all viewports.
+
+### Verification Results
+- `npm run build`: `tsc -b && vite build` passed with 0 compilation errors in 575ms (`dist/assets/index-3FRx0rJ0.css` 84.16 kB, `dist/assets/index-DpygbxYh.js` 937.04 kB).
+- Directives: Zero Emojis, Zero Em-Dashes, and Cream-Green tokens verified.
+
+
 
 
 
