@@ -760,4 +760,21 @@ Seller verification only checked that the ID number had the right format, that i
 - `npm run build`: Passed with 0 TypeScript compilation errors in 3.32s (`dist/assets/index-D5mR503R.css` 84.18 kB, `dist/assets/index-DQ_LgkdB.js` 939.27 kB).
 - Directives: Zero Emoji, Zero Em-Dash, Anti-Eyebrow-Pill, and Cream-Green palette compliance verified.
 
+---
+
+## [2026-09-27] Session Log: Feed Control Header Refactoring (Distilled 2-Row Layout)
+
+### Problem
+- The feed control area stacked 4 separate vertical rows of controls (`For You`/`Following` underline tabs, `Set my sizes`/`Sort`/`Price` pills, category links, and aesthetic chips) with double horizontal divider lines, taking over 240px of vertical height and creating visual clutter.
+
+### Delivered
+- **Unified Row 1 (`FeedControls.tsx`)**: Placed `For You` | `Following` pill-segmented switcher on the left and `Set my sizes`, `Sort ▾`, `Price ▾` controls on the right in a single flex bar. Removed the full-width underline slice.
+- **Unified Row 2 (`AestheticFilterBar.tsx`)**: Merged `1-of-1 Thrift Vault` toggle, item categories, and style aesthetic tags into a single horizontal scroll chip rail with vertical dividers (`|`).
+- Reduced feed header vertical footprint by ~60%, bringing product cards immediately above the fold.
+
+### Verification Results
+- `npm run build`: `tsc -b && vite build` passed with 0 TypeScript/compilation errors in 4.91s (`dist/assets/index-DIxlFt2g.css` 84.13 kB, `dist/assets/index-Dk6d0u2X.js` 939.22 kB).
+- Directives: Preserved Cream-Green tokens, Zero Emojis, and Zero Em-Dashes.
+
+
 
